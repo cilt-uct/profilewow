@@ -22,7 +22,7 @@
    </parent>
 
    <properties>
-      <rsfutil.version>0.7.2RC1</rsfutil.version>
+      <rsfutil.version>0.7.2</rsfutil.version>
       <sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
       <deploy.webappname>Profilewow</deploy.webappname>
       <appserver.id>${sakai.appserver.id}</appserver.id>
@@ -38,14 +38,45 @@
          <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
          <type>jar</type>
       </dependency>
-
+    <dependency>
+      <groupId>uk.org.ponder.sakairsf</groupId>
+      <artifactId>SakaiRSFComponents-evolvers</artifactId>
+      <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>uk.org.ponder.sakairsf</groupId>
+      <artifactId>SakaiRSFComponents-templates</artifactId>
+      <version>${rsfutil.version}-sakai_${sakairsf.sakai.version}</version>
+      <type>war</type>
+    </dependency>
       <!-- apache commons logging -->
       <dependency>
-         <groupId>commons-logging</groupId>
-         <artifactId>commons-logging</artifactId>
-         <version>1.1</version>
+      	<groupId>commons-logging</groupId>
+      	<artifactId>commons-logging</artifactId>
+      	<version>1.1</version>
       </dependency>
-
+      <!-- sakai dependecies -->
+      <dependency>
+      	<groupId>org.sakaiproject</groupId>
+      	<artifactId>sakai-common-edu-person-api</artifactId>
+      	<version>2.5.0</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.sakaiproject</groupId>
+      	<artifactId>sakai-common-type-api</artifactId>
+      	<version>2.5.0</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.sakaiproject</groupId>
+      	<artifactId>sakai-common-manager-api</artifactId>
+      	<version>2.5.0</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.sakaiproject</groupId>
+      	<artifactId>sakai-user-api</artifactId>
+      	<version>2.5.0</version>
+      </dependency>
    </dependencies>
 
 </project>

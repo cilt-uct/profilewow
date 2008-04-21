@@ -11,5 +11,10 @@
 	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/rsfutil/rsfutil/0.7.2RC1/rsfutil-0.7.2RC1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/uk/org/ponder/sakairsf/sakairsf/0.7.2-sakai_2.2.x/sakairsf-0.7.2-sakai_2.2.x.jar"/>
 	<classpathentry kind="src" path="tool/src/java"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/authz-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/profile"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/site-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/site-impl"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/user-api"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

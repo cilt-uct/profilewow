@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!--  Request-scope beans for TaskList - actually just the handler -->
+<beans>
+
+ <bean class="org.sakaiproject.profilewow.tool.producers.MainViewProducer">
+ 	<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
+ </bean>
+
+
+	<bean class="org.sakaiproject.profilewow.tool.producers.EditProducer">
+	</bean>
+
+</beans>
+
+

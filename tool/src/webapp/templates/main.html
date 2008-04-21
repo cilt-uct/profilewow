@@ -12,24 +12,26 @@
 <div class="portletBody"> 
   <form id="profileForm" method="post" action="https://vula.uct.ac.za/portal/tool/896bff67-8e77-489f-00d3-c4ed91385ec7/main" enctype="application/x-www-form-urlencoded">
     <!--main.jsp -->
-    <div class="navIntraTool"> <a id="profileForm:editProfile" href="#" title="Edit my Profile " onclick="document.forms['profileForm']['profileForm:_idcl'].value='profileForm:editProfile'; document.forms['profileForm'].submit(); return false;">Edit 
+    <div class="navIntraTool"> <a rsf:id="editProfile" href="#" title="Edit my Profile ">Edit 
       my Profile </a> <span id="profileForm:seperator"> | </span> <a id="profileForm:searchProfile" href="#" title="Show my Profile" onclick="document.forms['profileForm']['profileForm:_idcl'].value='profileForm:searchProfile'; document.forms['profileForm'].submit(); return false;">Show 
       my Profile</a> </div>
     <table class="profileTable" summary="layout" border="0" cellpadding="0" cellspacing="0">
       <tbody>
         <tr> 
-          <td colspan="2"><h3 class="insColor insBak insBorder">Profile: David 
-              Horwitz</h3></td>
+          <td colspan="2"><h3 class="insColor insBak insBorder">Profile: <span rsf:id="profile-name">Daffy Duck</span></h3></td>
           <td class="profileSearch"><h3 class="insColor insBak insBorder">Search 
               for Profile</h3></td>
         </tr>
         <tr> 
           <td class="rosterImageCol"> <img id="profileForm:image1" src="main_files/pictureUnavailable.jpg" alt="Picture of" class="rosterImage" /> 
           </td>
-          <td class="profileData"> <span id="profileForm:position">OLE Developer</span> 
-            <span id="profileForm:department">CET</span> <span id="profileForm:school">University 
-            of Cape Town</span> <span id="profileForm:room">6.20.7 Hlanganani</span> 
-            <span id="profileForm:workphone">021 650 3884</span> </td>
+          <td class="profileData"> 
+          <span rsf:id="profile-nickname">dude</span> 
+          	<span rsf:id="profile-postion">Student</span> 
+            <span rsf:id="profile-department">Animation</span>
+            <span rsf:id="profile-school">Disney</span> 
+            <span rsf:id="profile-room">dineyland</span> 
+            <span rsf:id="profile-workphone">quack!</span> </td>
           <td class="profileSearch"> 
             <!--searchModule.jsp -->
             <div class="searchNav clear"> 
