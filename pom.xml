@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                      http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <name>Sakai Profilewow</name>
+   <groupId>org.sakaiproject</groupId>
+   <artifactId>profilewow</artifactId>
+   <organization>
+      <name>Sakai Project</name>
+      <url>http://sakaiproject.org/</url>
+   </organization>
+   <inceptionYear>2007</inceptionYear>
+   <packaging>pom</packaging>
+   <version>0.1</version>
+
+   <properties>
+      <rsfutil.version>0.7.2RC1</rsfutil.version>
+   </properties>
+
+   <!-- Use this master pom to make it easy to get all the correct RSF Sakai dependencies -->
+   <parent> 
+      <groupId>uk.org.ponder.pure-poms</groupId>
+      <artifactId>standard-sakai-tool</artifactId>
+      <version>POM-3</version>
+   </parent>
+
+   <!-- RSF (CARET) maven 2 repository -->
+   <repositories>
+      <repository>
+         <id>CARET-Maven2</id>
+         <name>CARET Maven 2 Repository</name>
+         <url>http://www2.caret.cam.ac.uk/maven2</url>
+      </repository>
+   </repositories>
+
+   <modules>
+      <module>api</module>
+      <module>impl</module>
+      <module>pack</module>
+      <module>tool</module>
+   </modules>
+
+</project>
