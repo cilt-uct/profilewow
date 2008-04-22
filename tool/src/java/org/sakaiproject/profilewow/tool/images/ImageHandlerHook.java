@@ -51,9 +51,9 @@ public class ImageHandlerHook implements HandlerHook {
 		ImageViewParamaters ivp;
 		if (viewparams instanceof ImageViewParamaters) {
 			ivp = (ImageViewParamaters) viewparams;
-			log.info("got a ImageView");
+			log.debug("got a ImageView");
 		} else {
-			log.info("Not an image view!: " + viewparams);
+			log.debug("Not an image view!: " + viewparams);
 			return false;
 		}
 		OutputStream resultsOutputStream = null;
@@ -77,13 +77,13 @@ public class ImageHandlerHook implements HandlerHook {
 			SakaiPerson person = spm.getSakaiPerson(spm.getSystemMutableType());
 			if (person != null) {
 				if (person.getJpegPhoto() != null && person.getJpegPhoto().length > 0) {
-					log.info("we have some photo data");
+					log.debug("we have some photo data");
 					byte[] institutionalPhoto = person.getJpegPhoto();
 					response.setContentLength(institutionalPhoto.length);
 					stream.write(institutionalPhoto);
 					stream.flush();
 				} else {
-					log.info("no jpeg photo!");
+					log.debug("no jpeg photo!");
 				}
 			} else {
 				log.warn("no profile for user!");

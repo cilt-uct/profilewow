@@ -13,11 +13,11 @@
 			value="classpath:org/sakaiproject/profilewow/bundle/Messages" />
     <property name="cacheSeconds" value="10" />
   </bean>
-<!--  
+ 
   <bean parent="requestAddressibleParent">
-    <property name="value" value="" />
+    <property name="value" value="profileBeanLocator" />
   </bean>
-  -->
+ 
   
   
 	<bean id="templateResolverStrategy" parent="CRITemplateResolverStrategy">

@@ -63,11 +63,8 @@
 				name="editProfileForm:nickname" size="30" type="text" /> </span></td>
 		</tr>
 		<tr>
-			<td><span class="shorttext"><span
-				id="editProfileForm:inputid1" class="reqStar">*</span> <label
-				id="editProfileForm:outputLabel17" for="editProfileForm:email">
-			Email</label> <input rsf:id="editProfileForm-email"
-				size="30" type="text" /> </span></td>
+			<td><span class="shorttext"><span class="reqStar">*</span><label for="editProfileForm:email">Email</label><input rsf:id="editProfileForm-email" size="30" type="text" /></span>
+		  </td>
 		</tr>
 		<tr> 
           <td><span class="shorttext">
@@ -131,6 +128,7 @@
             </span></td>
         </tr>
 		<tr>
+		
 			<td>
 			<table border="1">
 				<tr>
@@ -164,13 +162,7 @@
 			</table>
 			</td>
 		</tr>
-		<tr>
-			<td><span class="shorttext"> <input
-				id="editProfileForm:inputPictureUrl"
-				name="editProfileForm:inputPictureUrl" class="labelindnt" size="30"
-				type="text" /> </span></td>
-		</tr>
-
+		
 		<tr> 
           <td><span class="shorttext">
             <label
@@ -234,9 +226,7 @@
       </tbody>
     </table>
     <p class="act"> 
-      <input id="editProfileForm:editSaveButton"
-	name="editProfileForm:editSaveButton" value="Save" accesskey="s"
-	onkeypress="document.forms[0].submit;" class="active" type="submit" />
+      <input rsf:id="profile-save" value="Save" accesskey="s" type="submit" />
       <input
 	id="editProfileForm:editCancelButton"
 	name="editProfileForm:editCancelButton" value="Cancel" accesskey="x"

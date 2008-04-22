@@ -7,6 +7,7 @@ import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.user.api.UserDirectoryService;
 
+import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInput;
@@ -47,7 +48,7 @@ public class EditProducer implements ViewComponentProducer {
 		
 		log.info("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
 		
-		String otpBean = "profileBeanLocator." + sPerson.getUuid();
+		String otpBean = "profileBeanLocator." + sPerson.getUid();
 		UIInput.make(form,"editProfileForm-first_name", otpBean + ".givenName" ,sPerson.getGivenName());
 		UIInput.make(form,"editProfileForm-lname", otpBean + ".surname", sPerson.getSurname());
 		UIInput.make(form,"editProfileForm-nickname", otpBean + ".nickname", sPerson.getNickname());
@@ -73,6 +74,10 @@ public class EditProducer implements ViewComponentProducer {
 		}
 		
 		UIInternalLink.make(form, "official-pic", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
+		
+		
+		
+		UICommand.make(form, "profile-save","save","profileBeanLocator.saveAll");
 	}
 	
 	

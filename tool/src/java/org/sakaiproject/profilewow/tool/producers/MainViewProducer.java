@@ -4,10 +4,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
+import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
+import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.DefaultView;
@@ -39,6 +41,15 @@ public class MainViewProducer implements DefaultView, ViewComponentProducer {
 		
 		
 		SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType()); 
+		
+		if (sPerson.getPicturePrefered() == null ||  sPerson.getPicturePrefered().intValue() == SakaiPerson.NO_PICTURE_PREFERED) {
+			UILink.make(tofill, "profile-image", "../images/pictureUnavailable.jpg");
+		} else if (sPerson.getPicturePrefered().intValue() == SakaiPerson.CUSTOM_PICTURE_PREFERED) {
+			UILink.make(tofill, "profile-image", "picUrl");
+		} else {
+			UIInternalLink.make(tofill, "profile-image", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
+		}
+		
 		
 		if (sPerson != null ) {
 			log.info("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());

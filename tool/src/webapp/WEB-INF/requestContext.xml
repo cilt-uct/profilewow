@@ -18,6 +18,11 @@
 		<property name="response" ref="httpServletResponse" />
 		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
 	</bean>
+	
+	<bean name="profileBeanLocator" class="org.sakaiproject.profilewow.tool.locators.ProfileBeanLocator" >
+		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
+	</bean>
+	
 </beans>
 
 
