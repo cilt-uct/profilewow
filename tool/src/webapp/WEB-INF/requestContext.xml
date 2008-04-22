@@ -9,8 +9,15 @@
 
 
 	<bean class="org.sakaiproject.profilewow.tool.producers.EditProducer">
+		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
 	</bean>
 
+
+	<bean name="imageHandlerHook" class="org.sakaiproject.profilewow.tool.images.ImageHandlerHook">
+		<property name="viewparams" ref="viewParameters" />
+		<property name="response" ref="httpServletResponse" />
+		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
+	</bean>
 </beans>
 
 

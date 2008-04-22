@@ -31,5 +31,16 @@
 		<constructor-arg value="/" />
 	</bean>
 	
+	<bean parent="handlerHookParent">
+		<property name="value">
+			<bean parent="RSACBridgeProxy">
+				<property name="targetBeanName"	value="imageHandlerHook" />
+			</bean>
+		</property>
+	</bean>
 	
+	<bean parent="viewParamsRegistrarParent">
+		<property name="viewID" value="imageServlet" />
+		<property name="viewParamsClass" value="org.sakaiproject.profilewow.tool.params.ImageViewParamaters"/>
+	</bean>
 </beans>

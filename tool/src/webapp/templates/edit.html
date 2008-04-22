@@ -11,9 +11,7 @@
 </head>
 <body rsf:id="scr=sakai-body">
 <div class="portletBody"> 
-  <form id="editProfileForm" method="post"
-	action="https://vula.uct.ac.za/portal/tool/896bff67-8e77-489f-00d3-c4ed91385ec7/edit"
-	enctype="application/x-www-form-urlencoded">
+  <form id="editProfileForm" method="post" rsf:id="edit-form">
     <!--edit.jsp -->
     <div class="navIntraTool"><span id="editProfileForm:editprofile"
 	class="currentView">Edit my Profile </span> <span
@@ -43,8 +41,8 @@
             <label
 				id="editProfileForm:outputLabel" for="editProfileForm:first_name"> 
             First Name</label>
-            <input id="editProfileForm:first_name"
-				name="editProfileForm:first_name" value="David" size="30"
+            <input rsf:id="editProfileForm-first_name" 
+				name="editProfileForm:first_name" value="Duck" size="30"
 				type="text" />
             </span></td>
         </tr>
@@ -54,26 +52,30 @@
             <label
 				id="editProfileForm:outputLabel111" for="editProfileForm:lname"> 
             Last Name</label>
-            <input id="editProfileForm:lname"
-				name="editProfileForm:lname" value="Horwitz" size="30" type="text" />
+            <input rsf:id="editProfileForm-lname"
+				name="editProfileForm:lname" value="daffy" size="30" type="text" />
             </span></td>
         </tr>
-        <tr> 
-          <td><span class="shorttext">
-            <label
-				id="editProfileForm:outputLabel2" for="editProfileForm:nickname"> 
-            Nickname</label>
-            <input id="editProfileForm:nickname"
-				name="editProfileForm:nickname" value="" size="30" type="text" />
-            </span></td>
-        </tr>
-        <tr> 
+		<tr>
+			<td><span class="shorttext"> <label
+				id="editProfileForm:outputLabel2" for="editProfileForm:nickname">
+			Nickname</label> <input rsf:id="editProfileForm-nickname"
+				name="editProfileForm:nickname" size="30" type="text" /> </span></td>
+		</tr>
+		<tr>
+			<td><span class="shorttext"><span
+				id="editProfileForm:inputid1" class="reqStar">*</span> <label
+				id="editProfileForm:outputLabel17" for="editProfileForm:email">
+			Email</label> <input rsf:id="editProfileForm-email"
+				size="30" type="text" /> </span></td>
+		</tr>
+		<tr> 
           <td><span class="shorttext">
             <label
 				id="editProfileForm:outputLabel3" for="editProfileForm:position"> 
             Position</label>
-            <input id="editProfileForm:position"
-				name="editProfileForm:position" value="OLE Developer" size="30"
+            <input rsf:id="editProfileForm-position"
+				name="editProfileForm:position" value="Animation" size="30"
 				type="text" />
             </span></td>
         </tr>
@@ -82,8 +84,8 @@
             <label
 				id="editProfileForm:outputLabel4" for="editProfileForm:department"> 
             Department</label>
-            <input id="editProfileForm:department"
-				name="editProfileForm:department" value="CET" size="30" type="text" />
+            <input rsf:id="editProfileForm-department"
+				name="editProfileForm:department" value="Comedy" size="30" type="text" />
             </span></td>
         </tr>
         <tr> 
@@ -91,8 +93,8 @@
             <label
 				id="editProfileForm:outputLabel5" for="editProfileForm:school"> 
             Institution</label>
-            <input id="editProfileForm:school"
-				name="editProfileForm:school" value="University of Cape Town"
+            <input rsf:id="editProfileForm-school"
+				name="editProfileForm:school" value="DineyWorld"
 				size="30" type="text" />
             </span></td>
         </tr>
@@ -101,8 +103,8 @@
             <label
 				id="editProfileForm:outputLabel6" for="editProfileForm:room"> 
             Room</label>
-            <input id="editProfileForm:room" name="editProfileForm:room"
-				value="6.20.7 Hlanganani" size="30" type="text" />
+            <input rsf:id="editProfileForm-room" name="editProfileForm:room"
+				value="somewhere" size="30" type="text" />
             </span></td>
         </tr>
       </tbody>
@@ -125,53 +127,51 @@
           <td><span class="shorttext">
             <label
 				id="editProfileForm:outputLabel7"> Picture</label>
-            <table id="editProfileForm:picture" class="checkbox"
-				style="margin-bottom: 1em;">
-              <tbody>
-                <tr> 
-                  <td><label> 
-                    <input checked="checked"
-							name="editProfileForm:picture" value="none"
-							title="Choose picture id preference" type="radio" />
-                    None</label></td>
-                </tr>
-                <tr> 
-                  <td><label> 
+
+            </span></td>
+        </tr>
+		<tr>
+			<td>
+			<table border="1">
+				<tr>
+					<td>current pic</td>
+					<td><label> 
                     <input name="editProfileForm:picture"
 							value="universityId" title="Choose picture id preference"
 							type="radio" />
                     Use University Id Picture</label></td>
-                </tr>
-                <tr> 
-                  <td><label> 
-                    <input name="editProfileForm:picture"
+					<td><label> <input name="editProfileForm:picture"
 							value="pictureUrl" title="Choose picture id preference"
 							type="radio" />
                     Use Picture URL :</label></td>
-                </tr>
-              </tbody>
-            </table>
-            </span></td>
-        </tr>
-        <tr> 
-          <td><span class="shorttext"> 
-            <input
+					<td><label> 
+                    <input checked="checked"
+							name="editProfileForm:picture" value="none"
+							title="Choose picture id preference" type="radio" />
+                    None</label></td></tr>
+				<tr>
+					<td>
+						<img src="somepic.jpg" rsf:id="current-pic"/>
+					</td>
+					<td>
+						<img src="somepic.jpg" rsf:id="official-pic" />
+					</td>
+					<td>
+						<img src="somepic.jpg" rsf:id="manual-pic"/>
+						<a href="change.html">change</a>
+					</td>
+					</tr>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td><span class="shorttext"> <input
 				id="editProfileForm:inputPictureUrl"
 				name="editProfileForm:inputPictureUrl" class="labelindnt" size="30"
-				type="text" />
-            </span></td>
-        </tr>
-        <tr> 
-          <td><span class="shorttext"><span
-				id="editProfileForm:inputid1" class="reqStar">*</span>
-            <label
-				id="editProfileForm:outputLabel17" for="editProfileForm:email"> 
-            Email</label>
-            <input id="editProfileForm:email" name="editProfileForm:email"
-				size="30" type="text" />
-            </span></td>
-        </tr>
-        <tr> 
+				type="text" /> </span></td>
+		</tr>
+
+		<tr> 
           <td><span class="shorttext">
             <label
 				id="editProfileForm:outputLabel8" for="editProfileForm:homepage"> 

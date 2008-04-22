@@ -60,17 +60,17 @@
       <dependency>
       	<groupId>org.sakaiproject</groupId>
       	<artifactId>sakai-common-edu-person-api</artifactId>
-      	<version>2.5.0</version>
+      	<version>SNAPSHOT</version>
       </dependency>
       <dependency>
       	<groupId>org.sakaiproject</groupId>
       	<artifactId>sakai-common-type-api</artifactId>
-      	<version>2.5.0</version>
+      	<version>SNAPSHOT</version>
       </dependency>
       <dependency>
       	<groupId>org.sakaiproject</groupId>
       	<artifactId>sakai-common-manager-api</artifactId>
-      	<version>2.5.0</version>
+      	<version>SNAPSHOT</version>
       </dependency>
       <dependency>
       	<groupId>org.sakaiproject</groupId>
