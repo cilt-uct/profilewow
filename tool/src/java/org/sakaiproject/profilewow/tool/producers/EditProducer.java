@@ -101,6 +101,11 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		
 		UIInternalLink.make(form, "change-pic", messageLocator.getMessage("editProfile.changePic"), new SimpleViewParameters(ChangePicture.VIEW_ID));
 		
+		//the change password form
+		UIForm passForm = UIForm.make(tofill, "passForm:");
+		UIInput.make(passForm,"pass1","userBeanLocator." + sPerson.getUid() + ".pass1");
+		UIInput.make(passForm,"pass2","userBeanLocator." + sPerson.getUid() + ".pass2");
+		UICommand.make(passForm, "passSubmit", "userBeanLocator.saveAll");
 	}
 	
 	
