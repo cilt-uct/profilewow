@@ -6,35 +6,21 @@
 <link href="https://vula.uct.ac.za/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
 <link href="https://vula.uct.ac.za/library/skin/tool.css" type="text/css" rel="stylesheet" media="all"  rsf:id="scr=portal-matter"/>
 <script type="text/javascript" language="JavaScript"
-	src="edit_files/headscripts.js" rsf:id="scr=portal-matter"></script>
+	src="file:///C|/Documents%20and%20Settings/administrator/Desktop/edit_files/headscripts.js" rsf:id="scr=portal-matter"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 </head>
 <body rsf:id="scr=sakai-body">
 <div class="portletBody"> 
   <form id="editProfileForm" method="post" rsf:id="edit-form">
     <!--edit.jsp -->
-    <div class="navIntraTool"><span id="editProfileForm:editprofile"
-	class="currentView">Edit my Profile </span> <span
-	id="editProfileForm:seperaror"> | </span> <a
-	id="editProfileForm:cancel" href="#">Show 
-      my Profile</a></div>
+    
     <h3>My Profile</h3>
     <div class="instruction"><span id="editProfileForm:er1">Complete form and 
       then choose 'Save' at the bottom. A</span> <span
-	id="editProfileForm:er2" class="reqStarInline">'*'</span> <span
+	id="editProfileForm:er2" class="reqStarInline">*</span> <span
 	id="editProfileForm:er3">means it is required information.</span></div>
-    <h4>Public Information</h4>
     <table class="jsfFormTable" summary="layout">
       <tbody>
-        <tr> 
-          <td><span class="checkbox labelindnt"> 
-            <input
-				id="editProfileForm:checkhide" name="editProfileForm:checkhide"
-				title="Hide public and personal information" type="checkbox" />
-            <label
-				for="editProfileForm:checkhide"> Hide public and personal information</label>
-            </span></td>
-        </tr>
         <tr> 
           <td><span class="shorttext required"><span
 				id="editProfileForm:inputid" class="reqStar">*</span>
@@ -45,6 +31,52 @@
 				name="editProfileForm:first_name" value="Duck" size="30"
 				type="text" />
             </span></td>
+			<td rowspan="11" valign="top">
+				<table width="100%" border="1" cellpadding="5" cellspacing="0" bordercolor="#CCCCCC">
+              <tr align="center">
+					<td><h4>My Profile Picture</h4>
+					<!--<p>
+					<label> 
+                    <input name="editProfileForm:picture"
+							value="universityId" title="Choose picture id preference"
+							type="radio" />
+                    Use University Id Picture</label><br>
+					<img src="somepic.jpg" rsf:id="official-pic" /></p>-->
+					<p><!--<label> <input name="editProfileForm:picture"
+							value="pictureUrl" title="Choose picture id preference"
+							type="radio" />
+                    Use Picture URL :</label><br>-->
+					<!--if no profile pic then--><img src="file:///C|/Documents%20and%20Settings/administrator/Desktop/noimage.gif">
+					<!--otherwise, show uploaded pic--><img src="file:///C|/Documents%20and%20Settings/administrator/Desktop/somepic.jpg" rsf:id="manual-pic"/><br>
+						<a href="file:///c|/documents%20and%20settings/administrator/desktop/change.html">Upload a photo</a></p>
+					<!--<p><label> 
+                    <input checked="checked"
+							name="editProfileForm:picture" value="none"
+							title="Choose picture id preference" type="radio" />
+                    None</label></p>-->
+					</td>
+					</tr>
+				</table>
+				<br>
+            <table cellpadding="5" cellspacing="0" border="1" width="100%" bordercolor="#CCCCCC">
+              <tr align="center">
+					
+                <td> 
+                  <h4>Change Password</h4>
+					Note: passwords must be at least<br>6 characters long with no spaces. 
+					
+					<table cellpadding="2" cellspacing="0" border="0" align="center">
+					
+							<tr><td>New password:</td><td><input type=password name=pass1 size=8></td></tr>
+							<tr><td>Confirm password:</td><td><input type=password name=pass2 size=8></td></tr>
+							<tr align="center"><td colspan="2"><input type=submit name=submit value="Set Password"></td></tr>
+					
+					</table>
+					
+					</td>
+				</tr>
+				</table> 
+		</td>
         </tr>
         <tr> 
           <td><span class="shorttext required"><span
@@ -57,16 +89,31 @@
             </span></td>
         </tr>
 		<tr>
+			<td><span class="shorttext"> <label>
+			Title</label> <input size="30" type="text" /> </span></td>
+		</tr>
+		<!--<tr>
 			<td><span class="shorttext"> <label
 				id="editProfileForm:outputLabel2" for="editProfileForm:nickname">
 			Nickname</label> <input rsf:id="editProfileForm-nickname"
 				name="editProfileForm:nickname" size="30" type="text" /> </span></td>
+		</tr>-->
+		<tr>
+			<td><span class="shorttext"><span class="reqStar">*</span>
+			<label for="editProfileForm:email">Email</label>
+			<input rsf:id="editProfileForm-email" 
+			name="editProfileForm:email" size="30" type="text" />
+			</span></td>
 		</tr>
 		<tr>
-			<td><span class="shorttext"><span class="reqStar">*</span><label for="editProfileForm:email">Email</label><input rsf:id="editProfileForm-email" size="30" type="text" /></span>
-		  </td>
+			<td><span class="shorttext"> <label>
+			Organisation</label> <input size="30" type="text" /> </span></td>
 		</tr>
-		<tr> 
+		<tr>
+			<td><span class="shorttext"> <label>
+			Country</label> <input size="30" type="text" /> </span></td>
+		</tr>
+		<!--<tr> 
           <td><span class="shorttext">
             <label
 				id="editProfileForm:outputLabel3" for="editProfileForm:position"> 
@@ -103,66 +150,7 @@
             <input rsf:id="editProfileForm-room" name="editProfileForm:room"
 				value="somewhere" size="30" type="text" />
             </span></td>
-        </tr>
-      </tbody>
-    </table>
-    <h4><span id="editProfileForm:personal">Personal Information</span></h4>
-    <table class="jsfFormTable" summary="layout">
-      <tbody>
-        <tr> 
-          <td><span class="checkbox labelindnt"> 
-            <input
-				id="editProfileForm:hideMyPersonalInfo"
-				name="editProfileForm:hideMyPersonalInfo" checked="checked"
-				title="Hide only my personal information" type="checkbox" />
-            <label
-				id="editProfileForm:id5" for="editProfileForm:hideMyPersonalInfo"> 
-            Hide only my personal information</label>
-            </span></td>
-        </tr>
-        <tr> 
-          <td><span class="shorttext">
-            <label
-				id="editProfileForm:outputLabel7"> Picture</label>
-
-            </span></td>
-        </tr>
-		<tr>
-		
-			<td>
-			<table border="1">
-				<tr>
-					<td>current pic</td>
-					<td><label> 
-                    <input name="editProfileForm:picture"
-							value="universityId" title="Choose picture id preference"
-							type="radio" />
-                    Use University Id Picture</label></td>
-					<td><label> <input name="editProfileForm:picture"
-							value="pictureUrl" title="Choose picture id preference"
-							type="radio" />
-                    Use Picture URL :</label></td>
-					<td><label> 
-                    <input checked="checked"
-							name="editProfileForm:picture" value="none"
-							title="Choose picture id preference" type="radio" />
-                    None</label></td></tr>
-				<tr>
-					<td>
-						<img src="somepic.jpg" rsf:id="current-pic"/>
-					</td>
-					<td>
-						<img src="somepic.jpg" rsf:id="official-pic" />
-					</td>
-					<td>
-						<img src="somepic.jpg" rsf:id="manual-pic"/>
-						<a href="change.html">change</a>
-					</td>
-					</tr>
-			</table>
-			</td>
-		</tr>
-		
+        </tr>-->
 		<tr> 
           <td><span class="shorttext">
             <label
@@ -185,15 +173,6 @@
         <tr> 
           <td><span class="shorttext">
             <label
-				id="editProfileForm:outputLabel10" for="editProfileForm:homephone"> 
-            Home Phone</label>
-            <input id="editProfileForm:homephone"
-				name="editProfileForm:homephone" size="30" type="text" />
-            </span></td>
-        </tr>
-        <tr> 
-          <td><span class="shorttext">
-            <label
 				id="editProfileForm:outputLabel101" for="editProfileForm:mobile"> 
             Cellphone</label>
             <input id="editProfileForm:mobile"
@@ -201,37 +180,37 @@
             </span></td>
         </tr>
         <tr> 
-          <td><span class="shorttext"> 
-            <table>
-              <tbody>
-                <tr> 
-                  <td><label id="editProfileForm:outputLabel11"
-							for="editProfileForm:otherInformation"> More details</label></td>
-                </tr>
-                <tr> 
-                  <td><span id="editProfileForm:otherInformation"> 
-                    <table border="0">
-                      <tbody>
-                        <tr> 
-                          <td>-deleted textarea here</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    </span></td>
-                </tr>
-              </tbody>
-            </table>
+          <td> 
+            <label id="editProfileForm:outputLabel11"
+							for="editProfileForm:otherInformation">More details</label><br>
+							<textarea name="moreinfo" cols="30" rows="5"></textarea></td>
+		</tr>
+		<tr> 
+          <td><span class="checkbox labelindnt"> 
+            <input
+				id="editProfileForm:checkhide" name="editProfileForm:checkhide"
+				title="Hide my email address and contact numbers" type="checkbox" />
+            <label
+				for="editProfileForm:checkhide">Hide my email address and contact numbers</label>
+            <br>
+			<input name="editProfileForm:sms" type="checkbox"
+				id="editProfileForm:sms"
+				title="Receive sms notfications" checked="checked" />
+            <label
+				for="editProfileForm:checkhide">Receive notifications via sms (you will need to enter your cellphone number above)</label>
             </span></td>
         </tr>
       </tbody>
     </table>
+	
+	
+	
     <p class="act"> 
       <input rsf:id="profile-save" value="Save" accesskey="s" type="submit" />
       <input
 	id="editProfileForm:editCancelButton"
 	name="editProfileForm:editCancelButton" value="Cancel" accesskey="x"
-	onkeypress="document.forms[0].cancel;" type="submit" />
-    </p>
+	onkeypress="document.forms[0].cancel;" type="submit" /></p>
     <input name="editProfileForm" value="editProfileForm" type="hidden" />
     <input
 	name="editProfileForm:_idcl" type="hidden" />
@@ -239,3 +218,4 @@
 </div>
 </body>
 </html>
+
