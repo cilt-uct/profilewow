@@ -7,6 +7,7 @@ import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.user.api.UserDirectoryService;
 
+import uk.org.ponder.messageutil.MessageLocator;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIForm;
@@ -14,10 +15,12 @@ import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.view.ComponentChecker;
+import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
+import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 
-public class EditProducer implements ViewComponentProducer {
+public class EditProducer implements ViewComponentProducer, DefaultView {
 
 	public static final String VIEW_ID = "edit";
 	
@@ -32,7 +35,17 @@ public class EditProducer implements ViewComponentProducer {
 		spm = in;
 	}
 	
+	private MessageLocator messageLocator;
+	public void setMessageLocator(MessageLocator messageLocator) {
+
+		this.messageLocator = messageLocator;
+	}
+
+	
 	private UserDirectoryService userDirectoryService;
+	public void setUserDirectoryService(UserDirectoryService uds) {
+		this.userDirectoryService = uds;
+	}
 	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
@@ -78,6 +91,9 @@ public class EditProducer implements ViewComponentProducer {
 		
 		
 		UICommand.make(form, "profile-save","save","profileBeanLocator.saveAll");
+		
+		UIInternalLink.make(form, "change-pic", messageLocator.getMessage("editProfile.changePic"), new SimpleViewParameters(ChangePicture.VIEW_ID));
+		
 	}
 	
 	

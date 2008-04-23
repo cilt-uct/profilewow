@@ -10,7 +10,7 @@
 	<bean id="messageSource"
     class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
     <property name="basename"
-			value="classpath:org/sakaiproject/profilewow/bundle/Messages" />
+			value="classpath:org/sakaiproject/profilewow/tool/bundle/Messages" />
     <property name="cacheSeconds" value="10" />
   </bean>
  
