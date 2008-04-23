@@ -14,7 +14,7 @@ import uk.org.ponder.beanutil.BeanLocator;
 import uk.org.ponder.beanutil.WriteableBeanLocator;
 import uk.org.ponder.messageutil.TargettedMessageList;
 
-public class ProfileBeanLocator implements WriteableBeanLocator {
+public class ProfileBeanLocator implements BeanLocator {
 
 	
 	private static Log log = LogFactory.getLog(ProfileBeanLocator.class);
@@ -61,7 +61,7 @@ public class ProfileBeanLocator implements WriteableBeanLocator {
 		
 	}
 	
-	public void savelAll() {
+	public void saveAll() {
 		log.info("Savind all!");
 		for (Iterator<String> it = delivered.keySet().iterator(); it.hasNext();) {
 			String key = it.next();

@@ -66,11 +66,18 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		UIInput.make(form,"editProfileForm-lname", otpBean + ".surname", sPerson.getSurname());
 		UIInput.make(form,"editProfileForm-nickname", otpBean + ".nickname", sPerson.getNickname());
 		UIInput.make(form,"editProfileForm-position", otpBean + ".title", sPerson.getTitle());
-		UIInput.make(form,"editProfileForm-department", otpBean + ".organizationalUnit",sPerson.getOrganizationalUnit());
+		UIInput.make(form,"editProfileForm-department", otpBean + ".organizationalUnit", sPerson.getOrganizationalUnit());
 		UIInput.make(form,"editProfileForm-school", otpBean + ".campus", sPerson.getCampus());
 		UIInput.make(form,"editProfileForm-room", otpBean + ".roomNumber", sPerson.getRoomNumber());
 		UIInput.make(form,"editProfileForm-email", otpBean + ".mail", sPerson.getMail());
+		UIInput.make(form,"editProfileForm-title", otpBean + ".title", sPerson.getTitle());
+		//not in profile data yet
+		UIInput.make(form,"editProfileForm-country", otpBean + ".localityName", sPerson.getLocalityName());
 		
+		UIInput.make(form,"editProfileForm-homepage", otpBean + ".labeledURI", sPerson.getLabeledURI());
+		UIInput.make(form,"editProfileForm-workphone", otpBean + ".telephoneNumber", sPerson.getTelephoneNumber());
+		UIInput.make(form,"editProfileForm-mobile", otpBean + ".mobile", sPerson.getMobile());
+		UIInput.make(form,"editProfileForm-more", otpBean + ".notes", sPerson.getNotes());
 		
 		//picture stuff
 		String picUrl = sPerson.getPictureUrl();

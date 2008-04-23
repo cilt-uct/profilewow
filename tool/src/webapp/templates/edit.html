@@ -76,7 +76,7 @@
         </tr>
 		<tr>
 			<td><span class="shorttext"> <label rsf:id="msg=editProfileForm.title">
-			Title</label> <input size="30" type="text" /> </span></td>
+			Title</label> <input rsf:id="editProfileForm-title" size="30" type="text" /> </span></td>
 		</tr>
 		<!--<tr>
 			<td><span class="shorttext"> <label
@@ -93,11 +93,11 @@
 		</tr>
 		<tr>
 			<td><span class="shorttext"> <label rsf:id="msg=editProfileForm.organisation">
-			Organisation</label> <input size="30" type="text" /> </span></td>
+			Organisation</label> <input rsf:id="editProfileForm-department" size="30" type="text" /> </span></td>
 		</tr>
 		<tr>
-			<td><span class="shorttext"> <label rsf:id="msg=editProfileForm.country">
-			Country</label> <input size="30" type="text" /> </span></td>
+			<td><span class="shorttext"> <label rsf:id="msg=editProfileForm.country">Country</label> 
+			<input rsf:id="editProfileForm-country" size="30" type="text" /> </span></td>
 		</tr>
 		<!--<tr> 
           <td><span class="shorttext">
@@ -142,7 +142,7 @@
             <label
 				rsf:id="msg=editProfileForm.homepage" for="editProfileForm:homepage"> 
             Home Page</label>
-            <input id="editProfileForm:homepage"
+            <input rsf:id="editProfileForm-homepage"
 				name="editProfileForm:homepage" size="30" type="text" />
             </span></td>
         </tr>
@@ -151,8 +151,8 @@
             <label
 				rsf:id="msg=editProfileForm.workphone" for="editProfileForm:workphone"> 
             Work Phone</label>
-            <input id="editProfileForm:workphone"
-				name="editProfileForm:workphone" value="021 650 3884" size="30"
+            <input rsf:id="editProfileForm-workphone"
+				name="editProfileForm:workphone" value="021 555 3884" size="30"
 				type="text" />
             </span></td>
         </tr>
@@ -160,7 +160,7 @@
           <td><span class="shorttext">
             <label rsf:id="msg=editProfileForm.mobile" for="editProfileForm:mobile"> 
             Cellphone</label>
-            <input id="editProfileForm:mobile"
+            <input rsf:id="editProfileForm-mobile"
 				name="editProfileForm:mobile" value="" size="30" type="text" />
             </span></td>
         </tr>
@@ -168,7 +168,7 @@
           <td> 
             <label rsf:id="msg=editProfileForm.more"
 							for="editProfileForm:otherInformation">More details</label><br/>
-							<textarea name="moreinfo" cols="30" rows="5"></textarea></td>
+							<textarea rsf:id="editProfile-more" name="moreinfo" cols="30" rows="5"></textarea></td>
 		</tr>
 		<tr> 
           <td><span class="checkbox labelindnt"> 
