@@ -3,9 +3,6 @@
 <!--  Request-scope beans for TaskList - actually just the handler -->
 <beans>
 
- <bean class="org.sakaiproject.profilewow.tool.producers.MainViewProducer">
- 	<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
- </bean>
 
 
 	<bean class="org.sakaiproject.profilewow.tool.producers.EditProducer">
@@ -28,8 +25,14 @@
 	
 	<bean name="profileBeanLocator" class="org.sakaiproject.profilewow.tool.locators.ProfileBeanLocator" >
 		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
+		<property name="sakaiPersonFacade" ref="sakaiPersonFacade"/>
+		<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
 	</bean>
 	
+	<bean name="sakaiPersonFacade" class="org.sakaiproject.profilewow.tool.facade.SakaiPersonFacade">
+		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
+	</bean>
 </beans>
 
 

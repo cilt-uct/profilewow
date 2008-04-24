@@ -3,10 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>My Profile</title>
-<link href="https://vula.uct.ac.za/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
-<link href="https://vula.uct.ac.za/library/skin/tool.css" type="text/css" rel="stylesheet" media="all"  rsf:id="scr=portal-matter"/>
+<link href="http://qa1-za.sakaiproject.org/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
+<link href="http://qa1-za.sakaiproject.org/library/skin/tool.css" type="text/css" rel="stylesheet" media="all"  rsf:id="scr=portal-matter"/>
 <script type="text/javascript" language="JavaScript"
-	src="file:///C|/Documents%20and%20Settings/administrator/Desktop/edit_files/headscripts.js" rsf:id="scr=portal-matter"></script>
+	src="http://qa1-za.sakaiproject.org/library/headscripts.js" rsf:id="scr=portal-matter"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 </head>
 <body rsf:id="scr=sakai-body">
@@ -171,22 +171,38 @@
           <td> 
             <label rsf:id="msg=editProfileForm.more"
 							for="editProfileForm:otherInformation">More details</label><br/>
-							<textarea rsf:id="editProfile-more" name="moreinfo" cols="30" rows="5"></textarea></td>
+							<textarea rsf:id="editProfileForm-more" name="moreinfo" cols="30" rows="5"></textarea></td>
 		</tr>
 		<tr> 
-          <td><span class="checkbox labelindnt"> 
-            <input
-				id="editProfileForm:checkhide" name="editProfileForm:checkhide"
-				title="Hide my email address and contact numbers" type="checkbox" />
-            <label
-				for="editProfileForm:checkhide">Hide my email address and contact numbers</label>
+          <td>
+            <span  class="shortText" rsf:id="msg=editProfile.hide">Hide my email address and contact numbers</span>
+            
+            <span rsf:id="hide-select" />
+            <span rsf:id="hideSelect:">
+            	<input  ref:id="editProfile-hide" type="radio" />
+            	<label rsf:id="hide-label">Yes</label>
+            </span>
+            
             <br />
-			<input name="editProfileForm:sms" type="checkbox"
-				id="editProfileForm:sms"
-				title="Receive sms notfications" checked="checked" />
-            <label
-				for="editProfileForm:checkhide">Receive notifications via sms (you will need to enter your cellphone number above)</label>
-            </span></td>
+            
+            
+            <span rsf:id="msg=editProfile.sms" class="shortText">Receive notifications via sms</span><br/> <span rsf:id="msg=editProfile.sms1" class="shortText">(you will need to enter your cellphone number above)</span>
+           <span rsf:id="sms-select" />
+            <span rsf:id="smsSelect:">
+			<input name="editProfileForm:sms" type="radio"
+				rsf:id="editProfileForm-sms"
+				title="Receive sms notfications" />
+            <label rsf:id="smslabel">Receive notifications via sms (you will need to enter your cellphone number above)</label>
+			</span>
+			<!--
+			<input name="editProfileForm:sms" type="text"
+				rsf:id="editProfileForm-sms"
+				title="Receive sms notfications" />
+            <label rsf:id="smslabel">Receive notifications via sms (you will need to enter your cellphone number above)</label>
+			-->
+			
+				
+            </td>
         </tr>
       </tbody>
     </table>

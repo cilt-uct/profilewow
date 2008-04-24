@@ -8,6 +8,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
+import org.sakaiproject.entity.api.ResourcePropertiesEdit;
+import org.sakaiproject.profilewow.tool.facade.SakaiPersonFacade;
+import org.sakaiproject.user.api.UserAlreadyDefinedException;
+import org.sakaiproject.user.api.UserDirectoryService;
+import org.sakaiproject.user.api.UserEdit;
+import org.sakaiproject.user.api.UserLockedException;
+import org.sakaiproject.user.api.UserNotDefinedException;
+import org.sakaiproject.user.api.UserPermissionException;
 
 
 import uk.org.ponder.beanutil.BeanLocator;
@@ -34,6 +42,16 @@ public class ProfileBeanLocator implements BeanLocator {
 		spm = in;
 	}
 	
+	private SakaiPersonFacade sPersonFacade;
+	public void setSakaiPersonFacade(SakaiPersonFacade spf) {
+		this.sPersonFacade = spf;
+	}
+	
+	private UserDirectoryService userDirectoryService;
+	public void setUserDirectoryService(UserDirectoryService uds) {
+		this.userDirectoryService = uds;
+	}
+	
 	public Object locateBean(String name) {
 //		 TODO Auto-generated method stub
 		Object togo=delivered.get(name);
@@ -42,10 +60,21 @@ public class ProfileBeanLocator implements BeanLocator {
 				// we shouldn't need this
 			}
 			else { 
-				log.info("looking for user: " + name);
-				togo = spm.getSakaiPerson(name, spm.getUserMutableType());
-				if (togo == null)
-					log.warn("no profile for:  " + name);
+				log.debug("looking for user: " + name);
+				if (sPersonFacade == null) {
+					sPersonFacade = new SakaiPersonFacade(name);
+					
+				} 
+				if (sPersonFacade.getUserId() == null) {
+					sPersonFacade.setUserId(name);
+				}
+				
+				if (sPersonFacade.getSakaiPerson() == null) {
+					sPersonFacade.setSakaiPerson(spm.getSakaiPerson(name, spm.getUserMutableType()));
+				}
+				
+				
+				togo = sPersonFacade;
 			}
 			delivered.put(name, togo);
 		}
@@ -66,9 +95,44 @@ public class ProfileBeanLocator implements BeanLocator {
 		for (Iterator<String> it = delivered.keySet().iterator(); it.hasNext();) {
 			String key = it.next();
 			log.info("got key: " + key);
-			SakaiPerson person = (SakaiPerson) delivered.get(key);
-			spm.save(person);
+			SakaiPersonFacade person = (SakaiPersonFacade) delivered.get(key);
+			spm.save(person.getSakaiPerson());
+			
+			log.info("sms preference is: " + person.smsNotifications);
+			
+			Boolean setValue = new Boolean("false");
+			if (person.smsNotifications != null) {
+				if (person.smsNotifications[0] != null)
+					setValue = (new Boolean(person.smsNotifications[0]));
+				try {
+					UserEdit ue = userDirectoryService.editUser(person.getUserId());
+					ResourcePropertiesEdit rpe = ue.getPropertiesEdit();
+					String PROPERTY_NAME = "smsnotifications";
+					rpe.removeProperty(PROPERTY_NAME);
+					rpe.addProperty(PROPERTY_NAME, setValue.toString());
+
+
+					userDirectoryService.commitEdit(ue);
+
+
+
+				} catch (UserNotDefinedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserPermissionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserLockedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserAlreadyDefinedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+
+
+			}
 		}
-		
 	}
 }
