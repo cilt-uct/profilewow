@@ -105,6 +105,23 @@
 			<artifactId>sakai-site-api</artifactId>
 			<version>2.5.0</version>
 		</dependency>
+		<!-- For file uploads -->
+	 <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+     <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+    <groupId>${sakai.spring.groupId}</groupId>
+    <artifactId>${sakai.spring.artifactId}</artifactId>
+    <version>${sakai.spring.version}</version>
+    <scope>provided</scope>
+    </dependency>
 	</dependencies>
 
 </project>

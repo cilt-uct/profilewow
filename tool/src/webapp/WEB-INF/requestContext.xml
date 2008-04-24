@@ -22,8 +22,17 @@
    	<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
  </bean>
+ 
+ <bean class="org.sakaiproject.profilewow.tool.producers.UploadPicture" >
+ </bean>
+ 
+ <bean id="uploadBean"
+ 	class="org.sakaiproject.profilewow.tool.locators.UploadBean">
+ 	<property name="multipartMap" ref="multipartMap" />
+ </bean>
 
-	<bean name="imageHandlerHook" class="org.sakaiproject.profilewow.tool.images.ImageHandlerHook">
+
+ <bean name="imageHandlerHook" class="org.sakaiproject.profilewow.tool.images.ImageHandlerHook">
 		<property name="viewparams" ref="viewParameters" />
 		<property name="response" ref="httpServletResponse" />
 		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>

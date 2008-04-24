@@ -15,7 +15,7 @@
   </bean>
  
   <bean parent="requestAddressibleParent">
-    <property name="value" value="profileBeanLocator" />
+    <property name="value" value="profileBeanLocator, uploadBean" />
   </bean>
  
   
@@ -43,4 +43,5 @@
 		<property name="viewID" value="imageServlet" />
 		<property name="viewParamsClass" value="org.sakaiproject.profilewow.tool.params.ImageViewParamaters"/>
 	</bean>
+
 </beans>
