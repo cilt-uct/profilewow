@@ -11,6 +11,13 @@
 </head>
 <body rsf:id="scr=sakai-body">
 <div class="portletBody"> 
+
+<!-- used for meesages -->
+<div rsf:id="error-row:">
+<div class="alertMessage" rsf:id="error">We Have Errors!</div>
+</div>
+
+
   <form id="editProfileForm" method="post" rsf:id="edit-form">
     <!--edit.jsp -->
     
@@ -179,7 +186,7 @@
             
             <span rsf:id="hide-select" />
             <span rsf:id="hideSelect:">
-            	<input  ref:id="editProfile-hide" type="radio" />
+            	<input  rsf:id="editProfile-hide" type="radio"/>
             	<label rsf:id="hide-label">Yes</label>
             </span>
             
@@ -191,7 +198,7 @@
             <span rsf:id="smsSelect:">
 			<input name="editProfileForm:sms" type="radio"
 				rsf:id="editProfileForm-sms"
-				title="Receive sms notfications" />
+				 />
             <label rsf:id="smslabel">Receive notifications via sms (you will need to enter your cellphone number above)</label>
 			</span>
 			<!--
