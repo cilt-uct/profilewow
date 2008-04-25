@@ -3,6 +3,7 @@ package org.sakaiproject.profilewow.tool.producers;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import uk.org.ponder.messageutil.TargettedMessageList;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIForm;
@@ -19,6 +20,10 @@ public class UploadPicture implements ViewComponentProducer {
 		return VIEW_ID;
 	}
 
+	private TargettedMessageList tml;
+	public void setTargettedMessageList(TargettedMessageList tml) {
+		this.tml = tml;
+	}
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
 		// TODO Auto-generated method stub

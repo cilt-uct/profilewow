@@ -120,7 +120,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 
 		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
 			UIInternalLink.make(form, "current-pic", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
-		} else if (sPerson.isSystemPicturePreferred() == null) {
+		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
 			UILink.make(form, "current-pic", picUrl);
 		} 
 
