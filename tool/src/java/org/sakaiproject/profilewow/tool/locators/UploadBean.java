@@ -1,10 +1,15 @@
 package org.sakaiproject.profilewow.tool.locators;
 
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import javax.imageio.ImageIO;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -72,10 +77,16 @@ public class UploadBean {
 				log.warn("File uploaded was too large (" + fileSize + " bytes " + maxPictureSize + "max): " + fileName);
 			}
 			
-
 			
+			
+			
+				
+		
 			try {
-				String url = resourceUtil.addPicture(fileName, mapFile.getBytes(), type);
+				//resize
+				BufferedImage in = ImageIO.read(mapFile.getInputStream());
+				BufferedImage out = resize(in);
+				String url = resourceUtil.addPicture(fileName, out, type);
 				log.info("got url of " + url);
 				SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType());
 				sPerson.setSystemPicturePreferred(new Boolean(false));
@@ -90,6 +101,35 @@ public class UploadBean {
 			}
 			
 		}
+	}
+	
+	private static int IMAGE_WIDTH = 75;
+	
+	private BufferedImage resize(BufferedImage img) {
+		if (img.getWidth() <= 75)
+			return img;
+		
+		log.info("image of w: " + img.getWidth() + " h: " + img.getHeight());
+		//we need to keep the aspect ratio
+		float ratio =  (float)img.getHeight()/(float)img.getWidth();
+		
+		float newH = IMAGE_WIDTH * ratio;
+		log.info("ratio: " + ratio + " newH: " + newH);
+		
+		
+		return resize(img, IMAGE_WIDTH, (int)newH);
+	}
+	
+	
+	private BufferedImage resize(BufferedImage img, int newW, int newH) {
+		int w = img.getWidth();
+		int h = img.getHeight();
+		BufferedImage dimg = dimg = new BufferedImage(newW, newH, img.getType());
+		Graphics2D g = dimg.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g.drawImage(img, 0, 0, newW, newH, 0, 0, w, h, null);
+		g.dispose();
+		return dimg;
 	}
 	
 }

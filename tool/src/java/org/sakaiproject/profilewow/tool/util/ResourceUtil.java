@@ -1,5 +1,11 @@
 package org.sakaiproject.profilewow.tool.util;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.content.api.ContentCollection;
@@ -90,7 +96,7 @@ public class ResourceUtil {
 	
 	
 	
-	public String addPicture(String fileName, byte[] content, String type) {
+	public String addPicture(String fileName, BufferedImage image, String type) {
 		try {
 			String folderId = retrieveProfileFolderId(getCurrentUserSiteId());
 			String baseName = fileName;
@@ -102,7 +108,16 @@ public class ResourceUtil {
 				
 			
 			ContentResourceEdit cre = contentHostingService.addResource(folderId, baseName, extension, 5);
-			cre.setContent(content);
+			
+			ByteArrayOutputStream baos = new ByteArrayOutputStream( 1000 );
+			ImageIO.write( image, "jpeg", baos );
+			// C L O S E
+			baos.flush();
+			byte[] resultImageAsRawBytes = baos.toByteArray();
+
+			baos.close();
+			
+			cre.setContent(resultImageAsRawBytes);
 			cre.setContentType(type);
 			contentHostingService.commitResource(cre);
 			
@@ -129,6 +144,9 @@ public class ResourceUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (OverQuotaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
