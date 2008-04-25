@@ -72,7 +72,7 @@ public class UploadBean {
 				log.warn("File uploaded was too large (" + fileSize + " bytes " + maxPictureSize + "max): " + fileName);
 			}
 			
-			//we need to resize the image at this point
+
 			
 			try {
 				String url = resourceUtil.addPicture(fileName, mapFile.getBytes(), type);
