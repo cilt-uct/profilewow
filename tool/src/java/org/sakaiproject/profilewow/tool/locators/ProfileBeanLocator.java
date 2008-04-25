@@ -97,6 +97,34 @@ public class ProfileBeanLocator implements BeanLocator {
 			String key = it.next();
 			log.info("got key: " + key);
 			SakaiPersonFacade person = (SakaiPersonFacade) delivered.get(key);
+			
+			SakaiPerson sperson = person.getSakaiPerson();
+			if (sperson.getGivenName() == null || sperson.getGivenName().length() == 0) {
+				
+				messages.addMessage( new TargettedMessage("givenName.empty",
+			               new Object[] { "given name empty" }, 
+			               TargettedMessage.SEVERITY_INFO));
+				return;
+			}
+			
+			if (sperson.getSurname() == null || sperson.getSurname().length() == 0) {
+				messages.addMessage( new TargettedMessage("surName.empty",
+			               new Object[] { "surname empty" }, 
+			               TargettedMessage.SEVERITY_INFO));
+				
+				return;
+			}
+			
+			
+			if (sperson.getMail() == null || !isValidMail(sperson.getMail())) {
+				
+				messages.addMessage( new TargettedMessage("email.invalid",
+			               new Object[] { "invalid email"}, 
+			               TargettedMessage.SEVERITY_INFO));
+				
+				return;
+			}
+			
 			spm.save(person.getSakaiPerson());
 			
 			log.info("sms preference is: " + person.smsNotifications);
@@ -138,5 +166,31 @@ public class ProfileBeanLocator implements BeanLocator {
 		messages.addMessage( new TargettedMessage("editProfile.profileSaved",
 	               new Object[] { "profile saved" }, 
 	               TargettedMessage.SEVERITY_INFO));
+	}
+	
+	
+	
+	private boolean isValidMail(String email) {
+		
+		// TODO: Use a generic Sakai utility class (when a suitable one exists)
+		
+		if (email == null || email.equals(""))
+			return false;
+		
+		email = email.trim();
+		//must contain @
+		if (email.indexOf("@") == -1)
+			return false;
+		
+		//an email can't contain spaces
+		if (email.indexOf(" ") > 0)
+			return false;
+		
+		//"^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$" 
+		if (email.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$")) 
+			return true;
+	
+		log.warn(email + " is not a valid eamil address");
+		return false;
 	}
 }

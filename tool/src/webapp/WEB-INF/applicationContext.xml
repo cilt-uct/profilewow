@@ -43,5 +43,15 @@
 		<property name="viewID" value="imageServlet" />
 		<property name="viewParamsClass" value="org.sakaiproject.profilewow.tool.params.ImageViewParamaters"/>
 	</bean>
+	
+	
+	<bean id="voteGuard" parent="writeGuardParent">
+     <property name="guardedPath" value="sakaiPersonFacade"/>
+     <property name="guard">
+         <bean class="org.sakaiproject.profilewow.tool.validators.ProfileValidator">
+ 		</bean>
+     </property>
+   </bean>
+	
 
 </beans>
