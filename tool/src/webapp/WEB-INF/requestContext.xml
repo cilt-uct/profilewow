@@ -41,15 +41,18 @@
 		<property name="response" ref="httpServletResponse" />
 		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
 	</bean>
-	
-	<bean name="profileBeanLocator" class="org.sakaiproject.profilewow.tool.locators.ProfileBeanLocator" >
-		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
-		<property name="sakaiPersonFacade" ref="sakaiPersonFacade"/>
-		<property name="userDirectoryService"
-			ref="org.sakaiproject.user.api.UserDirectoryService" />
-	</bean>
-	
-	<bean name="sakaiPersonFacade" class="org.sakaiproject.profilewow.tool.facade.SakaiPersonFacade">
+
+ <bean name="profileBeanLocator"
+ 	class="org.sakaiproject.profilewow.tool.locators.ProfileBeanLocator">
+ 	<property name="sakaiPersonManager"
+ 		ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+ 	<property name="sakaiPersonFacade" ref="sakaiPersonFacade" />
+ 	<property name="userDirectoryService"
+ 		ref="org.sakaiproject.user.api.UserDirectoryService" />
+ 	<property name="messages" ref="targettedMessageList" />
+ </bean>
+
+ <bean name="sakaiPersonFacade" class="org.sakaiproject.profilewow.tool.facade.SakaiPersonFacade">
 		<property name="sakaiPersonManager" ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager"/>
 	</bean>
 	

@@ -20,6 +20,7 @@ import org.sakaiproject.user.api.UserPermissionException;
 
 import uk.org.ponder.beanutil.BeanLocator;
 import uk.org.ponder.beanutil.WriteableBeanLocator;
+import uk.org.ponder.messageutil.TargettedMessage;
 import uk.org.ponder.messageutil.TargettedMessageList;
 
 public class ProfileBeanLocator implements BeanLocator {
@@ -130,9 +131,12 @@ public class ProfileBeanLocator implements BeanLocator {
 					e.printStackTrace();
 				}
 
-
+	
 
 			}
 		}
+		messages.addMessage( new TargettedMessage("editProfile.profileSaved",
+	               new Object[] { "profile saved" }, 
+	               TargettedMessage.SEVERITY_INFO));
 	}
 }

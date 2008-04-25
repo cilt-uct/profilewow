@@ -48,7 +48,7 @@ public class UploadBean {
 	
 	
 	
-	public void processUpload() {
+	public String processUpload() {
 		
 		log.info("here we are!");
 		log.info("map of: " + this.multipartMap.size());
@@ -98,9 +98,12 @@ public class UploadBean {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return "error";
 			}
 			
 		}
+		
+		return "success";
 	}
 	
 	private static int IMAGE_WIDTH = 75;

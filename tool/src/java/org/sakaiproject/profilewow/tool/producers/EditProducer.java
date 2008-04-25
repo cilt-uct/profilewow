@@ -68,14 +68,15 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 			ComponentChecker checker) {
 
 		//process any messages
+		log.info("got a tml of: " + tml.size());
 		if (tml.size() > 0) {
 			for (int i = 0; i < tml.size(); i ++ ) {
 				UIBranchContainer errorRow = UIBranchContainer.make(tofill,"error-row:", new Integer(i).toString());
-				if (tml.messageAt(i).args != null ) {	    		
-					UIMessage.make(errorRow,"error",tml.messageAt(i).acquireMessageCode(),(String[])tml.messageAt(i).args[0]);
-				} else {
+				//if (tml.messageAt(i).args != null ) {	    		
+					//UIMessage.make(errorRow,"error",tml.messageAt(i).acquireMessageCode(),(String[])tml.messageAt(i).args[0]);
+				//} else {
 					UIMessage.make(errorRow,"error",tml.messageAt(i).acquireMessageCode());
-				}
+				//}
 
 			}
 		}
@@ -129,7 +130,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		if (sPerson.getHidePrivateInfo()!=null && sPerson.getHidePrivateInfo().booleanValue()) {
 			hideS = "true";
 		}
-		log.info("hide personal is " + hideS);
+		log.debug("hide personal is " + hideS);
 
 		UISelect hide = UISelect.make(form, "hide-select",new String[]{"true", "false"},
 				new String[]{messageLocator.getMessage("editProfile.sms.yes"), messageLocator.getMessage("editProfile.sms.no")}, 
