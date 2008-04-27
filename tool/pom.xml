@@ -27,7 +27,7 @@
 		<sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
 		<deploy.webappname>Profilewow</deploy.webappname>
 		<appserver.id>${sakai.appserver.id}</appserver.id>
-		<profile.version>SNAPSHOT</profile.version>
+		<profile.version>2.5.0</profile.version>
 	</properties>
 
 	<dependencies>
