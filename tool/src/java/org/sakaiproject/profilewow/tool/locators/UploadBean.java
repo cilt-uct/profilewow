@@ -39,6 +39,7 @@ public class UploadBean {
 		this.serverConfigurationService = scs;
 	}
 	
+	private static int IMAGE_WIDTH = 125;
 	
 	private SakaiPersonManager spm;
 	public void setSakaiPersonManager(SakaiPersonManager in) {
@@ -72,11 +73,7 @@ public class UploadBean {
 			// validate the input
 			
 			
-			int maxPictureSize = serverConfigurationService.getInt("tool.profile.ProfileTool.maxPictureSize", 1024);
-			if(fileSize > maxPictureSize*1024) {
-				log.warn("File uploaded was too large (" + fileSize + " bytes " + maxPictureSize + "max): " + fileName);
-			}
-			
+
 			
 			
 			
@@ -106,7 +103,7 @@ public class UploadBean {
 		return "success";
 	}
 	
-	private static int IMAGE_WIDTH = 75;
+	
 	
 	private BufferedImage resize(BufferedImage img) {
 		if (img.getWidth() <= 75)

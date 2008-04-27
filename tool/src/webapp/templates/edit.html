@@ -18,7 +18,8 @@
 <div class="alertMessage" rsf:id="error">We Have Errors!</div>
 </div>
 
-
+<table border="0">
+<tr><td>
   <form id="editProfileForm" method="post" rsf:id="edit-form">
     <!--edit.jsp -->
     
@@ -37,39 +38,7 @@
 				name="editProfileForm:first_name" value="Duck" size="30"
 				type="text" />
             </span></td>
-			<td rowspan="11" valign="top">
-				<table width="100%" border="1" cellpadding="5" cellspacing="0" bordercolor="#CCCCCC">
-              <tr align="center">
-					<td><h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
-					<p><img rsf:id="current-pic" src="../somepic.jpg" class="rosterImage"/><br />
-						<a href="changepic.html" rsf:id="change-pic">Cahnge Photo</a><br/>
-						<a href="uploadpic.html" rsf:id="upload-pic">Upload a photo</a></p>
-					</td>
-					</tr>
-				</table>
-				<br />
-				<form rsf:id="passForm:" method="post">
-				
-            <table cellpadding="5" cellspacing="0" border="1" width="100%" bordercolor="#CCCCCC">
-              <tr align="center">
-					
-                <td> 
-                  <h4 rsf:id="changePass.header">Change Password</h4>
-					Note: passwords must be at least<br/>6 characters long with no spaces. 
-					
-					<table cellpadding="2" cellspacing="0" border="0" align="center">
-					
-							<tr><td>New password:</td><td><input rsf:id="pass1" type="password" name="pass1" size="8" /></td></tr>
-							<tr><td>Confirm password:</td><td><input rsf:id="pass2" type="password" name="pass2" size="8" /></td></tr>
-							<tr align="center"><td colspan="2"><input rsf:id="passSubmit" type="submit" name="submit" value="Set Password" /></td></tr>
-					
-					</table>
-					
-					</td>
-				</tr>
-				</table> 
-				</form>
-		</td>
+
         </tr>
         <tr> 
           <td><span class="shorttext required"><span
@@ -223,6 +192,60 @@
     <input
 	name="editProfileForm:_idcl" type="hidden" />
   </form>
+  </td>
+		<td valign="top">
+		<table width="100%" border="1" cellpadding="5" cellspacing="0"
+			bordercolor="#CCCCCC">
+			<tr align="center">
+				<td>
+				<h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
+				<p><img rsf:id="current-pic" src="../somepic.jpg"
+					class="rosterImage" /><br />
+				<a href="changepic.html" rsf:id="change-pic">Cahnge Photo</a><br />
+				<a href="uploadpic.html" rsf:id="upload-pic">Upload a photo</a></p>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<form rsf:id="passForm:" method="post">
+
+		<table cellpadding="5" cellspacing="0" border="1" width="100%"
+			bordercolor="#CCCCCC">
+			<tr align="center">
+			 <td>
+				<h4 rsf:id="msg=changePass.header">Change Password</h4>
+				Note: passwords must be at least<br />
+				6 characters long with no spaces.
+
+				<table cellpadding="2" cellspacing="0" border="0" align="center">
+
+					<tr>
+						<td>New password:</td>
+						<td><input rsf:id="pass1" type="password" name="pass1"
+							size="8" /></td>
+					</tr>
+					<tr>
+						<td>Confirm password:</td>
+						<td><input rsf:id="pass2" type="password" name="pass2"
+							size="8" /></td>
+					</tr>
+					<tr align="center">
+						<td colspan="2"><input rsf:id="passSubmit" type="submit"
+							name="submit" value="Set Password" /></td>
+					</tr>
+
+				</table>
+
+				
+
+				</td>
+
+			</tr>
+		</table>
+		</form>
+		</td>
+	</tr>
+  </table>
 </div>
 </body>
 </html>

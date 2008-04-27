@@ -16,6 +16,7 @@ import uk.org.ponder.messageutil.TargettedMessageList;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
+import uk.org.ponder.rsf.components.UIELBinding;
 import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIInternalLink;
@@ -68,7 +69,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 			ComponentChecker checker) {
 
 		//process any messages
-		log.info("got a tml of: " + tml.size());
+		
 		if (tml.size() > 0) {
 			for (int i = 0; i < tml.size(); i ++ ) {
 				UIBranchContainer errorRow = UIBranchContainer.make(tofill,"error-row:", new Integer(i).toString());
@@ -111,19 +112,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		UIInput.make(form,"editProfileForm-mobile", otpBean + ".mobile", sPerson.getMobile());
 		UIInput.make(form,"editProfileForm-more", otpBean + ".notes", sPerson.getNotes());
 
-		//picture stuff
-		String picUrl = sPerson.getPictureUrl();
-		if (picUrl == null || picUrl.trim().length() == 0)
-			picUrl = "../images/pictureUnavailable.jpg";
-		else 
-			picUrl = sPerson.getPictureUrl();
 
-
-		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
-			UIInternalLink.make(form, "current-pic", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
-		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
-			UILink.make(form, "current-pic", picUrl);
-		} 
 
 		//hide
 		String hideS = "false";
@@ -170,15 +159,28 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		UICommand.make(form, "profile-save","save","profileBeanLocator.saveAll");
 
 
+		//UIInternalLink.make(tofill, "change-pic", messageLocator.getMessage("editProfile.changePic"), new SimpleViewParameters(ChangePicture.VIEW_ID));
+		UIInternalLink.make(tofill, "upload-pic", messageLocator.getMessage("editProfile.uploadPic"), new SimpleViewParameters(UploadPicture.VIEW_ID));
+
+		//picture stuff
+		String picUrl = sPerson.getPictureUrl();
+		if (picUrl == null || picUrl.trim().length() == 0)
+			picUrl = "../images/pictureUnavailable.jpg";
+		else 
+			picUrl = sPerson.getPictureUrl();
 
 
-		UIInternalLink.make(form, "change-pic", messageLocator.getMessage("editProfile.changePic"), new SimpleViewParameters(ChangePicture.VIEW_ID));
-		UIInternalLink.make(form, "upload-pic", messageLocator.getMessage("editProfile.uploadPic"), new SimpleViewParameters(UploadPicture.VIEW_ID));
+		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
+			UIInternalLink.make(tofill, "current-pic", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
+		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
+			UILink.make(tofill, "current-pic", picUrl);
+		} 
 		
 		//the change password form
 		UIForm passForm = UIForm.make(tofill, "passForm:");
-		UIInput.make(passForm,"pass1","userBeanLocator." + sPerson.getUid() + ".pass1");
-		UIInput.make(passForm,"pass2","userBeanLocator." + sPerson.getUid() + ".pass2");
+		UIInput.make(passForm,"pass1","userBeanLocator." + sPerson.getUid() + ".passOne");
+		UIInput.make(passForm,"pass2","userBeanLocator." + sPerson.getUid() + ".passTwo");
+		//form.parameters.add(new UIELBinding("userBeanLocator." + )
 		UICommand.make(passForm, "passSubmit", "userBeanLocator.saveAll");
 	}
 
