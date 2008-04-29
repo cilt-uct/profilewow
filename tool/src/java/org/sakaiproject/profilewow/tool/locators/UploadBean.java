@@ -39,7 +39,7 @@ public class UploadBean {
 		this.serverConfigurationService = scs;
 	}
 	
-	private static int IMAGE_WIDTH = 125;
+	private static int IMAGE_WIDTH = 150;
 	
 	private SakaiPersonManager spm;
 	public void setSakaiPersonManager(SakaiPersonManager in) {
