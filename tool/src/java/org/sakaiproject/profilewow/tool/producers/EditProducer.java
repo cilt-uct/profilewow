@@ -34,7 +34,9 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 
 public class EditProducer implements ViewComponentProducer, DefaultView {
 
-	public static final String VIEW_ID = "edit";
+	public static final String VIEW_ID = "editProfile";
+	
+	private static final String NO_PIC_URL = "../images/niimage.gif";
 
 	private static Log log = LogFactory.getLog(EditProducer.class);
 	public String getViewID() {
@@ -165,7 +167,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		//picture stuff
 		String picUrl = sPerson.getPictureUrl();
 		if (picUrl == null || picUrl.trim().length() == 0)
-			picUrl = "../images/pictureUnavailable.jpg";
+			picUrl = NO_PIC_URL;
 		else 
 			picUrl = sPerson.getPictureUrl();
 
