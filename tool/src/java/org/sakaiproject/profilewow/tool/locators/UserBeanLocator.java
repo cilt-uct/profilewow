@@ -46,7 +46,7 @@ private static Log log = LogFactory.getLog(UserBeanLocator.class);
 					// we shouldn't need this
 				}
 				else { 
-					log.info("looking for user: " + name);
+					log.debug("looking for user: " + name);
 					if (userPassword == null) {
 						userPassword = new UserPassword();
 					}

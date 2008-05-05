@@ -36,7 +36,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 
 	public static final String VIEW_ID = "editProfile";
 	
-	private static final String NO_PIC_URL = "../images/niimage.gif";
+	private static final String NO_PIC_URL = "../images/noimage.gif";
 
 	private static Log log = LogFactory.getLog(EditProducer.class);
 	public String getViewID() {
@@ -93,7 +93,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 			spm.save(sPerson);
 		}
 
-		log.info("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
+		log.debug("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
 
 		String otpBean = "profileBeanLocator." + sPerson.getUid() + ".sakaiPerson";
 
@@ -209,7 +209,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 
 		String val = rp.getProperty("smsnotifications");
 		ret = new Boolean(val);
-		log.info("got sms notification of: " + val + ", "+ ret.toString());
+		log.debug("got sms notification of: " + val + ", "+ ret.toString());
 
 		if (ret == null)
 			ret = new Boolean(false);
