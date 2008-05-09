@@ -95,7 +95,7 @@ public class ProfileBeanLocator implements BeanLocator {
 		log.debug("Savind all!");
 		for (Iterator<String> it = delivered.keySet().iterator(); it.hasNext();) {
 			String key = it.next();
-			log.info("got key: " + key);
+			log.debug("got key: " + key);
 			SakaiPersonFacade person = (SakaiPersonFacade) delivered.get(key);
 			
 			SakaiPerson sperson = person.getSakaiPerson();
