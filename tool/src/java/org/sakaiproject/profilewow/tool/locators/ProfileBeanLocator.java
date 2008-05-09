@@ -92,7 +92,7 @@ public class ProfileBeanLocator implements BeanLocator {
 	}
 	
 	public void saveAll() {
-		log.info("Savind all!");
+		log.debug("Savind all!");
 		for (Iterator<String> it = delivered.keySet().iterator(); it.hasNext();) {
 			String key = it.next();
 			log.info("got key: " + key);
@@ -127,7 +127,7 @@ public class ProfileBeanLocator implements BeanLocator {
 			
 			spm.save(person.getSakaiPerson());
 			
-			log.info("sms preference is: " + person.smsNotifications);
+			log.debug("sms preference is: " + person.smsNotifications);
 			
 			Boolean setValue = new Boolean("false");
 			if (person.smsNotifications != null) {
