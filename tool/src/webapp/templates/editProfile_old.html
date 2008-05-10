@@ -15,28 +15,25 @@
 <!-- used for messages -->
 <div rsf:id="error-row:">
 <div class="alertMessage" rsf:id="error">We Have Errors!</div>
-
 </div>
 
-<div style="float:right; padding: 20px;">
+<div style="float:right">
 	
-    <table width="250" border="0" cellpadding="5" cellspacing="0" bgcolor="#FEFDCD">
+    <table width="250" border="1" cellpadding="5" cellspacing="0" bordercolor="#CCCCCC">
 		<tr align="center">
 			<td>
 				<h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
 				<p><img rsf:id="current-pic" src="../somepic.jpg" class="rosterImage" /><br />
 				<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />
-
-			  <a href="uploadpic.html" rsf:id="upload-pic">Upload a photo</a></p>
-		  </td>
+				<a href="uploadpic.html" rsf:id="upload-pic">Upload a photo</a></p>
+			</td>
 		</tr>
 	</table>
 	<br />
 	
     <form rsf:id="passForm:" method="post">
-	<table cellpadding="5" cellspacing="0" border="0" width="250" bgcolor="#E0F3CD">
+	<table cellpadding="5" cellspacing="0" border="1" width="250" bordercolor="#CCCCCC">
 		<tr align="center">
-
 			<td>
             	<h4 rsf:id="msg=changePass.header">Change Password</h4>
 				Note: passwords must be at least<br />
@@ -46,7 +43,6 @@
 					<tr>
 						<td>New password:</td>
 						<td><input rsf:id="pass1" type="password" name="pass1" size="8" /></td>
-
 					</tr>
 					<tr>
 						<td>Confirm password:</td>
@@ -55,10 +51,9 @@
 					<tr align="center">
 						<td colspan="2"><input rsf:id="passSubmit" type="submit" name="submit" value="Set Password" /></td>
 					</tr>
-
 				</table>
         	
-          </td>
+            </td>
 		</tr>
 	</table>
 	</form>
@@ -69,7 +64,6 @@
 
 <!--edit.jsp -->
 <h3 rsf:id="msg=editProfile.header">qwerty</h3>
-
 <div class="instruction"><span rsf:id="msg=editProfileForm.instruction">Complete form and then choose 'Save' at the bottom. A</span> <span rsf:id="msg=reqStar" class="reqStarInline">*</span> <span rsf:id="msg=editProfileForm.instruction2">means it is required information.</span></div>
 
     <table class="jsfFormTable" summary="layout">
@@ -85,7 +79,6 @@
 		<tr>
 			<td>Title</td>
 		    <td><span class="shorttext"><input type="text" size="30" rsf:id="editProfileForm-title" />
-
 		    </span></td>
 		</tr>
 		<!--<tr>
@@ -99,7 +92,6 @@
 		    <td><span class="shorttext"><input rsf:id="editProfileForm-email" name="editProfileForm:email" size="30" type="text" /></span></td>
 		</tr>
 		<tr>
-
 			<td>Organisation</td>
 			<td><span class="shorttext"><input rsf:id="editProfileForm-department" size="30" type="text" /></span></td>
 		</tr>
@@ -145,7 +137,6 @@
 				value="somewhere" size="30" type="text" />
             </span></td>
         </tr>-->
-
 		<tr> 
           <td>Home Page</td>
           <td><span class="shorttext"><input rsf:id="editProfileForm-homepage" name="editProfileForm:homepage" size="30" type="text" />
@@ -155,34 +146,31 @@
           <td>Work Phone</td>
           <td><span class="shorttext"><input rsf:id="editProfileForm-workphone" name="editProfileForm:workphone" value="021 555 3884" size="30" type="text" /></span></td>
         </tr>
-
         <tr> 
           <td>Cellphone</td>
           <td><span class="shorttext"><input rsf:id="editProfileForm-mobile" name="editProfileForm:mobile" value="" size="30" type="text" /></span></td>
         </tr>
         <tr>
-        <td colspan="2">Receive notifications via sms<br/>
-         (you will need to enter your cellphone number above)<span rsf:id="sms-select" />         
-
-            <br />
+        <td>Receive notifications via sms<br/>
+         (you will need to enter your cellphone number above)</td>
+        <td><span rsf:id="sms-select" />
             <span rsf:id="smsSelect:">
-			<input name="editProfileForm:sms" type="radio" rsf:id="editProfileForm-sms"/><label rsf:id="smslabel">yes</label> 
-            </span>        </td>
+			<input name="editProfileForm:sms" type="radio" rsf:id="editProfileForm-sms"/><label rsf:id="smslabel">yes</label> </span>
+        </td>
         </tr>
         <tr> 
           <td colspan="2">More details<br/>
           <textarea rsf:id="editProfileForm-more" name="moreinfo" cols="60" rows="5"></textarea></td>
 	    </tr>
 		<tr> 
-		<td colspan="2">Hide my email
-			address and contact numbers <span rsf:id="hide-select" />
-            <br />          
+		<td>Hide my email
+			address and contact numbers </td>
+          <td><span rsf:id="hide-select" /> 
           <span rsf:id="hideSelect:">
-			<input rsf:id="editProfile-hide" type="radio" /><label rsf:id="hide-label">Yes</label> 
-          </span> 
+			<input rsf:id="editProfile-hide" type="radio" /><label rsf:id="hide-label">Yes</label> </span> 
                         
             
-		  <!--
+			<!--
 			<input name="editProfileForm:sms" type="text"
 				rsf:id="editProfileForm-sms"
 				title="Receive sms notfications" />
@@ -203,7 +191,7 @@
     <input name="editProfileForm" value="editProfileForm" type="hidden" />
     <input
 	name="editProfileForm:_idcl" type="hidden" />
-</form>
+  </form>
 
 
 </div>
