@@ -8,6 +8,7 @@ import org.sakaiproject.entity.api.EntityPropertyNotDefinedException;
 import org.sakaiproject.entity.api.EntityPropertyTypeException;
 import org.sakaiproject.entity.api.ResourceProperties;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
+import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 
@@ -31,6 +32,7 @@ import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
+import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 
 public class EditProducer implements ViewComponentProducer, DefaultView {
 
@@ -89,11 +91,13 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 
 		SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType());
 		if (sPerson == null) {
+			log.info("creating a new profile!");
 			sPerson = spm.create(userDirectoryService.getCurrentUser().getId(), spm.getUserMutableType());
 			spm.save(sPerson);
 		}
 
-		log.debug("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
+		log.info("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
+		log.info("uuid: " + sPerson.getUid() + ", agent_uuid: " + sPerson.getAgentUuid());
 
 		String otpBean = "profileBeanLocator." + sPerson.getUid() + ".sakaiPerson";
 
@@ -184,6 +188,10 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		UIInput.make(passForm,"pass2","userBeanLocator." + sPerson.getUid() + ".passTwo");
 		//form.parameters.add(new UIELBinding("userBeanLocator." + )
 		UICommand.make(passForm, "passSubmit", "userBeanLocator.saveAll");
+		
+		
+		//UIInternalLink.make(tofill, "test", new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, sPerson.getId().toString()));
+		//UIInternalLink.make(tofill, "test2", new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, sPerson.getAgentUuid()));
 	}
 
 

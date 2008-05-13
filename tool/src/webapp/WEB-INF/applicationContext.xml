@@ -53,5 +53,15 @@
      </property>
    </bean>
 	
-
+	<!-- entity provider -->
+	<bean
+		parent="org.sakaiproject.entitybroker.entityprovider.AbstractEntityProvider"
+		class="org.sakaiproject.profilewow.tool.entity.SakaiPersonEntityProviderImpl">
+		<property name="sakaiPersonManager"
+			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+	</bean>
+	
+	
+	<!--view inferer-->
+	<bean class="org.sakaiproject.profilewow.tool.locators.SakaiPersonVPInferrer"/>
 </beans>

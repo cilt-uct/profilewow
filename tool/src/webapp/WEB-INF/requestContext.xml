@@ -85,6 +85,10 @@
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 	</bean>
 
+	<bean class="org.sakaiproject.profilewow.tool.producers.ViewProfileProducer">
+	<property name="sakaiPersonManager"
+			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+	</bean>
 
 </beans>
 
