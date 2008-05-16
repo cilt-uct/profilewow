@@ -89,7 +89,7 @@ public class SakaiPersonEntityProviderImpl extends AbstractEntityProvider implem
 	}
 
 	public String[] getHandledOutputFormats() {
-		return new String[] {Formats.HTML, Formats.XML};
+		return new String[] {Formats.HTML, Formats.XML, Formats.JSON};
 	}
 
 	public String[] getHandledInputFormats() {
