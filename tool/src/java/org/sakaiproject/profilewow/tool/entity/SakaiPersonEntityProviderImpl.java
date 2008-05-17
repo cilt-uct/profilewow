@@ -14,6 +14,8 @@ import org.sakaiproject.entitybroker.entityprovider.capabilities.RESTful;
 import org.sakaiproject.entitybroker.entityprovider.extension.Formats;
 import org.sakaiproject.entitybroker.entityprovider.search.Search;
 import org.sakaiproject.entitybroker.util.AbstractEntityProvider;
+import org.sakaiproject.tool.api.Session;
+import org.sakaiproject.tool.api.SessionManager;
 
 
 public class SakaiPersonEntityProviderImpl extends AbstractEntityProvider implements
@@ -26,6 +28,14 @@ public class SakaiPersonEntityProviderImpl extends AbstractEntityProvider implem
 	public void setSakaiPersonManager(SakaiPersonManager spm) {
 		sakaiPersonManager = spm;
 	}
+
+	private SessionManager sessionManager;
+	
+
+	public void setSessionManager(SessionManager sessionManager) {
+		this.sessionManager = sessionManager;
+	}
+
 	
 	public final static String ENTITY_PREFIX = "SakaiPerson";
 	
@@ -68,6 +78,12 @@ public class SakaiPersonEntityProviderImpl extends AbstractEntityProvider implem
 	}
 
 	public Object getEntity(EntityReference ref) {
+		
+		if (sessionManager.getCurrentSessionUserId() == null) {
+			throw new SecurityException();
+		}
+		
+		
 	      if (ref.getId() == null) {
 	          return sakaiPersonManager.getPrototype();
 	       }
