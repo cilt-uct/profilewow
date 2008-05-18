@@ -91,13 +91,13 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 
 		SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType());
 		if (sPerson == null) {
-			log.info("creating a new profile!");
+			log.debug("creating a new profile!");
 			sPerson = spm.create(userDirectoryService.getCurrentUser().getId(), spm.getUserMutableType());
 			spm.save(sPerson);
 		}
 
-		log.info("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
-		log.info("uuid: " + sPerson.getUid() + ", agent_uuid: " + sPerson.getAgentUuid());
+		log.debug("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
+		log.debug("uuid: " + sPerson.getUid() + ", agent_uuid: " + sPerson.getAgentUuid());
 
 		String otpBean = "profileBeanLocator." + sPerson.getUid() + ".sakaiPerson";
 
