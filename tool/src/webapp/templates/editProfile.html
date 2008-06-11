@@ -8,6 +8,8 @@
 <script type="text/javascript" language="JavaScript"
 	src="http://qa1-za.sakaiproject.org/library/headscripts.js" rsf:id="scr=portal-matter"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+   <script type="text/javascript" src="/library/js/jquery.js"></script>
+   <script type="text/javascript" src="../js/profile.js"></script>
 </head>
 <body rsf:id="scr=sakai-body">
 <div class="portletBody"> 
@@ -21,14 +23,20 @@
 		<p><img rsf:id="current-pic" src="../somepic.jpg"
 			class="rosterImage" /><br />
 		<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />
-
-		<a href="uploadpic.html" rsf:id="upload-pic">Upload a photo</a></p>
-		<div>
+		
+		<!-- rsf:id="upload-pic"  -->
+		<!-- <img src="../images/collapse.gif" style="cursor: pointer;" id="upload-div__img_hide_division_" onclick="javascript:showHideDiv('upload-div', '/profilewow-tool');javascript:showHideDiv('upload-div', '/profilewow-tool');" /> -->
+		Upload a photo<br />
+		<table>
+		<tr id="upload-div__hide_division_"><td>
 		<form rsf:id="upload-pic-form" method="post"
 			enctype="multipart/form-data">
 		<p><input type="file" name="fileupload1" /></p>
 		<input rsf:id="submit" type="submit" value="Upload picture" /></form>
-		</div>
+		</p>
+		</td>
+		</tr>
+		</table>
 
 		</td>
 	</tr>
@@ -181,8 +189,7 @@
           <textarea rsf:id="editProfileForm-more" name="moreinfo" cols="60" rows="5"></textarea></td>
 	    </tr>
 		<tr> 
-		<td colspan="2">Hide my email
-			address and contact numbers <span rsf:id="hide-select" />
+		<td colspan="2">Hide my contact numbers <span rsf:id="hide-select" />
             <br />          
           <span rsf:id="hideSelect:">
 			<input rsf:id="editProfile-hide" type="radio" /><label rsf:id="hide-label">Yes</label> 
