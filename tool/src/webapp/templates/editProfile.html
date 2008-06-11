@@ -16,14 +16,22 @@
 	
     <table width="250" border="0" cellpadding="5" cellspacing="0" bgcolor="#FEFDCD">
 		<tr align="center">
-			<td>
-				<h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
-				<p><img rsf:id="current-pic" src="../somepic.jpg" class="rosterImage" /><br />
-				<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />
+		<td>
+		<h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
+		<p><img rsf:id="current-pic" src="../somepic.jpg"
+			class="rosterImage" /><br />
+		<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />
 
-			  <a href="uploadpic.html" rsf:id="upload-pic">Upload a photo</a></p>
-		  </td>
-		</tr>
+		<a href="uploadpic.html" rsf:id="upload-pic">Upload a photo</a></p>
+		<div>
+		<form rsf:id="upload-pic-form" method="post"
+			enctype="multipart/form-data">
+		<p><input type="file" name="fileupload1" /></p>
+		<input rsf:id="submit" type="submit" value="Upload picture" /></form>
+		</div>
+
+		</td>
+	</tr>
 	</table>
 	<br />
 	

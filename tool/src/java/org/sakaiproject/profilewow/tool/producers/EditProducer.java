@@ -192,6 +192,13 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		
 		//UIInternalLink.make(tofill, "test", new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, sPerson.getId().toString()));
 		//UIInternalLink.make(tofill, "test2", new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, sPerson.getAgentUuid()));
+		
+		/**
+		 * The upload picture form
+		 */
+		UIForm form2 = UIForm.make(tofill, "upload-pic-form");
+		//UIInput.make(form,"file-upload", "uploadBean")
+		UICommand.make(form2,"submit","uploadBean.processUpload");
 	}
 
 

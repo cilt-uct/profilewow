@@ -90,8 +90,7 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		if (sPerson.getHidePrivateInfo() == null || sPerson.getHidePrivateInfo())
 			hidePInfo = true;
 		
-		if (!hidePInfo)
-			UIOutput.make(tofill,"email", sPerson.getMail());
+		UILink.make(tofill,"email", sPerson.getMail(),"mailto:" + sPerson.getMail());
 		
 		if (sPerson.getOrganizationalUnit() != null)
 			UIOutput.make(tofill,"org", sPerson.getOrganizationalUnit());
@@ -99,7 +98,7 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		if (sPerson.getLocalityName() != null) 
 			UIOutput.make(tofill,"country", sPerson.getLocalityName());
 		if (sPerson.getLabeledURI() != null)
-			UIOutput.make(tofill,"homepage", sPerson.getLabeledURI());
+			UILink.make(tofill,"homepage", sPerson.getLabeledURI(), sPerson.getLabeledURI());
 		
 		if (sPerson.getTelephoneNumber() != null && !hidePInfo )
 			UIOutput.make(tofill,"workphone", sPerson.getTelephoneNumber());
