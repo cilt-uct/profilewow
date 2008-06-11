@@ -87,6 +87,7 @@ public class ResourceUtil {
 	
 	public boolean isPicture(String fileContentType) {
 		if(fileContentType.compareToIgnoreCase("image/jpeg") != 0 && 
+				fileContentType.compareToIgnoreCase("image/pjpeg") != 0 &&
 				fileContentType.compareToIgnoreCase("image/gif") != 0 &&
 				fileContentType.compareToIgnoreCase("image/png") != 0)
 			return false;

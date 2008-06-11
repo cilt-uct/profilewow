@@ -103,14 +103,14 @@ public class ProfileBeanLocator implements BeanLocator {
 				
 				messages.addMessage( new TargettedMessage("givenName.empty",
 			               new Object[] { "given name empty" }, 
-			               TargettedMessage.SEVERITY_INFO));
+			               TargettedMessage.SEVERITY_ERROR));
 				return;
 			}
 			
 			if (sperson.getSurname() == null || sperson.getSurname().length() == 0) {
 				messages.addMessage( new TargettedMessage("surName.empty",
 			               new Object[] { "surname empty" }, 
-			               TargettedMessage.SEVERITY_INFO));
+			               TargettedMessage.SEVERITY_ERROR));
 				
 				return;
 			}
@@ -120,7 +120,7 @@ public class ProfileBeanLocator implements BeanLocator {
 				
 				messages.addMessage( new TargettedMessage("email.invalid",
 			               new Object[] { "invalid email"}, 
-			               TargettedMessage.SEVERITY_INFO));
+			               TargettedMessage.SEVERITY_ERROR));
 				
 				return;
 			}
@@ -139,8 +139,6 @@ public class ProfileBeanLocator implements BeanLocator {
 					String PROPERTY_NAME = "smsnotifications";
 					rpe.removeProperty(PROPERTY_NAME);
 					rpe.addProperty(PROPERTY_NAME, setValue.toString());
-
-
 					userDirectoryService.commitEdit(ue);
 
 

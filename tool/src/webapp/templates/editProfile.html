@@ -12,96 +12,110 @@
    <script type="text/javascript" src="../js/forum.js"></script>
 </head>
 <body rsf:id="scr=sakai-body">
-<div class="portletBody"> 
+<div class="portletBody">
+
+
+<div rsf:id="message-for:*" class="alertMessage">
+<ul style="margin:0px;">
+	<li>Message for user here</li>
+</ul>
+</div>
+
 
 <div style="float:right; padding: 20px;">
-	
-    <table width="250" border="0" cellpadding="5" cellspacing="0" bgcolor="#FEFDCD">
-		<tr align="center">
+
+<table width="250" border="0" cellpadding="5" cellspacing="0"
+	bgcolor="#FEFDCD">
+	<tr align="center">
 		<td>
 		<h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
-		<img rsf:id="current-pic" src="../somepic.jpg"
-			class="rosterImage" /><br />
+		<img rsf:id="current-pic" src="../somepic.jpg" class="rosterImage" /><br />
 		<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />
-		
-		<!-- rsf:id="upload-pic"  -->
-		<!-- <img src="../images/collapse.gif" style="cursor: pointer;" id="upload-div__img_hide_division_" onclick="javascript:showHideDiv('upload-div', '/profilewow-tool');javascript:showHideDiv('upload-div', '/profilewow-tool');" /> -->
-		 		Upload a photo<br />
+
+		<!-- rsf:id="upload-pic"  --> <!-- <img src="../images/collapse.gif" style="cursor: pointer;" id="upload-div__img_hide_division_" onclick="javascript:showHideDiv('upload-div', '/profilewow-tool');javascript:showHideDiv('upload-div', '/profilewow-tool');" /> -->
+		Upload a photo<br />
 		<table>
-		<tr id="upload-div__hide_division_"><td>
-		<form rsf:id="upload-pic-form" method="post"
-			enctype="multipart/form-data">
-		<p><input type="file" name="fileupload1" /></p>
-		<input rsf:id="submit" type="submit" value="Upload picture" /></form>
-		
-		</td>
-		</tr>
+			<tr id="upload-div__hide_division_">
+				<td>
+				<form rsf:id="upload-pic-form" method="post"
+					enctype="multipart/form-data">
+				<p><input type="file" name="fileupload1" /></p>
+				<input rsf:id="submit" type="submit" value="Upload picture" /></form>
+
+				</td>
+			</tr>
 		</table>
 
 		</td>
 	</tr>
-	</table>
-	<br />
-	
-    <form rsf:id="passForm:" method="post">
-	<table cellpadding="5" cellspacing="0" border="0" width="250" bgcolor="#E0F3CD">
-		<tr align="center">
+</table>
+<br />
 
-			<td>
-            	<h4 rsf:id="msg=changePass.header">Change Password</h4>
-				Note: passwords must be at least<br />
-				6 characters long with no spaces.
+<form rsf:id="passForm:" method="post">
+<table cellpadding="5" cellspacing="0" border="0" width="250"
+	bgcolor="#E0F3CD">
+	<tr align="center">
 
-				<table cellpadding="2" cellspacing="0" border="0" align="center">
-					<tr>
-						<td>New password:</td>
-						<td><input rsf:id="pass1" type="password" name="pass1" size="8" /></td>
+		<td>
+		<h4 rsf:id="msg=changePass.header">Change Password</h4>
+		Note: passwords must be at least<br />
+		6 characters long with no spaces.
 
-					</tr>
-					<tr>
-						<td>Confirm password:</td>
-						<td><input rsf:id="pass2" type="password" name="pass2" size="8" /></td>
-					</tr>
-					<tr align="center">
-						<td colspan="2"><input rsf:id="passSubmit" type="submit" name="submit" value="Set Password" /></td>
-					</tr>
+		<table cellpadding="2" cellspacing="0" border="0" align="center">
+			<tr>
+				<td>New password:</td>
+				<td><input rsf:id="pass1" type="password" name="pass1" size="8" /></td>
 
-				</table>
-        	
-          </td>
-		</tr>
-	</table>
-	</form>
-    
+			</tr>
+			<tr>
+				<td>Confirm password:</td>
+				<td><input rsf:id="pass2" type="password" name="pass2" size="8" /></td>
+			</tr>
+			<tr align="center">
+				<td colspan="2"><input rsf:id="passSubmit" type="submit"
+					name="submit" value="Set Password" /></td>
+			</tr>
+
+		</table>
+
+		</td>
+	</tr>
+</table>
+</form>
+
 </div>
 
-<form id="editProfileForm" method="post" rsf:id="edit-form">
-
-<!--edit.jsp -->
+<form id="editProfileForm" method="post" rsf:id="edit-form"><!--edit.jsp -->
 <h3 rsf:id="msg=editProfile.header">My Profile</h3>
 
-<!-- used for messages -->
-<div rsf:id="error-row:">
-<div class="alertMessage" rsf:id="error">We Have Errors!</div>
-</div>
 
-<div class="instruction"><span rsf:id="msg=editProfileForm.instruction">Complete form and then choose 'Save' at the bottom. A</span> <span rsf:id="msg=reqStar" class="reqStarInline">*</span> <span rsf:id="msg=editProfileForm.instruction2">means it is required information.</span></div>
 
-    <table class="jsfFormTable" summary="layout">
-      <tbody>
-        <tr> 
-          <td><span rsf:id="msg=reqStar" class="reqStar">*</span>First Name</td>
-			<td><span class="shorttext"><input rsf:id="editProfileForm-first_name" name="editProfileForm:first_name" value="Duck" size="30"type="text" /></span></td>
-        </tr>
-        <tr> 
-          <td><span rsf:id="msg=reqStar" class="reqStar">*</span>Last Name</td>
-          <td><span class="shorttext"><input rsf:id="editProfileForm-lname" name="editProfileForm:lname" value="daffy" size="30" type="text" /></span></td>
-        </tr>
+<div class="instruction"><span
+	rsf:id="msg=editProfileForm.instruction">Complete form and then
+choose 'Save' at the bottom. A</span> <span rsf:id="msg=reqStar"
+	class="reqStarInline">*</span> <span
+	rsf:id="msg=editProfileForm.instruction2">means it is required
+information.</span></div>
+
+<table class="jsfFormTable" summary="layout">
+	<tbody>
+		<tr>
+			<td><span rsf:id="msg=reqStar" class="reqStar">*</span>First
+			Name</td>
+			<td><span class="shorttext"><input
+				rsf:id="editProfileForm-first_name"
+				name="editProfileForm:first_name" value="Duck" size="30" type="text" /></span></td>
+		</tr>
+		<tr>
+			<td><span rsf:id="msg=reqStar" class="reqStar">*</span>Last Name</td>
+			<td><span class="shorttext"><input
+				rsf:id="editProfileForm-lname" name="editProfileForm:lname"
+				value="daffy" size="30" type="text" /></span></td>
+		</tr>
 		<tr>
 			<td>Title</td>
-		    <td><span class="shorttext"><input type="text" size="30" rsf:id="editProfileForm-title" />
-
-		    </span></td>
+			<td><span class="shorttext"><input type="text" size="30"
+				rsf:id="editProfileForm-title" /> </span></td>
 		</tr>
 		<!--<tr>
 			<td><span class="shorttext"> <label
@@ -111,16 +125,20 @@
 		</tr>-->
 		<tr>
 			<td><span rsf:id="msg=reqStar" class="reqStar">*</span>Email</td>
-		    <td><span class="shorttext"><input rsf:id="editProfileForm-email" name="editProfileForm:email" size="30" type="text" /></span></td>
+			<td><span class="shorttext"><input
+				rsf:id="editProfileForm-email" name="editProfileForm:email"
+				size="30" type="text" /></span></td>
 		</tr>
 		<tr>
 
 			<td>Organisation</td>
-			<td><span class="shorttext"><input rsf:id="editProfileForm-department" size="30" type="text" /></span></td>
+			<td><span class="shorttext"><input
+				rsf:id="editProfileForm-department" size="30" type="text" /></span></td>
 		</tr>
 		<tr>
 			<td>Country</td>
-		    <td><span class="shorttext"><input rsf:id="editProfileForm-country" size="30" type="text" /></span></td>
+			<td><span class="shorttext"><input
+				rsf:id="editProfileForm-country" size="30" type="text" /></span></td>
 		</tr>
 		<!--<tr> 
           <td><span class="shorttext">
@@ -161,66 +179,63 @@
             </span></td>
         </tr>-->
 
-		<tr> 
-          <td>Home Page</td>
-          <td><span class="shorttext"><input rsf:id="editProfileForm-homepage" name="editProfileForm:homepage" size="30" type="text" />
-</span></td>
+		<tr>
+			<td>Home Page</td>
+			<td><span class="shorttext"><input
+				rsf:id="editProfileForm-homepage" name="editProfileForm:homepage"
+				size="30" type="text" /> </span></td>
 		</tr>
-        <tr> 
-          <td>Work Phone</td>
-          <td><span class="shorttext"><input rsf:id="editProfileForm-workphone" name="editProfileForm:workphone" value="021 555 3884" size="30" type="text" /></span></td>
-        </tr>
+		<tr>
+			<td>Work Phone</td>
+			<td><span class="shorttext"><input
+				rsf:id="editProfileForm-workphone" name="editProfileForm:workphone"
+				value="021 555 3884" size="30" type="text" /></span></td>
+		</tr>
 
-        <tr> 
-          <td>Cellphone</td>
-          <td><span class="shorttext"><input rsf:id="editProfileForm-mobile" name="editProfileForm:mobile" value="" size="30" type="text" /></span></td>
-        </tr>
-        <tr>
-        <td colspan="2">Receive notifications via sms<br/>
-         (you will need to enter your cellphone number above)<span rsf:id="sms-select" />         
-
-            <br />
-            <span rsf:id="smsSelect:">
-			<input name="editProfileForm:sms" type="radio" rsf:id="editProfileForm-sms"/><label rsf:id="smslabel">yes</label> 
-            </span>        </td>
-        </tr>
-        <tr> 
-          <td colspan="2">More details<br/>
-          <textarea rsf:id="editProfileForm-more" name="moreinfo" cols="60" rows="5"></textarea></td>
-	    </tr>
-		<tr> 
-		<td colspan="2">Hide my contact numbers <span rsf:id="hide-select" />
-            <br />          
-          <span rsf:id="hideSelect:">
-			<input rsf:id="editProfile-hide" type="radio" /><label rsf:id="hide-label">Yes</label> 
-          </span> 
-                        
-            
-		  <!--
+		<tr>
+			<td>Cellphone</td>
+			<td><span class="shorttext"><input
+				rsf:id="editProfileForm-mobile" name="editProfileForm:mobile"
+				value="" size="30" type="text" /></span></td>
+		</tr>
+		<tr>
+			<td colspan="2">Receive notifications via sms<br />
+			(you will need to enter your cellphone number above)<span
+				rsf:id="sms-select" /> <br />
+			<span rsf:id="smsSelect:"> <input name="editProfileForm:sms"
+				type="radio" rsf:id="editProfileForm-sms" /><label
+				rsf:id="smslabel">yes</label> </span></td>
+		</tr>
+		<tr>
+			<td colspan="2">More details<br />
+			<textarea rsf:id="editProfileForm-more" name="moreinfo" cols="60"
+				rows="5"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2">Hide my contact numbers <span
+				rsf:id="hide-select" /> <br />
+			<span rsf:id="hideSelect:"> <input rsf:id="editProfile-hide"
+				type="radio" /><label rsf:id="hide-label">Yes</label> </span> <!--
 			<input name="editProfileForm:sms" type="text"
 				rsf:id="editProfileForm-sms"
 				title="Receive sms notfications" />
             <label rsf:id="smslabel">Receive notifications via sms (you will need to enter your cellphone number above)</label>
-			-->            </td>
-        </tr>
-      </tbody>
-    </table>
-	
-	
-	
-    <p class="act"> 
-      <input rsf:id="profile-save" value="Save" accesskey="s" type="submit" />
-      <input
+			--></td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<p class="act"><input rsf:id="profile-save" value="Save"
+	accesskey="s" type="submit" /> <input
 	id="editProfileForm:editCancelButton"
 	name="editProfileForm:editCancelButton" value="Cancel" accesskey="x"
 	onkeypress="document.forms[0].cancel;" type="submit" /></p>
-    <input name="editProfileForm" value="editProfileForm" type="hidden" />
-    <input
-	name="editProfileForm:_idcl" type="hidden" />
-</form>
+<input name="editProfileForm" value="editProfileForm" type="hidden" />
+<input name="editProfileForm:_idcl" type="hidden" /></form>
 
-<a href="dasdf" rsf:id="test">test link</a>
-<a href="dasdf" rsf:id="test2">test link</a>
-</div>
+<a href="dasdf" rsf:id="test">test link</a> <a href="dasdf"
+	rsf:id="test2">test link</a></div>
 </body>
 </html>

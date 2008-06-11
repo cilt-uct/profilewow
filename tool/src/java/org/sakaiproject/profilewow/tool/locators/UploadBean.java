@@ -19,6 +19,7 @@ import org.sakaiproject.component.api.ServerConfigurationService;
 import org.sakaiproject.profilewow.tool.util.ResourceUtil;
 import org.springframework.web.multipart.MultipartFile;
 
+import uk.org.ponder.messageutil.TargettedMessage;
 import uk.org.ponder.messageutil.TargettedMessageList;
 
 public class UploadBean {
@@ -30,10 +31,7 @@ public class UploadBean {
 	public void setResourceUtil(ResourceUtil ru) {
 		resourceUtil = ru;
 	}
-	private TargettedMessageList tml;
-	public void setTargettedMessageList(TargettedMessageList tml) {
-		this.tml = tml;
-	}
+
 	private ServerConfigurationService serverConfigurationService;
 	public void setServerConfigurationService(ServerConfigurationService scs) {
 		this.serverConfigurationService = scs;
@@ -46,7 +44,11 @@ public class UploadBean {
 		spm = in;
 	}
 	
-	
+	private TargettedMessageList messages;
+	public void setMessages(TargettedMessageList messages) {
+		this.messages = messages;
+	}
+
 	
 	
 	public String processUpload() {
@@ -63,11 +65,20 @@ public class UploadBean {
 			long fileSize = mapFile.getSize();
 			String fileName = mapFile.getOriginalFilename();
 			String type = mapFile.getContentType();
-			log.info(" got file of " + mapFile.getSize() + "of type: " + type );
-			
+			log.info(" got file of " + mapFile.getSize() + " of type: " + type );
+			//no picture found
+			if (mapFile.getSize() == 0 ) {
+				//this 
+				messages.addMessage(new TargettedMessage("editProfile.photoNotFound", 
+						new Object[] {}, TargettedMessage.SEVERITY_ERROR));
+				return null;
+			}
 			
 			if (!resourceUtil.isPicture(type)) {
 				log.warn("this is not a picture!: " + type);
+				messages.addMessage(new TargettedMessage("editProfile.photoTypeInvalid", 
+						new Object[] {}, TargettedMessage.SEVERITY_ERROR));
+				return null;
 			}
 			
 			// validate the input
@@ -99,7 +110,7 @@ public class UploadBean {
 			}
 			
 		}
-		
+		messages.addMessage(new TargettedMessage("editProfile.photoUploaded", new Object[] {}, TargettedMessage.SEVERITY_INFO));
 		return "success";
 	}
 	

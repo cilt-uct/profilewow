@@ -23,23 +23,17 @@
 
 	</bean>
 
-	<bean
-		class="org.sakaiproject.profilewow.tool.producers.UploadPicture">
-		<property name="targettedMessageList"
-			ref="targettedMessageList" />
-			
-	</bean>
 
 	<bean id="uploadBean"
 		class="org.sakaiproject.profilewow.tool.locators.UploadBean">
 		<property name="multipartMap" ref="multipartMap" />
 		<property name="resourceUtil" ref="resourceUtil" />
-		<property name="targettedMessageList"
-			ref="targettedMessageList" />
 		<property name="serverConfigurationService"
 			ref="org.sakaiproject.component.api.ServerConfigurationService" />
 		<property name="sakaiPersonManager"
 			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+			<property name="messages" ref="targettedMessageList" />
+			
 	</bean>
 
 
