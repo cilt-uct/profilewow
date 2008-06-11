@@ -1,0 +1,18 @@
+.messageAlert{
+        background: #FFEEEE url(../images/exclamation.gif) 5px 7px no-repeat;
+        border:1px solid #FF5555;
+        color:#FF5555;
+        margin:.5em 0;
+}
+.messageInformation{
+        background: #ffe url(../images/asterisk_yellow.gif) 5px 7px no-repeat;
+        border:1px solid #EEBB44;
+        color:#d93;
+        margin:.5em 0;
+}
+.messageComfirm{
+        background: #EEFFBB url(../images/accept.gif) 5px 7px no-repeat;
+        border:1px solid #CCEE66;
+        color:#779900;        
+        margin:.5em 0;
+}
