@@ -3,11 +3,9 @@ package org.sakaiproject.profilewow.tool.locators;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.profilewow.tool.facade.SakaiPersonFacade;
 import org.sakaiproject.user.api.UserAlreadyDefinedException;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserEdit;
@@ -69,8 +67,8 @@ private static Log log = LogFactory.getLog(UserBeanLocator.class);
 			if (up.getPassOne() == null || up.getPassOne().length() == 0 || up.getPassTwo() == null || up.getPassTwo().length() == 0 ) {
 				//both must be filled in
 				messages.addMessage( new TargettedMessage("password.empty",
-			               new Object[] { "paassword field empty" }, 
-			               TargettedMessage.SEVERITY_INFO));
+			               new Object[] { "password field empty" }, 
+			               TargettedMessage.SEVERITY_ERROR));
 				return;
 				
 			}
@@ -80,7 +78,7 @@ private static Log log = LogFactory.getLog(UserBeanLocator.class);
 				log.warn("paswords do not match");
 				messages.addMessage( new TargettedMessage("passwords.notMatch",
 			               new Object[] { "passwords don't match" }, 
-			               TargettedMessage.SEVERITY_INFO));
+			               TargettedMessage.SEVERITY_ERROR));
 				return;
 			}
 			

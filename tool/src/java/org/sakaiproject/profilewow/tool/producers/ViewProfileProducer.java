@@ -72,8 +72,8 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		
 		String fullName = "";
 		
-		if (sPerson.getTitle() != null)
-			fullName =  sPerson.getTitle() + " ";
+		//if (sPerson.getTitle() != null)
+			//fullName =  sPerson.getTitle() + " ";
 		
 		if (sPerson.getGivenName() != null)
 			fullName += sPerson.getGivenName()+ " ";

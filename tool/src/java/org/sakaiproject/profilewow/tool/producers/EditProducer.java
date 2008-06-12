@@ -162,7 +162,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 
 
 
-		UICommand.make(form, "profile-save","save","profileBeanLocator.saveAll");
+		UICommand.make(form, "profile-save","Save","profileBeanLocator.saveAll");
 
 
 		//UIInternalLink.make(tofill, "change-pic", messageLocator.getMessage("editProfile.changePic"), new SimpleViewParameters(ChangePicture.VIEW_ID));

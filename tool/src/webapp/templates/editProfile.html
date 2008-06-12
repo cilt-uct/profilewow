@@ -15,10 +15,9 @@
 <body rsf:id="scr=sakai-body">
 <div class="portletBody">
 
-
+<h3 rsf:id="msg=editProfile.header">My Profile</h3>
 <div rsf:id="message-for:*" class="alertMessage">
 	<span>Message for user here</span>
-
 </div>
 
 
@@ -58,10 +57,7 @@
 
 		<td>
 		<h4 rsf:id="msg=changePass.header">Change Password</h4>
-		Note: passwords must be at least<br />
-		6 characters long with no spaces.
-
-		<table cellpadding="2" cellspacing="0" border="0" align="center">
+			<table cellpadding="2" cellspacing="0" border="0" align="center">
 			<tr>
 				<td>New password:</td>
 				<td><input rsf:id="pass1" type="password" name="pass1" size="8" /></td>
@@ -86,7 +82,7 @@
 </div>
 
 <form id="editProfileForm" method="post" rsf:id="edit-form"><!--edit.jsp -->
-<h3 rsf:id="msg=editProfile.header">My Profile</h3>
+
 
 
 
@@ -228,7 +224,7 @@ information.</span></div>
 
 
 <p class="act"><input rsf:id="profile-save" value="Save"
-	accesskey="s" type="submit" /> <input
+	accesskey="s" type="submit" class="active" /> <input
 	id="editProfileForm:editCancelButton"
 	name="editProfileForm:editCancelButton" value="Cancel" accesskey="x"
 	onkeypress="document.forms[0].cancel;" type="submit" /></p>
