@@ -2,6 +2,8 @@ package org.sakaiproject.profilewow.tool.facade;
 
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
+import org.sakaiproject.user.api.UserDirectoryService;
+import org.sakaiproject.user.api.UserNotDefinedException;
 
 public class SakaiPersonFacade {
 
@@ -15,10 +17,24 @@ public class SakaiPersonFacade {
 		spm = in;
 	}
 	
-	public SakaiPersonFacade(String userId) {
-		this.userId = userId;
-		//and get the SakaiPerson here
-		this.sakaiPerson = spm.getSakaiPerson(userId, spm.getUserMutableType());
+	private UserDirectoryService userDirectoryService;
+	public void setUserDirectoryService(UserDirectoryService uds) {
+		this.userDirectoryService = uds;
+	}
+	
+	public SakaiPersonFacade(String userEid) {
+		
+		
+		//we need the userID
+		try {
+			this.userId = userDirectoryService.getUserId(userEid);
+			//and get the SakaiPerson here
+			this.sakaiPerson = spm.getSakaiPerson(userId, spm.getUserMutableType());
+		} catch (UserNotDefinedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

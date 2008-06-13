@@ -6,6 +6,8 @@ import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
+import org.sakaiproject.user.api.UserDirectoryService;
+import org.sakaiproject.user.api.UserNotDefinedException;
 
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
@@ -37,6 +39,10 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		this.viewparams = viewparams;
 	}
 	
+	private UserDirectoryService userDirectoryService;
+	public void setUserDirectoryService(UserDirectoryService uds) {
+		this.userDirectoryService = uds;
+	}
 	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
@@ -45,8 +51,15 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		SakaiPersonViewParams svp = (SakaiPersonViewParams) viewparams;
 		SakaiPerson sPerson = null;
 		if (svp.id != null) {
-			
-			sPerson = sakaiPersonManager.getSakaiPersonById(svp.id);
+			try{
+				String userId = userDirectoryService.getUserId(svp.id);
+				//and get the SakaiPerson here
+				sPerson = sakaiPersonManager.getSakaiPerson(userId, sakaiPersonManager.getUserMutableType());
+
+			} catch (UserNotDefinedException e) {
+				e.printStackTrace();
+			}
+
 			if (sPerson == null) {
 				log.error("No sakaiperson with id: " + svp.id);
 			}
