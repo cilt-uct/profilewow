@@ -17,9 +17,7 @@ import org.sakaiproject.user.api.UserLockedException;
 import org.sakaiproject.user.api.UserNotDefinedException;
 import org.sakaiproject.user.api.UserPermissionException;
 
-
 import uk.org.ponder.beanutil.BeanLocator;
-import uk.org.ponder.beanutil.WriteableBeanLocator;
 import uk.org.ponder.messageutil.TargettedMessage;
 import uk.org.ponder.messageutil.TargettedMessageList;
 
