@@ -9,6 +9,7 @@ import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
 
+import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UILink;
@@ -71,17 +72,19 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		
 		//picture stuff
 		String picUrl = sPerson.getPictureUrl();
-		if (picUrl == null || picUrl.trim().length() == 0)
-			picUrl = NO_PIC_URL;
-		else 
-			picUrl = sPerson.getPictureUrl();
-	
-		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
-			UIInternalLink.make(tofill, "photo", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
-		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
-			UILink.make(tofill, "photo", picUrl);
-		} 
 		
+		if (picUrl == null || picUrl.trim().length() == 0) {
+			picUrl = NO_PIC_URL;
+		} else { 
+			picUrl = sPerson.getPictureUrl();
+			UIBranchContainer picRow = UIBranchContainer.make(tofill, "isImage:");
+			if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
+				UIInternalLink.make(picRow, "photo", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
+			} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
+				UILink.make(picRow, "photo", picUrl);
+			} 
+
+		}
 		
 		String fullName = "";
 		
