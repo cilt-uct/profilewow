@@ -4,6 +4,7 @@
 <head>
 <title>My Profile</title>
 <link href="http://qa1-za.sakaiproject.org/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
+<link href="testStyle.css" type="text/css" rel="stylesheet" media="all"/>
 <link href="http://qa1-za.sakaiproject.org/library/skin/tool.css" type="text/css" rel="stylesheet" media="all"  rsf:id="scr=portal-matter"/>
 <link href="/profilewow-tool/css/Profilewow.css" type="text/css" rel="stylesheet" media="all"/>
 <script type="text/javascript" language="JavaScript"
@@ -21,10 +22,10 @@
 </div>
 
 
-<div style="float:right; padding: 20px;">
+<div style="float:right">
+<div class="colorBorder">
 
-<table width="250" border="0" cellpadding="5" cellspacing="0"
-	bgcolor="#FEFDCD">
+<table width="250" border="0" cellpadding="5" cellspacing="0">
 	<tr align="center">
 		<td>
 		<h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
@@ -34,26 +35,25 @@
 		<!-- rsf:id="upload-pic"  --> <!-- <img src="../images/collapse.gif" style="cursor: pointer;" id="upload-div__img_hide_division_" onclick="javascript:showHideDiv('upload-div', '/profilewow-tool');javascript:showHideDiv('upload-div', '/profilewow-tool');" /> -->
 		Upload a photo<br />
 		<table>
-			<tr id="upload-div__hide_division_">
+			<tr id="upload-div__hide_division_" align="center">
 				<td>
 				<form rsf:id="upload-pic-form" method="post"
 					enctype="multipart/form-data">
 				<p><input name="fileupload1" type="file" size="15" />
 				</p>
-				<input rsf:id="submit" type="submit" value="Upload picture" /></form>
-
-				</td>
+				<input rsf:id="submit" type="submit" value="Upload picture" /></form></td>
 			</tr>
 		</table>
 
 		</td>
 	</tr>
 </table>
-<br />
+</div>
 
+<br />
+<div class="colorBorder">
 <form rsf:id="passForm:" method="post">
-<table cellpadding="5" cellspacing="0" border="0" width="250"
-	bgcolor="#E0F3CD">
+<table cellpadding="5" cellspacing="0" border="0" width="250">
 	<tr align="center">
 
 		<td>
@@ -79,7 +79,7 @@
 	</tr>
 </table>
 </form>
-
+</div>
 </div>
 
 <form id="editProfileForm" method="post" rsf:id="edit-form"><!--edit.jsp -->
