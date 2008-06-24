@@ -8,9 +8,15 @@
 <script type="text/javascript" language="JavaScript"
 	src="http://qa1-za.sakaiproject.org/library/headscripts.js" rsf:id="scr=portal-matter"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<script type="text/javascript" language="JavaScript">
+// in case the parent iframe id has whitespace, trim so that IE can use it.
+function trim(s){
+	if((s==null)||(typeof(s)!='string')||!s.length)return'';return s.replace(/^\s+/,'').replace(/\s+$/,'')
+}
+</script>
 </head>
 
-<body rsf:id="scr=sakai-body">
+<body onload="(window.frameElement) ? setMainFrameHeight(trim(window.frameElement.id)):''">
 <div class="portletBody"> 
 
 <div class="colorBorder">
