@@ -64,7 +64,7 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 			if (sPerson == null) {
 				log.error("No sakaiperson with id: " + svp.id);
 			}
-			log.debug("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname() + " with id " + sPerson.getId());
+			log.debug("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname() + " with id " + sPerson.getAgentUuid());
 		} else {
 			log.debug("getting profile for current user");
 			sPerson = sakaiPersonManager.getSakaiPerson(sakaiPersonManager.getUserMutableType());

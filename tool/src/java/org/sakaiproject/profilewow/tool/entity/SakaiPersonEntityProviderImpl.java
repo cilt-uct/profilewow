@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
-import org.sakaiproject.api.common.edu.person.SakaiPersonEntityProvider;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.entitybroker.EntityReference;
 import org.sakaiproject.entitybroker.entityprovider.CoreEntityProvider;
@@ -48,7 +47,7 @@ public class SakaiPersonEntityProviderImpl extends AbstractEntityProvider implem
 		
 		sakaiPersonId = id;
 		try{
-			SakaiPerson sp = sakaiPersonManager.getSakaiPersonById(sakaiPersonId);
+			SakaiPerson sp = sakaiPersonManager.getSakaiPerson(sakaiPersonId, (sakaiPersonManager.getUserMutableType()));
 			if (sp != null)
 				return true;
 
@@ -87,7 +86,7 @@ public class SakaiPersonEntityProviderImpl extends AbstractEntityProvider implem
 	      if (ref.getId() == null) {
 	          return sakaiPersonManager.getPrototype();
 	       }
-	       SakaiPerson entity = sakaiPersonManager.getSakaiPersonById(ref.getId()); 
+	       SakaiPerson entity = sakaiPersonManager.getSakaiPerson(ref.getId(), (sakaiPersonManager.getUserMutableType())); 
 	       if (entity != null) {
 	          return entity;
 	       }
