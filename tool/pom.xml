@@ -12,7 +12,7 @@
 	</organization>
 	<inceptionYear>2007</inceptionYear>
 	<description>Profilewow webapp (tool)</description>
-	<version>0.1</version>
+	<version>0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<!-- the base is the parent pom -->
@@ -80,57 +80,57 @@
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-common-edu-person-api</artifactId>
-			<version>${profile.version}</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-common-type-api</artifactId>
-			<version>${profile.version}</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-common-manager-api</artifactId>
-			<version>${profile.version}</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-user-api</artifactId>
-			<version>2.5.0</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-entity-api</artifactId>
-			<version>2.5.0</version>
+			
 		</dependency>
 				<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-tool-api</artifactId>
-			<version>2.5.0</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-content-api</artifactId>
-			<version>2.5.0</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-tool-api</artifactId>
-			<version>2.5.0</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-util-api</artifactId>
-			<version>2.5.0</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-site-api</artifactId>
-			<version>2.5.0</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-component-api</artifactId>
-			<version>2.5.0</version>
+			
 		</dependency>
 		<!-- For file uploads -->
 		<dependency>
@@ -144,10 +144,8 @@
 			<version>1.2</version>
 		</dependency>
 		<dependency>
-			<groupId>${sakai.spring.groupId}</groupId>
-			<artifactId>${sakai.spring.artifactId}</artifactId>
-			<version>${sakai.spring.version}</version>
-			<scope>provided</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
 		</dependency>
 	</dependencies>
 
