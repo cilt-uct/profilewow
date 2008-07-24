@@ -66,9 +66,9 @@ public class ImageHandlerHook implements HandlerHook {
 
 
 		// Response Headers that are the same for all Output types
-		response.setHeader("Content-disposition", "inline");
+		response.setHeader("Content-disposition", "inline;filename=\"pic.jpg\"");
 		response.setContentType("image/jpeg");
-		response.setHeader("filename", "pic.jpg");
+		
 		
 		OutputStream stream;
 		try {
