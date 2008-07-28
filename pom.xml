@@ -1,55 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                       http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
-   <name>Sakai Profilewow</name>
-   <groupId>org.sakaiproject</groupId>
-   <artifactId>profilewow</artifactId>
-   <organization>
-      <name>Sakai Project</name>
-      <url>http://sakaiproject.org/</url>
-   </organization>
-   <inceptionYear>2007</inceptionYear>
-   <packaging>pom</packaging>
-   <version>0.1-SNAPSHOT</version>
+	<modelVersion>4.0.0</modelVersion>
+	<name>Sakai Profilewow</name>
+	<groupId>org.sakaiproject</groupId>
+	<artifactId>profilewow</artifactId>
+	<organization>
+		<name>Sakai Project</name>
+		<url>http://sakaiproject.org/</url>
+	</organization>
+	<inceptionYear>2007</inceptionYear>
+	<packaging>pom</packaging>
+	<version>0.1-SNAPSHOT</version>
 
 
-   <!-- Use this master pom to make it easy to get all the correct RSF Sakai dependencies -->
-   <parent> 
-      <groupId>org.sakaiproject</groupId>
-      <artifactId>base</artifactId>
-      <version>2.5.0</version>
-      <relativePath>../pom.xml</relativePath>
-   </parent>
+	<!-- Use this master pom to make it easy to get all the correct RSF Sakai dependencies -->
+	<parent>
+		<groupId>org.sakaiproject</groupId>
+		<artifactId>base</artifactId>
+		<version>2.5.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
 
-   <!-- RSF (CARET) maven 2 repository -->
-   <repositories>
-      <repository>
-         <id>CARET-Maven2</id>
-         <name>CARET Maven 2 Repository</name>
-         <url>http://www2.caret.cam.ac.uk/maven2</url>
-      </repository>
-          <repository>
-      <id>sakai-maven</id>
-      <name>Sakai Maven Repo</name>
-      <layout>default</layout>
-            <url>http://source.sakaiproject.org/maven2</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-   </repositories>
+	<!-- RSF (CARET) maven 2 repository -->
+	<repositories>
+		<repository>
+			<id>CARET-Maven2</id>
+			<name>CARET Maven 2 Repository</name>
+			<url>http://www2.caret.cam.ac.uk/maven2</url>
+		</repository>
+		<repository>
+			<id>sakai-maven</id>
+			<name>Sakai Maven Repo</name>
+			<layout>default</layout>
+			<url>http://source.sakaiproject.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
-   <modules>
-      <module>tool</module>
-   </modules>
-   
-   
-   	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</url>
+	<modules>
+		<module>tool</module>
+	</modules>
+
+
+	<scm>
+		<connection>
+			scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/
+		</connection>
+		<developerConnection>
+			scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/
+		</developerConnection>
+		<url>
+			http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/
+		</url>
 	</scm>
 
 </project>
