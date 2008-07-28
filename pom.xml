@@ -1,4 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                        http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                      http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <name>Sakai Profilewow</name>
    <groupId>org.sakaiproject</groupId>
@@ -9,7 +12,7 @@
    </organization>
    <inceptionYear>2007</inceptionYear>
    <packaging>pom</packaging>
-   <version>0.1</version>
+   <version>0.1-SNAPSHOT</version>
 
 
    <!-- Use this master pom to make it easy to get all the correct RSF Sakai dependencies -->
@@ -44,9 +47,9 @@
    
    
    	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/tags/profilewow-0.1</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/tags/profilewow-0.1</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/tags/profilewow-0.1</url>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</url>
 	</scm>
 
 </project>
