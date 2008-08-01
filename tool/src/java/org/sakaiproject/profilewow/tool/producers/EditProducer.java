@@ -7,12 +7,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
+import org.sakaiproject.authz.api.SecurityService;
 import org.sakaiproject.component.api.ServerConfigurationService;
 import org.sakaiproject.entity.api.EntityPropertyNotDefinedException;
 import org.sakaiproject.entity.api.EntityPropertyTypeException;
 import org.sakaiproject.entity.api.ResourceProperties;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
+import org.sakaiproject.tool.api.ToolManager;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 
@@ -73,11 +75,26 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		this.serverConfigurationService = serverConfigurationService;
 	}
 
+	
+	private SecurityService securityService;
+
+	public void setSecurityService(SecurityService securityService) {
+		this.securityService = securityService;
+	}
+	
+	private ToolManager toolManager;
+	public void setToolManager(ToolManager toolManager) {
+		this.toolManager = toolManager;
+	}
+
+	
 	private TargettedMessageList tml;
 	public void setTargettedMessageList(TargettedMessageList tml) {
 		this.tml = tml;
 	}
 
+	
+	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
 
@@ -214,17 +231,12 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 
 	private boolean canChangePassword(User u) {
 		
+		if (securityService.unlock(UserDirectoryService.SECURE_UPDATE_USER_OWN_PASSWORD, "/site/" + toolManager.getCurrentPlacement().getContext())) {
+			log.info("user can set password");
+			return true;
+		}
+		return false;		
 		
-		String[] roles = serverConfigurationService.getStrings("profile.RolesAllowPassword");
-		if (roles == null ){
-			roles = new String[]{"guest"};
-		}
-		List rolesL = Arrays.asList(roles);
-		if (!rolesL.contains(u.getType())) {
-			log.debug("this is a type don't change");
-			return false;
-		}
-		return true	;
 	}
 
 	/**
@@ -257,6 +269,10 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		return ret;
 
 	}
+
+
+
+
 
 
 
