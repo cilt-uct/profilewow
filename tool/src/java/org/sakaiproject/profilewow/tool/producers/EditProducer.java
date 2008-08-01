@@ -1,9 +1,13 @@
 package org.sakaiproject.profilewow.tool.producers;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
+import org.sakaiproject.component.api.ServerConfigurationService;
 import org.sakaiproject.entity.api.EntityPropertyNotDefinedException;
 import org.sakaiproject.entity.api.EntityPropertyTypeException;
 import org.sakaiproject.entity.api.ResourceProperties;
@@ -63,6 +67,11 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		this.userDirectoryService = uds;
 	}
 
+	private ServerConfigurationService serverConfigurationService;
+	public void setServerConfigurationService(
+			ServerConfigurationService serverConfigurationService) {
+		this.serverConfigurationService = serverConfigurationService;
+	}
 
 	private TargettedMessageList tml;
 	public void setTargettedMessageList(TargettedMessageList tml) {
@@ -183,12 +192,14 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		} 
 		
 		//the change password form
-		UIForm passForm = UIForm.make(tofill, "passForm:");
-		UIInput.make(passForm,"pass1","userBeanLocator." + sPerson.getUid() + ".passOne");
-		UIInput.make(passForm,"pass2","userBeanLocator." + sPerson.getUid() + ".passTwo");
-		//form.parameters.add(new UIELBinding("userBeanLocator." + )
-		UICommand.make(passForm, "passSubmit", "userBeanLocator.saveAll");
-		
+		//only render for some users
+		if (canChangePassword(userDirectoryService.getCurrentUser())) {
+			UIForm passForm = UIForm.make(tofill, "passForm:");
+			UIInput.make(passForm,"pass1","userBeanLocator." + sPerson.getUid() + ".passOne");
+			UIInput.make(passForm,"pass2","userBeanLocator." + sPerson.getUid() + ".passTwo");
+			//form.parameters.add(new UIELBinding("userBeanLocator." + )
+			UICommand.make(passForm, "passSubmit", "userBeanLocator.saveAll");
+		}		
 		
 		//UIInternalLink.make(tofill, "test", new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, sPerson.getId().toString()));
 		//UIInternalLink.make(tofill, "test2", new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, sPerson.getAgentUuid()));
@@ -201,6 +212,20 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		UICommand.make(form2,"submit","uploadBean.processUpload");
 	}
 
+	private boolean canChangePassword(User u) {
+		
+		
+		String[] roles = serverConfigurationService.getStrings("profile.RolesAllowPassword");
+		if (roles == null ){
+			roles = new String[]{"guest"};
+		}
+		List rolesL = Arrays.asList(roles);
+		if (!rolesL.contains(u.getType())) {
+			log.debug("this is a type don't change");
+			return false;
+		}
+		return true	;
+	}
 
 	/**
 	 * Returns String for image. Uses the config bundle
@@ -232,6 +257,8 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		return ret;
 
 	}
+
+
 
 
 
