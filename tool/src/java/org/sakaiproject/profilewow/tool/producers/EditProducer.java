@@ -32,6 +32,8 @@ import uk.org.ponder.rsf.components.UIMessage;
 import uk.org.ponder.rsf.components.UISelect;
 import uk.org.ponder.rsf.components.UISelectChoice;
 import uk.org.ponder.rsf.components.UISelectLabel;
+import uk.org.ponder.rsf.components.decorators.DecoratorList;
+import uk.org.ponder.rsf.components.decorators.UIDisabledDecorator;
 import uk.org.ponder.rsf.components.decorators.UILabelTargetDecorator;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.DefaultView;
@@ -127,8 +129,15 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 
 		String otpBean = "profileBeanLocator." + sPerson.getUid() + ".sakaiPerson";
 
-		UIInput.make(form,"editProfileForm-first_name", otpBean + ".givenName" ,sPerson.getGivenName());
-		UIInput.make(form,"editProfileForm-lname", otpBean + ".surname", sPerson.getSurname());
+		UIInput fName = UIInput.make(form,"editProfileForm-first_name", otpBean + ".givenName" ,sPerson.getGivenName());
+		UIInput lName = UIInput.make(form,"editProfileForm-lname", otpBean + ".surname", sPerson.getSurname());
+		boolean enableEdit = this.canEditeName(userDirectoryService.getCurrentUser());
+		if (!enableEdit) {
+			fName.decorators = new DecoratorList(new UIDisabledDecorator(true));
+			lName.decorators = new DecoratorList(new UIDisabledDecorator(true));
+		}
+
+		
 		UIInput.make(form,"editProfileForm-nickname", otpBean + ".nickname", sPerson.getNickname());
 		UIInput.make(form,"editProfileForm-position", otpBean + ".title", sPerson.getTitle());
 		UIInput.make(form,"editProfileForm-department", otpBean + ".organizationalUnit", sPerson.getOrganizationalUnit());
@@ -232,10 +241,20 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 	private boolean canChangePassword(User u) {
 		
 		if (securityService.unlock(UserDirectoryService.SECURE_UPDATE_USER_OWN_PASSWORD, "/site/" + toolManager.getCurrentPlacement().getContext())) {
-			log.info("user can set password");
+			log.debug("user can set password");
 			return true;
 		}
 		return false;		
+		
+	}
+	
+	private boolean canEditeName(User u) {
+		if (securityService.unlock(UserDirectoryService.SECURE_UPDATE_USER_OWN_NAME, "/site/" + toolManager.getCurrentPlacement().getContext())) {
+			log.debug("user can change name");
+			return true;
+		}
+		return false;		
+	
 		
 	}
 
