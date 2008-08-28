@@ -1,47 +1,112 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Profile</title>
-<link href="main_files/tool_base.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter"/>
-<link href="main_files/tool.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
-<script type="text/javascript" language="JavaScript" src="main_files/headscripts.js" rsf:id="scr=portal-matter"></script>
+<link href="http://qa1-za.sakaiproject.org/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
+<link href="http://qa1-za.sakaiproject.org/library/skin/tool.css" type="text/css" rel="stylesheet" media="all"  rsf:id="scr=portal-matter"/>
+<script type="text/javascript" language="JavaScript"
+	src="http://qa1-za.sakaiproject.org/library/headscripts.js" rsf:id="scr=portal-matter"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 </head>
+
 <body rsf:id="scr=sakai-body">
 <div class="portletBody"> 
-  <form id="profileForm" method="post" action="https://vula.uct.ac.za/portal/tool/896bff67-8e77-489f-00d3-c4ed91385ec7/main" enctype="application/x-www-form-urlencoded">
-    <!--main.jsp -->
-    <div class="navIntraTool"> <a rsf:id="editProfile" href="#" title="Edit my Profile ">Edit 
-      my Profile </a> <span id="profileForm:seperator"> | </span> <a id="profileForm:searchProfile" href="#" title="Show my Profile" onclick="document.forms['profileForm']['profileForm:_idcl'].value='profileForm:searchProfile'; document.forms['profileForm'].submit(); return false;">Show 
-      my Profile</a> </div>
-    <table class="profileTable" summary="layout" border="0" cellpadding="0" cellspacing="0">
-      <tbody>
-        <tr> 
-          <td colspan="2"><h3 class="insColor insBak insBorder">Profile: <span rsf:id="profile-name">Daffy Duck</span></h3></td>
-          <td class="profileSearch"><h3 class="insColor insBak insBorder">Search 
-              for Profile</h3></td>
-        </tr>
-        <tr> 
-          <td class="rosterImageCol"> 
-          	<img rsf:id="profile-image" src="../pictureUnavailable.jpg" alt="Picture of" class="rosterImage" /> 
-          </td>
-          <td class="profileData"> 
-          <span rsf:id="profile-nickname">dude</span> 
-          	<span rsf:id="profile-postion">Student</span> 
-            <span rsf:id="profile-department">Animation</span>
-            <span rsf:id="profile-school">Disney</span> 
-            <span rsf:id="profile-room">dineyland</span> 
-            <span rsf:id="profile-workphone">quack!</span> </td>
-          <td class="profileSearch"> 
-            
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <input name="profileForm" value="profileForm" type="hidden" />
-    <input name="profileForm:_idcl" type="hidden" />
-  </form>
+
+
+<div style="float:right">
+<div class="colorBorder">
+<table width="250" border="0" cellpadding="5" cellspacing="0">
+<tr align="center"><td><form action="search" method="get" name="search" target="searchProfile.html"><img src="library/image/silk/vcard.png" alt="User search icon"/> <input name="search" type="text" value="search for Vula users" size="15" /> <input name="search" type="button" value="Search" /></form></td></tr>
+</table>
+</div>
+<div class="colorBorder">
+<table width="250" border="0" cellpadding="5" cellspacing="0">
+	<tr align="center">
+		<td>
+		<h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
+		<img rsf:id="current-pic" src="../somepic.jpg" class="rosterImage" /><br />
+		
+        <!--<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />-->
+        <a href="" rsf:id="">Use official photo</a><br />
+
+		<!-- rsf:id="upload-pic"  
+        <img src="../images/collapse.gif" style="cursor: pointer;" id="upload-div__img_hide_division_" onclick="javascript:showHideDiv('upload-div', '/profilewow-tool');javascript:showHideDiv('upload-div', '/profilewow-tool');" />
+        -->
+		<a href="" rsf:id="">Upload a photo</a>
+		<!-- **javascript: reveal box when clicked** -->
+        <table>
+			<tr id="upload-div__hide_division_" align="center">
+				<td>
+				<form rsf:id="upload-pic-form" method="post"
+					enctype="multipart/form-data">
+				<p><input name="fileupload1" type="file" size="15" />
+				</p>
+				<input rsf:id="submit" type="submit" value="Upload picture" /></form></td>
+			</tr>
+		</table>
+
+		</td>
+	</tr>
+</table>
+</div>
+<!-- **change password - visible only for guest accounts** -->
+<div class="colorBorder">
+<form rsf:id="passForm:" method="post">
+<table cellpadding="5" cellspacing="0" border="0" width="250">
+	<tr align="center">
+
+		<td>
+		<h4 rsf:id="msg=changePass.header">Change Password</h4>
+			<table cellpadding="2" cellspacing="0" border="0" align="center">
+			<tr>
+				<td>New password:</td>
+				<td><input rsf:id="pass1" type="password" name="pass1" size="8" /></td>
+
+			</tr>
+			<tr>
+				<td>Confirm password:</td>
+				<td><input rsf:id="pass2" type="password" name="pass2" size="8" /></td>
+			</tr>
+			<tr align="center">
+				<td colspan="2"><input rsf:id="passSubmit" type="submit"
+					name="submit" value="Set Password" /></td>
+			</tr>
+
+		</table>
+
+		</td>
+	</tr>
+</table>
+</form>
+</div>
+</div>
+
+<div class="colorBorder">
+<table border="0" cellpadding="10" cellspacing="0">
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#FFFEE6" ><div rsf:id="isImage:"><img src="noimage.gif" alt="profile photo" border="none" rsf:id="photo" /></div>      </td>
+      <td>
+      <h3 rsf:id="full-name"><!-- Title, First name, Surname -->Dr Daffy Duck <img src="library/image/silk/pencil.png" alt="Edit my profile"/> <span class="itemAction"><a rsf:id="" href="editProfile.html">Edit my profile</a></span></h3>
+        
+        <p><a href="mailto:some@sdrg.net" rsf:id="email">daffyduck@disney.com</a></p>
+        
+        <p>
+        <span rsf:id="position"><!-- Position-->Lecturer<br /></span>
+        <span rsf:id="department"><!-- Department-->Centre for Educational Technology<br /></span>
+        <span rsf:id="school"><!-- Institution-->University of Cape Town<br /></span>
+        <span rsf:id="room"><!-- Room-->Room number<br /></span>
+        </p>
+
+        <p><a href="homepage" rsf:id="homepage" target="_blank" ><!-- homepage -->http://www.daffy.com</a><br />
+        <p><span rsf:id="workphone">w: 021 555 1234<br /></span>
+        <span rsf:id="mobile"><!-- mobile, if chosen to disclose -->m: 082 555 1234</span></p>
+        <p><span rsf:id="more-info"><!-- More info -->Blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here</span></p></td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 </body>
 </html>

@@ -8,16 +8,20 @@
 <script type="text/javascript" language="JavaScript"
 	src="http://qa1-za.sakaiproject.org/library/headscripts.js" rsf:id="scr=portal-matter"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<script type="text/javascript" language="JavaScript">
-// in case the parent iframe id has whitespace, trim so that IE can use it.
-function trim(s){
-	if((s==null)||(typeof(s)!='string')||!s.length)return'';return s.replace(/^\s+/,'').replace(/\s+$/,'')
-}
-</script>
 </head>
 
-<body rsf:id="scr=null" onload="(window.frameElement) ? setMainFrameHeight(trim(window.frameElement.id)):''">
+<body rsf:id="scr=sakai-body">
 <div class="portletBody"> 
+
+
+<div style="float:right">
+<div class="colorBorder">
+<table width="250" border="0" cellpadding="5" cellspacing="0">
+<tr align="center"><td><form action="search" method="get" name="search" target="searchProfile.html"><img src="library/image/silk/vcard.png" alt="User search icon"/> <input name="search" type="text" value="search for Vula users" size="15" /> <input name="search" type="button" value="Search" /></form></td></tr>
+</table>
+</div>
+<span style="text-align:center"><img src="library/image/silk/user_go.png" alt="my profile"/> <a href="main.html">Return to my profile</a></span>
+</div>
 
 <div class="colorBorder">
 <table border="0" cellpadding="10" cellspacing="0">
@@ -26,13 +30,20 @@ function trim(s){
       <td valign="top" bgcolor="#FFFEE6" ><div rsf:id="isImage:"><img src="noimage.gif" alt="profile photo" border="none" rsf:id="photo" /></div>      </td>
       <td>
       <h3 rsf:id="full-name"><!-- Title, First name, Surname -->Dr Daffy Duck</h3>
-        <a href="mailto:some@sdrg.net" rsf:id="email">daffyduck@disney.com</a><br />
-        <div rsf:id="org"><!-- Organisation -->Disney</div>
-        <div rsf:id="country"><!-- country -->USA</div>
-        <div><a href="homepage" rsf:id="homepage" target="_blank" ><!-- homepage -->http://www.daffy.com</a></div>
-        <div rsf:id="workphone">w: 021 555 1234<br /></div>
-        <div rsf:id="mobile"><!-- mobile, if chosen to disclose -->m: 082 555 1234</div>
-        <div rsf:id="more-info"><!-- More info -->Blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here</div></td>
+        
+        <p><a href="mailto:some@sdrg.net" rsf:id="email">daffyduck@disney.com</a></p>
+        
+        <p>
+        <span rsf:id="position"><!-- Position-->Lecturer<br /></span>
+        <span rsf:id="department"><!-- Department-->Centre for Educational Technology<br /></span>
+        <span rsf:id="school"><!-- Institution-->University of Cape Town<br /></span>
+        <span rsf:id="room"><!-- Room-->Room number<br /></span>
+        </p>
+
+        <p><a href="homepage" rsf:id="homepage" target="_blank" ><!-- homepage -->http://www.daffy.com</a><br />
+        <p><span rsf:id="workphone">w: 021 555 1234<br /></span>
+        <span rsf:id="mobile"><!-- mobile, if chosen to disclose -->m: 082 555 1234</span></p>
+        <p><span rsf:id="more-info"><!-- More info -->Blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here</span></p></td>
     </tr>
   </tbody>
 </table>
