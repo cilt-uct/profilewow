@@ -12,6 +12,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
    <script type="text/javascript" src="/library/js/jquery.js"></script>
    <script type="text/javascript" src="../js/forum.js"></script>
+   <script type="text/javascript" language="javascript">
+	function showUpload(){
+		document.getElementById('pictureUploader').style.display = '';
+	}
+   </script>
 </head>
 <body rsf:id="scr=sakai-body">
 <div class="portletBody">
@@ -34,13 +39,9 @@
 		
         <!--<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />-->
         <a href="" rsf:id="">Use official photo</a><br />
-
-		<!-- rsf:id="upload-pic"  
-        <img src="../images/collapse.gif" style="cursor: pointer;" id="upload-div__img_hide_division_" onclick="javascript:showHideDiv('upload-div', '/profilewow-tool');javascript:showHideDiv('upload-div', '/profilewow-tool');" />
-        -->
-		<a href="" rsf:id="">Upload a photo</a>
+		<a href="" rsf:id="" onclick="showUpload();return false;">Upload a photo</a>
 		<!-- **javascript: reveal box when clicked** -->
-        <table>
+        <table id="pictureUploader" style="display:none">
 			<tr id="upload-div__hide_division_" align="center">
 				<td>
 				<form rsf:id="upload-pic-form" method="post"
@@ -231,6 +232,6 @@ information.</span></div>
 <input name="editProfileForm" value="editProfileForm" type="hidden" />
 <input name="editProfileForm:_idcl" type="hidden" /></form>
 
-
+</div>
 </body>
 </html>
