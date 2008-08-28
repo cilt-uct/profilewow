@@ -201,7 +201,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 
 
 		//UIInternalLink.make(tofill, "change-pic", messageLocator.getMessage("editProfile.changePic"), new SimpleViewParameters(ChangePicture.VIEW_ID));
-		UIInternalLink.make(tofill, "upload-pic", messageLocator.getMessage("editProfile.uploadPic"), new SimpleViewParameters(UploadPicture.VIEW_ID));
+		UIInternalLink.make(tofill, "upload-pic", "editProfile.uploadPic");
 
 		//picture stuff
 		String picUrl = sPerson.getPictureUrl();
