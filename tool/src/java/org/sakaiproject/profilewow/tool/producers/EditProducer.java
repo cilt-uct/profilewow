@@ -29,6 +29,7 @@ import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIMessage;
+import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UISelect;
 import uk.org.ponder.rsf.components.UISelectChoice;
 import uk.org.ponder.rsf.components.UISelectLabel;
@@ -129,12 +130,18 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 
 		String otpBean = "profileBeanLocator." + sPerson.getUid() + ".sakaiPerson";
 
-		UIInput fName = UIInput.make(form,"editProfileForm-first_name", otpBean + ".givenName" ,sPerson.getGivenName());
-		UIInput lName = UIInput.make(form,"editProfileForm-lname", otpBean + ".surname", sPerson.getSurname());
+		
 		boolean enableEdit = this.canEditeName(userDirectoryService.getCurrentUser());
 		if (!enableEdit) {
-			fName.decorators = new DecoratorList(new UIDisabledDecorator(true));
-			lName.decorators = new DecoratorList(new UIDisabledDecorator(true));
+			//fName.decorators = new DecoratorList(new UIDisabledDecorator(true));
+			//lName.decorators = new DecoratorList(new UIDisabledDecorator(true));
+			UIOutput.make(form, "firstname-text",sPerson.getGivenName());
+			UIOutput.make(form, "lastname-text", sPerson.getSurname());
+			form.parameters.add(new UIELBinding(otpBean + ".givenName" ,sPerson.getGivenName()));
+			form.parameters.add(new UIELBinding(otpBean + ".surname", sPerson.getSurname()));
+		} else {
+			UIInput fName = UIInput.make(form,"editProfileForm-first_name", otpBean + ".givenName" ,sPerson.getGivenName());
+			UIInput lName = UIInput.make(form,"editProfileForm-lname", otpBean + ".surname", sPerson.getSurname());
 		}
 
 		
