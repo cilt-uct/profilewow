@@ -36,9 +36,10 @@
 		<td>
 		<h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
 		<img rsf:id="current-pic" src="../somepic.jpg" class="rosterImage" /><br />
-		
+		<br />
         <!--<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />-->
-        <a href="" rsf:id="use-official">Use official photo</a><br />
+		<form method="post" rsf:id="use-official-form">       
+        <input type="submit" value="use official picture" rsf:id="use-official" class="active"/></form><br />
 		<a href="" rsf:id="upload-pic" onclick="showUpload();return false;">Upload a photo</a>
 		<!-- **javascript: reveal box when clicked** -->
         <table id="pictureUploader" style="display:none">
@@ -48,7 +49,7 @@
 					enctype="multipart/form-data">
 				<p><input name="fileupload1" type="file" size="15" />
 				</p>
-				<input rsf:id="submit" type="submit" value="Upload picture" /></form></td>
+				<input rsf:id="submit" type="submit" value="Upload picture" class="active"/></form></td>
 			</tr>
 		</table>
 

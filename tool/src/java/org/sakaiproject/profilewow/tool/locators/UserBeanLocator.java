@@ -113,7 +113,6 @@ private static Log log = LogFactory.getLog(UserBeanLocator.class);
 		}
 	}
 	
-	
 
 	
 	public class UserPassword {
@@ -140,5 +139,7 @@ private static Log log = LogFactory.getLog(UserBeanLocator.class);
 			this.pass2 = pass2;
 		}
 	}
+	
+	
 	
 }

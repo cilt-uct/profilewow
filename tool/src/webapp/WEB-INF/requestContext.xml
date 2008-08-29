@@ -38,8 +38,8 @@
 			ref="org.sakaiproject.component.api.ServerConfigurationService" />
 		<property name="sakaiPersonManager"
 			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
-			<property name="messages" ref="targettedMessageList" />
-			
+		<property name="messages" ref="targettedMessageList" />
+
 	</bean>
 
 
@@ -49,6 +49,8 @@
 		<property name="response" ref="httpServletResponse" />
 		<property name="sakaiPersonManager"
 			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+		<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
 	</bean>
 
 	<bean name="profileBeanLocator"
@@ -65,15 +67,14 @@
 		class="org.sakaiproject.profilewow.tool.locators.UserBeanLocator">
 		<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
-			<property name="messages"
-			ref="targettedMessageList" />
+		<property name="messages" ref="targettedMessageList" />
 	</bean>
 
 	<bean name="sakaiPersonFacade"
 		class="org.sakaiproject.profilewow.tool.facade.SakaiPersonFacade">
 		<property name="sakaiPersonManager"
 			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
-			<property name="userDirectoryService"
+		<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 	</bean>
 
@@ -87,10 +88,11 @@
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 	</bean>
 
-	<bean class="org.sakaiproject.profilewow.tool.producers.ViewProfileProducer">
-	<property name="sakaiPersonManager"
+	<bean
+		class="org.sakaiproject.profilewow.tool.producers.ViewProfileProducer">
+		<property name="sakaiPersonManager"
 			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
-			<property name="userDirectoryService"
+		<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 	</bean>
 

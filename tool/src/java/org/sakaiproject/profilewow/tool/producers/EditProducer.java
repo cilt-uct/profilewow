@@ -217,6 +217,13 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 			UILink.make(tofill, "current-pic", picUrl);
 		} 
 		
+		//the official pic selector
+		if (!sPerson.isSystemPicturePreferred().booleanValue()) {
+			UIForm opForm = UIForm.make(tofill, "use-official-form");
+			UICommand.make(opForm, "use-official", "profileBeanLocator.useOfficialPic");
+		}
+		
+		
 		//the change password form
 		//only render for some users
 		if (canChangePassword(userDirectoryService.getCurrentUser())) {

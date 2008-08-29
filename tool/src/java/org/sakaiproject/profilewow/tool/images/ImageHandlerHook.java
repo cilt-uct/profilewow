@@ -15,6 +15,9 @@ import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
+import org.sakaiproject.tool.api.Session;
+import org.sakaiproject.tool.api.SessionManager;
+import org.sakaiproject.user.api.UserDirectoryService;
 
 
 
@@ -44,7 +47,17 @@ public class ImageHandlerHook implements HandlerHook {
 		spm = in;
 	}
 
-
+	private UserDirectoryService userDirectoryService;
+	public void setUserDirectoryService(UserDirectoryService uds) {
+		this.userDirectoryService = uds;
+	}
+	
+	private SessionManager sessionManager;
+	public void setSessionManager(SessionManager sm) {
+		sessionManager = sm;
+	}
+	
+	
 	public boolean handle() {
 		// TODO Auto-generated method stub
 
@@ -75,7 +88,23 @@ public class ImageHandlerHook implements HandlerHook {
 			stream = response.getOutputStream();
 
 			SakaiPerson person = spm.getSakaiPerson(spm.getSystemMutableType());
-			if (person != null) {
+			if (person == null) {
+				log.warn("no system profile for user!");
+				//we need to become admin
+				Session session = sessionManager.getCurrentSession();
+				String id = session.getUserId();
+				String eid = session.getUserEid();
+				person = spm.create(userDirectoryService.getCurrentUser().getId(), spm.getSystemMutableType());
+				
+				session.setUserId("admin");
+				session.setUserEid("admin");
+				
+				spm.save(person);
+				session.setUserId(id);
+				session.setUserEid(eid);
+				
+				
+			}
 				if (person.getJpegPhoto() != null && person.getJpegPhoto().length > 0) {
 					log.debug("we have some photo data");
 					byte[] institutionalPhoto = person.getJpegPhoto();
@@ -85,9 +114,7 @@ public class ImageHandlerHook implements HandlerHook {
 				} else {
 					log.debug("no jpeg photo!");
 				}
-			} else {
-				log.warn("no profile for user!");
-			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

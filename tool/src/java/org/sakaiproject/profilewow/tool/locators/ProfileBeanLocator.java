@@ -164,7 +164,16 @@ public class ProfileBeanLocator implements BeanLocator {
 	               TargettedMessage.SEVERITY_INFO));
 	}
 	
-	
+	public String useOfficialPic(){
+		SakaiPerson sp = spm.getSakaiPerson(spm.getUserMutableType());
+		log.debug("setting picture preffered for " + sp.getGivenName());
+		sp.setSystemPicturePreferred(new Boolean(true));
+		spm.save(sp);
+		
+		
+		return "success!";
+	}
+
 	
 	private boolean isValidMail(String email) {
 		
