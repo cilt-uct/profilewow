@@ -225,7 +225,7 @@ public class EditProducer implements ViewComponentProducer, DefaultView {
 		} 
 		
 		//the official pic selector
-		if (!sPerson.isSystemPicturePreferred().booleanValue()) {
+		if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue()) {
 			UIForm opForm = UIForm.make(tofill, "use-official-form");
 			UICommand.make(opForm, "use-official", "profileBeanLocator.useOfficialPic");
 		}
