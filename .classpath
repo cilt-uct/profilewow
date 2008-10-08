@@ -11,5 +11,10 @@
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/sakaiproject/kernel/sakai-kernel-api/1.0RC2-SNAPSHOT/sakai-kernel-api-1.0RC2-SNAPSHOT.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/sakaiproject/sakai-common-edu-person-api/2.6.0RC1-SNAPSHOT/sakai-common-edu-person-api-2.6.0RC1-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/sakaiproject/sakai-common-type-api/2.6.0RC1-SNAPSHOT/sakai-common-type-api-2.6.0RC1-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/sakaiproject/sakai-common-manager-api/2.6.0RC1-SNAPSHOT/sakai-common-manager-api-2.6.0RC1-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/sakaiproject/kernel/sakai-component-manager/1.0RC2-SNAPSHOT/sakai-component-manager-1.0RC2-SNAPSHOT.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/entitybroker-api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/entitybroker-utils"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

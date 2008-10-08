@@ -1,6 +1,7 @@
 package org.sakaiproject.profilewow.tool.entity;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -109,6 +110,23 @@ public class SakaiPersonEntityProviderImpl extends AbstractEntityProvider implem
 
 	public String[] getHandledInputFormats() {
 		 return new String[] {Formats.HTML, Formats.XML, Formats.JSON};
+	}
+
+	public String createEntity(EntityReference arg0, Object arg1,
+			Map<String, Object> arg2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateEntity(EntityReference arg0, Object arg1,
+			Map<String, Object> arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteEntity(EntityReference arg0, Map<String, Object> arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
