@@ -43,7 +43,7 @@ import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 
-public class EditProducer implements ViewComponentProducer, DefaultView {
+public class EditProducer implements ViewComponentProducer {
 
 	public static final String VIEW_ID = "editProfile";
 	
