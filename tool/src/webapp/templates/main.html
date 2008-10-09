@@ -25,17 +25,17 @@
 <tr align="center"><td><form action="search" method="get" name="search" target="searchProfile.html"><img src="library/image/silk/vcard.png" alt="User search icon"/> <input name="search" type="text" value="search for Vula users" size="15" /> <input name="search" type="button" value="Search" /></form></td></tr>
 </table>
 </div>
-<div class="colorBorder">
+<!-- <div class="colorBorder">
 <table width="250" border="0" cellpadding="5" cellspacing="0">
 	<tr align="center">
 		<td>
 		<h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
 		<img rsf:id="current-pic" src="../somepic.jpg" class="rosterImage" /><br />
 		
-        <!--<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />-->
+        <!--<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />
         <a href="" rsf:id="">Use official photo</a><br />
 		<a href="" rsf:id="" onclick="showUpload();return false;">Upload a photo</a>
-		<!-- **javascript: reveal box when clicked** -->
+		<!-- **javascript: reveal box when clicked**
         <table id="pictureUploader" style="display:none">
 			<tr id="upload-div__hide_division_" align="center">
 				<td>
@@ -50,7 +50,7 @@
 		</td>
 	</tr>
 </table>
-</div>
+</div>-->
 <!-- **change password - visible only for guest accounts** -->
 <div class="colorBorder">
 <form rsf:id="passForm:" method="post">
@@ -83,11 +83,25 @@
 </div>
 </div>
 
-<div class="colorBorder">
+
 <table border="0" cellpadding="10" cellspacing="0">
   <tbody>
     <tr>
-      <td valign="top" bgcolor="#FFFEE6" ><div rsf:id="isImage:"><img src="noimage.gif" alt="profile photo" border="none" rsf:id="photo" /></div>      </td>
+      <td valign="top">
+      <div class="colorBorder">
+      	<!--reveal when hovering over profile pic--><div id="changepic" class="hoverlink"><a href="#"><img src="/library/image/silk/user_edit.png" alt="Change profile picture"/> Change picture</a></div>
+      	<!-- hover reveals picturemenu-->
+      	<div rsf:id="isImage:"><img src="noimage.gif" alt="profile photo" border="none" rsf:id="photo" /></div><br />
+      	<img src="/library/image/silk/user_edit.png" alt="Change profile picture"/> <a href="#">Change profile picture</a><!-- hover reveals picturemenu-->
+     		<div id="picturemenu" class="hovermenu">
+    		<ul>
+     		<li>Upload picture <!-- click reveals upload box--></li>
+     		<li>Use official photo <!--click inserts uct photo and updates page--></li>
+     		<li>Select picture<!-- click reveals photopicker--></li>
+     		</ul>
+     		</div>
+     </div>
+     </td>
       <td>
       <h3><span  rsf:id="full-name"><!-- Title, First name, Surname -->Dr Daffy Duck</span> <img src="/library/image/silk/pencil.png" alt="Edit my profile"/> <span class="itemAction"><a rsf:id="editProfileLink" href="editProfile.html">Edit my profile</a></span></h3>
         
@@ -107,7 +121,6 @@
     </tr>
   </tbody>
 </table>
-</div>
 </div>
 </body>
 </html>
