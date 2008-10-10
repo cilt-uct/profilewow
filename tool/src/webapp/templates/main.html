@@ -25,32 +25,7 @@
 <tr align="center"><td><form action="search" method="get" name="search" target="searchProfile.html"><img src="library/image/silk/vcard.png" alt="User search icon"/> <input name="search" type="text" value="search for Vula users" size="15" /> <input name="search" type="button" value="Search" /></form></td></tr>
 </table>
 </div>
-<!-- <div class="colorBorder">
-<table width="250" border="0" cellpadding="5" cellspacing="0">
-	<tr align="center">
-		<td>
-		<h4 rsf:id="msg=editprofile.picHeader">My Profile Picture</h4>
-		<img rsf:id="current-pic" src="../somepic.jpg" class="rosterImage" /><br />
-		
-        <!--<a href="changepic.html" rsf:id="change-pic">Change Photo</a><br />
-        <a href="" rsf:id="">Use official photo</a><br />
-		<a href="" rsf:id="" onclick="showUpload();return false;">Upload a photo</a>
-		<!-- **javascript: reveal box when clicked**
-        <table id="pictureUploader" style="display:none">
-			<tr id="upload-div__hide_division_" align="center">
-				<td>
-				<form rsf:id="upload-pic-form" method="post"
-					enctype="multipart/form-data">
-				<p><input name="fileupload1" type="file" size="15" />
-				</p>
-				<input rsf:id="submit" type="submit" value="Upload picture" /></form></td>
-			</tr>
-		</table>
 
-		</td>
-	</tr>
-</table>
-</div>-->
 <!-- **change password - visible only for guest accounts** -->
 <div class="colorBorder">
 <form rsf:id="passForm:" method="post">
@@ -91,7 +66,7 @@
       <div class="colorBorder">
       	<!--reveal when hovering over profile pic--><div id="changepic" class="hoverlink"><a href="#"><img src="/library/image/silk/user_edit.png" alt="Change profile picture"/> Change picture</a></div>
       	<!-- hover reveals picturemenu-->
-      	<div rsf:id="isImage:"><img src="noimage.gif" alt="profile photo" border="none" rsf:id="photo" /></div><br />
+      	<div><img src="noimage.gif" alt="profile photo" border="none" rsf:id="current-pic" /></div><br />
       	<img src="/library/image/silk/user_edit.png" alt="Change profile picture"/> <a href="#">Change profile picture</a><!-- hover reveals picturemenu-->
      		<div id="picturemenu" class="hovermenu">
     		<ul>
@@ -108,16 +83,16 @@
         <p><a href="mailto:some@sdrg.net" rsf:id="email">daffyduck@disney.com</a></p>
         
         <p>
-        <span rsf:id="position"><!-- Position-->Lecturer<br /></span>
-        <span rsf:id="department"><!-- Department-->Centre for Educational Technology<br /></span>
-        <span rsf:id="school"><!-- Institution-->University of Cape Town<br /></span>
-        <span rsf:id="room"><!-- Room-->Room number<br /></span>
+        <div rsf:id="position"><!-- Position-->Lecturer</div>
+        <div rsf:id="department"><!-- Department-->Centre for Educational Technology</div>
+        <div rsf:id="school"><!-- Institution-->University of Cape Town</div>
+        <div rsf:id="room"><!-- Room-->Room number</div>
         </p>
 
         <p><a href="homepage" rsf:id="homepage" target="_blank" ><!-- homepage -->http://www.daffy.com</a></p>
-        <p><span rsf:id="workphone">w: 021 555 1234<br /></span>
-        <span rsf:id="mobile"><!-- mobile, if chosen to disclose -->m: 082 555 1234</span></p>
-        <p><span rsf:id="more-info"><!-- More info -->Blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here</span></p></td>
+        <p><div rsf:id="workphone">w: 021 555 1234<br /></div>
+        <div rsf:id="mobile"><!-- mobile, if chosen to disclose -->m: 082 555 1234</div></p>
+        <div rsf:id="moreinfo">Blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here</div></td>
     </tr>
   </tbody>
 </table>

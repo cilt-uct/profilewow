@@ -47,7 +47,7 @@ public class EditProducer implements ViewComponentProducer {
 
 	public static final String VIEW_ID = "editProfile";
 	
-	private static final String NO_PIC_URL = "../images/noimage.gif";
+	
 
 	private static Log log = LogFactory.getLog(EditProducer.class);
 	public String getViewID() {
@@ -213,7 +213,7 @@ public class EditProducer implements ViewComponentProducer {
 		//picture stuff
 		String picUrl = sPerson.getPictureUrl();
 		if (picUrl == null || picUrl.trim().length() == 0)
-			picUrl = NO_PIC_URL;
+			picUrl = MainProducer.NO_PIC_URL;
 		else 
 			picUrl = sPerson.getPictureUrl();
 

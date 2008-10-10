@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
+import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.rsf.components.UIBoundString;
@@ -21,7 +22,8 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 public class MainProducer implements ViewComponentProducer, DefaultView {
 
 	private static Log log = LogFactory.getLog(MainProducer.class);
-			
+	public static final String NO_PIC_URL = "../images/noimage.gif";
+	
 	public static String VIEW_ID = "main";
 	public String getViewID() {
 		// TODO Auto-generated method stub
@@ -47,6 +49,19 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 			spm.save(sPerson);
 		}
 
+		//picture stuff
+		String picUrl = sPerson.getPictureUrl();
+		if (picUrl == null || picUrl.trim().length() == 0)
+			picUrl = NO_PIC_URL;
+		else 
+			picUrl = sPerson.getPictureUrl();
+
+		
+		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
+			UIInternalLink.make(tofill, "current-pic", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
+		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
+			UILink.make(tofill, "current-pic", picUrl);
+		} 
 		//edit link
 		UIInternalLink.make(tofill, "editProfileLink",  UIMessage.make("editProfileLink"), new SimpleViewParameters(EditProducer.VIEW_ID));
 		
@@ -59,7 +74,12 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		UIOutput.make(tofill,"department", sPerson.getOrganizationalUnit());
 		UIOutput.make(tofill,"school", sPerson.getCampus());
 		UIOutput.make(tofill,"room", sPerson.getRoomNumber());
+		UIOutput.make(tofill,"workphone", sPerson.getTelephoneNumber());
+		UIOutput.make(tofill,"mobile", sPerson.getMobile());
+		log.info("description:" + sPerson.getNotes());
 		
+		UIOutput.make(tofill,"moreinfo", sPerson.getNotes());
+		UILink.make(tofill, "homepage", sPerson.getLabeledURI(),sPerson.getLabeledURI());
 
 	}
 
