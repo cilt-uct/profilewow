@@ -39,6 +39,11 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		this.userDirectoryService = uds;
 	}
 	
+	private TargettedMessageList tml;
+	public void setTargettedMessageList(TargettedMessageList tml) {
+		this.tml = tml;
+	}
+	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
 		
@@ -65,6 +70,10 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		//edit link
 		UIInternalLink.make(tofill, "editProfileLink",  UIMessage.make("editProfileLink"), new SimpleViewParameters(EditProducer.VIEW_ID));
 		
+		//The links for the upload
+		UIInternalLink.make(tofill,"upload-link", new SimpleViewParameters(UploadPicture.VIEW_ID));
+		UIInternalLink.make(tofill,"select-pic", new SimpleViewParameters(ChangePicture.VIEW_ID));
+		
 		log.debug("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
 		log.debug("uuid: " + sPerson.getUid() + ", agent_uuid: " + sPerson.getAgentUuid());
 		
@@ -76,8 +85,6 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		UIOutput.make(tofill,"room", sPerson.getRoomNumber());
 		UIOutput.make(tofill,"workphone", sPerson.getTelephoneNumber());
 		UIOutput.make(tofill,"mobile", sPerson.getMobile());
-		log.info("description:" + sPerson.getNotes());
-		
 		UIOutput.make(tofill,"moreinfo", sPerson.getNotes());
 		UILink.make(tofill, "homepage", sPerson.getLabeledURI(),sPerson.getLabeledURI());
 

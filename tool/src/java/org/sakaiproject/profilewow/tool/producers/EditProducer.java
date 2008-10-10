@@ -144,6 +144,7 @@ public class EditProducer implements ViewComponentProducer {
 			UIInput lName = UIInput.make(form,"editProfileForm-lname", otpBean + ".surname", sPerson.getSurname());
 		}
 
+	
 		
 		UIInput.make(form,"editProfileForm-nickname", otpBean + ".nickname", sPerson.getNickname());
 		UIInput.make(form,"editProfileForm-position", otpBean + ".title", sPerson.getTitle());

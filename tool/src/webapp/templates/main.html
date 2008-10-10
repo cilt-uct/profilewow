@@ -18,6 +18,9 @@
 <body rsf:id="scr=sakai-body">
 <div class="portletBody"> 
 
+<div rsf:id="message-for:*" class="alertMessage">
+	<span>Message for user here</span>
+</div>
 
 <div style="float:right">
 <div class="colorBorder">
@@ -70,9 +73,9 @@
       	<img src="/library/image/silk/user_edit.png" alt="Change profile picture"/> <a href="#">Change profile picture</a><!-- hover reveals picturemenu-->
      		<div id="picturemenu" class="hovermenu">
     		<ul>
-     		<li><a href="uploadpic.html">Upload picture</a> <!-- click reveals upload lightbox--></li>
+     		<li><a href="uploadpic.html" rsf:id="upload-link">Upload picture</a> <!-- click reveals upload lightbox--></li>
      		<li>Use official photo <!--click inserts uct photo and updates page--></li>
-     		<li><a href="changepic.html">Select picture</a><!-- click reveals photopicker lightbox--></li>
+     		<li><a href="changepic.html" rsf:id="select-pic">Select picture</a><!-- click reveals photopicker lightbox--></li>
      		</ul>
      		</div>
      </div>
@@ -92,7 +95,9 @@
         <p><a href="homepage" rsf:id="homepage" target="_blank" ><!-- homepage -->http://www.daffy.com</a></p>
         <p><div rsf:id="workphone">w: 021 555 1234<br /></div>
         <div rsf:id="mobile"><!-- mobile, if chosen to disclose -->m: 082 555 1234</div></p>
-        <div rsf:id="moreinfo">Blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here</div></td>
+        <p><div rsf:id="moreinfo">Blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here</div>
+        </p>
+        </td>
     </tr>
   </tbody>
 </table>

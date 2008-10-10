@@ -3,12 +3,14 @@
 <!--  Request-scope beans for TaskList - actually just the handler -->
 <beans>
 
-
+	<!-- producers-->
 	<bean class="org.sakaiproject.profilewow.tool.producers.MainProducer">
 		<property name="sakaiPersonManager"
 		ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
 		<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
+			<property name="targettedMessageList"
+			ref="targettedMessageList" />
 	</bean>
 	
 	<bean
@@ -27,12 +29,23 @@
 		<property name="toolManager"
 			ref="org.sakaiproject.tool.api.ToolManager" />
 	</bean>
-
+	<bean
+		class="org.sakaiproject.profilewow.tool.producers.ViewProfileProducer">
+		<property name="sakaiPersonManager"
+			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+		<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
+	</bean>
 
 	<bean
 		class="org.sakaiproject.profilewow.tool.producers.ChangePicture">
 		<property name="resourceUtil" ref="resourceUtil" />
+		<property name="targettedMessageList"
+			ref="targettedMessageList" />
 
+	</bean>
+	
+	<bean class="org.sakaiproject.profilewow.tool.producers.UploadPicture">
 	</bean>
 
 
@@ -94,13 +107,7 @@
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 	</bean>
 
-	<bean
-		class="org.sakaiproject.profilewow.tool.producers.ViewProfileProducer">
-		<property name="sakaiPersonManager"
-			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
-		<property name="userDirectoryService"
-			ref="org.sakaiproject.user.api.UserDirectoryService" />
-	</bean>
+
 
 </beans>
 

@@ -43,7 +43,10 @@ public class ChangePicture implements ViewComponentProducer {
 		resourceUtil = ru;
 	}
 
-
+	private TargettedMessageList tml;
+	public void setTargettedMessageList(TargettedMessageList tml) {
+		this.tml = tml;
+	}
 	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
@@ -51,7 +54,7 @@ public class ChangePicture implements ViewComponentProducer {
 		
 			
 			ContentCollection pCollection = resourceUtil.getUserCollection();
-			log.info("got a collection with " + pCollection.getMemberCount() + " objects");
+			log.debug("got a collection with " + pCollection.getMemberCount() + " objects");
 			
 			List resources = pCollection.getMemberResources();
 			for (int i = 0; i < resources.size(); i++) {
