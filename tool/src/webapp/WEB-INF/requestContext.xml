@@ -29,13 +29,6 @@
 		<property name="toolManager"
 			ref="org.sakaiproject.tool.api.ToolManager" />
 	</bean>
-	<bean
-		class="org.sakaiproject.profilewow.tool.producers.ViewProfileProducer">
-		<property name="sakaiPersonManager"
-			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
-		<property name="userDirectoryService"
-			ref="org.sakaiproject.user.api.UserDirectoryService" />
-	</bean>
 
 	<bean
 		class="org.sakaiproject.profilewow.tool.producers.ChangePicture">
@@ -44,6 +37,15 @@
 			ref="targettedMessageList" />
 
 	</bean>
+	
+	<bean class="org.sakaiproject.profilewow.tool.producers.ViewProfileProducer">
+		<property name="sakaiPersonManager"
+			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+		<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
+	</bean>
+
+
 	
 	<bean class="org.sakaiproject.profilewow.tool.producers.UploadPicture">
 	</bean>

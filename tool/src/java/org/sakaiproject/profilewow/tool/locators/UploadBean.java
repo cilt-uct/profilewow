@@ -116,6 +116,9 @@ public class UploadBean {
 	
 	
 	
+	
+	
+	
 	private BufferedImage resize(BufferedImage img) {
 		if (img.getWidth() <= 75)
 			return img;

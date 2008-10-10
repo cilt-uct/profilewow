@@ -7,6 +7,7 @@ import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.user.api.UserDirectoryService;
 
+import uk.org.ponder.messageutil.TargettedMessageList;
 import uk.org.ponder.rsf.components.UIBoundString;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
