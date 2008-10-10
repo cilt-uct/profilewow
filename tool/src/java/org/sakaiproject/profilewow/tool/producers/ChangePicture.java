@@ -20,7 +20,9 @@ import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.messageutil.TargettedMessageList;
 import uk.org.ponder.rsf.components.UIBranchContainer;
+import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
+import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
@@ -56,10 +58,10 @@ public class ChangePicture implements ViewComponentProducer {
 			
 			ContentCollection pCollection = resourceUtil.getUserCollection();
 			log.debug("got a collection with " + pCollection.getMemberCount() + " objects");
-			
-			List resources = pCollection.getMemberResources();
+			UIForm form = UIForm.make(tofill,"form");
+			List<ContentResource> resources = pCollection.getMemberResources();
 			for (int i = 0; i < resources.size(); i++) {
-				UIBranchContainer row = UIBranchContainer.make(tofill, "pic-row:");
+				UIBranchContainer row = UIBranchContainer.make(form, "pic-row:");
 				for (int q =0; q < 4 && i< resources.size(); q++) {
 					ContentResource resource = (ContentResource)resources.get(i);
 					UIBranchContainer cell = UIBranchContainer.make(row, "pic-cell:");
@@ -70,6 +72,7 @@ public class ChangePicture implements ViewComponentProducer {
 				
 				
 			}
+			UICommand.make(form, "submit","Change picture","uploadBean.changePicture");
 			
 			
 		

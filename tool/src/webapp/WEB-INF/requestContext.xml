@@ -48,6 +48,7 @@
 
 	
 	<bean class="org.sakaiproject.profilewow.tool.producers.UploadPicture">
+		<property name="targettedMessageList" ref="targettedMessageList" />
 	</bean>
 
 

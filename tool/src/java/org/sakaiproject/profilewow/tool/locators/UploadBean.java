@@ -116,7 +116,9 @@ public class UploadBean {
 	
 	
 	
-	
+	public String chagePicture() {
+		return "";
+	}
 	
 	
 	private BufferedImage resize(BufferedImage img) {

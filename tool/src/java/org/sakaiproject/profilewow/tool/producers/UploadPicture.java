@@ -46,7 +46,7 @@ public class UploadPicture implements ViewComponentProducer, NavigationCaseRepor
 		// TODO Auto-generated method stub
 		List togo = new ArrayList();
 		togo.add(new NavigationCase(null, new SimpleViewParameters(VIEW_ID)));
-		togo.add(new NavigationCase("success", new SimpleViewParameters(EditProducer.VIEW_ID)));
+		togo.add(new NavigationCase("success", new SimpleViewParameters(MainProducer.VIEW_ID)));
 		
 		return togo;
 	}

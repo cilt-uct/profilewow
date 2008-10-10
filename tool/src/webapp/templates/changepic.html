@@ -17,7 +17,8 @@
 <div rsf:id="message-for:*" class="alertMessage">
 	<span>Message for user here</span>
 </div>
-<form method="post">
+<form method="post" rsf:id="form">
+
 <table>
 <tr rsf:id="pic-row:">
 	<td rsf:id="pic-cell:" align="center"><input type="radio" name="choose" />
@@ -26,7 +27,7 @@
 	</tr>
 	</table>
 <br />    
-<input type="submit" value="Change picture" />    
+<input type="submit" rsf:id="submit" value="Change picture" />    
 </form>
 
 </div>
