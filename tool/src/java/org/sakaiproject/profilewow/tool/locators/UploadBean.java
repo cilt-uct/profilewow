@@ -4,8 +4,10 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,6 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
+import org.sakaiproject.authz.cover.SecurityService;
 import org.sakaiproject.component.api.ServerConfigurationService;
 import org.sakaiproject.profilewow.tool.util.ResourceUtil;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,6 +53,7 @@ public class UploadBean {
 	}
 
 	public String picUrl = null;
+	
 	
 	public String processUpload() {
 		
@@ -114,7 +118,7 @@ public class UploadBean {
 		return "success";
 	}
 	
-	
+
 	
 	public String changePicture() {
 		log.info("changing the picture!" + this.picUrl);
@@ -156,4 +160,6 @@ public class UploadBean {
 		return dimg;
 	}
 	
+	
+
 }

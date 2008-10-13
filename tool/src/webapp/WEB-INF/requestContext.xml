@@ -52,6 +52,17 @@
 	<bean class="org.sakaiproject.profilewow.tool.producers.UploadPicture">
 		<property name="targettedMessageList" ref="targettedMessageList" />
 	</bean>
+	
+	<bean class="org.sakaiproject.profilewow.tool.producers.SearchResultProducer">
+			<property name="messages" ref="targettedMessageList" />
+		<property name="sakaiPersonManager"
+			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+			<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
+			<property name="securityService" ref="org.sakaiproject.authz.api.SecurityService" />
+		
+	</bean>
+	
 	<bean id="uploadBean" class="org.sakaiproject.profilewow.tool.locators.UploadBean">
 		<property name="multipartMap" ref="multipartMap" />
 		<property name="resourceUtil" ref="resourceUtil" />
@@ -61,6 +72,8 @@
 			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
 		<property name="messages" ref="targettedMessageList" />
 	</bean>
+	
+	
 	<bean name="imageHandlerHook"
 		class="org.sakaiproject.profilewow.tool.images.ImageHandlerHook">
 		<property name="viewparams" ref="viewParameters" />
@@ -84,6 +97,7 @@
 		<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 		<property name="messages" ref="targettedMessageList" />
+		
 	</bean>
 	<bean name="sakaiPersonFacade"
 		class="org.sakaiproject.profilewow.tool.facade.SakaiPersonFacade">

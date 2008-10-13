@@ -5,13 +5,17 @@ import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
+import org.sakaiproject.profilewow.tool.params.SearchViewParamaters;
 import org.sakaiproject.profilewow.tool.producers.templates.PasswordFormRenderer;
 import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
 import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.messageutil.TargettedMessageList;
 import uk.org.ponder.rsf.components.UIBoundString;
+import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
+import uk.org.ponder.rsf.components.UIForm;
+import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIMessage;
@@ -73,6 +77,11 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		profilePicRenderer.makeProfilePic(tofill, "profile-pic:", sPerson);
 		passwordFormRenderer.renderPasswordForm(tofill, "passForm:", sPerson);
 		
+		//search for a profile
+		UIForm searchForm = UIForm.make(tofill, "searchform", new SearchViewParamaters(SearchResultProducer.VIEW_ID));
+		UIInput.make(searchForm, "searchin", "searchText");
+		UICommand.make(searchForm, "searchsub","searchBean.search");
+		
 		
 		//edit link
 		UIInternalLink.make(tofill, "editProfileLink",  UIMessage.make("editProfileLink"), new SimpleViewParameters(EditProducer.VIEW_ID));
@@ -85,13 +94,24 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		UIOutput.make(tofill,"full-name", sPerson.getGivenName() + " " + sPerson.getSurname());
 		UIOutput.make(tofill,"email", sPerson.getMail());
 		// not sure what this is meant to be UIOutput.make(tofill,"position", sPerson.getPosition());
-		UIOutput.make(tofill,"department", sPerson.getOrganizationalUnit());
-		UIOutput.make(tofill,"school", sPerson.getCampus());
-		UIOutput.make(tofill,"room", sPerson.getRoomNumber());
-		UIOutput.make(tofill,"workphone", sPerson.getTelephoneNumber());
-		UIOutput.make(tofill,"mobile", sPerson.getMobile());
-		UIOutput.make(tofill,"moreinfo", sPerson.getNotes());
-		UILink.make(tofill, "homepage", sPerson.getLabeledURI(),sPerson.getLabeledURI());
+		if (sPerson.getOrganizationalUnit() != null)
+			UIOutput.make(tofill,"department", sPerson.getOrganizationalUnit());
+		
+		if (sPerson.getCampus() != null)
+			UIOutput.make(tofill,"school", sPerson.getCampus());
+		if (sPerson.getRoomNumber() != null)
+			UIOutput.make(tofill,"room", sPerson.getRoomNumber());
+		
+		if (sPerson.getTelephoneNumber() != null)
+			UIOutput.make(tofill,"workphone", sPerson.getTelephoneNumber());
+		if(sPerson.getMobile() != null)
+			UIOutput.make(tofill,"mobile", sPerson.getMobile());
+		
+		if (sPerson.getNotes() != null)
+			UIOutput.make(tofill,"moreinfo", sPerson.getNotes());
+		
+		if (sPerson.getLabeledURI() != null)
+			UILink.make(tofill, "homepage", sPerson.getLabeledURI(),sPerson.getLabeledURI());
 
 	}
 
