@@ -14,6 +14,8 @@ import org.sakaiproject.entity.api.EntityPropertyTypeException;
 import org.sakaiproject.entity.api.ResourceProperties;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
+import org.sakaiproject.profilewow.tool.producers.templates.PasswordFormRenderer;
+import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
 import org.sakaiproject.tool.api.ToolManager;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
@@ -96,7 +98,16 @@ public class EditProducer implements ViewComponentProducer {
 		this.tml = tml;
 	}
 
+	private ProfilePicRenderer profilePicRenderer;
+	public void setProfilePicRenderer(ProfilePicRenderer profilePicRenderer) {
+		this.profilePicRenderer = profilePicRenderer;
+	}
 	
+	private PasswordFormRenderer passwordFormRenderer;
+	public void setPasswordFormRenderer(PasswordFormRenderer passwordFormRenderer) {
+		this.passwordFormRenderer = passwordFormRenderer;
+	}
+
 	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
@@ -116,6 +127,7 @@ public class EditProducer implements ViewComponentProducer {
 		}
 
 
+		
 		UIForm form = UIForm.make(tofill,"edit-form");
 
 		SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType());
@@ -128,6 +140,12 @@ public class EditProducer implements ViewComponentProducer {
 		log.debug("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
 		log.debug("uuid: " + sPerson.getUid() + ", agent_uuid: " + sPerson.getAgentUuid());
 
+		
+		//makeProfilePic(tofill, sPerson); 
+		profilePicRenderer.makeProfilePic(tofill, "profile-pic:", sPerson);
+		passwordFormRenderer.renderPasswordForm(tofill, "passForm:", sPerson);
+		
+		
 		String otpBean = "profileBeanLocator." + sPerson.getUid() + ".sakaiPerson";
 
 		
@@ -210,7 +228,7 @@ public class EditProducer implements ViewComponentProducer {
 
 		//UIInternalLink.make(tofill, "change-pic", messageLocator.getMessage("editProfile.changePic"), new SimpleViewParameters(ChangePicture.VIEW_ID));
 		UIInternalLink.make(tofill, "upload-pic", "editProfile.uploadPic");
-
+		/*
 		//picture stuff
 		String picUrl = sPerson.getPictureUrl();
 		if (picUrl == null || picUrl.trim().length() == 0)
@@ -230,10 +248,11 @@ public class EditProducer implements ViewComponentProducer {
 			UIForm opForm = UIForm.make(tofill, "use-official-form");
 			UICommand.make(opForm, "use-official", "profileBeanLocator.useOfficialPic");
 		}
-		
+		*/
 		
 		//the change password form
 		//only render for some users
+		/*
 		if (canChangePassword(userDirectoryService.getCurrentUser())) {
 			UIForm passForm = UIForm.make(tofill, "passForm:");
 			UIInput.make(passForm,"pass1","userBeanLocator." + sPerson.getUid() + ".passOne");
@@ -241,7 +260,7 @@ public class EditProducer implements ViewComponentProducer {
 			//form.parameters.add(new UIELBinding("userBeanLocator." + )
 			UICommand.make(passForm, "passSubmit", "userBeanLocator.saveAll");
 		}		
-		
+		*/
 		//UIInternalLink.make(tofill, "test", new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, sPerson.getId().toString()));
 		//UIInternalLink.make(tofill, "test2", new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, sPerson.getAgentUuid()));
 		
@@ -253,15 +272,7 @@ public class EditProducer implements ViewComponentProducer {
 		UICommand.make(form2,"submit","uploadBean.processUpload");
 	}
 
-	private boolean canChangePassword(User u) {
-		
-		if (securityService.unlock(UserDirectoryService.SECURE_UPDATE_USER_OWN_PASSWORD, "/site/" + toolManager.getCurrentPlacement().getContext())) {
-			log.debug("user can set password");
-			return true;
-		}
-		return false;		
-		
-	}
+
 	
 	private boolean canEditeName(User u) {
 		if (securityService.unlock(UserDirectoryService.SECURE_UPDATE_USER_OWN_NAME, "/site/" + toolManager.getCurrentPlacement().getContext())) {

@@ -61,6 +61,10 @@
         <property name="templateNames" value="Messages" />
     </bean>
 	
+	<bean id="profilewowTemplateContributor" parent="templateContributorParent">
+		<property name="baseDirectory" value="component-templates/" />
+        <property name="templateNames" value="profilePic,password" />
+	</bean>
 	<!--view inferer-->
 	<bean class="org.sakaiproject.profilewow.tool.locators.SakaiPersonVPInferrer"/>
 </beans>

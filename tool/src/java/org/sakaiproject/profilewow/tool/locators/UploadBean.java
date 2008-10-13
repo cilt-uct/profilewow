@@ -49,12 +49,12 @@ public class UploadBean {
 		this.messages = messages;
 	}
 
-	
+	public String picUrl = null;
 	
 	public String processUpload() {
 		
-		log.info("here we are!");
-		log.info("map of: " + this.multipartMap.size());
+		log.debug("here we are!");
+		log.debug("map of: " + this.multipartMap.size());
 		
 		Set keySet = multipartMap.keySet();
 		Iterator it = keySet.iterator();
@@ -65,7 +65,7 @@ public class UploadBean {
 			long fileSize = mapFile.getSize();
 			String fileName = mapFile.getOriginalFilename();
 			String type = mapFile.getContentType();
-			log.info(" got file of " + mapFile.getSize() + " of type: " + type );
+			log.debug(" got file of " + mapFile.getSize() + " of type: " + type );
 			//no picture found
 			if (mapFile.getSize() == 0 ) {
 				//this 
@@ -95,7 +95,7 @@ public class UploadBean {
 				BufferedImage in = ImageIO.read(mapFile.getInputStream());
 				BufferedImage out = resize(in);
 				String url = resourceUtil.addPicture(fileName, out, type);
-				log.info("got url of " + url);
+				log.debug("got url of " + url);
 				SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType());
 				sPerson.setSystemPicturePreferred(new Boolean(false));
 				sPerson.setPictureUrl(url);
@@ -116,8 +116,16 @@ public class UploadBean {
 	
 	
 	
-	public String chagePicture() {
-		return "";
+	public String changePicture() {
+		log.info("changing the picture!" + this.picUrl);
+		
+		SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType());
+		sPerson.setSystemPicturePreferred(new Boolean(false));
+		sPerson.setPictureUrl(picUrl);
+		spm.save(sPerson);
+		
+		messages.addMessage(new TargettedMessage("editProfile.photoChanged", new Object[] {}, TargettedMessage.SEVERITY_INFO));
+		return "success";
 	}
 	
 	

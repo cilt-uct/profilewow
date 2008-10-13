@@ -30,34 +30,8 @@
 </div>
 
 <!-- **change password - visible only for guest accounts** -->
-<div class="colorBorder">
-<form rsf:id="passForm:" method="post">
-<table cellpadding="5" cellspacing="0" border="0" width="250">
-	<tr align="center">
-
-		<td>
-		<h4 rsf:id="msg=changePass.header">Change Password</h4>
-			<table cellpadding="2" cellspacing="0" border="0" align="center">
-			<tr>
-				<td>New password:</td>
-				<td><input rsf:id="pass1" type="password" name="pass1" size="8" /></td>
-
-			</tr>
-			<tr>
-				<td>Confirm password:</td>
-				<td><input rsf:id="pass2" type="password" name="pass2" size="8" /></td>
-			</tr>
-			<tr align="center">
-				<td colspan="2"><input rsf:id="passSubmit" type="submit"
-					name="submit" value="Set Password" /></td>
-			</tr>
-
-		</table>
-
-		</td>
-	</tr>
-</table>
-</form>
+<div class="colorBorder" rsf:id="passForm:">
+password form goes here!
 </div>
 </div>
 
@@ -66,19 +40,9 @@
   <tbody>
     <tr>
       <td valign="top">
-      <div class="colorBorder">
-      	<!--reveal when hovering over profile pic--><div id="changepic" class="hoverlink"><a href="#"><img src="/library/image/silk/user_edit.png" alt="Change profile picture" border="0"/> Change picture</a></div>
-      	<!-- hover reveals picturemenu-->
-      	<div><img src="noimage.gif" alt="profile photo" border="none" rsf:id="current-pic" /></div><br />
-      	<a href="#"><img src="/library/image/silk/user_edit.png" alt="Change profile picture" border="0"/> Change profile picture</a><!-- hover reveals picturemenu-->
-     		<div id="picturemenu" class="hovermenu">
-    		<ul>
-     		<li><a href="uploadpic.html" rsf:id="upload-link">Upload picture</a> <!-- click reveals upload lightbox--></li>
-     		<li>Use official photo <!--click inserts uct photo and updates page--></li>
-     		<li><a href="changepic.html" rsf:id="select-pic">Select picture</a><!-- click reveals photopicker lightbox--></li>
-     		</ul>
-     		</div>
-     </div>
+      	<div rsf:id="profile-pic:">
+			Profile pic to go here
+		</div>
      </td>
       <td>
       <h3><span  rsf:id="full-name"><!-- Title, First name, Surname -->Dr Daffy Duck</span> <span class="itemAction"><a rsf:id="editProfileLink" href="editProfile.html"><img src="/library/image/silk/pencil.png" alt="Edit my profile" border="0"/> Edit my profile</a></span></h3>

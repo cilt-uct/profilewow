@@ -5,6 +5,8 @@ import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
+import org.sakaiproject.profilewow.tool.producers.templates.PasswordFormRenderer;
+import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
 import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.messageutil.TargettedMessageList;
@@ -23,7 +25,7 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 public class MainProducer implements ViewComponentProducer, DefaultView {
 
 	private static Log log = LogFactory.getLog(MainProducer.class);
-	public static final String NO_PIC_URL = "../images/noimage.gif";
+	
 	
 	public static String VIEW_ID = "main";
 	public String getViewID() {
@@ -45,6 +47,18 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		this.tml = tml;
 	}
 	
+	private ProfilePicRenderer profilePicRenderer;
+	public void setProfilePicRenderer(ProfilePicRenderer profilePicRenderer) {
+		this.profilePicRenderer = profilePicRenderer;
+	}
+	
+	private PasswordFormRenderer passwordFormRenderer;
+	public void setPasswordFormRenderer(PasswordFormRenderer passwordFormRenderer) {
+		this.passwordFormRenderer = passwordFormRenderer;
+	}
+
+
+
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
 		
@@ -55,25 +69,15 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 			spm.save(sPerson);
 		}
 
-		//picture stuff
-		String picUrl = sPerson.getPictureUrl();
-		if (picUrl == null || picUrl.trim().length() == 0)
-			picUrl = NO_PIC_URL;
-		else 
-			picUrl = sPerson.getPictureUrl();
-
+		//makeProfilePic(tofill, sPerson); 
+		profilePicRenderer.makeProfilePic(tofill, "profile-pic:", sPerson);
+		passwordFormRenderer.renderPasswordForm(tofill, "passForm:", sPerson);
 		
-		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
-			UIInternalLink.make(tofill, "current-pic", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
-		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
-			UILink.make(tofill, "current-pic", picUrl);
-		} 
+		
 		//edit link
 		UIInternalLink.make(tofill, "editProfileLink",  UIMessage.make("editProfileLink"), new SimpleViewParameters(EditProducer.VIEW_ID));
 		
-		//The links for the upload
-		UIInternalLink.make(tofill,"upload-link", new SimpleViewParameters(UploadPicture.VIEW_ID));
-		UIInternalLink.make(tofill,"select-pic", new SimpleViewParameters(ChangePicture.VIEW_ID));
+
 		
 		log.debug("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
 		log.debug("uuid: " + sPerson.getUid() + ", agent_uuid: " + sPerson.getAgentUuid());
