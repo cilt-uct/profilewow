@@ -118,7 +118,12 @@ public class UploadBean {
 		return "success";
 	}
 	
-
+	public void useOfficial() {
+		log.info("useOfficial()");
+		SakaiPerson sp = spm.getSakaiPerson(spm.getUserMutableType());
+		sp.setSystemPicturePreferred(new Boolean(true));
+		spm.save(sp);
+	}
 	
 	public String changePicture() {
 		log.info("changing the picture!" + this.picUrl);
