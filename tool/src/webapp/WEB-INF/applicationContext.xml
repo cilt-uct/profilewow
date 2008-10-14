@@ -63,7 +63,7 @@
 	
 	<bean id="profilewowTemplateContributor" parent="templateContributorParent">
 		<property name="baseDirectory" value="component-templates/" />
-        <property name="templateNames" value="profilePic,password" />
+        <property name="templateNames" value="profilePic,password,search" />
 	</bean>
 	<!--view inferer-->
 	<bean class="org.sakaiproject.profilewow.tool.locators.SakaiPersonVPInferrer"/>

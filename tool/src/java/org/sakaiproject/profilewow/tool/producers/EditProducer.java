@@ -1,5 +1,6 @@
 package org.sakaiproject.profilewow.tool.producers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,6 +39,8 @@ import uk.org.ponder.rsf.components.UISelectLabel;
 import uk.org.ponder.rsf.components.decorators.DecoratorList;
 import uk.org.ponder.rsf.components.decorators.UIDisabledDecorator;
 import uk.org.ponder.rsf.components.decorators.UILabelTargetDecorator;
+import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
+import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
@@ -45,7 +48,7 @@ import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 
-public class EditProducer implements ViewComponentProducer {
+public class EditProducer implements ViewComponentProducer, NavigationCaseReporter {
 
 	public static final String VIEW_ID = "editProfile";
 	
@@ -228,48 +231,7 @@ public class EditProducer implements ViewComponentProducer {
 
 		//UIInternalLink.make(tofill, "change-pic", messageLocator.getMessage("editProfile.changePic"), new SimpleViewParameters(ChangePicture.VIEW_ID));
 		UIInternalLink.make(tofill, "upload-pic", "editProfile.uploadPic");
-		/*
-		//picture stuff
-		String picUrl = sPerson.getPictureUrl();
-		if (picUrl == null || picUrl.trim().length() == 0)
-			picUrl = MainProducer.NO_PIC_URL;
-		else 
-			picUrl = sPerson.getPictureUrl();
 
-
-		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
-			UIInternalLink.make(tofill, "current-pic", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
-		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
-			UILink.make(tofill, "current-pic", picUrl);
-		} 
-		
-		//the official pic selector
-		if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue()) {
-			UIForm opForm = UIForm.make(tofill, "use-official-form");
-			UICommand.make(opForm, "use-official", "profileBeanLocator.useOfficialPic");
-		}
-		*/
-		
-		//the change password form
-		//only render for some users
-		/*
-		if (canChangePassword(userDirectoryService.getCurrentUser())) {
-			UIForm passForm = UIForm.make(tofill, "passForm:");
-			UIInput.make(passForm,"pass1","userBeanLocator." + sPerson.getUid() + ".passOne");
-			UIInput.make(passForm,"pass2","userBeanLocator." + sPerson.getUid() + ".passTwo");
-			//form.parameters.add(new UIELBinding("userBeanLocator." + )
-			UICommand.make(passForm, "passSubmit", "userBeanLocator.saveAll");
-		}		
-		*/
-		//UIInternalLink.make(tofill, "test", new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, sPerson.getId().toString()));
-		//UIInternalLink.make(tofill, "test2", new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, sPerson.getAgentUuid()));
-		
-		/**
-		 * The upload picture form
-		 */
-		UIForm form2 = UIForm.make(tofill, "upload-pic-form");
-		//UIInput.make(form,"file-upload", "uploadBean")
-		UICommand.make(form2,"submit","uploadBean.processUpload");
 	}
 
 
@@ -313,6 +275,14 @@ public class EditProducer implements ViewComponentProducer {
 
 		return ret;
 
+	}
+
+
+	public List reportNavigationCases() {
+		// TODO Auto-generated method stub
+		 List<NavigationCase> togo = new ArrayList<NavigationCase> (); // Always navigate back to this view.
+		 togo.add(new NavigationCase(null, new SimpleViewParameters(MainProducer.VIEW_ID)));
+		return togo;
 	}
 
 

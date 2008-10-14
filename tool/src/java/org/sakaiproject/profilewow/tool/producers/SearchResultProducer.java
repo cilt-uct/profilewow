@@ -11,6 +11,7 @@ import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.authz.api.SecurityService;
 import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
 import org.sakaiproject.profilewow.tool.params.SearchViewParamaters;
+import org.sakaiproject.profilewow.tool.producers.templates.SearchBoxRenderer;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
 
@@ -21,6 +22,7 @@ import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIMessage;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
+import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 
@@ -55,7 +57,14 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		this.userDirectoryService = uds;
 	}
 	
-	
+
+
+	private SearchBoxRenderer searchBoxRenderer;
+	public void setSearchBoxRenderer(SearchBoxRenderer searchBoxRenderer) {
+		this.searchBoxRenderer = searchBoxRenderer;
+	}
+
+
 	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
@@ -65,6 +74,10 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		log.info("search string is: "  + searchString);
 		List<SakaiPerson> profiles = this.findProfiles(searchString);
 		UIMessage.make(tofill, "searchTitle", "searchTitle", new Object[]{ searchString});
+		
+		searchBoxRenderer.renderSearchBox(tofill, "search:");
+		
+		UIInternalLink.make(tofill, "mainLink", "returnToProfile",new SimpleViewParameters(MainProducer.VIEW_ID));
 		for (int i =0 ; i < profiles.size(); i++) {
 			SakaiPerson sPerson = (SakaiPerson) profiles.get(i);
 			log.info("creating row for " + sPerson.getGivenName());

@@ -8,6 +8,7 @@ import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.profilewow.tool.params.SearchViewParamaters;
 import org.sakaiproject.profilewow.tool.producers.templates.PasswordFormRenderer;
 import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
+import org.sakaiproject.profilewow.tool.producers.templates.SearchBoxRenderer;
 import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.messageutil.TargettedMessageList;
@@ -62,6 +63,11 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 	}
 
 
+	private SearchBoxRenderer searchBoxRenderer;
+	public void setSearchBoxRenderer(SearchBoxRenderer searchBoxRenderer) {
+		this.searchBoxRenderer = searchBoxRenderer;
+	}
+
 
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
@@ -77,11 +83,7 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		profilePicRenderer.makeProfilePic(tofill, "profile-pic:", sPerson);
 		passwordFormRenderer.renderPasswordForm(tofill, "passForm:", sPerson);
 		
-		//search for a profile
-		UIForm searchForm = UIForm.make(tofill, "searchform", new SearchViewParamaters(SearchResultProducer.VIEW_ID));
-		UIInput.make(searchForm, "searchin", "searchText");
-		UICommand.make(searchForm, "searchsub","searchBean.search");
-		
+		searchBoxRenderer.renderSearchBox(tofill, "search:");
 		
 		//edit link
 		UIInternalLink.make(tofill, "editProfileLink",  UIMessage.make("editProfileLink"), new SimpleViewParameters(EditProducer.VIEW_ID));
