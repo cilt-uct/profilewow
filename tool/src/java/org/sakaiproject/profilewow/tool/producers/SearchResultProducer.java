@@ -71,7 +71,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		
 		SearchViewParamaters svp = (SearchViewParamaters)viewparams;
 		String searchString = svp.searchText;
-		log.info("search string is: "  + searchString);
+		log.debug("search string is: "  + searchString);
 		List<SakaiPerson> profiles = this.findProfiles(searchString);
 		UIMessage.make(tofill, "searchTitle", "searchTitle", new Object[]{ searchString});
 		
@@ -80,7 +80,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		UIInternalLink.make(tofill, "mainLink", "returnToProfile",new SimpleViewParameters(MainProducer.VIEW_ID));
 		for (int i =0 ; i < profiles.size(); i++) {
 			SakaiPerson sPerson = (SakaiPerson) profiles.get(i);
-			log.info("creating row for " + sPerson.getGivenName());
+			log.debug("creating row for " + sPerson.getGivenName());
 			UIBranchContainer row = UIBranchContainer.make(tofill, "resultRow:");
 			String eid = null;
 			try {
