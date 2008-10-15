@@ -5,10 +5,51 @@
 <title>Profile</title>
 <link href="http://qa1-za.sakaiproject.org/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
 <link href="http://qa1-za.sakaiproject.org/library/skin/tool.css" type="text/css" rel="stylesheet" media="all"  rsf:id="scr=portal-matter"/>
+<link href="../css/Profilewow.css" type="text/css" rel="stylesheet" media="all" />
+<script src="/library/js/jquery.js"></script>
 <script type="text/javascript" language="JavaScript"
 	src="http://qa1-za.sakaiproject.org/library/headscripts.js" rsf:id="scr=portal-matter"></script>
-    <script type="text/javascript" language="javascript">
-	function showUpload(){
+    <script type="text/javascript">
+
+	
+	// prepare the form when the DOM is ready 
+	$(document).ready(function() { 
+		$('.profileImage').hover(
+		function(){
+			//alert('dd');
+			$('#hoverlink').removeAttr('class');
+			$('#hoverlink').attr('class','hoverlinkactive');
+			$('#hoverlink').click(function(){
+				//
+				$('#hovermenu').removeAttr('class');
+				$('#hovermenu').attr('class','hovermenuactive');
+				$('#hovermenu').hover(
+					function(){},
+					function(){
+						$('#hovermenu').removeAttr('class');
+						$('#hovermenu').attr('class','hovermenu');
+						$('#hoverlink').removeAttr('class');
+						$('#hoverlink').attr('class','hoverlink');
+					}
+				);
+			});
+		},
+		function(){
+			if($('#hovermenu').attr('class') != 'hovermenuactive'){
+					//$('#hovermenu').removeAttr('class');
+						//$('#hovermenu').attr('class','hovermenu');
+						$('#hoverlink').removeAttr('class');
+						$('#hoverlink').attr('class','hoverlink');
+				}
+				else
+				{
+					//alert('d');
+				}
+		}
+		);
+	}); 	
+	
+function showUpload(){
 		document.getElementById('pictureUploader').style.display = '';
 	}
    </script>
@@ -23,14 +64,14 @@
 </div>
 
 <div style="float:right">
-<div class="colorBorder">
+<div class="search">
 <table width="250" border="0" cellpadding="5" cellspacing="0">
 <tr align="center"><td><div rsf:id="search:">Search box goes here</div></td></tr>
 </table>
 </div>
 
 <!-- **change password - visible only for guest accounts** -->
-<div class="colorBorder" rsf:id="passForm:">
+<div class="password" rsf:id="passForm:">
 password form goes here!
 </div>
 </div>
@@ -40,7 +81,7 @@ password form goes here!
   <tbody>
     <tr>
       <td valign="top">
-      	<div rsf:id="profile-pic:">
+      	<div class="profilepic" rsf:id="profile-pic:">
 			Profile pic to go here
 		</div>
      </td>

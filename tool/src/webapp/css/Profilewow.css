@@ -16,3 +16,54 @@
         color:#779900;        
         margin:.5em 0;
 }
+
+/* BOXES */
+
+.profilepic{
+width: 150px;
+
+}
+
+.profileImage{
+	border:0px solid #999999;
+	padding: 10px;
+	margin: 0 10px 10px 0;
+	text-align: center;
+}
+
+.search{
+border:0;
+padding: 5px;
+margin: 0 0 10px 10px;
+background:#FFFEDD
+}
+
+.password{
+border:0;
+padding: 5px;
+margin: 0 0 10px 10px;
+background:#FFFEDD
+}
+
+.hovermenu{
+	display: none;
+}
+
+.hovermenuactive{
+	position: fixed;
+	z-index: auto;
+	margin-top: -150px;
+	margin-left: 150px;
+}
+
+.hoverlink{
+	display: none;
+}
+
+.hoverlinkactive{
+	position: fixed;
+	margin-top: -90px;
+	margin-right: -20px;
+	background-color: #FFFFFF;
+	z-index: 1;
+}
