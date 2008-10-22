@@ -1,5 +1,5 @@
 .messageAlert{
-        background: #FFEEEE url(../images/exclamation.gif) 5px 7px no-repeat;
+background: #FFEEEE url(../images/exclamation.gif) 5px 7px no-repeat;
         border:1px solid #FF5555;
         color:#FF5555;
         margin:.5em 0;
@@ -13,11 +13,9 @@
 .messageComfirm{
         background: #EEFFBB url(../images/accept.gif) 5px 7px no-repeat;
         border:1px solid #CCEE66;
-        color:#779900;        
+        color:#779900;
         margin:.5em 0;
 }
-
-/* BOXES */
 
 .profilepic{
 width: 150px;
@@ -32,21 +30,18 @@ width: 150px;
 }
 
 .search{
-border:0;
+border:1px solid #CCCCCC;
 padding: 5px;
 margin: 0 0 10px 10px;
-background:#FFFEDD
+background-color:#E8E3DD;
+
 }
 
 .password{
 border:0;
 padding: 5px;
 margin: 0 0 10px 10px;
-background:#FFFEDD
-}
-
-.hovermenu{
-	display: none;
+border:1px solid #CCCCCC;
 }
 
 .hovermenuactive{
@@ -55,6 +50,26 @@ background:#FFFEDD
 	margin-top: -150px;
 	margin-left: 150px;
 }
+
+.hovermenu li{
+	background-color:#E8E3DD;
+	list-style:none;
+	text-decoration:none;
+	font-size:12px;
+	padding: 3px 5px 3px 5px;
+	width: 150px;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.title {
+	font-weight: bold;
+	color:#666;
+}
+
+img {
+border:none;
+}
+
 
 .hoverlink{
 	display: none;
