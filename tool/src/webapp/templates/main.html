@@ -6,53 +6,14 @@
 <link href="http://qa1-za.sakaiproject.org/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
 <link href="http://qa1-za.sakaiproject.org/library/skin/tool.css" type="text/css" rel="stylesheet" media="all"  rsf:id="scr=portal-matter"/>
 <link href="../css/Profilewow.css" type="text/css" rel="stylesheet" media="all" />
-<script src="/library/js/jquery.js"></script>
+<link href="../js/facebox/facebox.css" type="text/css" rel="stylesheet" media="all" />
+<script src="../js/jquery-1.2.6.js"></script>
 <script type="text/javascript" language="JavaScript"
 	src="http://qa1-za.sakaiproject.org/library/headscripts.js" rsf:id="scr=portal-matter"></script>
-    <script type="text/javascript">
-
-	
-	// prepare the form when the DOM is ready 
-	$(document).ready(function() { 
-		$('.profileImage').hover(
-		function(){
-			//alert('dd');
-			$('#hoverlink').removeAttr('class');
-			$('#hoverlink').attr('class','hoverlinkactive');
-			$('#hoverlink').click(function(){
-				//
-				$('#hovermenu').removeAttr('class');
-				$('#hovermenu').attr('class','hovermenuactive');
-				$('#hovermenu').hover(
-					function(){},
-					function(){
-						$('#hovermenu').removeAttr('class');
-						$('#hovermenu').attr('class','hovermenu');
-						$('#hoverlink').removeAttr('class');
-						$('#hoverlink').attr('class','hoverlink');
-					}
-				);
-			});
-		},
-		function(){
-			if($('#hovermenu').attr('class') != 'hovermenuactive'){
-					//$('#hovermenu').removeAttr('class');
-						//$('#hovermenu').attr('class','hovermenu');
-						$('#hoverlink').removeAttr('class');
-						$('#hoverlink').attr('class','hoverlink');
-				}
-				else
-				{
-					//alert('d');
-				}
-		}
-		);
-	}); 	
-	
-function showUpload(){
-		document.getElementById('pictureUploader').style.display = '';
-	}
-   </script>
+<script type="text/javascript" language="JavaScript"
+	src="../js/profile.js"></script>
+<script type="text/javascript" language="JavaScript"
+	src="../js/facebox/facebox.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 </head>
 

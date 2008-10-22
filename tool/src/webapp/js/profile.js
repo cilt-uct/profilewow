@@ -247,3 +247,56 @@ js.setAttribute('language', 'javascript');
 js.setAttribute('type', 'text/javascript');
 js.setAttribute('src','/sakai-messageforums-tool/js/sak-10625.js');
 document.getElementsByTagName('head').item(0).appendChild(js);*/
+
+//Ajax mods to profleWow lovemore.nalube@uct.ac.za
+
+	$(document).ready(function() { 
+	jQuery('a[rel*=facebox]').facebox();
+	//jQuery.facebox('some html');
+			$('.profileImage > img').click(function(){
+			$('#hovermenu').removeAttr('class');
+			$('#hovermenu').attr('class','hovermenuactive');
+			$(document).unbind('click');
+		});
+		$('.profileImage').hover(
+		function(){
+			$('#hoverlink').removeAttr('class');
+			$('#hoverlink').attr('class','hoverlinkactive');
+			$('#hoverlink').click(function(){
+				$('#hovermenu').removeAttr('class');
+				$('#hovermenu').attr('class','hovermenuactive');
+			
+				$('#hovermenu').hover(
+					function(){
+						},
+					 function(){
+					 	listen();
+					}
+				);	
+			});
+		},
+		function(){
+			listen();
+			if($('#hovermenu').attr('class') != 'hovermenuactive'){
+				$('#hoverlink').removeAttr('class');
+				$('#hoverlink').attr('class','hoverlink');
+			}
+		}
+		);
+		
+		function listen(){
+			$(document).click(function(){
+				if($('#hovermenu').attr('class') == 'hovermenuactive'){
+					$('#hovermenu').removeAttr('class');
+					$('#hovermenu').attr('class','hovermenu');
+					$('#hoverlink').removeAttr('class');
+					$('#hoverlink').attr('class','hoverlink');
+				}
+				$(document).unbind('click');
+			});
+		}
+	}); 	
+	
+function showUpload(){
+		document.getElementById('pictureUploader').style.display = '';
+	}
