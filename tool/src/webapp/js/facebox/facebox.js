@@ -93,12 +93,10 @@
             <tr> \
               <td class="b"/> \
               <td class="body"> \
-                <div class="content"> \
-                </div> \
-                <div class="footer"> \
-                  <a href="#" class="close"> \
-                    <img src="/facebox/closelabel.gif" title="close" class="close_image" /> \
-                  </a> \
+              <div class="header breadCrumb" style="display:block"> \
+			  <a class="close" href="#" accesskey="x"><img class="close_image" title="close"/></a></div> \
+              	<div style="display: none" class="results"></div> \
+				<div class="content"> \
                 </div> \
               </td> \
               <td class="b"/> \
@@ -112,11 +110,19 @@
     </div>'
     },
 
-    loading: function() {
+    setHeader: function(obj){
+
+		$(obj).clone(true).insertBefore($("#facebox .header .close"));
+		$(obj).remove();
+	},
+	
+	loading: function() {
       init()
       if ($('#facebox .loading').length == 1) return true
       showOverlay()
-
+		if ($("#facebox .header .titleHeader")) {
+			$("#facebox .header .titleHeader").remove();
+		}
       $('#facebox .content').empty()
       $('#facebox .body').children().hide().end().
         append('<div class="loading"><img src="'+$.facebox.settings.loadingImage+'"/></div>')
@@ -134,6 +140,7 @@
     },
 
     reveal: function(data, klass) {
+		$('#facebox .content').empty()
       $(document).trigger('beforeReveal.facebox')
       if (klass) $('#facebox .content').addClass(klass)
       $('#facebox .content').append(data)
@@ -141,6 +148,7 @@
       $('#facebox .body').children().fadeIn('normal')
       $('#facebox').css('left', $(window).width() / 2 - ($('#facebox table').width() / 2))
       $(document).trigger('reveal.facebox').trigger('afterReveal.facebox')
+	  frameGrow()
     },
 
     close: function() {
@@ -155,7 +163,7 @@
 
   $.fn.facebox = function(settings) {
     init(settings)
-
+	
     function clickHandler() {
       $.facebox.loading(true)
 

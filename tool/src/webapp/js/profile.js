@@ -252,56 +252,55 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 
 	$(document).ready(function() { 
 	jQuery('a[rel*=facebox]').facebox();
+	
+	$('#hovermenu').hide();
 		$('.profileImage > img').click(function(){
-			$('#hovermenu').removeAttr('class');
 			$('#hovermenu').attr('class','hovermenuactive toplink');
-			$(document).unbind('click');
+			$('#hovermenu').fadeIn('fast');
+			$('#hovermenu').hover(
+					function(){},
+					 function(){
+						$('#hovermenu').fadeOut('fast');
+					}
+				);
 		});
 		$('.profileImage').hover(
 		function(){
 			$('#hoverlink').removeAttr('class');
 			$('#hoverlink').attr('class','hoverlinkactive toplink');
 			$('#hoverlink').click(function(){
-				$('#hovermenu').removeAttr('class');
 				$('#hovermenu').attr('class','hovermenuactive toplink');
-			
+				$('#hovermenu').fadeIn('fast');
 				$('#hovermenu').hover(
-					function(){
-						},
+					function(){},
 					 function(){
-					 	listen();
+						$('#hovermenu').fadeOut('fast');
 					}
 				);	
 			});
 		},
 		function(){
-			listen();
-			if($('#hovermenu').attr('class') != 'hovermenuactive'){
 				$('#hoverlink').removeAttr('class');
 				$('#hoverlink').attr('class','hoverlink');
-			}
 		}
-		);
-		
+		);		
 		$('#changepic').bind('click', function(){
-			$('#hovermenu').removeAttr('class');
 			$('#hovermenu').attr('class','hovermenuactive bottomlink');
-			$(document).unbind('click');
-		});
-		
-		function listen(){
-			$(document).click(function(){
-				if($('#hovermenu').attr('class') == 'hovermenuactive'){
-					$('#hovermenu').removeAttr('class');
-					$('#hovermenu').attr('class','hovermenu');
-					$('#hoverlink').removeAttr('class');
-					$('#hoverlink').attr('class','hoverlink');
-				}
-				$(document).unbind('click');
-			});
-		}
+			$('#hovermenu').fadeIn('fast');
+			$('#hovermenu').hover(
+					function(){},
+					 function(){
+						$('#hovermenu').fadeOut('fast');
+					}
+				);
+		});	
 	}); 	
 	
 function showUpload(){
 		document.getElementById('pictureUploader').style.display = '';
 	}
+	
+function frameGrow(){
+	    	var frame = parent.document.getElementById(window.name);
+	  		$(frame).height(parent.document.body.scrollHeight + 200);
+}

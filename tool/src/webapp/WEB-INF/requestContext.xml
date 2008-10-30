@@ -31,6 +31,17 @@
 		<property name="searchBoxRenderer" ref="searchBoxRenderer"/>
 	</bean>
 	
+<!-- 	<bean class="org.sakaiproject.profilewow.tool.producers.ResponseMsg">
+		<property name="sakaiPersonManager"
+			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
+		<property name="userDirectoryService"
+			ref="org.sakaiproject.user.api.UserDirectoryService" />
+		<property name="targettedMessageList" ref="targettedMessageList" />
+		<property name="profilePicRenderer" ref="profilePicRenderer" />
+		<property name="passwordFormRenderer" ref="passwordFormRenderer" />
+		<property name="searchBoxRenderer" ref="searchBoxRenderer"/> 
+	</bean>-->
+	
 	<bean class="org.sakaiproject.profilewow.tool.producers.EditProducer">
 		<property name="sakaiPersonManager"
 			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />

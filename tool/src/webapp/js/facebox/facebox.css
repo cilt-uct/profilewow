@@ -42,7 +42,7 @@
 #facebox .body {
   padding: 10px;
   background: #fff;
-  width: 370px;
+  width: 500px;
 }
 
 #facebox .loading {
@@ -63,6 +63,22 @@
   padding-top: 5px;
   margin-top: 10px;
   text-align: right;
+}
+
+#facebox .header {
+	border-bottom: 1px solid #DDDDDD;
+  background: #FFFFEE
+  padding-bottom: 5px;
+	margin-bottom: 10px;
+	text-align: right;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding: 5px;
+}
+#facebox .titleHeader {
+	float: left;
+	margin-top: 0px;
 }
 
 #facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {

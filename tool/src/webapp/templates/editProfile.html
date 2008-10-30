@@ -3,10 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>Edit my profile</title>
+<script>
+	$(document).ready(function(){
+		var options = {
+			success: function(msg){
+				$.facebox(msg);
+			}
+		};
+		$('#edit-form').ajaxForm(options);
+		$.facebox.setHeader($('.titleHeader'));
+	});
+</script>
 </head>
 <body rsf:id="scr=sakai-body">
+	
+<h2 rsf:id="msg=editProfile.header" style="font-weight: bold;" class="titleHeader">Edit my profile</h2>
 
-<h3 rsf:id="msg=editProfile.header">Edit my profile</h3>
 <div rsf:id="message-for:*" class="alertMessage">
 	<span>Message for user here</span>
 </div>

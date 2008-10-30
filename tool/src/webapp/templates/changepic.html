@@ -7,17 +7,30 @@
 <link href="https://vula.uct.ac.za/library/skin/tool.css" type="text/css" rel="stylesheet" media="all"  rsf:id="scr=portal-matter"/>
 <script type="text/javascript" language="JavaScript"
 	src="file:///C|/Documents%20and%20Settings/administrator/Desktop/edit_files/headscripts.js" rsf:id="scr=portal-matter"></script>
+	<script>
+	$(document).ready(function(){
+		var options = {
+   		 success: function(msg) {
+        	 $('.portletBody').prepend('<span class="success">' + $(msg).find('.success').text() + '</span>');
+			 $(document).trigger('close.facebox');
+			 $('.profileImage > img').attr('src', $(msg).find('.profileImage > img').attr('src'));
+    	  }
+ 	 };
+		$('#form').ajaxForm(options);
+		$.facebox.setHeader($('.titleHeader'));
+	});
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 </head>
 <body rsf:id="scr=sakai-body">
 <div class="portletBody"> 
 
-<h4>Select profile picture</h4>
+<h2 style="font-weight: bold;" class="titleHeader">Select profile picture</h2>
 
 <div rsf:id="message-for:*" class="alertMessage">
 	<span>Message for user here</span>
 </div>
-<form method="post" rsf:id="form">
+<form method="post" rsf:id="form" id="form">
 
 <!-- This span is needed here to guide the renderer away to the checkboxes -->
 <span rsf:id="select-pic"/>

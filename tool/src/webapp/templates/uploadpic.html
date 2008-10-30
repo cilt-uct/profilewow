@@ -7,16 +7,47 @@
 <link href="https://vula.uct.ac.za/library/skin/tool.css" type="text/css" rel="stylesheet" media="all"  rsf:id="scr=portal-matter"/>
 <script type="text/javascript" language="JavaScript"
 	src="file:///C|/Documents%20and%20Settings/administrator/Desktop/edit_files/headscripts.js" rsf:id="scr=portal-matter"></script>
+<script>
+	try {
+		$(document).ready(function(){
+			$('#upload-pic-form .active').bind('click', function(){
+				if ($('[name=fileupload1]').val()) {
+					/*var param = $('#upload-pic-form').ajaxSubmit();
+				 $.ajax({
+				 type: 'POST',
+				 url: "uploadpic",
+				 data: param,
+				 dataType: "html",
+				 beforeSend: function(){
+				 $("#facebox .content").html('<div class="loading">Uploading...<img src="/library/image/sakai/spinner.gif"/></div>');
+				 },
+				 success: function(msg){
+				 $("#facebox .content").html($(msg).find('.success').html());
+				 }
+				 });*/
+					return true;
+				}
+				else {
+					alert("Choose a pcture to upload");
+				}
+				return false;
+			});
+			$.facebox.setHeader($('.titleHeader'));
+		});
+	}
+	catch(e){}
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 </head>
 <body rsf:id="scr=sakai-body">
 <div class="portletBody">
 
-<h4>Upload profile picture</h4>
+<h2 style="font-weight: bold;" class="titleHeader">Upload profile picture</h2>
 
-<form rsf:id="upload-pic-form" method="post" enctype="multipart/form-data">
+<form rsf:id="upload-pic-form" id="upload-pic-form" class="act" method="post" enctype="multipart/form-data">
 <p><input type="file" name="fileupload1"/></p>
-<input rsf:id="submit" type="submit" value="Upload picture"/>
+<input rsf:id="submit" type="submit" class="active" value="Upload picture"/>
 </form>
 
 
