@@ -44,6 +44,11 @@ margin: 0 0 10px 10px;
 border:1px solid #CCCCCC;
 }
 
+
+.hovermenu{
+display: none;
+}
+
 .hovermenuactive{
 	position: fixed;
 	z-index: auto;
@@ -51,7 +56,7 @@ border:1px solid #CCCCCC;
 	margin-left: 150px;
 }
 
-.hovermenu li{
+.hovermenuactive li{
 	background-color:#E8E3DD;
 	list-style:none;
 	text-decoration:none;
