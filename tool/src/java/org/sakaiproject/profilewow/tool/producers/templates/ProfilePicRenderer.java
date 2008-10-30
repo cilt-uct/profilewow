@@ -11,6 +11,7 @@ import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIJointContainer;
 import uk.org.ponder.rsf.components.UILink;
+import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 
 public class ProfilePicRenderer {
@@ -37,7 +38,9 @@ public class ProfilePicRenderer {
 		
 		//should only display if there is an official pic
 		if (hasProfilePic()) {
-		 UIInternalLink.make(joint, "useOf", new SimpleViewParameters(SelectOfficialPictureProducer.VIEW_ID));
+		 UIVerbatim.make(joint, "useOf",
+				 UIInternalLink.make(joint, "useOf-link", new SimpleViewParameters(SelectOfficialPictureProducer.VIEW_ID))
+				 );
 		}
 		
 		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {

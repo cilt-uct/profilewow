@@ -252,19 +252,18 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 
 	$(document).ready(function() { 
 	jQuery('a[rel*=facebox]').facebox();
-	//jQuery.facebox('some html');
-			$('.profileImage > img').click(function(){
+		$('.profileImage > img').click(function(){
 			$('#hovermenu').removeAttr('class');
-			$('#hovermenu').attr('class','hovermenuactive');
+			$('#hovermenu').attr('class','hovermenuactive toplink');
 			$(document).unbind('click');
 		});
 		$('.profileImage').hover(
 		function(){
 			$('#hoverlink').removeAttr('class');
-			$('#hoverlink').attr('class','hoverlinkactive');
+			$('#hoverlink').attr('class','hoverlinkactive toplink');
 			$('#hoverlink').click(function(){
 				$('#hovermenu').removeAttr('class');
-				$('#hovermenu').attr('class','hovermenuactive');
+				$('#hovermenu').attr('class','hovermenuactive toplink');
 			
 				$('#hovermenu').hover(
 					function(){
@@ -283,6 +282,12 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 			}
 		}
 		);
+		
+		$('#changepic').bind('click', function(){
+			$('#hovermenu').removeAttr('class');
+			$('#hovermenu').attr('class','hovermenuactive bottomlink');
+			$(document).unbind('click');
+		});
 		
 		function listen(){
 			$(document).click(function(){

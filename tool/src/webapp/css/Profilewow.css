@@ -50,11 +50,20 @@ display: none;
 }
 
 .hovermenuactive{
-	position: fixed;
-	z-index: auto;
-	margin-top: -150px;
-	margin-left: 150px;
+position:fixed;
+z-index:auto;
+margin-left:90px;
 }
+
+
+.toplink{
+margin-top:-159px;
+}
+
+.bottomlink{
+margin-top:-110px;
+}
+
 
 .hovermenuactive li{
 	background-color:#E8E3DD;
@@ -64,6 +73,12 @@ display: none;
 	padding: 3px 5px 3px 5px;
 	width: 150px;
 	border-bottom: 1px solid #CCCCCC;
+}
+
+
+.hoverlinkactive a{
+vertical-align: middle;
+font-size:11px;
 }
 
 .title {
@@ -81,9 +96,11 @@ border:none;
 }
 
 .hoverlinkactive{
-	position: fixed;
-	margin-top: -90px;
-	margin-right: -20px;
-	background-color: #FFFFFF;
-	z-index: 1;
+background:#D2EAF0;
+border:1px solid #CCCCCC;
+margin-right:-20px;
+margin-top:-107px;
+padding:1px;
+position:fixed;
+z-index:1;
 }
