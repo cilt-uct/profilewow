@@ -7,6 +7,7 @@ import org.sakaiproject.profilewow.tool.producers.ChangePicture;
 import org.sakaiproject.profilewow.tool.producers.SelectOfficialPictureProducer;
 import org.sakaiproject.profilewow.tool.producers.UploadPicture;
 
+import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIJointContainer;
@@ -38,9 +39,9 @@ public class ProfilePicRenderer {
 		
 		//should only display if there is an official pic
 		if (hasProfilePic()) {
-		 UIVerbatim.make(joint, "useOf",
-				 UIInternalLink.make(joint, "useOf-link", new SimpleViewParameters(SelectOfficialPictureProducer.VIEW_ID))
-				 );
+		 UIBranchContainer dis = UIBranchContainer.make(joint, "useOf:");
+		 UIInternalLink.make(dis, "useOf-link", new SimpleViewParameters(SelectOfficialPictureProducer.VIEW_ID));
+				 
 		}
 		
 		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
