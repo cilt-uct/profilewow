@@ -14,40 +14,36 @@
 <div class="portletBody"> 
 
 
-<div style="float:right">
-<div class="colorBorder">
-<table width="250" border="0" cellpadding="5" cellspacing="0">
-<tr align="center"><td><form action="search" method="get" name="search" target="searchProfile.html"><img src="library/image/silk/vcard.png" alt="User search icon"/> <input name="search" type="text" value="search for Vula users" size="15" /> <input name="search" type="button" value="Search" /></form></td></tr>
-</table>
-</div>
-<span style="text-align:center"><img src="library/image/silk/user_go.png" alt="my profile"/> <a href="main.html">Return to my profile</a></span>
+<div style="float:right" class="sidebar">
+
+<div rsf:id="search:">Search box goes here</div>
+
+<div class="action"><img src="library/image/silk/user_go.png" alt="return to my profile"/> <a href="main.html">Return to my profile</a></div>
+
 </div>
 
-<div class="colorBorder">
 <table border="0" cellpadding="10" cellspacing="0">
   <tbody>
     <tr>
-      <td valign="top" bgcolor="#FFFEE6" ><div rsf:id="isImage:"><img src="noimage.gif" alt="profile photo" border="none" rsf:id="photo" /></div>      </td>
+      <td valign="top"><div rsf:id="isImage:"><img src="noimage.gif" alt="profile photo" border="none" rsf:id="photo" /></div>      </td>
       <td>
-      <h3 rsf:id="full-name"><!-- Title, First name, Surname -->Dr Daffy Duck</h3>
+      <h3 rsf:id="full-name">Dr Daffy Duck</h3>
         
-        <p><a href="mailto:some@sdrg.net" rsf:id="email">daffyduck@disney.com</a></p>
+        <div><a href="mailto:some@sdrg.net" rsf:id="email">daffyduck@disney.com</a><br />&nbsp;</div>
         
-        <p>
-        <span rsf:id="position"><!-- Position-->Lecturer<br /></span>
-        <span rsf:id="department"><!-- Department-->Centre for Educational Technology<br /></span>
-        <span rsf:id="school"><!-- Institution-->University of Cape Town<br /></span>
-        <span rsf:id="room"><!-- Room-->Room number<br /></span>
-        </p>
-
-        <p><a href="homepage" rsf:id="homepage" target="_blank" ><!-- homepage -->http://www.daffy.com</a></p>
-        <p><span rsf:id="workphone">w: 021 555 1234<br /></span>
-        <span rsf:id="mobile"><!-- mobile, if chosen to disclose -->m: 082 555 1234</span></p>
-        <p><span rsf:id="more-info"><!-- More info -->Blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here</span></p>
+        <div rsf:id="position"><!-- Position-->Lecturer</div>
+        <div rsf:id="department"><!-- Department-->Centre for Educational Technology</div>
+        <div rsf:id="school"><!-- Institution-->University of Cape Town</div>
+        <div rsf:id="room"><!-- Room-->Room number</div>
+        <br />
+        <div><a href="homepage" rsf:id="homepage" target="_blank" ><!-- homepage -->http://www.daffy.com</a></div>
+        <div rsf:id="workphone">w: 021 555 1234<br /></div>
+        <div rsf:id="mobile"><!-- mobile, if chosen to disclose -->m: 082 555 1234</div>
+        <div rsf:id="moreinfo">&nbsp;<br />Blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here blurb goes here</div>
     </td></tr>
   </tbody>
 </table>
-</div>
+
 <br />
 <input type="submit" onclick="Javascript:history.go(-1)" value="Back" />
 
