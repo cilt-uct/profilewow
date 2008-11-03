@@ -10,14 +10,35 @@
 	<script>
 	$(document).ready(function(){
 		var options = {
+			beforeSend: function(){
+				$('.success').each(function(){
+					$(this).slideUp('fast');
+				});
+			},
    		 success: function(msg) {
-        	 $('.portletBody').prepend('<span class="success">' + $(msg).find('.success').text() + '</span>');
+			 $('.portletBody').prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
 			 $(document).trigger('close.facebox');
 			 $('.profileImage > img').attr('src', $(msg).find('.profileImage > img').attr('src'));
+			$('.success div').bind('click', function(){
+				$(this).parent().parent().slideUp('normal');
+			});
     	  }
  	 };
 		$('#form').ajaxForm(options);
 		$.facebox.setHeader($('.titleHeader'));
+		$('.rosterImage').bind('click', function(){
+			//alert(this.src);
+			that = $(this);
+			that.parent().parent().parent().find('img').each(function(){
+				$(this).attr('class', 'rosterImage');
+			});
+			that.parent().parent().parent().find('input[@type*=radio]').each(function(){
+				$(this).removeAttr('checked');
+			});
+			that.attr('class', that.attr('class') + ' imageSelected');
+			that.parent().parent().find('input[@type*=radio]').attr('checked', 'checked');
+			//$('#form').trigger('submit');
+		});
 	});
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -34,15 +55,15 @@
 
 <!-- This span is needed here to guide the renderer away to the checkboxes -->
 <span rsf:id="select-pic"/>
-<table>
+<table cellpadding="5">
 <tr rsf:id="pic-row:">
-	<td rsf:id="pic-cell:" align="center"><input type="radio" name="choose" rsf:id="select"/>
+	<td rsf:id="pic-cell:" align="center"><input type="radio" name="choose" style="display:none;" rsf:id="select"/>
 	  <br/>
-	<img rsf:id="pic" src="../images/pictureUnavailable.jpg" class="rosterImage" /></td>
+	<a href="#"><img rsf:id="pic" src="../images/pictureUnavailable.jpg" class="rosterImage" /></a></td>
 	</tr>
 	</table>
 <br />    
-<input type="submit" rsf:id="submit" value="Change picture" />    
+<input type="submit" rsf:id="submit" class="submit" value="Change picture" />    
 </form>
 
 </div>

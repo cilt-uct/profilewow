@@ -77,7 +77,7 @@
 
   $.extend($.facebox, {
     settings: {
-      opacity      : 0,
+      opacity      : 0.2,
       overlay      : true,
       loadingImage : '/library/image/sakai/spinner.gif',
       closeImage   : '/library/image/sakai/cross.png',
@@ -128,9 +128,10 @@
         append('<div class="loading"><img src="'+$.facebox.settings.loadingImage+'"/></div>')
 
       $('#facebox').css({
-        top:	getPageScroll()[1] + (getPageHeight() / 10),
-        left:	385.5
+        top:	getPageScroll()[1] + (getPageHeight() / 500)
+        //left:	385.5
       }).show()
+	  $('#facebox').css('left', $(window).width() / 2 - ($('#facebox table').width() / 2)).show()
 
       $(document).bind('keydown.facebox', function(e) {
         if (e.keyCode == 27) $.facebox.close()
@@ -146,7 +147,7 @@
       $('#facebox .content').append(data)
       $('#facebox .loading').remove()
       $('#facebox .body').children().fadeIn('normal')
-      $('#facebox').css('left', $(window).width() / 2 - ($('#facebox table').width() / 2))
+      //$('#facebox').css('left', $(window).width() / 2 - ($('#facebox table').width() / 2))
       $(document).trigger('reveal.facebox').trigger('afterReveal.facebox')
 	  frameGrow()
     },
@@ -279,7 +280,11 @@
   }
 
   function fillFaceboxFromAjax(href, klass) {
-    $.get(href, function(data) { $.facebox.reveal(data, klass) })
+    $.ajax({
+		url: href, 
+		cache: false, 
+		success: function(data) { $.facebox.reveal(data, klass) }
+	});
   }
 
   function skipOverlay() {
@@ -295,14 +300,14 @@
     $('#facebox_overlay').hide().addClass("facebox_overlayBG")
       .css('opacity', $.facebox.settings.opacity)
       .click(function() { $(document).trigger('close.facebox') })
-      .fadeIn(200)
+      .fadeIn('fast')
     return false
   }
 
   function hideOverlay() {
     if (skipOverlay()) return
 
-    $('#facebox_overlay').fadeOut(200, function(){
+    $('#facebox_overlay').fadeOut('fast', function(){
       $("#facebox_overlay").removeClass("facebox_overlayBG")
       $("#facebox_overlay").addClass("facebox_hide") 
       $("#facebox_overlay").remove()
@@ -317,11 +322,12 @@
 
   $(document).bind('close.facebox', function() {
     $(document).unbind('keydown.facebox')
-    $('#facebox').fadeOut(function() {
+    $('#facebox').fadeOut('fast', function() {
       $('#facebox .content').removeClass().addClass('content')
       hideOverlay()
       $('#facebox .loading').remove()
     })
+	//$('#facebox').remove()
   })
 
 })(jQuery);

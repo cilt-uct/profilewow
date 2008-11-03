@@ -73,13 +73,13 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 			StringList selections = new StringList();
 			for (int i = 0; i < resources.size(); i++) {
 				UIBranchContainer row = UIBranchContainer.make(form, "pic-row:");
-				for (int q =0; q < 4 && i< resources.size(); q++) {
+				for (int q =0; q < 5 && i< resources.size(); q++) {
 					ContentResource resource = (ContentResource)resources.get(i);
 					UIBranchContainer cell = UIBranchContainer.make(row, "pic-cell:");
 					selections.add(resource.getUrl());
 					UISelectChoice choice =  UISelectChoice.make(cell, "select", selectPic.getFullID(), (selections.size() -1 ));
 					UILink.make(cell, "pic", resource.getUrl());
-					i++;
+					i++;				
 				}
 			}
 			selectPic.optionlist.setValue(selections.toStringArray());

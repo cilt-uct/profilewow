@@ -6,9 +6,27 @@
 <script>
 	$(document).ready(function(){
 		var options = {
+			beforeSend: function(){
+				$('.success').each(function(){
+					$(this).slideUp('fast');
+				});
+			},
 			success: function(msg){
-				$.facebox(msg);
-			}
+				var obj = $(msg).find('.success').html();
+				if(obj == null){
+					$.facebox(msg);
+				}else{
+					$('td[@rel*=infoCell]').html($(msg).find('td[@rel*=infoCell]').html());
+		        	 $('.portletBody').prepend('<span class="success">' + obj + '<a href="#"><div name="closeMsg">close</div></a></span>');
+					 $(document).trigger('close.facebox');
+					window.location.href = '#top';
+					$('.success div').bind('click', function(){
+						$(this).parent().parent().slideUp('normal');
+					});
+				}
+
+			},
+			error: function(e){}
 		};
 		$('#edit-form').ajaxForm(options);
 		$.facebox.setHeader($('.titleHeader'));
@@ -157,10 +175,11 @@ Required information marked <span rsf:id="msg=reqStar"
 
 
 <p class="act"><input rsf:id="profile-save" value="Save"
-	accesskey="s" type="submit" class="active" /> <input
+	accesskey="s" type="submit" class="active submit" />
+	<input
 	id="editProfileForm:editCancelButton"
 	name="editProfileForm:editCancelButton" value="Cancel" accesskey="x"
-	onkeypress="document.forms[0].cancel;" type="submit" /></p>
+	onclick="$(document).trigger('close.facebox');window.location.href='#top';" type="button" /></p>
 <input name="editProfileForm" value="editProfileForm" type="hidden" />
 <input name="editProfileForm:_idcl" type="hidden" /></form>
 

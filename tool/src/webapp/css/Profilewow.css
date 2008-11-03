@@ -39,6 +39,13 @@ border:none;
 }
 
 
+/* PROFILE PICTURE SELECTION */
+.imageSelected {
+	padding: 3px;
+	background: #ccc;
+}
+
+
 /* LINKS and MENUS */
 
 .hoverlink{
@@ -107,6 +114,20 @@ font-size:11px;
 .loading{
 background: #EEFFBB url(/library/image/sakai/spinner.gif) 50% no-repeat;
 z-index:2;
+}
+
+/* Success message close icon */
+.success div {
+	background-image: url(/library/image/sakai/cross.png);
+	background-repeat: no-repeat;
+	text-indent: 20px;
+	cursor: hand;
+	overflow: hidden;
+	height: 16px;
+	width: 16px;
+	position: absolute;
+	left: 80%;
+	top:11px;
 }
 
 /* SIDEBARS */
