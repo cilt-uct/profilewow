@@ -52,20 +52,21 @@ border:none;
 	display: none;
 }
 
-.hoverlinkactive{
-background:#FFFFFF;
+.hoverlinkactive {
+background:#FFFFFF none repeat scroll 0 0;
 border:1px solid #CCCCCC;
-margin-left:35px;
-margin-top:-77px;
+font-size:11px;
+margin-left:39px;
+margin-top:15px;
+/* for IE */
+filter:alpha(opacity=70);
+/* CSS3 standard */
+opacity:0.7;
 padding:6px;
 position:fixed;
+text-align:center;
+width:50px;
 z-index:1;
-font-size:11px;
-/* for IE */
-filter:alpha(opacity=60);
-/* CSS3 standard */
-opacity:0.6;
-
 }
 
 .hoverlinkactive a{
@@ -135,16 +136,18 @@ z-index:2;
 .sidebar{
 width: 250px;
 float: right;
+text-align:center;
 }
 
-.sidebarTitle{
-	color:#666;
-	font-weight: bold;
-	font-size: 12px;
-	background-color: #D2EAF0;
-	padding: 2px;
-	margin: -5px -5px 5px -5px;
-	float: top left;
+.sidebarTitle {
+background-color:#D2EAF0;
+color:#666666;
+font-size:11px;
+font-weight:bold;
+margin:0 0 10px 0;
+padding:2px;
+text-transform:uppercase;
+
 }
 
 .search{
