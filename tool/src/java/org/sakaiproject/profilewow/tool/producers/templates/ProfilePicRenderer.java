@@ -39,7 +39,7 @@ public class ProfilePicRenderer {
 		
 		//should only display if there is an official pic
 		if (hasProfilePic()) {
-		 UIInternalLink.make(joint, "useOf-link", new SimpleViewParameters(SelectOfficialPictureProducer.VIEW_ID));		 
+		 UIInternalLink.make(joint, "useOf", new SimpleViewParameters(SelectOfficialPictureProducer.VIEW_ID));		 
 		}
 		
 		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
