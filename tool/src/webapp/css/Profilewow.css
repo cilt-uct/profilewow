@@ -40,9 +40,18 @@ border:none;
 
 
 /* PROFILE PICTURE SELECTION */
-.imageSelected {
-	padding: 3px;
-	background: #ccc;
+
+.selectImage {
+	padding: 5px;
+	width: 75px;
+}
+
+.selectImage a:hover {
+	background: #D2EAF0;
+}
+
+.currentImage {
+	border: 1px solid #666;
 }
 
 
@@ -73,39 +82,6 @@ z-index:1;
 font-size:11px;
 padding-bottom:7px;
 vertical-align:middle;
-}
-
-.hovermenu{
-display: none;
-}
-
-.hovermenuactive{
-position:fixed;
-z-index:auto;
-margin-left:80px;
-}
-
-.toplink{
-margin-top:-141px;
-}
-
-.bottomlink{
-margin-top:-35px;
-}
-
-.menuTitle {
-color:#666666;
-font-weight:bold;
-}
-
-.hovermenuactive li{
-	background-color:#F3F4F5;
-	list-style:none;
-	text-decoration:none;
-	font-size:12px;
-	padding: 3px 5px 3px 5px;
-	width: 150px;
-	border-bottom: 1px solid #CCCCCC;
 }
 
 .action {
@@ -154,11 +130,13 @@ text-transform:uppercase;
 border:1px solid #CCCCCC;
 margin: 0 0 10px 10px;
 background-color:#F3F4F5;
+padding-bottom: 10px;
 
 }
 
 .password{
 border:1px solid #CCCCCC;
 margin: 0 0 10px 10px;
+padding-bottom: 10px;
 
 }
