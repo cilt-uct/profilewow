@@ -29,7 +29,18 @@
 			error: function(e){}
 		};
 		$('#edit-form').ajaxForm(options);
-		$.facebox.setHeader($('.titleHeader'));
+		$('input[@class*=cancel]').bind('click', function(){
+			$('td[rel*=infoCell]').html($('#infoCell-backup').html());
+			window.location.href = '#top';
+			$('#infoCell-backup').remove();
+			return false;
+		});
+		//$('textarea[@name*=editProfileForm-more]').toggle();
+		//$.facebox.setHeader($('.titleHeader'));
+		$('.addItem').bind('click', function(){
+			$('textarea[@name*=editProfileForm-more]').slideToggle('fast');
+			return false;
+		});		
 	});
 </script>
 </head>
@@ -164,9 +175,9 @@ Required information marked <span rsf:id="msg=reqStar"
 		</tr>
         -->
         <tr>
-			<td colspan="2">More details<br />
-			<textarea rsf:id="editProfileForm-more" name="moreinfo" cols="60"
-				rows="5"></textarea></td>
+			<td colspan="2"><a href="#" class="addItem">Add more details</a><br />
+			<textarea rsf:id="editProfileForm-more" style="display: none;" name="moreinfo" cols="32"
+				rows="8"></textarea></td>
 		</tr>
 		
 	</tbody>
@@ -178,8 +189,7 @@ Required information marked <span rsf:id="msg=reqStar"
 	accesskey="s" type="submit" class="active submit" />
 	<input
 	id="editProfileForm:editCancelButton"
-	name="editProfileForm:editCancelButton" value="Cancel" accesskey="x"
-	onclick="$(document).trigger('close.facebox');window.location.href='#top';" type="button" /></p>
+	name="editProfileForm:editCancelButton" class="cancel"  value="Cancel" accesskey="x" type="button" /></p>
 <input name="editProfileForm" value="editProfileForm" type="hidden" />
 <input name="editProfileForm:_idcl" type="hidden" /></form>
 

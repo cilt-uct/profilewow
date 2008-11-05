@@ -52,15 +52,15 @@
 	<span>Message for user here</span>
 </div>
 
+<form method="post" rsf:id="form" id="form">
 
 <!-- This span is needed here to guide the renderer away to the checkboxes -->
 <span rsf:id="select-pic"/>
-<form action="http://lovemore-nalube.chd:8080/portal/tool/a22e9f78-133e-407f-8007-2a2e341f2871/changepic" method="post" id="form">
 <table cellpadding="5">
 <tr rsf:id="pic-row:">
-	<td rsf:id="pic-cell:" align="center"><input type="radio" name="choose" style="display:none;" rsf:id="select"/>
+	<td rsf:id="pic-cell:" align="center"><input rsf:id="select" type="radio" name="choose" style="display:none;" />
 	  <br/>
-	<a href="#" class"selectImage"><img rsf:id="pic" src="../images/pictureUnavailable.jpg" /></a></td>
+	<a href="#" class="selectImage"><img rsf:id="pic" src="../images/pictureUnavailable.jpg" /></a></td>
 	</tr>
 	</table>
 <br />    

@@ -93,6 +93,11 @@ background: #EEFFBB url(/library/image/sakai/spinner.gif) 50% no-repeat;
 z-index:2;
 }
 
+.addItem {
+background:transparent url(/library/image/silk/add.png) no-repeat scroll left center;
+padding-left:2em;
+}
+
 /* Success message close icon */
 .success div {
 	background-image: url(/library/image/sakai/cross.png);

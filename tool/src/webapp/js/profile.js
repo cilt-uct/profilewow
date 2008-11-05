@@ -284,7 +284,7 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 				$('#hoverlink').attr('class','hoverlink');
 		}
 		);		
-		$('#changepic').bind('click', function(){
+		$('#changepicOLD').bind('click', function(){
 			$('#hovermenu').attr('class','hovermenuactive bottomlink');
 			$('#hovermenu').fadeIn('fast');
 			$('#hovermenu').hover(
@@ -294,6 +294,34 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 					}
 				);
 		});	
+		
+		$('#editProfileLink').bind('click', function(){
+			if($('#infoCell-backup')){
+				$('#infoCell-backup').remove();
+			}
+			var target = this.href;
+			var elem = $('td[rel*=infoCell]');
+			var elemHTML = elem.html();
+			$.ajax({
+				url: target,
+				cache: false,
+				beforeSend: function(){
+					elem.html('Loading....');
+					$('body').append('<div id="infoCell-backup">'+elemHTML+'</div');
+					$('#infoCell-backup').hide();
+				},
+				error: function(e){
+					elem.html(elemHTML);
+					return false;
+				},
+				success: function(msg){
+					frameGrow();
+					elem.html(msg);
+					return false;
+				}
+			});
+			return false;
+		});
 	}); 	
 	
 function showUpload(){
