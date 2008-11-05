@@ -68,16 +68,17 @@
 	<span>Message for user here</span>
 </div>
 <span class="addItem" id="uploadPicture"> <a href="#">Upload a new picture</a></span>
-		<iframe id="uploadPictureFrame" name="uploadPictureFrame" class="uploadPictureFrame" style="display:none;" width="100%" height="50" frameborder="0" marginwidth="10" marginheight="10" scrolling="no" src="http://lovemore-nalube.chd.uct.ac.za:8080/portal/tool/a22e9f78-133e-407f-8007-2a2e341f2871/uploadpic?_=1225897445872"></iframe>
+		<iframe id="uploadPictureFrame" name="uploadPictureFrame" class="uploadPictureFrame" style="display:none;" width="90%" height="50" frameborder="0" marginwidth="10" marginheight="10" scrolling="no" src="http://lovemore-nalube.chd.uct.ac.za:8080/portal/tool/a22e9f78-133e-407f-8007-2a2e341f2871/uploadpic?_=1225897445872"></iframe>
 	
 <form method="post" rsf:id="form" id="form">
-
+<br />
 <!-- This span is needed here to guide the renderer away to the checkboxes -->
 <span rsf:id="select-pic"/>
+
 <table cellpadding="5" align="left">
 <tr rsf:id="pic-row:">
-	<td rsf:id="pic-cell:" align="center" class="selectImage"><input rsf:id="select" type="radio" name="choose" style="display:none;" />
-	<a href="#"><img rsf:id="pic" src="../images/pictureUnavailable.jpg" width="75px" /></a></td>
+	<td rsf:id="pic-cell:" align="center"><input rsf:id="select" type="radio" name="choose" style="display:none;" />
+	<a href="#"><img rsf:id="pic" src="../images/pictureUnavailable.jpg" width="75px"  class="selectImage"/></a></td>
 	</tr>
 	</table>   
 <input type="hidden" rsf:id="submit" value="Change picture" />    
