@@ -14,7 +14,7 @@
 			success: function(msg){
 				var obj = $(msg).find('.success').html();
 				if(obj == null){
-					$.facebox(msg);
+					$('td[rel*=infoCell]').html(msg);
 				}else{
 					$('td[@rel*=infoCell]').html($(msg).find('td[@rel*=infoCell]').html());
 		        	 $('.portletBody').prepend('<span class="success">' + obj + '<a href="#"><div name="closeMsg">close</div></a></span>');
@@ -29,12 +29,14 @@
 			error: function(e){}
 		};
 		$('#edit-form').ajaxForm(options);
-		$('input[@class*=cancel]').bind('click', function(){
+		var hide = function(){
 			$('td[rel*=infoCell]').html($('#infoCell-backup').html());
 			window.location.href = '#top';
 			$('#infoCell-backup').remove();
 			return false;
-		});
+		}
+		$('input[@class*=cancel]').bind('click', hide);
+		$('.closeImg').bind('click', hide);
 		//$('textarea[@name*=editProfileForm-more]').toggle();
 		//$.facebox.setHeader($('.titleHeader'));
 		$('.addItem').bind('click', function(){
@@ -45,7 +47,7 @@
 </script>
 </head>
 <body rsf:id="scr=sakai-body">
-	
+	<a class="closeImg" href="#">close</a>
 <h2 rsf:id="msg=editProfile.header">Edit my profile</h2>
 
 <div rsf:id="message-for:*" class="alertMessage">

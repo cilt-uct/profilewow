@@ -251,9 +251,17 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 //Ajax mods to profleWow lovemore.nalube@uct.ac.za
 
 	$(document).ready(function() { 
-	jQuery('a[rel*=facebox]').facebox();
+	$('a[rel*=facebox]').facebox();
 	
-	$('#hovermenu').hide();
+	/*
+	This method is for the "Edit profile" link on hover
+	$('td[rel*=infoCell]').parent().hover(
+	function(){$('.editProfileHover').toggle();},
+	function(){$('.editProfileHover').toggle();}
+	);
+	
+	
+	//$('#hovermenu').hide();
 		$('.profileImage > img').click(function(){
 			$('#hovermenu').attr('class','hovermenuactive toplink');
 			$('#hovermenu').fadeIn('fast');
@@ -264,26 +272,23 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 					}
 				);
 		});
+		
+		
 		$('.profileImage').hover(
 		function(){
-			$('#hoverlink').removeAttr('class');
+			//$('#hoverlink').removeAttr('class');
 			$('#hoverlink').attr('class','hoverlinkactive toplink');
 			$('#hoverlink').click(function(){
-				$('#hovermenu').attr('class','hovermenuactive toplink');
-				$('#hovermenu').fadeIn('fast');
-				$('#hovermenu').hover(
-					function(){},
-					 function(){
-						$('#hovermenu').fadeOut('fast');
-					}
-				);	
+				
 			});
 		},
 		function(){
-				$('#hoverlink').removeAttr('class');
+				//$('#hoverlink').removeAttr('class');
 				$('#hoverlink').attr('class','hoverlink');
-		}
+			}
 		);		
+		
+		
 		$('#changepicOLD').bind('click', function(){
 			$('#hovermenu').attr('class','hovermenuactive bottomlink');
 			$('#hovermenu').fadeIn('fast');
@@ -293,7 +298,13 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 						$('#hovermenu').fadeOut('fast');
 					}
 				);
-		});	
+		});	*/
+		
+		
+		
+		$('.profileImage > a').bind('click', function(){
+			$('#changepic > a').click();
+		});
 		
 		$('#editProfileLink').bind('click', function(){
 			if($('#infoCell-backup')){
@@ -322,6 +333,8 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 			});
 			return false;
 		});
+		
+		
 	}); 	
 	
 function showUpload(){
@@ -330,5 +343,5 @@ function showUpload(){
 	
 function frameGrow(){
 	    	var frame = parent.document.getElementById(window.name);
-	  		$(frame).height(parent.document.body.scrollHeight + 200);
+	  		$(frame).height(parent.document.body.scrollHeight + 100);
 }

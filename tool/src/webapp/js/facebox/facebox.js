@@ -79,7 +79,7 @@
     settings: {
       opacity      : 0.2,
       overlay      : true,
-      loadingImage : '/library/image/sakai/spinner.gif',
+      loadingImage : '',
       closeImage   : '/library/image/sakai/cross.png',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
@@ -95,7 +95,6 @@
               <td class="body"> \
               <div class="header breadCrumb" style="display:block"> \
 			  <a class="close" href="#" accesskey="x"><img class="close_image" title="close"/></a></div> \
-              	<div style="display: none" class="results"></div> \
 				<div class="content"> \
                 </div> \
               </td> \
@@ -282,7 +281,6 @@
   function fillFaceboxFromAjax(href, klass) {
     $.ajax({
 		url: href, 
-		cache: false, 
 		success: function(data) { $.facebox.reveal(data, klass) }
 	});
   }
