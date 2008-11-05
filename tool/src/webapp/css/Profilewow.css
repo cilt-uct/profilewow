@@ -43,10 +43,9 @@ border:none;
 
 .selectImage {
 	padding: 5px;
-	width: 75px;
 }
 
-.selectImage a:hover {
+.selectImage:hover {
 	background: #D2EAF0;
 }
 
@@ -89,8 +88,10 @@ font-size:11px;
 }
 
 .loading{
-background: #EEFFBB url(/library/image/sakai/spinner.gif) 50% no-repeat;
-z-index:2;
+	z-index:2;
+	background-image: url(/library/image/sakai/spinner.gif);
+	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .addItem {
