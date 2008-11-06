@@ -16,8 +16,8 @@
 				});
 			},
    		 success: function(msg) {
+			 $(document).trigger('close.facebox');			 
 			 $('.portletBody').prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
-			 $(document).trigger('close.facebox');
 			 $('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
 			$('.success div').bind('click', function(){
 				$(this).parent().parent().slideUp('normal');
@@ -26,20 +26,58 @@
  	 };
 
 		$.facebox.setHeader($('.titleHeader'));
+		$.facebox.setHeader($('.noExist'));
 		$('.selectImage').bind('click', function(){
-			//alert(this.src);
 			that = $(this);
-			/*that.parent().parent().parent().find('img').each(function(){
-				$(this).attr('class', 'rosterImage');
-			});
-
-			that.attr('class', that.attr('class') + ' imageSelected');*/
+			//that.attr('class', that.attr('class') + ' imageSelected');
 			that.parent().find('input[@type*=radio]').each(function(){
 				$(this).removeAttr('checked');
 			});
 			that.find('input[@type*=radio]').attr('checked', 'checked');
 			$('#form').ajaxSubmit(options);
-			//$('#form .submit').click();
+			return false;
+		});		
+		
+		$('.officialPic').bind('click', function(){
+			$.get('officialpic','',
+				function(f){
+					var form = $(f).find('form');
+					if (form) {
+						form.ajaxSubmit({
+							success: function(msg){
+								$(document).trigger('close.facebox');
+								$('.portletBody').prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
+								$('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
+								//$('.success div').bind('click', function(){
+								//	$(this).parent().parent().slideUp('normal');
+								}
+						});
+					}
+					else 
+					{alert('No form');}
+					/*$.post(
+						'officialpic',
+						params,
+						function(msg){
+							 $(document).trigger('close.facebox');			 
+							 $('.portletBody').prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
+							 $('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
+							 $('.success div').bind('click', function(){
+								$(this).parent().parent().slideUp('normal');
+							});	*/			
+						return false;
+						}
+					//}
+				);
+			return false;
+		});
+
+		$('.removePicture').bind('click', function(){
+			$('input[@type*=radio]').each(function(){
+				$(this).removeAttr('checked');
+			});
+			$('#form').ajaxSubmit(options);
+			return false;
 		});
 
 		
@@ -67,20 +105,53 @@
 <div rsf:id="message-for:*" class="alertMessage">
 	<span>Message for user here</span>
 </div>
-<span class="addItem" id="uploadPicture"> <a href="#">Upload a new picture</a></span>
-		<iframe id="uploadPictureFrame" name="uploadPictureFrame" class="uploadPictureFrame" style="display:none;" width="90%" height="50" frameborder="0" marginwidth="10" marginheight="10" scrolling="no" src="http://lovemore-nalube.chd.uct.ac.za:8080/portal/tool/a22e9f78-133e-407f-8007-2a2e341f2871/uploadpic?_=1225897445872"></iframe>
 	
 <form method="post" rsf:id="form" id="form">
-<br />
+	
+<table cellpadding="5" align="left">
+
+<tr>	<td>
+<table width="447px">
+	<tr>
+  <td colspan="5" width="70%" align="left">
+		
+		<div rsf:id="remove-image-link" class="removePicture"><a href="#">Remove your picture</a></div><br />
+		<div class="addItem" id="uploadPicture"> <a href="#">Upload a picture</a></div>
+	</td>
+  <td class="activeImage" align="center">
+  	Active<br />
+ <img rsf:id="selected-image" src="../images/active-picture.jpg"  width="75px"/>
+ <img rsf:id="default-image" src="../images/noimage.jpg"  width="75px"/>
+ </td>  
+ <td class="officialPic" align="center" width="25%">
+  	My UCT picture<br />
+ <a href="#"><img rsf:id="selected-image" src="../images/noimage.jpg"  width="75px"/></a>
+ </td>
+</tr>
+</table>
+</td></tr>
+<tr><td>
+<table>
+<tr>
+  <td>
+  	<iframe id="uploadPictureFrame" name="uploadPictureFrame" class="uploadPictureFrame" style="display:none;" width="418" height="60" frameborder="0" marginwidth="10" marginheight="10" scrolling="no" src="http://lovemore-nalube.chd.uct.ac.za:8080/portal/tool/a22e9f78-133e-407f-8007-2a2e341f2871/uploadpic?_=1225897445872"></iframe>
+<hr width="423px" noshade="no"/>
+</td>
+</tr>
+</table>
+</td></tr>
+<tr><td>	
+<table cellpadding="5" align="left">
 <!-- This span is needed here to guide the renderer away to the checkboxes -->
 <span rsf:id="select-pic"/>
-
-<table cellpadding="5" align="left">
-<tr rsf:id="pic-row:">
-	<td rsf:id="pic-cell:" align="center"><input rsf:id="select" type="radio" name="choose" style="display:none;" />
-	<a href="#"><img rsf:id="pic" src="../images/pictureUnavailable.jpg" width="75px"  class="selectImage"/></a></td>
+	<tr rsf:id="pic-row:">
+	
+	<td rsf:id="pic-cell:" align="center" class="selectImage"><input rsf:id="select" type="radio" name="choose" style="display:none;" />
+	<a href="#"><img rsf:id="pic" src="../images/pictureUnavailable.jpg" width="75px" /></a></td>
 	</tr>
-	</table>   
+	</table>
+	</td></tr>
+</table>   
 <input type="hidden" rsf:id="submit" value="Change picture" />    
 </form>
 

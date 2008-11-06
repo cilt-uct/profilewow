@@ -48,6 +48,8 @@
 	<bean class="org.sakaiproject.profilewow.tool.producers.ChangePicture">
 		<property name="resourceUtil" ref="resourceUtil" />
 		<property name="targettedMessageList" ref="targettedMessageList" />
+		<property name="sakaiPersonManager"
+			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
 	</bean>
 	<bean class="org.sakaiproject.profilewow.tool.producers.ViewProfileProducer">
 		<property name="sakaiPersonManager"

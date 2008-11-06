@@ -43,28 +43,21 @@ border:none;
 
 .selectImage {
 	padding: 5px;
-	border: none;
 }
 
 .selectImage:hover {
 	background: #D2EAF0;
 	padding: 5px;
-	border: none;
 }
 
 .currentImage {
-	padding: 4px;
 	border: 1px solid #666;
 }
 
-.uploadPictureFrame {
-	background-color:#F3F4F5;
-	border:1px solid #CCCCCC;
-	padding-left:10px;
 
 /* LINKS and MENUS */
 
-.hoverlink {
+.hoverlink{
 	display: none;
 }
 
@@ -105,7 +98,40 @@ font-size:11px;
 .addItem {
 background:transparent url(/library/image/silk/add.png) no-repeat scroll left center;
 padding-left:2em;
+}
+.removeItem {
+background:transparent url(/library/image/silk/cross.png) no-repeat scroll left center;
+padding-left:2em;
+}
+.removePicture {
+background:transparent url(/library/image/silk/delete.png) no-repeat scroll left center;
+padding-left:2em;
+}
 
+.editProfileHover {
+	float: right;
+	background-image: url(/library/image/silk/user_edit.png);
+	background-repeat: no-repeat;
+	width: 100px;
+	padding-left: 20px;
+}
+
+.closeImg {
+background-image:url(/library/image/sakai/cross.png);
+background-repeat:no-repeat;
+height:16px;
+left:470px;
+overflow:hidden;
+position:absolute;
+text-indent:20px;
+top:30px;
+width:16px;
+}
+
+
+.uploadPictureFrame {
+background-color:#FFFFCC;
+border:1px solid #CCCCCC;
 }
 
 /* Success message close icon */

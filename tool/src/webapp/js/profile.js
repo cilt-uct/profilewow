@@ -253,6 +253,92 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 	$(document).ready(function() { 
 	$('a[rel*=facebox]').facebox();
 	
+	$('.searchForm').bind('submit', function(){
+		$('.searchBtn').trigger('click');
+		return false;
+	});
+
+	
+	$('.searchBtn').bind('click', function(){
+		if(!/\S/.test($('.searchForm').find('input[@type=text]').val())){
+			$('.searchForm').find('input[@type=text]').focus();
+			return false;
+		}
+		if($('.success')){
+			$('.success').slideUp('fast');
+		}
+		var elem = $('td[rel*=infoCell]');
+		var elemHTML = elem.html();		
+		var options = {
+			beforeSend: function(){
+				if($('#infoCell-backup')){}	
+				else{
+					$('body').append('<div id="infoCell-backup">'+elemHTML+'</div');
+					$('#infoCell-backup').hide();					
+				}
+				$(this).attr('disabled', 'disabled');
+				elem.html('<span class="loading">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Searching....</span>');
+			},
+			success: function(msg){
+				frameGrow();
+				elem.html(msg);
+				$(this).removeAttr('disabled');
+				return false;	
+				}
+		}
+		
+		$('.searchForm').ajaxSubmit(options);
+		return false;
+	});
+	
+	/*$('.passwordForm').bind('submit', function(){
+		$('.passwordBtn').trigger('click');
+		return false;
+	});	
+	
+	$('.passwordBtn').bind('click', function(){*/
+		
+		var passOpts = {
+			beforeSend: function(){
+				frameGrow();
+				//alert($('.passwordForm').find('input[@type=password]').eq(0).attr('name'));
+				var msgElem = $('#passwordMsg');		
+				msgElem.hide();
+		
+				if(!/\S/.test($('.passwordForm').find('input[@type=password]').eq(0).val())){
+					$('.passwordForm').find('input[@type=password]').eq(0).focus();
+					msgElem.html('Enter a new password.');
+					msgElem.addClass('alertMessage');
+					msgElem.show();
+					return false;
+				}
+				
+				if($('.passwordForm').find('input[@type=password]').eq(0).val() != $('.passwordForm').find('input[@type=password]').eq(1).val()){
+					$('.passwordForm').find('input[@type=password]').focus();
+					msgElem.html('Your passwords do not match.');
+					msgElem.addClass('alertMessage');
+					msgElem.show();
+					return false;
+				}
+
+				msgElem.html('<span class="loading">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Processing....</span>');
+				msgElem.show();					
+				$(this).attr('disabled', 'disabled');
+			},
+			success: function(msg){
+				var msgElem = $('#passwordMsg');
+				//msgElem.addClass('success');
+				msgElem.html($(msg).find('.success'));
+				$(this).removeAttr('disabled');
+				$('.passwordForm').find('input[@type=password]').eq(0).val('');
+				$('.passwordForm').find('input[@type=password]').eq(1).val('');
+				return false;	
+				}
+		}
+		
+		$('.passwordForm').ajaxForm(passOpts);
+
+	
 	/*
 	This method is for the "Edit profile" link on hover
 	$('td[rel*=infoCell]').parent().hover(
@@ -302,13 +388,17 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 		
 		
 		
-		$('.profileImage > a').bind('click', function(){
+		$('.profileImage > a').click(function(){
 			$('#changepic > a').click();
+			return false;
 		});
 		
 		$('#editProfileLink').bind('click', function(){
 			if($('#infoCell-backup')){
 				$('#infoCell-backup').remove();
+			}
+			if($('.success')){
+				$('.success').slideUp('fast');
 			}
 			var target = this.href;
 			var elem = $('td[rel*=infoCell]');

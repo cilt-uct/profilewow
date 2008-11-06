@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.api.common.edu.person.SakaiPerson;
+import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.content.api.ContentCollection;
 import org.sakaiproject.content.api.ContentCollectionEdit;
 import org.sakaiproject.content.api.ContentHostingService;
@@ -15,6 +17,8 @@ import org.sakaiproject.entity.api.ResourcePropertiesEdit;
 import org.sakaiproject.exception.IdUnusedException;
 import org.sakaiproject.exception.PermissionException;
 import org.sakaiproject.exception.TypeException;
+import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
+import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
 import org.sakaiproject.profilewow.tool.util.ResourceUtil;
 import org.sakaiproject.site.api.SiteService;
 import org.sakaiproject.user.api.UserDirectoryService;
@@ -24,9 +28,12 @@ import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIForm;
+import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UILink;
+import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UISelect;
 import uk.org.ponder.rsf.components.UISelectChoice;
+import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.rsf.view.ComponentChecker;
@@ -38,6 +45,7 @@ import uk.org.ponder.stringutil.StringList;
 public class ChangePicture implements ViewComponentProducer, NavigationCaseReporter {
 
 	private static Log log = LogFactory.getLog(ChangePicture.class);
+	private static final String NO_PIC_URL = ProfilePicRenderer.NO_PIC_URL;
 	
 
 	public static final String VIEW_ID="changepic";
@@ -47,7 +55,11 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 		return VIEW_ID;
 	}
 
-
+	private SakaiPersonManager spm;
+	public void setSakaiPersonManager(SakaiPersonManager in) {
+		spm = in;
+	}
+	
 	private ResourceUtil resourceUtil;
 	public void setResourceUtil(ResourceUtil ru) {
 		resourceUtil = ru;
@@ -61,11 +73,20 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
 		// TODO Auto-generated method stub
-		
-			
-			ContentCollection pCollection = resourceUtil.getUserCollection();
+		ContentCollection pCollection = resourceUtil.getUserCollection();
 			log.debug("got a collection with " + pCollection.getMemberCount() + " objects");
 			UIForm form = UIForm.make(tofill,"form");
+		
+		SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType());
+		
+		String picUrl = sPerson.getPictureUrl();
+		if (picUrl != null){
+			UILink.make(tofill, "selected-image", picUrl);
+			UIOutput.make(tofill, "remove-image-link");
+		}
+		else
+			UILink.make(tofill, "default-image", NO_PIC_URL);
+			
 			List<ContentResource> resources = pCollection.getMemberResources();
 			
 			UISelect selectPic = UISelect.makeMultiple(form, "select-pic",
@@ -73,6 +94,7 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 			StringList selections = new StringList();
 			for (int i = 0; i < resources.size(); i++) {
 				UIBranchContainer row = UIBranchContainer.make(form, "pic-row:");
+				
 				for (int q =0; q < 5 && i< resources.size(); q++) {
 					ContentResource resource = (ContentResource)resources.get(i);
 					UIBranchContainer cell = UIBranchContainer.make(row, "pic-cell:");
