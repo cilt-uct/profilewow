@@ -80,12 +80,51 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 		
 		SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType());
 		
+		//picture stuff
 		String picUrl = sPerson.getPictureUrl();
+		if (picUrl == null || picUrl.trim().length() == 0)
+			picUrl = NO_PIC_URL;
+		else 
+			picUrl = sPerson.getPictureUrl();
 		
+		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
+			//System pic present and set to active
+			UIOutput.make(tofill, "remove-image-link");
+			UIInternalLink.make(tofill, "selected-image", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
+			UIMessage.make(tofill, "current-pic-title", "current.picture.title.official");	
+		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
+			if (picUrl != NO_PIC_URL) {
+				//System pic present  && not set
+				UIMessage.make(tofill, "current-pic-title", "current.picture.title");
+				UILink.make(tofill, "selected-image", picUrl);
+			}else{
+			//System pic NOT present  && not set && no profile image at all
+					UIMessage.make(tofill, "warning-no-image", "warning.picture.set");
+					UILink.make(tofill, "selected-image", picUrl);
+					UIMessage.make(tofill, "current-pic-title", "current.picture.title.noimage");			
+			}
+			//should only display if there is an official pic
+			if (hasProfilePic()) {
+				UIBranchContainer op = UIBranchContainer.make(tofill, "official-pic:");
+				UIMessage.make(op, "official-pic-title", "official.picture.title");
+				UIInternalLink.make(op, "official-pic-image", new ImageViewParamaters("imageServlet", sPerson.getUuid() ));
+				UIForm form = UIForm.make(op, "official-pic-form");
+				UICommand.make(form, "official-pic-field", UIMessage.make("useOfficialSub"),"uploadBean.useOfficial");
+			}	
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	/*	
 		if (picUrl == null || picUrl.trim().length() == 0){
-			UIMessage.make(tofill, "warning-no-image", "warning.picture.set");
-			UILink.make(tofill, "selected-image", NO_PIC_URL);
-			UIMessage.make(tofill, "current-pic-title", "current.picture.title.noimage");
+
 			//should only display if there is an official pic
 			if (hasProfilePic()) {
 				UIBranchContainer op = UIBranchContainer.make(tofill, "official-pic:");
@@ -113,7 +152,11 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 				}	
 			}	
 		}
-
+*/
+		
+		
+		
+		
 		
 		UIForm formUpload = UIForm.make(tofill, "upload-pic-form");
 		//UIInput.make(form,"file-upload", "uploadBean")
