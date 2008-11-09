@@ -95,6 +95,7 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
 			if (picUrl != NO_PIC_URL) {
 				//System pic present  && not set
+				UIOutput.make(tofill, "remove-image-link");
 				UIMessage.make(tofill, "current-pic-title", "current.picture.title");
 				UILink.make(tofill, "selected-image", picUrl);
 			}else{
@@ -112,51 +113,6 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 				UICommand.make(form, "official-pic-field", UIMessage.make("useOfficialSub"),"uploadBean.useOfficial");
 			}	
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	/*	
-		if (picUrl == null || picUrl.trim().length() == 0){
-
-			//should only display if there is an official pic
-			if (hasProfilePic()) {
-				UIBranchContainer op = UIBranchContainer.make(tofill, "official-pic:");
-				UIMessage.make(op, "official-pic-title", "official.picture.title");
-				UIInternalLink.make(op, "official-pic-image", new ImageViewParamaters("imageServlet", sPerson.getUuid() ));
-				UIForm form = UIForm.make(op, "official-pic-form");
-				UICommand.make(form, "official-pic-field", UIMessage.make("useOfficialSub"),"uploadBean.useOfficial");
-			}	
-		}
-		else{
-			UIOutput.make(tofill, "remove-image-link");
-			if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
-				UIInternalLink.make(tofill, "selected-image", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
-				UIMessage.make(tofill, "current-pic-title", "current.picture.title.official");
-			} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
-				UIMessage.make(tofill, "current-pic-title", "current.picture.title");
-				UILink.make(tofill, "selected-image", picUrl);
-				//should only display if there is an official pic
-				if (hasProfilePic()) {
-					UIBranchContainer op = UIBranchContainer.make(tofill, "official-pic:");
-					UIMessage.make(op, "official-pic-title", "official.picture.title");
-					UIInternalLink.make(op, "official-pic-image", new ImageViewParamaters("imageServlet", sPerson.getUuid() ));
-					UIForm form = UIForm.make(op, "official-pic-form");
-					UICommand.make(form, "official-pic-field", UIMessage.make("useOfficialSub"),"uploadBean.useOfficial");
-				}	
-			}	
-		}
-*/
-		
-		
-		
-		
 		
 		UIForm formUpload = UIForm.make(tofill, "upload-pic-form");
 		//UIInput.make(form,"file-upload", "uploadBean")
