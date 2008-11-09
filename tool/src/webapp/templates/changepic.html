@@ -82,8 +82,7 @@
 
 
 		$('.selectOfficialImage').bind('click', function(){
-			alert('fjfj');
-			$(this).find('.officialPicForm').ajaxSubmit(options);
+			$(this).find('.officialPicForm').submit();
 			return false;
 		});
 
@@ -138,7 +137,7 @@
 		<div class="addItem" id="uploadPicture"> <a href="#">Upload a picture</a></div>
 	</td>
   <td class="activeImage" align="center">
-  	Active<br />
+ <span rsf:id="current-pic-title">My UCT picture</span>
  <img rsf:id="selected-image" src="../images/active-picture.jpg"  width="75px"/>
  <img rsf:id="default-image" src="../images/noimage.jpg"  width="75px"/>
  </td>  
