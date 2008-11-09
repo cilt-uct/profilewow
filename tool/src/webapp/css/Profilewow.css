@@ -41,11 +41,11 @@ border:none;
 
 /* PROFILE PICTURE SELECTION */
 
-.selectImage {
+.selectImage, .selectOfficialImage {
 	padding: 5px;
 }
 
-.selectImage:hover {
+.selectImage:hover, .selectOfficialImage:hover {
 	background: #D2EAF0;
 	padding: 5px;
 }

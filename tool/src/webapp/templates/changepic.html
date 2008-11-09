@@ -81,9 +81,9 @@
 		});
 
 
-		$('#officalPic').unbind('click');
-		$('#officalPic').bind('click', function(){
-			$('.officialPicForm').ajaxSubmit(options);
+		$('.selectOfficialImage').bind('click', function(){
+			alert('fjfj');
+			$(this).find('.officialPicForm').ajaxSubmit(options);
 			return false;
 		});
 
@@ -142,8 +142,8 @@
  <img rsf:id="selected-image" src="../images/active-picture.jpg"  width="75px"/>
  <img rsf:id="default-image" src="../images/noimage.jpg"  width="75px"/>
  </td>  
- <td rsf:id="official-pic:" id="officialPic" class="selectImage" align="center" width="25%">	
-	<span rsf:id="official-pic-title">My UCT picture</span>
+<td rsf:id="official-pic:" id="officialPic" class="selectOfficialImage" align="center" width="25%">	
+	<a href="#"><span rsf:id="official-pic-title">My UCT picture</span></a>
 	<a href="#"><img src="officialPic.gif" alt="Use your official UCT photo" border="none" rsf:id="official-pic-image" /></a>
 	<form rsf:id="official-pic-form" class="officialPicForm">
 	<input  type="hidden" name="select" rsf:id="official-pic-field" />
