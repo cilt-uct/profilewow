@@ -82,7 +82,13 @@
 
 
 		$('.selectOfficialImage').bind('click', function(){
-			$(this).find('.officialPicForm').submit();
+			var opts = {
+				success: function(msg){
+					$(document).trigger('close.facebox');
+					$('.profileImage img').attr('src', $(msg).find('.activeSelectedImage').attr('src'));
+				}
+			};
+			$(this).find('.officialPicForm').ajaxSubmit(opts);
 			return false;
 		});
 
@@ -132,15 +138,14 @@
 <table width="447px">
 	<tr>
   <td colspan="5" width="70%" align="left">
-		
+		<div rsf:id="warning-no-image" class="alertMessage">You are encouraged to set a profile picture to help you network.</div>
 		<div rsf:id="remove-image-link" class="removePicture"><a href="#">Remove your picture</a></div><br />
 		<div class="addItem" id="uploadPicture"> <a href="#">Upload a picture</a></div>
 	</td>
   <td class="activeImage" align="center">
  <span rsf:id="current-pic-title">My UCT picture</span>
- <img rsf:id="selected-image" src="../images/active-picture.jpg"  width="75px"/>
- <img rsf:id="default-image" src="../images/noimage.jpg"  width="75px"/>
- </td>  
+ <img rsf:id="selected-image" class="activeSelectedImage" src="../images/active-picture.jpg"  width="75px"/>
+</td>  
 <td rsf:id="official-pic:" id="officialPic" class="selectOfficialImage" align="center" width="25%">	
 	<a href="#"><span rsf:id="official-pic-title">My UCT picture</span></a>
 	<a href="#"><img src="officialPic.gif" alt="Use your official UCT photo" border="none" rsf:id="official-pic-image" /></a>
