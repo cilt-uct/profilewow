@@ -129,9 +129,10 @@ width:16px;
 }
 
 
-.uploadPictureFrame {
+.uploadPictureForm {
 background-color:#FFFFCC;
 border:1px solid #CCCCCC;
+padding:3px;
 }
 
 /* Success message close icon */
