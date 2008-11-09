@@ -82,7 +82,7 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 		
 		String picUrl = sPerson.getPictureUrl();
 		
-		if (picUrl != null){
+		if (picUrl == null || picUrl.trim().length() == 0){
 			UIOutput.make(tofill, "remove-image-link");
 			if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
 				UIInternalLink.make(tofill, "selected-image", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
