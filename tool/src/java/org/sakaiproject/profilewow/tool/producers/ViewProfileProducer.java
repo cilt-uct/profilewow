@@ -76,7 +76,7 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		
 		if (picUrl == null || picUrl.trim().length() == 0) {
 			picUrl = NO_PIC_URL;
-		} else { 
+		} else 
 			picUrl = sPerson.getPictureUrl();
 			
 			UIBranchContainer picRow = UIBranchContainer.make(tofill, "isImage:");
@@ -85,8 +85,6 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 			} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
 				UILink.make(picRow, "photo", picUrl);
 			} 
-
-		}
 		
 		String fullName = "";
 		

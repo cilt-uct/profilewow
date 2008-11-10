@@ -93,14 +93,13 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 			UIInternalLink.make(tofill, "selected-image", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
 			UIMessage.make(tofill, "current-pic-title", "current.picture.title.official");	
 		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
+			UILink.make(tofill, "selected-image", picUrl);
 			if (picUrl != NO_PIC_URL) {
 				UIOutput.make(tofill, "remove-image-link");
 				UIMessage.make(tofill, "current-pic-title", "current.picture.title");
-				UILink.make(tofill, "selected-image", picUrl);
 			}else{
 			//no profile image at all
 				UIMessage.make(tofill, "warning-no-image", "warning.picture.set");
-				UILink.make(tofill, "selected-image", picUrl);
 				UIMessage.make(tofill, "current-pic-title", "current.picture.title.noimage");			
 			}
 			//should only display if there is an official pic
