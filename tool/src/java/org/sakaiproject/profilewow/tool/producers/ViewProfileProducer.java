@@ -6,6 +6,7 @@ import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
+import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
 
@@ -21,7 +22,7 @@ import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 
 public class ViewProfileProducer implements ViewComponentProducer,ViewParamsReporter {
 
-	private static final String NO_PIC_URL = "../images/noimage.gif";
+	private static final String NO_PIC_URL = ProfilePicRenderer.NO_PIC_URL;
 	private static Log log = LogFactory.getLog(ViewProfileProducer.class);
 	
 	public final static String VIEW_ID="viewProfile";
@@ -77,6 +78,7 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 			picUrl = NO_PIC_URL;
 		} else { 
 			picUrl = sPerson.getPictureUrl();
+			
 			UIBranchContainer picRow = UIBranchContainer.make(tofill, "isImage:");
 			if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
 				UIInternalLink.make(picRow, "photo", new ImageViewParamaters("imageServlet", sPerson.getUuid()));

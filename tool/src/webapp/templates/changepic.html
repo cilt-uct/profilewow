@@ -17,16 +17,16 @@
 			},
    		 success: function(msg) {
 			 $(document).trigger('close.facebox');			 
-			 $('.portletBody').prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
+			 $('.portletBody').eq(0).prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
 			 $('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
 			$('.success div').bind('click', function(){
 				$(this).parent().parent().slideUp('normal');
 			});
     	  }
  	 };
-
-		$.facebox.setHeader($('.titleHeader'));
 		$.facebox.setHeader($('.noExist'));
+		$.facebox.setHeader($('.titleHeader'));
+
 		$('.selectImage').bind('click', function(){
 			that = $(this);
 			//that.attr('class', that.attr('class') + ' imageSelected');

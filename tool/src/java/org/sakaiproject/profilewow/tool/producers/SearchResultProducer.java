@@ -77,7 +77,6 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		
 		searchBoxRenderer.renderSearchBox(tofill, "search:");
 		
-		UIInternalLink.make(tofill, "mainLink", "returnToProfile",new SimpleViewParameters(MainProducer.VIEW_ID));
 		for (int i =0 ; i < profiles.size(); i++) {
 			SakaiPerson sPerson = (SakaiPerson) profiles.get(i);
 			log.debug("creating row for " + sPerson.getGivenName());

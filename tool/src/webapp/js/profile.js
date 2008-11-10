@@ -315,6 +315,7 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 				
 				if($('.passwordForm').find('input[@type=password]').eq(0).val() != $('.passwordForm').find('input[@type=password]').eq(1).val()){
 					$('.passwordForm').find('input[@type=password]').focus();
+					$('.success').hide();
 					msgElem.html('Your passwords do not match.');
 					msgElem.addClass('alertMessage');
 					msgElem.show();
