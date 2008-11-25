@@ -9,6 +9,7 @@ import org.sakaiproject.profilewow.tool.params.SearchViewParamaters;
 import org.sakaiproject.profilewow.tool.producers.templates.PasswordFormRenderer;
 import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
 import org.sakaiproject.profilewow.tool.producers.templates.SearchBoxRenderer;
+import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.messageutil.TargettedMessageList;
@@ -76,6 +77,11 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		if (sPerson == null) {
 			log.debug("creating a new profile!");
 			sPerson = spm.create(userDirectoryService.getCurrentUser().getId(), spm.getUserMutableType());
+			//populate the usename and password
+			User u = userDirectoryService.getCurrentUser();
+			sPerson.setGivenName(u.getFirstName());
+			sPerson.setSurname(u.getLastName());
+			sPerson.setMail(u.getEmail());
 			spm.save(sPerson);
 		}
 
@@ -94,7 +100,9 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		log.debug("uuid: " + sPerson.getUid() + ", agent_uuid: " + sPerson.getAgentUuid());
 		
 		UIOutput.make(tofill,"full-name", sPerson.getGivenName() + " " + sPerson.getSurname());
-		UIOutput.make(tofill,"email", sPerson.getMail());
+		String email = sPerson.getMail();
+		if (email != null && !"".equals(email))
+			UIOutput.make(tofill,"email", email);
 		// not sure what this is meant to be UIOutput.make(tofill,"position", sPerson.getPosition());
 		if (sPerson.getOrganizationalUnit() != null)
 			UIOutput.make(tofill,"department", sPerson.getOrganizationalUnit());
