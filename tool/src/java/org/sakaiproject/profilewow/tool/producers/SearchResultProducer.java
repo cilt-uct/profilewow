@@ -84,6 +84,11 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		this.developerHelperService = developerhelperSerive;
 	}
 
+	/**
+	 * prefix for profile objects
+	 */
+	private static String PROFILE_PREFIX = "profile";
+	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
 		
@@ -126,7 +131,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 			return findProfilesDB(searchString);
 	}
 	
-	private static String PROFILE_PREFIX = "Profile";
+	
 	private List<SakaiPerson> findProfilesSearch(String searchString) {
 		List<SakaiPerson>  searchResults = new ArrayList<SakaiPerson> ();
 		List contexts = new ArrayList();
