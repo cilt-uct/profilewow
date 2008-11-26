@@ -16,5 +16,6 @@
 	<classpathentry kind="var" path="M2_REPO/org/sakaiproject/kernel/sakai-component-manager/1.0RC2-SNAPSHOT/sakai-component-manager-1.0RC2-SNAPSHOT.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/entitybroker-api"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/entitybroker-utils"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sakai-search-api"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

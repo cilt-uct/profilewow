@@ -9,9 +9,14 @@ import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.authz.api.SecurityService;
+import org.sakaiproject.component.api.ServerConfigurationService;
+import org.sakaiproject.entitybroker.EntityReference;
 import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
 import org.sakaiproject.profilewow.tool.params.SearchViewParamaters;
 import org.sakaiproject.profilewow.tool.producers.templates.SearchBoxRenderer;
+import org.sakaiproject.search.api.SearchList;
+import org.sakaiproject.search.api.SearchResult;
+import org.sakaiproject.search.api.SearchService;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
 
@@ -63,9 +68,18 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 	public void setSearchBoxRenderer(SearchBoxRenderer searchBoxRenderer) {
 		this.searchBoxRenderer = searchBoxRenderer;
 	}
-
-
 	
+	private ServerConfigurationService serverConfigurationService;
+	public void setServerConfigurationService(
+			ServerConfigurationService serverConfigurationService) {
+		this.serverConfigurationService = serverConfigurationService;
+	}
+
+	private SearchService searchService;
+	public void setSearchService(SearchService searchService) {
+		this.searchService = searchService;
+	}
+
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
 		
@@ -101,8 +115,54 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 	}
 
 
+	private List<SakaiPerson> findProfiles(String searchString) {
+		if (serverConfigurationService.getBoolean("profilewow.useSearch", false) && searchService.isEnabled())
+			return findProfilesSearch(searchString);
+		else
+			return findProfilesDB(searchString);
+	}
 	
-	private List<SakaiPerson> findProfiles(String searchString)
+	private List<SakaiPerson> findProfilesSearch(String searchString) {
+		List<SakaiPerson>  searchResults = new ArrayList<SakaiPerson> ();
+		List contexts = new ArrayList();
+		contexts.add(".auth");
+		log.info("searchString: " + searchString);
+		String searchFor ="+" + searchString  + " +tool:Profile";
+		log.info("were going to search for: " + searchFor);
+		SearchList res = searchService.search(searchFor, contexts, 0, 100);
+		log.info("got a list of: " + res.size());
+		for (int i =0; i < res.size(); i++) {
+			SearchResult resI = (SearchResult) res.get(i);
+			String ref = resI.getId();
+			String id = EntityReference.getIdFromRef(ref);
+			SakaiPerson profile = sakaiPersonManager.getSakaiPerson(id, sakaiPersonManager.getUserMutableType());
+			// Select the user mutable profile for display on if the public information is viewable.
+			if ((profile != null)
+					&& profile.getTypeUuid().equals(sakaiPersonManager.getUserMutableType().getUuid()))
+			{
+				if ((getCurrentUserId().equals(profile.getAgentUuid()) || securityService.isSuperUser()))
+				{
+					// allow user to search and view own profile and superuser to view all profiles
+					searchResults.add(profile);
+				}
+				else if ((profile.getHidePublicInfo() != null) && (profile.getHidePublicInfo().booleanValue() != true))
+				{
+					if (profile.getHidePrivateInfo() != null && profile.getHidePrivateInfo().booleanValue() != true)
+					{
+						searchResults.add(profile);
+					}
+					else
+					{
+						searchResults.add(getOnlyPublicProfile(profile));
+					}
+
+				}
+			}
+		}
+		return searchResults;
+	}
+	
+	private List<SakaiPerson> findProfilesDB(String searchString)
 	{
 		if (log.isDebugEnabled())
 		{

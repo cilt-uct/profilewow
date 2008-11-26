@@ -69,6 +69,8 @@
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 			<property name="securityService" ref="org.sakaiproject.authz.api.SecurityService" />
 			<property name="searchBoxRenderer" ref="searchBoxRenderer"/>
+			<property name="searchService" ref="org.sakaiproject.search.api.SearchService"/>
+			<property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService"/>
 	</bean>
 	
 	<bean class="org.sakaiproject.profilewow.tool.producers.SelectOfficialPictureProducer">
