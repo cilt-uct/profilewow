@@ -10,6 +10,7 @@ import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.authz.api.SecurityService;
 import org.sakaiproject.component.api.ServerConfigurationService;
+import org.sakaiproject.entitybroker.DeveloperHelperService;
 import org.sakaiproject.entitybroker.EntityReference;
 import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
 import org.sakaiproject.profilewow.tool.params.SearchViewParamaters;
@@ -62,8 +63,6 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		this.userDirectoryService = uds;
 	}
 	
-
-
 	private SearchBoxRenderer searchBoxRenderer;
 	public void setSearchBoxRenderer(SearchBoxRenderer searchBoxRenderer) {
 		this.searchBoxRenderer = searchBoxRenderer;
@@ -78,6 +77,11 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 	private SearchService searchService;
 	public void setSearchService(SearchService searchService) {
 		this.searchService = searchService;
+	}
+	private DeveloperHelperService developerHelperService;
+	public void setDeveloperHelperService(
+			DeveloperHelperService developerhelperSerive) {
+		this.developerHelperService = developerhelperSerive;
 	}
 
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
@@ -122,19 +126,28 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 			return findProfilesDB(searchString);
 	}
 	
+	private static String PROFILE_PREFIX = "Profile";
 	private List<SakaiPerson> findProfilesSearch(String searchString) {
 		List<SakaiPerson>  searchResults = new ArrayList<SakaiPerson> ();
 		List contexts = new ArrayList();
 		contexts.add(".auth");
+		contexts.add(developerHelperService.getCurrentLocationId());
 		log.info("searchString: " + searchString);
-		String searchFor ="+" + searchString  + " +tool:Profile";
+		String searchFor ="+" + searchString; //  + " +tool:" + PROFILE_PREFIX;
 		log.info("were going to search for: " + searchFor);
 		SearchList res = searchService.search(searchFor, contexts, 0, 100);
 		log.info("got a list of: " + res.size());
 		for (int i =0; i < res.size(); i++) {
 			SearchResult resI = (SearchResult) res.get(i);
 			String ref = resI.getId();
+			log.info("ref: " + ref);
 			String id = EntityReference.getIdFromRef(ref);
+			String prefix = EntityReference.getPrefix(ref);
+			if (!PROFILE_PREFIX.equals(prefix)) {
+				log.warn(ref + " is not a profile object");
+				continue;
+			}
+			
 			SakaiPerson profile = sakaiPersonManager.getSakaiPerson(id, sakaiPersonManager.getUserMutableType());
 			// Select the user mutable profile for display on if the public information is viewable.
 			if ((profile != null)

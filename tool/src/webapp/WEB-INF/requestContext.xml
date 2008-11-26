@@ -71,6 +71,7 @@
 			<property name="searchBoxRenderer" ref="searchBoxRenderer"/>
 			<property name="searchService" ref="org.sakaiproject.search.api.SearchService"/>
 			<property name="serverConfigurationService" ref="org.sakaiproject.component.api.ServerConfigurationService"/>
+			<property name="developerHelperService" ref="org.sakaiproject.entitybroker.DeveloperHelperService"/>
 	</bean>
 	
 	<bean class="org.sakaiproject.profilewow.tool.producers.SelectOfficialPictureProducer">
