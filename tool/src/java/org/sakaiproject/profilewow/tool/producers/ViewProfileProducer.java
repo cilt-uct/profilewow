@@ -126,7 +126,7 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		
 		if (sPerson.getNotes() != null) {
 			String notes = sPerson.getNotes();
-			notes = FormattedText.escapeHtmlFormattedText(notes);
+			notes = FormattedText.processFormattedText(notes, new StringBuilder());
 			UIVerbatim.make(tofill,"more-info", notes);
 		}
 		

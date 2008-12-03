@@ -125,7 +125,7 @@ public class ProfileBeanLocator implements BeanLocator {
 			}
 			
 			String notes = sperson.getNotes();
-			notes = FormattedText.escapeHtmlFormattedText(notes);
+			notes = FormattedText.processFormattedText(notes, new StringBuilder());
 			sperson.setNotes(notes);
 			
 			spm.save(person.getSakaiPerson());
