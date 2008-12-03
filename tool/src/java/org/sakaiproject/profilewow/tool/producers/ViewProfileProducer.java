@@ -9,12 +9,14 @@ import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
 import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
+import org.sakaiproject.util.FormattedText;
 
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
+import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
@@ -122,8 +124,11 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		if (sPerson.getMobile() != null && !hidePInfo)
 			UIOutput.make(tofill,"mobile", sPerson.getMobile());
 		
-		if (sPerson.getNotes() != null)
-				UIOutput.make(tofill,"more-info", sPerson.getNotes());
+		if (sPerson.getNotes() != null) {
+			String notes = sPerson.getNotes();
+			notes = FormattedText.escapeHtmlFormattedText(notes);
+			UIVerbatim.make(tofill,"more-info", notes);
+		}
 		
 		
 		

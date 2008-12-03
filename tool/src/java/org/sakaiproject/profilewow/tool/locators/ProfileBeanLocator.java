@@ -16,6 +16,7 @@ import org.sakaiproject.user.api.UserEdit;
 import org.sakaiproject.user.api.UserLockedException;
 import org.sakaiproject.user.api.UserNotDefinedException;
 import org.sakaiproject.user.api.UserPermissionException;
+import org.sakaiproject.util.FormattedText;
 
 import uk.org.ponder.beanutil.BeanLocator;
 import uk.org.ponder.messageutil.TargettedMessage;
@@ -122,6 +123,10 @@ public class ProfileBeanLocator implements BeanLocator {
 				
 				return;
 			}
+			
+			String notes = sperson.getNotes();
+			notes = FormattedText.escapeHtmlFormattedText(notes);
+			sperson.setNotes(notes);
 			
 			spm.save(person.getSakaiPerson());
 			
