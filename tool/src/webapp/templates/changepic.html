@@ -30,10 +30,10 @@
 		$('.selectImage').bind('click', function(){
 			that = $(this);
 			//that.attr('class', that.attr('class') + ' imageSelected');
-			that.parent().find('input[@type*=radio]').each(function(){
+			$('.album').find('input[@type*=radio]').each(function(){
 				$(this).removeAttr('checked');
 			});
-			that.find('input[@type*=radio]').attr('checked', 'checked');
+			that.parent().find('input[@type*=radio]').attr('checked', 'checked');
 			$('#form').ajaxSubmit(options);
 			return false;
 		});		
@@ -93,18 +93,6 @@
 		});
 
 		
-		$('#uploadPicture').bind('click', function(){
-			$('.uploadPictureForm').slideToggle('fast');
-				if($(this).attr('class') == "addItem"){
-					$(this).attr('class', 'removeItem');
-				}else{
-					$(this).attr('class', 'addItem');
-				}
-
-			return false;
-		});	
-
-		
 	});
 		
 	function formSubmit(that){
@@ -120,7 +108,6 @@
 	}	
 	
 </script>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 </head>
 <body rsf:id="scr=sakai-body">
 <div class="portletBody"> 
@@ -131,18 +118,19 @@
 	<span>Message for user here</span>
 </div>
 	
-	
+<form rsf:id="upload-pic-form" id="" class="uploadPictureForm" method="post" enctype="multipart/form-data">
+<span class="addItem">Upload a picture </span>
+<input type="file" name="fileupload1"/>
+<input rsf:id="submit" id="submit" type="submit" class="active" onclick="return formSubmit(this);" value="Upload"/>
+<!-- <input id="submit" type="button" value="Cancel"/> -->
+</form>
+	<div>or select one of the following pictures:</div>
+	<br />
+	<!--
 <table cellpadding="5" align="left">
-
-<tr>	<td>
-<table width="447px">
-	<tr>
-  <td colspan="5" width="70%" align="left">
-		<div rsf:id="warning-no-image" class="alertMessage">You are encouraged to set a profile picture to help you network.</div>
-		<div rsf:id="remove-image-link" class="removePicture"><a href="#">Remove your picture</a></div><br />
-		<div class="addItem" id="uploadPicture"> <a href="#">Upload a picture</a></div>
-	</td>
-  <td class="activeImage" align="center">
+<tr><td>	
+<form method="post" rsf:id="form" id="form">
+<td class="activeImage" align="center">
  <span rsf:id="current-pic-title">My UCT picture</span>
  <img rsf:id="selected-image" class="activeSelectedImage" src="../images/active-picture.jpg"  width="75px"/>
 </td>  
@@ -152,40 +140,15 @@
 	<form rsf:id="official-pic-form" class="officialPicForm">
 	<input  type="hidden" name="select" rsf:id="official-pic-field" />
 	</form>
- </td>
-</tr>
-</table>
-</td></tr>
-<tr><td>
-<table>
-<tr>
-  <td>
-  	
-	<!--
-  	<iframe rsf:id="uploader-frame" id="uploadPictureFrame" name="uploadPictureFrame" class="uploadPictureForm" style="display:none;" width="418" height="60" frameborder="0" marginwidth="10" marginheight="10" scrolling="no" src="uploadpic"></iframe>
-	-->
-
-<form rsf:id="upload-pic-form" id="" class="uploadPictureForm" style="display:none;" method="post" enctype="multipart/form-data">
-<input type="file" name="fileupload1"/>
-<input rsf:id="submit" id="submit" type="submit" class="active" onclick="return formSubmit(this);" value="Upload picture"/>
-<!-- <input id="submit" type="button" value="Cancel"/> -->
-</form>
-	
-
-<hr width="423px" noshade="no"/>
-</td>
-</tr>
-</table>
-</td></tr>
-<tr><td>	
-<form method="post" rsf:id="form" id="form">
-	
-<table cellpadding="5" align="left">
+ </td>	
+<table cellpadding="5" align="left">-->
 <!-- This span is needed here to guide the renderer away to the checkboxes -->
+<!--
 <span rsf:id="select-pic"/>
 	<tr rsf:id="pic-row:">
 	
-	<td rsf:id="pic-cell:" align="center" class="selectImage"><input rsf:id="select" type="radio" name="choose" style="display:none;" />
+	<td rsf:id="pic-cell:" align="center" class="selectImage">
+		<input rsf:id="select" type="radio" name="choose" style="display:none;" />
 	<a href="#"><img rsf:id="pic" src="../images/pictureUnavailable.jpg" width="75px" /></a></td>
 	</tr>
 	</table>
@@ -193,10 +156,34 @@
 </form>	
 	
 	</td></tr>
-</table>   
-
-
-
+</table>   -->
+<form method="post" rsf:id="form" id="form">
+<span rsf:id="select-pic"/>
+	  <div class="album">	
+		 <div class="imageSingle" rsf:id="selected-image:">
+		   <div class="image activeSelectedImage"><img rsf:id="selected-image" src="../images/pictureUnavailable.jpg" width="75px" /></div>
+		</div>
+		
+		<div class="imageSingle" rsf:id="no-image:">
+		   <div class="image removePicture"><a href="#"><img rsf:id="no-image" src="../images/pictureUnavailable.jpg" width="75px" /></a></div>
+		</div>
+		
+		 <div class="imageSingle" rsf:id="official-pic:">
+		   <div class="image selectOfficialImage"><a href="#"><img rsf:id="official-pic-image" src="../images/pictureUnavailable.jpg" width="75px" /></a></div>
+		   	<form rsf:id="official-pic-form" class="officialPicForm">
+				<input  type="hidden" name="select" rsf:id="official-pic-field" />
+			</form>
+		</div>
+	
+	
+	
+	    <div class="imageSingle" rsf:id="pic-cell:">
+	    	<input rsf:id="select" type="radio" name="choose" style="display:none;" />
+		   <div class="image selectImage"><a href="#"><img rsf:id="pic" src="../images/pictureUnavailable.jpg" width="75px" /></a></div>
+		</div>
+	  </div>
+	  <input type="hidden" rsf:id="submit" value="Change picture" />    
+</form>
 </div>
-</body>
+</body> 
 </html>

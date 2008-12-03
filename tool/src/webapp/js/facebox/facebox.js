@@ -77,7 +77,7 @@
 
   $.extend($.facebox, {
     settings: {
-      opacity      : 0.2,
+      opacity      : 0.04,
       overlay      : true,
       loadingImage : '',
       closeImage   : '/library/image/sakai/cross.png',

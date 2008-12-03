@@ -103,10 +103,6 @@ padding-left:2em;
 background:transparent url(/library/image/silk/cross.png) no-repeat scroll left center;
 padding-left:2em;
 }
-.removePicture {
-background:transparent url(/library/image/silk/delete.png) no-repeat scroll left center;
-padding-left:2em;
-}
 
 .editProfileHover {
 	float: right;
@@ -126,13 +122,6 @@ position:absolute;
 text-indent:20px;
 top:30px;
 width:16px;
-}
-
-
-.uploadPictureForm {
-background-color:#FFFFCC;
-border:1px solid #CCCCCC;
-padding:3px;
 }
 
 /* Success message close icon */
@@ -181,4 +170,40 @@ border:1px solid #CCCCCC;
 margin: 0 0 10px 10px;
 padding-bottom: 10px;
 
+}
+
+.album{
+  width:100%;
+  float:left
+}
+.album .imageSingle {
+  float: left; 
+  padding: 5px; 
+  width:75px; 
+  text-align:center; 
+}
+.album .imageSingle .image:hover {
+background: #D2EAF0;
+}
+.album .imageSingle .image {
+height:70px;
+overflow:hidden;
+width:75px;
+padding:3px;
+}
+.album .footer {
+  text-align:center;
+  width: 156px; 
+  border-top:solid 1px #333; 
+  color:#999; 
+  font-weight:bold; 
+  padding-top: 7px; 
+  padding-bottom:7px; 
+  margin-top: 10px;
+}
+
+.activeSelectedImage{
+background:#EEEEEE none repeat scroll 0 0;
+border:1px solid #0099CC;
+margin:-1px;
 }
