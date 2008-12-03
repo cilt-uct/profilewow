@@ -163,11 +163,14 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		UIInput.make(form,"editProfileForm-school", otpBean + ".campus", sPerson.getCampus());
 		UIInput.make(form,"editProfileForm-room", otpBean + ".roomNumber", sPerson.getRoomNumber());
 		
+		String mail = sPerson.getMail();
+		if (mail == null)
+			mail = "";
 		if (canEditeEmail(userDirectoryService.getCurrentUser())) {
-			UIInput.make(form,"editProfileForm-email", otpBean + ".mail", sPerson.getMail());
+			UIInput.make(form,"editProfileForm-email", otpBean + ".mail", mail);
 		} else {
-			UIOutput.make(form, "emailNoEdit", sPerson.getMail());
-			form.parameters.add(new UIELBinding(otpBean + ".mail" ,sPerson.getMail()));
+			UIOutput.make(form, "emailNoEdit", mail);
+			form.parameters.add(new UIELBinding(otpBean + ".mail" ,mail));
 		}
 		UIInput.make(form,"editProfileForm-title", otpBean + ".title", sPerson.getTitle());
 		//not in profile data yet
