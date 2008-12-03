@@ -11,6 +11,7 @@ import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
 import org.sakaiproject.profilewow.tool.producers.templates.SearchBoxRenderer;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
+import org.sakaiproject.util.FormattedText;
 
 import uk.org.ponder.messageutil.TargettedMessageList;
 import uk.org.ponder.rsf.components.UIBoundString;
@@ -22,6 +23,7 @@ import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIMessage;
 import uk.org.ponder.rsf.components.UIOutput;
+import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
@@ -117,8 +119,13 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		if(sPerson.getMobile() != null)
 			UIOutput.make(tofill,"mobile", sPerson.getMobile());
 		
-		if (sPerson.getNotes() != null)
-			UIOutput.make(tofill,"moreinfo", sPerson.getNotes());
+	
+		if (sPerson.getNotes() != null) {
+			String notes = sPerson.getNotes();
+			notes = FormattedText.processFormattedText(notes, new StringBuilder());
+			UIVerbatim.make(tofill,"moreinfo", notes);
+		}
+		
 		
 		if (sPerson.getLabeledURI() != null)
 			UILink.make(tofill, "homepage", sPerson.getLabeledURI(),sPerson.getLabeledURI());
