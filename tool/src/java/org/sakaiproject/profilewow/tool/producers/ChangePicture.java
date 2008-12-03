@@ -113,7 +113,8 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 				UIBranchContainer op = UIBranchContainer.make(tofill, "official-pic:");
 				UIMessage.make(op, "official-pic-title", "official.picture.title");
 				UIInternalLink.make(op, "official-pic-image", new ImageViewParamaters("imageServlet", sPerson.getUuid() ));
-				UIForm form = UIForm.make(op, "official-pic-form");
+				UIBranchContainer op2 = UIBranchContainer.make(tofill, "official-pic-form:");
+				UIForm form = UIForm.make(op2, "official-pic-form");
 				UICommand.make(form, "official-pic-field", UIMessage.make("useOfficialSub"),"uploadBean.useOfficial");
 			}	
 		}

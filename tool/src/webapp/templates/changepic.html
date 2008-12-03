@@ -88,7 +88,7 @@
 					$('.profileImage img').attr('src', $(msg).find('.activeSelectedImage').attr('src'));
 				}
 			};
-			$(this).find('.officialPicForm').ajaxSubmit(opts);
+			$('.officialPicForm').ajaxSubmit(opts);
 			return false;
 		});
 
@@ -170,13 +170,8 @@
 		
 		 <div class="imageSingle" rsf:id="official-pic:">
 		   <div class="image selectOfficialImage"><a href="#"><img rsf:id="official-pic-image" src="../images/pictureUnavailable.jpg" width="75px" /></a></div>
-		   	<form rsf:id="official-pic-form" class="officialPicForm">
-				<input  type="hidden" name="select" rsf:id="official-pic-field" />
-			</form>
 		</div>
-	
-	
-	
+
 	    <div class="imageSingle" rsf:id="pic-cell:">
 	    	<input rsf:id="select" type="radio" name="choose" style="display:none;" />
 		   <div class="image selectImage"><a href="#"><img rsf:id="pic" src="../images/pictureUnavailable.jpg" width="75px" /></a></div>
@@ -184,6 +179,11 @@
 	  </div>
 	  <input type="hidden" rsf:id="submit" value="Change picture" />    
 </form>
+<div style="display:none;" rsf:id="official-pic-form:">
+<form rsf:id="official-pic-form" class="officialPicForm">
+				<input  type="hidden" name="select" rsf:id="official-pic-field" />
+			</form>
+			</div>
 </div>
 </body> 
 </html>
