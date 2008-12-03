@@ -162,7 +162,13 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		UIInput.make(form,"editProfileForm-department", otpBean + ".organizationalUnit", sPerson.getOrganizationalUnit());
 		UIInput.make(form,"editProfileForm-school", otpBean + ".campus", sPerson.getCampus());
 		UIInput.make(form,"editProfileForm-room", otpBean + ".roomNumber", sPerson.getRoomNumber());
-		UIInput.make(form,"editProfileForm-email", otpBean + ".mail", sPerson.getMail());
+		
+		if (canEditeEmail(userDirectoryService.getCurrentUser())) {
+			UIInput.make(form,"editProfileForm-email", otpBean + ".mail", sPerson.getMail());
+		} else {
+			UIOutput.make(form, "emailNoEdit", sPerson.getMail());
+			form.parameters.add(new UIELBinding(otpBean + ".mail" ,sPerson.getMail()));
+		}
 		UIInput.make(form,"editProfileForm-title", otpBean + ".title", sPerson.getTitle());
 		//not in profile data yet
 		UIInput.make(form,"editProfileForm-country", otpBean + ".localityName", sPerson.getLocalityName());
@@ -229,6 +235,16 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 	private boolean canEditeName(User u) {
 		if (securityService.unlock(UserDirectoryService.SECURE_UPDATE_USER_OWN_NAME, "/site/" + toolManager.getCurrentPlacement().getContext())) {
 			log.debug("user can change name");
+			return true;
+		}
+		return false;		
+	
+		
+	}
+	
+	private boolean canEditeEmail(User u) {
+		if (securityService.unlock(UserDirectoryService.SECURE_UPDATE_USER_OWN_EMAIL, "/site/" + toolManager.getCurrentPlacement().getContext())) {
+			log.debug("user can change email");
 			return true;
 		}
 		return false;		
