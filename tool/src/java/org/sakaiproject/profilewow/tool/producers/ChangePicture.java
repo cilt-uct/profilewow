@@ -92,6 +92,8 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 			//UIOutput.make(tofill, "remove-image-link");
 			UIBranchContainer uib = UIBranchContainer.make(tofill, "selected-image:");
 			UIInternalLink.make(uib, "selected-image", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
+			UIBranchContainer uib2 = UIBranchContainer.make(tofill, "no-image:");
+			UIInternalLink.make(uib2, "no-image", NO_PIC_URL);
 			//UIMessage.make(tofill, "current-pic-title", "current.picture.title.official");	
 		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
 			UIBranchContainer uib = UIBranchContainer.make(tofill, "selected-image:");

@@ -18,7 +18,7 @@
    		 success: function(msg) {
 			 $(document).trigger('close.facebox');			 
 			 $('.portletBody').eq(0).prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
-			 $('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
+			 //$('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
 			$('.success div').bind('click', function(){
 				$(this).parent().parent().slideUp('normal');
 			});
@@ -29,6 +29,7 @@
 
 		$('.selectImage').bind('click', function(){
 			that = $(this);
+			$('.profileImage img').attr('src', $(this).find('img').attr('src'));
 			//that.attr('class', that.attr('class') + ' imageSelected');
 			$('.album').find('input[@type*=radio]').each(function(){
 				$(this).removeAttr('checked');
@@ -82,10 +83,11 @@
 
 
 		$('.selectOfficialImage').bind('click', function(){
+			$('.profileImage img').attr('src', $(this).find('img').attr('src'));
 			var opts = {
 				success: function(msg){
 					$(document).trigger('close.facebox');
-					$('.profileImage img').attr('src', $(msg).find('.activeSelectedImage').attr('src'));
+					//$('.profileImage img').attr('src', $(msg).find('.activeSelectedImage').attr('src'));
 				}
 			};
 			$('.officialPicForm').ajaxSubmit(opts);
