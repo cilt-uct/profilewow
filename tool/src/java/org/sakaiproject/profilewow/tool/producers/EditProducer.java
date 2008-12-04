@@ -181,7 +181,13 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		UIInput.make(form,"editProfileForm-mobile", otpBean + ".mobile", sPerson.getMobile());
 		UIInput.make(form,"editProfileForm-more", otpBean + ".notes", sPerson.getNotes());
 
-
+		//validate messages
+		
+		UIOutput.make(form, "validateRequired", messageLocator.getMessage("validate.required"));
+		UIOutput.make(form, "validateEmail", messageLocator.getMessage("validate.email"));
+		UIOutput.make(form, "validateUrl", messageLocator.getMessage("validate.url"));
+		UIOutput.make(form, "validateDate", messageLocator.getMessage("validate.date"));
+		UIOutput.make(form, "validateMinlength", messageLocator.getMessage("validate.minlength"));
 
 		//hide
 		String hideS = "false";

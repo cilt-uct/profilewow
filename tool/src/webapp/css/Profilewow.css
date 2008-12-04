@@ -207,3 +207,9 @@ background:#EEEEEE none repeat scroll 0 0;
 border:1px solid #0099CC;
 margin:-1px;
 }
+label.error {
+width:220px;
+margin-left:15px;
+color:#993333;
+font-size:1em;
+}

@@ -434,5 +434,5 @@ function showUpload(){
 	
 function frameGrow(){
 	    	var frame = parent.document.getElementById(window.name);
-	  		$(frame).height(parent.document.body.scrollHeight + 100);
+	  		$(frame).height(parent.document.body.scrollHeight + 270);
 }

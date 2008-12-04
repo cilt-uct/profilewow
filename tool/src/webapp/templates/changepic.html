@@ -77,6 +77,7 @@
 			$('input[@type*=radio]').each(function(){
 				$(this).removeAttr('checked');
 			});
+			$('.profileImage img').attr('src', $(this).find('img').attr('src'));
 			$('#form').ajaxSubmit(options);
 			return false;
 		});
@@ -99,7 +100,15 @@
 		
 	function formSubmit(that){
 		if ($('input[@name*=fileupload1]').val()) {
-			$('#uploadPicture').attr('class', 'loading');
+			var reg = new RegExp("^.+\.(jpg|jpeg|png|gif|bmp)$","i");
+                        if ( reg.test($('input[@name*=fileupload1]').val()) ) {
+                                return true;
+                        } else {
+                                alert('Only images allowed');
+								return false;
+                        } 
+			$(this).attr('disabled','disabled');
+			$('#progress').attr('class', 'loading');
 			$(that).unbind('click');
 			$(that).bind('click', function(){return false});
 			return true;
@@ -120,12 +129,13 @@
 	<span>Message for user here</span>
 </div>
 	
-<form rsf:id="upload-pic-form" id="" class="uploadPictureForm" method="post" enctype="multipart/form-data">
+<form rsf:id="upload-pic-form" id="" name="uploadPictureForm" class="uploadPictureForm" method="post" enctype="multipart/form-data">
 <span class="addItem">Upload a picture </span>
 <input type="file" name="fileupload1"/>
 <input rsf:id="submit" id="submit" type="submit" class="active" onclick="return formSubmit(this);" value="Upload"/>
 <!-- <input id="submit" type="button" value="Cancel"/> -->
 </form>
+<div id="progress"> &nbsp;</div>
 	<div>or select one of the following pictures:</div>
 	<br />
 	<!--
