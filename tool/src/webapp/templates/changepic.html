@@ -12,7 +12,10 @@
 		var options = {
 			beforeSend: function(){
 				$('.success').each(function(){
-					$(this).slideUp('fast');
+					$(this).fadeOut('fast');
+				});				
+				$('.alertMessage').each(function(){
+					$(this).fadeOut('fast');
 				});
 			},
    		 success: function(msg) {
@@ -20,7 +23,7 @@
 			 $('.portletBody').eq(0).prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
 			 //$('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
 			$('.success div').bind('click', function(){
-				$(this).parent().parent().slideUp('normal');
+				$(this).parent().parent().fadeOut('normal');
 			});
     	  }
  	 };

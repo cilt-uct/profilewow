@@ -151,9 +151,8 @@ background-color:#D2EAF0;
 color:#666666;
 font-size:11px;
 font-weight:bold;
-margin:0 0 10px 0;
 padding:2px;
-text-transform:uppercase;
+text-transform:capitalize;
 
 }
 
@@ -161,7 +160,6 @@ text-transform:uppercase;
 border:1px solid #CCCCCC;
 margin: 0 0 10px 10px;
 background-color:#F3F4F5;
-padding-bottom: 10px;
 
 }
 
@@ -212,4 +210,10 @@ width:220px;
 margin-left:15px;
 color:#993333;
 font-size:1em;
+}
+
+.reqStarProfile {
+color:#BB1111;
+font-size:1em;
+font-weight:bold;
 }

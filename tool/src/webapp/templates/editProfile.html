@@ -7,33 +7,9 @@
 	src="../js/jquery.validate.js"></script>
 <script>
 	$(document).ready(function(){
-		var options = {
-			beforeSend: function(){
-				$('.success').each(function(){
-					$(this).slideUp('fast');
-				});
-			},
-			success: function(msg){
-				var obj = $(msg).find('.success').html();
-				if(obj == null){
-					$('td[rel*=infoCell]').html(msg);
-				}else{
-					$('td[@rel*=infoCell]').html($(msg).find('td[@rel*=infoCell]').html());
-		        	 $('.portletBody').prepend('<span class="success">' + obj + '<a href="#"><div name="closeMsg">close</div></a></span>');
-					 $(document).trigger('close.facebox');
-					window.location.href = '#top';
-					$('.success div').bind('click', function(){
-						$(this).parent().parent().slideUp('normal');
-					});
-				}
-
-			},
-			error: function(e){}
-		};
 		//$('#edit-form').ajaxForm(options);
 		var hide = function(){
 			$('td[rel*=infoCell]').html($('#infoCell-backup').html());
-			window.location.href = '#top';
 			$('#infoCell-backup').remove();
 			return false;
 		}
@@ -48,9 +24,41 @@
 		
 		
 		$('#edit-form').validate({
-			submitHandler: function(form) {
-				$(form).ajaxForm(options);
-			}
+			/*submitHandler: function(form) {
+				var d = $(form).formToArray();
+				$.ajax({
+					type: 'POST',
+					url: $(form).attr('action'),
+					data: d,
+					dataType: "html",
+					beforeSend: function(){
+						$('.success').each(function(){
+							$(this).fadeOut('fast');
+						});
+					},
+					success: function(msg){
+						var obj = $(msg).find('.success').html();
+						//if(obj == null){
+						//	$('td[rel*=infoCell]').html(msg);
+						//}else{
+							$('td[@rel*=infoCell]').html($(msg).find('td[@rel*=infoCell]').html());
+				        	 $('.portletBody').prepend('<span class="success">' + obj + '<a href="#"><div name="closeMsg">close</div></a></span>');
+							 $(document).trigger('close.facebox');
+							window.location.href = '#top';
+							$('.success div').bind('click', function(){
+								$(this).parent().parent().fadeOut('normal');
+							});
+						//}
+		
+					},
+					error: function(e){}
+					});
+					//$('input[@type*=submit]').attr('disabled','disabled');
+					//return false;
+					//$(form).unbind('submit').find(':submit,input:image').unbind('click'); //this is the magic fix, unbinding it.
+					//$(form).ajaxForm(options);
+					//$('#edit-form input[@type*=submit]').click();
+			}*/
 		});
 	
 	});
@@ -76,7 +84,7 @@ Required information marked <span rsf:id="msg=reqStar"
 <table class="" summary="layout">
 	<tbody>
 		<tr>
-			<td><span rsf:id="msg=reqStar" class="reqStar">*</span>First
+			<td><span rsf:id="msg=reqStar" class="reqStarProfile">*</span>First
 			Name</td>
 			<td><span class="shorttext"><input
 				rsf:id="editProfileForm-first_name"
@@ -85,7 +93,7 @@ Required information marked <span rsf:id="msg=reqStar"
 				</span></td>
 		</tr>
 		<tr>
-			<td><span rsf:id="msg=reqStar" class="reqStar">*</span>Last Name</td>
+			<td><span rsf:id="msg=reqStar" class="reqStarProfile">*</span>Last Name</td>
 			<td><span class="shorttext"><input
 				rsf:id="editProfileForm-lname" name="editProfileForm:lname"
 				class="required" minlength="3" value="daffy" size="30" type="text" />
@@ -106,7 +114,7 @@ Required information marked <span rsf:id="msg=reqStar"
 		</tr>
         -->
 		<tr>
-			<td><span rsf:id="msg=reqStar" class="reqStar">*</span>Email</td>
+			<td><span rsf:id="msg=reqStar" class="reqStarProfile">*</span>Email</td>
 			<td><span class="shorttext"><input
 				rsf:id="editProfileForm-email" name="editProfileForm:email"
 				class="required email" size="30" type="text" />

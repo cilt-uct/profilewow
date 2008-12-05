@@ -79,7 +79,7 @@
     settings: {
       opacity      : 0.04,
       overlay      : true,
-      loadingImage : '',
+      loadingImage : '/library/image/sakai/s.gif',
       closeImage   : '/library/image/sakai/cross.png',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\

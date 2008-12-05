@@ -265,7 +265,7 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 			return false;
 		}
 		if($('.success')){
-			$('.success').slideUp('fast');
+			$('.success').fadeOut('fast');
 		}
 		var elem = $('td[rel*=infoCell]');
 		var elemHTML = elem.html();		
@@ -300,14 +300,14 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 		
 		var passOpts = {
 			beforeSend: function(){
-				frameGrow();
+				//frameGrow();
 				//alert($('.passwordForm').find('input[@type=password]').eq(0).attr('name'));
 				var msgElem = $('#passwordMsg');		
 				msgElem.hide();
-		
+				msgElem.removeClass();
 				if(!/\S/.test($('.passwordForm').find('input[@type=password]').eq(0).val())){
 					$('.passwordForm').find('input[@type=password]').eq(0).focus();
-					msgElem.html('Enter a new password.');
+					msgElem.text('Enter a new password.');
 					msgElem.addClass('alertMessage');
 					msgElem.show();
 					return false;
@@ -316,7 +316,7 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 				if($('.passwordForm').find('input[@type=password]').eq(0).val() != $('.passwordForm').find('input[@type=password]').eq(1).val()){
 					$('.passwordForm').find('input[@type=password]').focus();
 					$('.success').hide();
-					msgElem.html('Your passwords do not match.');
+					msgElem.text('Your passwords do not match.');
 					msgElem.addClass('alertMessage');
 					msgElem.show();
 					return false;
@@ -328,8 +328,9 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 			},
 			success: function(msg){
 				var msgElem = $('#passwordMsg');
-				//msgElem.addClass('success');
-				msgElem.html($(msg).find('.success'));
+				msgElem.removeClass('alertMessage');
+				msgElem.html($(msg).find('.success').html());
+				msgElem.addClass('success');
 				$(this).removeAttr('disabled');
 				$('.passwordForm').find('input[@type=password]').eq(0).val('');
 				$('.passwordForm').find('input[@type=password]').eq(1).val('');
@@ -399,7 +400,7 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 				$('#infoCell-backup').remove();
 			}
 			if($('.success')){
-				$('.success').slideUp('fast');
+				$('.success').fadeOut('fast');
 			}
 			var target = this.href;
 			var elem = $('td[rel*=infoCell]');
