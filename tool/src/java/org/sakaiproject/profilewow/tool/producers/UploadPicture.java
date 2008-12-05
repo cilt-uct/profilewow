@@ -32,13 +32,7 @@ public class UploadPicture implements ViewComponentProducer, NavigationCaseRepor
 	}
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
-		// TODO Auto-generated method stub
-		
-		UIForm form = UIForm.make(tofill, "upload-pic-form");
-		//UIInput.make(form,"file-upload", "uploadBean")
-		UICommand.make(form,"submit","uploadBean.processUpload");
-		
-		
+
 		
 		
 	}

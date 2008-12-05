@@ -102,16 +102,14 @@
 		if ($('input[@name*=fileupload1]').val()) {
 			var reg = new RegExp("^.+\.(jpg|jpeg|png|gif|bmp)$","i");
                         if ( reg.test($('input[@name*=fileupload1]').val()) ) {
-                                return true;
+								$('#progress').html('&nbsp;');
+								$('#progress').attr('class', 'loading');			
+								return true;
                         } else {
-                                alert('Only images allowed');
+							$('#progress').addClass('alertMessage');
+                                $('#progress').html('Only images allowed');
 								return false;
-                        } 
-			$(this).attr('disabled','disabled');
-			$('#progress').attr('class', 'loading');
-			$(that).unbind('click');
-			$(that).bind('click', function(){return false});
-			return true;
+                        }
 			}
 		else {					
 		return false;
@@ -134,8 +132,8 @@
 <input type="file" name="fileupload1"/>
 <input rsf:id="submit" id="submit" type="submit" class="active" onclick="return formSubmit(this);" value="Upload"/>
 <!-- <input id="submit" type="button" value="Cancel"/> -->
-</form>
-<div id="progress"> &nbsp;</div>
+<div id="progress"> &nbsp;</div></form>
+
 	<div>or select one of the following pictures:</div>
 	<br />
 	<!--

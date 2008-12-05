@@ -86,14 +86,6 @@ public class UploadBean {
 			}
 			
 			// validate the input
-			
-			
-
-			
-			
-			
-				
-		
 			try {
 				//resize
 				BufferedImage in = ImageIO.read(mapFile.getInputStream());
@@ -107,10 +99,10 @@ public class UploadBean {
 				
 				
 				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return "error";
+			} catch (Exception e) {
+				log.warn("this is not a real picture!");
+				messages.addMessage(new TargettedMessage("editProfile.photoTypeInvalid", new Object[] {}, TargettedMessage.SEVERITY_ERROR));
+				return "invalid";
 			}
 			
 		}
@@ -138,9 +130,11 @@ public class UploadBean {
 	}
 	
 	
-	private BufferedImage resize(BufferedImage img) {
+	private BufferedImage resize(BufferedImage img) throws Exception {
+
 		if (img.getWidth() <= 75)
 			return img;
+	
 		
 		log.info("image of w: " + img.getWidth() + " h: " + img.getHeight());
 		//we need to keep the aspect ratio

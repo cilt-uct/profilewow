@@ -35,6 +35,8 @@ import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UISelect;
 import uk.org.ponder.rsf.components.UISelectChoice;
 import uk.org.ponder.rsf.components.UIVerbatim;
+import uk.org.ponder.rsf.flow.ARIResult;
+import uk.org.ponder.rsf.flow.ActionResultInterceptor;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.rsf.view.ComponentChecker;
@@ -43,7 +45,7 @@ import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.stringutil.StringList;
 
-public class ChangePicture implements ViewComponentProducer, NavigationCaseReporter {
+public class ChangePicture implements ViewComponentProducer, ActionResultInterceptor {
 
 	private static Log log = LogFactory.getLog(ChangePicture.class);
 	private static final String NO_PIC_URL = ProfilePicRenderer.NO_PIC_URL;
@@ -162,14 +164,13 @@ public class ChangePicture implements ViewComponentProducer, NavigationCaseRepor
 		return false;
 		
 	}
-	public List reportNavigationCases() {
-		List togo = new ArrayList(); // Always navigate back to this view.
-		togo.add(new NavigationCase(null, new SimpleViewParameters(VIEW_ID)));
-		togo.add(new NavigationCase("success", new SimpleViewParameters(MainProducer.VIEW_ID)));
-		return togo;
-	}
 
-	
+	public void interceptActionResult(ARIResult result,
+			ViewParameters incoming, Object actionReturn) {
+		// TODO Auto-generated method stub
+		result.resultingView = new SimpleViewParameters(MainProducer.VIEW_ID);
+		log.warn("intecept object.");
+	}
 
 	
 }
