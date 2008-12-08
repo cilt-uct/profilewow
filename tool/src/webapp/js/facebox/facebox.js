@@ -239,6 +239,7 @@
     return windowHeight
   }
 
+
   // Backwards compatibility
   function makeCompatible() {
     var $s = $.facebox.settings

@@ -258,6 +258,20 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 		return false;
 	});
 
+		$('.profileImage img').tooltip({ 
+		    delay: 0, 
+		    showURL: false, 
+		    bodyHandler: function() { 
+			var fileName = this.src.substring(this.src.lastIndexOf('/') + 1);
+			var reg = new RegExp('imageServlet[?]');
+			if(reg.test(fileName))
+		        return $("<div/>").text("UCT picture"); 
+			else if(fileName == 'noimage.gif')
+				return $("<div/>").text("Default picture");
+			else
+			return $("<div/>").text(fileName);
+		    } 
+		});
 	
 	$('.searchBtn').bind('click', function(){
 		if(!/\S/.test($('.searchForm').find('input[@type=text]').val())){
@@ -426,6 +440,7 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 			return false;
 		});
 		
+
 		
 	}); 	
 	

@@ -29,6 +29,21 @@
  	 };
 		$.facebox.setHeader($('.noExist'));
 		$.facebox.setHeader($('.titleHeader'));
+		
+		$('.image img').tooltip({ 
+		    delay: 0, 
+		    showURL: false, 
+		    bodyHandler: function() { 
+			var fileName = this.src.substring(this.src.lastIndexOf('/') + 1);
+			var reg = new RegExp('imageServlet[?]');
+			if(reg.test(fileName))
+		        return $("<div/>").text("UCT picture"); 
+			else if(fileName == 'noimage.gif')
+				return $("<div/>").text("Default picture");
+			else
+			return $("<div/>").text(fileName);
+		    } 
+		});
 
 		$('.selectImage').bind('click', function(){
 			that = $(this);
