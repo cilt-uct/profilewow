@@ -37,31 +37,10 @@
 </head>
 
 <body>
-<div> 
-<table class="tablesorter">
-	<thead>
-		<tr>
-			<th>
-				<h3 rsf:id="searchTitle">Search for <i>{search term}</i></h3>
-			</th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr>
-			<th>
-				<div rsf:id="limitmessage">Your search returned a lot of results. Please enter a more specific name to search for.</div>
-			</th>
-		</tr>
-	</tfoot>
-	<tbody>
-	<tr rsf:id="resultRow:">
-		<td>
-			<a href="viewProfile.html" rsf:id="resultLink" rel="facebox">Search results go here</a>
-		</td>
-	</tr>
-	</tbody>
-</table>
-
+<div> <h3 rsf:id="searchTitle">Search for <i>{search term}</i></h3>
+	<div rsf:id="resultRow:">
+			<a href="viewProfile.html" rsf:id="resultLink" rel="facebox">Search results go here</a></div>
+<div rsf:id="limitmessage" class="information">Your search returned a lot of results. Please enter a more specific term to get better results.</div>
 <br />
 <input type="button" class="cancel" value="Back" />
 </div>
