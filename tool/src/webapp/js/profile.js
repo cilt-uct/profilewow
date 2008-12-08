@@ -274,12 +274,24 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 		});
 	
 	$('.searchBtn').bind('click', function(){
+		if($('.searchForm div'))
+			$('.searchForm div').each(function(){
+				$(this).remove();
+			});
 		if(!/\S/.test($('.searchForm').find('input[@type=text]').val())){
+			$('.searchForm').find('input[@type=text]').focus();
+			return false;
+		}
+		if($('.searchForm').find('input[@type=text]').val().length < 4){
+			$('.searchForm').append($('<div/>').text('Enter a longer name to start searching.').addClass('alertMessage'));
 			$('.searchForm').find('input[@type=text]').focus();
 			return false;
 		}
 		if($('.success')){
 			$('.success').fadeOut('fast');
+		}		
+		if($('.alertMessage')){
+			$('.alertMessage').fadeOut('fast');
 		}
 		var elem = $('td[rel*=infoCell]');
 		var elemHTML = elem.html();		
