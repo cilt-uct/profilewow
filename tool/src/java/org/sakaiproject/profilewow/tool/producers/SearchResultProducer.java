@@ -112,7 +112,11 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 				log.debug("user does not exits"  + sPerson.getAgentUuid());
 				continue;
 			}
-			UIInternalLink.make(row, "resultLink", sPerson.getSurname() + ", " + sPerson.getGivenName(),
+			if(sPerson.getSurname()==null && sPerson.getGivenName()==null){
+				UIInternalLink.make(row, "resultLink", eid, new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, eid));
+			}
+			else
+			UIInternalLink.make(row, "resultLink", sPerson.getSurname() == null ? sPerson.getSurname() : "" + sPerson.getGivenName()==null ? sPerson.getGivenName() : "",
 					new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, eid));
 		}
 
@@ -186,7 +190,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		{
 			log.debug("findProfiles(" + searchString + ")");
 		}
-		if (searchString == null || searchString.length() < 1)
+		if (searchString == null || searchString.length() < 4)
 			throw new IllegalArgumentException("Illegal searchString argument passed!");
 
 		List profiles = sakaiPersonManager.findSakaiPerson(searchString);
