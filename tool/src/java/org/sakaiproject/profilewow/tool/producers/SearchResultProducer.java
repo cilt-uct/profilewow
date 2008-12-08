@@ -125,7 +125,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 			}
 			
 		}
-		if(profiles.size() <= 15)
+		if(profiles.size() == 15)
 				UIOutput.make(tofill, "limitmessage");
 			log.info(profiles.size());
 	}
