@@ -116,10 +116,10 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 				UIInternalLink.make(row, "resultLink", eid, new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, eid));
 			}
 			else{
-				String sName = sPerson.getSurname() == null ? "" : sPerson.getSurname();
-				String comma = (sPerson.getSurname() != null && sPerson.getGivenName()!=null) ? ", " : "";
-				String fName = sPerson.getGivenName()==null ? "" : sPerson.getGivenName();
-			UIInternalLink.make(row, "resultLink", sName + comma + fName,
+				String label = sPerson.getSurname() == null ? "" : sPerson.getSurname();
+				label += (sPerson.getSurname() != null && sPerson.getGivenName()!=null) ? ", " : "";
+				label += sPerson.getGivenName()==null ? "" : sPerson.getGivenName();
+			UIInternalLink.make(row, "resultLink", label,
 					new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, eid));
 			}
 		}
