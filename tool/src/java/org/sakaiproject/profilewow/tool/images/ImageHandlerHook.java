@@ -97,9 +97,10 @@ public class ImageHandlerHook implements HandlerHook {
 			SakaiPerson uPerson = null;
 			if (ivp.userId != null) {
 				person = spm.getSakaiPerson(spm.getSystemMutableType());
-				person = spm.getSakaiPerson(spm.getUserMutableType());
+				uPerson = spm.getSakaiPerson(spm.getUserMutableType());
 			} else {
-				person = spm.getSakaiPerson(ivp.userId, spm.getUserMutableType());
+				person = spm.getSakaiPerson(ivp.userId, spm.getSystemMutableType());
+				uPerson = spm.getSakaiPerson(ivp.userId, spm.getUserMutableType());
 			}
 
 			if (person == null) {
