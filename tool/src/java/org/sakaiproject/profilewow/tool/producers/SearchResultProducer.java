@@ -116,7 +116,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 				UIInternalLink.make(row, "resultLink", eid, new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, eid));
 			}
 			else
-			UIInternalLink.make(row, "resultLink", sPerson.getSurname() == null ? sPerson.getSurname() : "" + sPerson.getGivenName()==null ? sPerson.getGivenName() : "",
+			UIInternalLink.make(row, "resultLink", sPerson.getSurname() == null ? sPerson.getSurname() : "test" + sPerson.getGivenName()==null ? sPerson.getGivenName() : "test2",
 					new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, eid));
 		}
 
