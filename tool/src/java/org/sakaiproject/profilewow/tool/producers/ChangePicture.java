@@ -93,7 +93,7 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 			//System pic present and set to active
 			//UIOutput.make(tofill, "remove-image-link");
 			UIBranchContainer uib = UIBranchContainer.make(tofill, "selected-image:");
-			UIInternalLink.make(uib, "selected-image", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
+			UIInternalLink.make(uib, "selected-image", new ImageViewParamaters("imageServlet", sPerson.getAgentUuid()));
 			UIBranchContainer uib2 = UIBranchContainer.make(tofill, "no-image:");
 			UIInternalLink.make(uib2, "no-image", NO_PIC_URL);
 			//UIMessage.make(tofill, "current-pic-title", "current.picture.title.official");	
