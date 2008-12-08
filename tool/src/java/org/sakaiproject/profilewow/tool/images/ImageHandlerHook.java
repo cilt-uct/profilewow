@@ -14,6 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
+import org.sakaiproject.entitybroker.DeveloperHelperService;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.tool.api.SessionManager;
@@ -57,7 +58,13 @@ public class ImageHandlerHook implements HandlerHook {
 		sessionManager = sm;
 	}
 	
-	
+	private DeveloperHelperService developerHelperService;
+	public void setDeveloperHelperService(
+			DeveloperHelperService developerHelperService) {
+		this.developerHelperService = developerHelperService;
+	}
+
+
 	public boolean handle() {
 		// TODO Auto-generated method stub
 
@@ -86,8 +93,15 @@ public class ImageHandlerHook implements HandlerHook {
 		OutputStream stream;
 		try {
 			stream = response.getOutputStream();
+			SakaiPerson person = null;
+			SakaiPerson uPerson = null;
+			if (ivp.userId != null) {
+				person = spm.getSakaiPerson(spm.getSystemMutableType());
+				person = spm.getSakaiPerson(spm.getUserMutableType());
+			} else {
+				person = spm.getSakaiPerson(ivp.userId, spm.getUserMutableType());
+			}
 
-			SakaiPerson person = spm.getSakaiPerson(spm.getSystemMutableType());
 			if (person == null) {
 				log.warn("no system profile for user!");
 				//we need to become admin
@@ -95,7 +109,6 @@ public class ImageHandlerHook implements HandlerHook {
 				String id = session.getUserId();
 				String eid = session.getUserEid();
 				person = spm.create(userDirectoryService.getCurrentUser().getId(), spm.getSystemMutableType());
-				
 				session.setUserId("admin");
 				session.setUserEid("admin");
 				
@@ -106,6 +119,10 @@ public class ImageHandlerHook implements HandlerHook {
 				
 			}
 				if (person.getJpegPhoto() != null && person.getJpegPhoto().length > 0) {
+					//has the person set their photo?
+					if (!uPerson.isSystemPicturePreferred() && !ivp.userId.equals(developerHelperService.getCurrentUserId()) )
+						return false;
+					
 					log.debug("we have some photo data");
 					byte[] institutionalPhoto = person.getJpegPhoto();
 					response.setContentLength(institutionalPhoto.length);
