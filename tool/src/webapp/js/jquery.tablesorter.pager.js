@@ -147,7 +147,8 @@
 					
 					var table = this, pager = config.container;
 				
-					$(this).trigger("appendCache");
+					//$(this).trigger("appendCache");
+					alert('f');
 					
 					config.size = parseInt($(".pagesize",pager).val());
 					
