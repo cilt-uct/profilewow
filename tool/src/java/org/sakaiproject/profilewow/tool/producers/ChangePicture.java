@@ -116,7 +116,7 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 			if (hasProfilePic()) {
 				UIBranchContainer op = UIBranchContainer.make(tofill, "official-pic:");
 				UIMessage.make(op, "official-pic-title", "official.picture.title");
-				UIInternalLink.make(op, "official-pic-image", new ImageViewParamaters("imageServlet", sPerson.getUuid() ));
+				UIInternalLink.make(op, "official-pic-image", new ImageViewParamaters("imageServlet", sPerson.getAgentUuid() ));
 				UIBranchContainer op2 = UIBranchContainer.make(tofill, "official-pic-form:");
 				UIForm form = UIForm.make(op2, "official-pic-form");
 				UICommand.make(form, "official-pic-field", UIMessage.make("useOfficialSub"),"uploadBean.useOfficial");
