@@ -104,7 +104,7 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		UIOutput.make(tofill,"full-name", sPerson.getGivenName() + " " + sPerson.getSurname());
 		String email = sPerson.getMail();
 		if (email != null && !"".equals(email))
-			UIOutput.make(tofill,"email", email);
+			UILink.make(tofill,"email", email, "mailto:"+email);
 		// not sure what this is meant to be UIOutput.make(tofill,"position", sPerson.getPosition());
 		if (sPerson.getOrganizationalUnit() != null)
 			UIOutput.make(tofill,"department", sPerson.getOrganizationalUnit());
