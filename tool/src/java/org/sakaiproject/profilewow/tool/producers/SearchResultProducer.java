@@ -231,6 +231,9 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 
 					}
 				}
+				
+				if(searchResults.size() == 19)
+					continue;
 
 			}
 		}

@@ -84,7 +84,7 @@
 				
 				// clear the table body
 				
-				$.tablesorter.clearTableBody(table);
+				//$.tablesorter.clearTableBody(table);
 				
 				for(var i = s; i < e; i++) {
 					
@@ -147,10 +147,9 @@
 					
 					var table = this, pager = config.container;
 				
-					//$(this).trigger("appendCache");
-					alert('f');
+					$(this).trigger("appendCache");
 					
-					config.size = parseInt($(".pagesize",pager).val());
+					config.size = 10;
 					
 					$(config.cssFirst,pager).click(function() {
 						moveToFirstPage(table);
