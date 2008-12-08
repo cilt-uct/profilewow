@@ -26,6 +26,7 @@ import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIMessage;
+import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
@@ -122,6 +123,9 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 			UIInternalLink.make(row, "resultLink", label,
 					new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, eid));
 			}
+			if(profiles.size() <= 20)
+				UIOutput.make(row, "limitmessage");
+			
 		}
 
 	}
@@ -232,7 +236,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 					}
 				}
 				
-				if(searchResults.size() == 19)
+				if(searchResults.size() == 20)
 					break;
 
 			}
