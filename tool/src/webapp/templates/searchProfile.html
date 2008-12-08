@@ -42,9 +42,28 @@
 
 <body>
 <div> 
-<h3 rsf:id="searchTitle">Search for {search term}</h3>
 <table class="tablesorter">
-<tr rsf:id="resultRow:"><td><a href="viewProfile.html" rsf:id="resultLink" rel="facebox">Search results go here</a></td></tr>
+	<thead>
+		<tr>
+			<th>
+				<h3 rsf:id="searchTitle">Search for <i>{search term}</i></h3>
+			</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<th>
+				<div rsf:id="searchTitle">Search for <i>{search term}</i></div>
+			</th>
+		</tr>
+	</tfoot>
+	<tbody>
+	<tr rsf:id="resultRow:">
+		<td>
+			<a href="viewProfile.html" rsf:id="resultLink" rel="facebox">Search results go here</a>
+		</td>
+	</tr>
+	</tbody>
 </table>
 <div id="pager" class="pager">
 	<form>
