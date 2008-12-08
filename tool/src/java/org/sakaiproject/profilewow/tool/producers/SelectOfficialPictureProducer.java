@@ -39,7 +39,7 @@ public class SelectOfficialPictureProducer implements ViewComponentProducer, Nav
 			ComponentChecker checker) {
 		// TODO Auto-generated method stub
 		SakaiPerson person = spm.getSakaiPerson(spm.getSystemMutableType());
-		UIInternalLink.make(tofill, "officialPic", new ImageViewParamaters("imageServlet", person.getUuid() ));
+		UIInternalLink.make(tofill, "officialPic", new ImageViewParamaters("imageServlet", person.getAgentUuid() ));
 		
 		UIForm form = UIForm.make(tofill, "subForm");
 		UICommand.make(form, "sub", UIMessage.make("useOfficialSub"),"uploadBean.useOfficial");
