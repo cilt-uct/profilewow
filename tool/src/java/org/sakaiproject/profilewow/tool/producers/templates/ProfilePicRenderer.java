@@ -43,7 +43,7 @@ public class ProfilePicRenderer {
 		}
 		
 		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
-			UIInternalLink.make(joint, "current-pic", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
+			UIInternalLink.make(joint, "current-pic", new ImageViewParamaters("imageServlet", sPerson.getAgentUuid()));
 		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
 			UILink.make(joint, "current-pic", picUrl);
 		}
