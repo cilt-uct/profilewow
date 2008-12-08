@@ -123,11 +123,11 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 			UIInternalLink.make(row, "resultLink", label,
 					new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, eid));
 			}
-			if(profiles.size() <= 20)
-				UIOutput.make(row, "limitmessage");
-			log.info(profiles.size());
+			
 		}
-
+		if(profiles.size() <= 20)
+				UIOutput.make(tofill, "limitmessage");
+			log.info(profiles.size());
 	}
 
 	public ViewParameters getViewParameters() {
