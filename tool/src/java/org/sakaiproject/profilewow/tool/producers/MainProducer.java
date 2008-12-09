@@ -101,7 +101,12 @@ public class MainProducer implements ViewComponentProducer, DefaultView {
 		log.debug("got profile for: " + sPerson.getGivenName() + " " + sPerson.getSurname());
 		log.debug("uuid: " + sPerson.getUid() + ", agent_uuid: " + sPerson.getAgentUuid());
 		
-		UIOutput.make(tofill,"full-name", sPerson.getGivenName() + " " + sPerson.getSurname());
+		
+		String fullname = sPerson.getGivenName() == null ? "" : sPerson.getGivenName();
+		fullname += (sPerson.getSurname() != null && sPerson.getSurname()!=null) ? " " : "";
+		fullname += sPerson.getSurname()==null ? "" : sPerson.getSurname();
+		
+		UIOutput.make(tofill,"full-name", fullname);
 		String email = sPerson.getMail();
 		if (email != null && !"".equals(email))
 			UILink.make(tofill,"email", email, "mailto:"+email);

@@ -88,21 +88,14 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 				UILink.make(picRow, "photo", picUrl);
 			} 
 		
-		String fullName = "";
-		
-		//if (sPerson.getTitle() != null)
-			//fullName =  sPerson.getTitle() + " ";
-		
-		if (sPerson.getGivenName() != null)
-			fullName += sPerson.getGivenName()+ " ";
-		
-		if (sPerson.getSurname() != null)
-			fullName += sPerson.getSurname();
+		String fullname = sPerson.getGivenName() == null ? "" : sPerson.getGivenName();
+		fullname += (sPerson.getSurname() != null && sPerson.getSurname()!=null) ? " " : "";
+		fullname += sPerson.getSurname()==null ? "" : sPerson.getSurname();
 		
 		
-		UIOutput.make(tofill, "full-name", fullName);
+		UIOutput.make(tofill, "full-name", fullname);
 		
-		UIOutput.make(tofill, "header-name", fullName);
+		UIOutput.make(tofill, "header-name", fullname);
 		
 		Boolean hidePInfo = false;
 		if (sPerson.getHidePrivateInfo() == null || sPerson.getHidePrivateInfo())
