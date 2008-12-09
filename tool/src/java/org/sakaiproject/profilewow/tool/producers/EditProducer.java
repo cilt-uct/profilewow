@@ -192,25 +192,20 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 
 		//Privacy settings
 		String hideS = "false";
-		Boolean hideB = false;
+		String hideS2 = "false";
 		if (sPerson.getHidePrivateInfo()!=null && sPerson.getHidePrivateInfo().booleanValue()) {
 			hideS = "true";
-			hideB = true;
+		}
+		if (sPerson.getHidePublicInfo()!=null && sPerson.getHidePublicInfo().booleanValue()) {
+			hideS2 = "true";
 		}
 		log.debug("hide personal is " + hideS);
 
-		/*UISelect hide = UISelect.make(
-				form,
-				"hide-select",
-				null,
-				null, 
-				otpBean + ".hidePrivateInfo",
-				hideS);*/
-		UIELBinding el = new UIELBinding("#{"+ otpBean + ".hidePrivateInfo}", hideS);
-		el.name = "editProfile-hide-fossil";
-		form.parameters.add(el);
+		UISelect hide = UISelect.make(form, "hide-select",new String[]{"true", "false"},
+				new String[]{messageLocator.getMessage("editProfile.sms.yes"), messageLocator.getMessage("editProfile.sms.no")}, 
+				otpBean + ".hidePrivateInfo", hideS);
 
-		/*String hideID = hide.getFullID();
+		String hideID = hide.getFullID();
 
 		for(int i = 0; i < 2; i ++ ) {
 			UIBranchContainer radiobranch = UIBranchContainer.make(form,
@@ -220,8 +215,22 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 			UILabelTargetDecorator.targetLabel(lb, choice);
 		}
 
+		UISelect hide2 = UISelect.make(form, "hide-select-info",new String[]{"true", "false"},
+				new String[]{messageLocator.getMessage("editProfile.sms.yes"), messageLocator.getMessage("editProfile.sms.no")}, 
+				otpBean + ".getHidePublicInfo", hideS2);
 
-		/sms preference
+		String hideID2 = hide2.getFullID();
+
+		for(int i = 0; i < 2; i ++ ) {
+			UIBranchContainer radiobranch = UIBranchContainer.make(form,
+					"hideSelect-info:", new Integer(i).toString());
+			UISelectChoice choice = UISelectChoice.make(radiobranch, "editProfile-hideInfo", hideID2, i);
+			UISelectLabel lb = UISelectLabel.make(radiobranch, "hide-label-info", hideID2, i);
+			UILabelTargetDecorator.targetLabel(lb, choice);
+		}
+
+
+		//sms preference
 
 		UISelect sms = UISelect.make(form, "sms-select",new String[]{"true", "false"},
 				new String[]{messageLocator.getMessage("editProfile.sms.yes"), messageLocator.getMessage("editProfile.sms.no")}, 
@@ -234,24 +243,18 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 			UISelectChoice choice = UISelectChoice.make(radiobranch, "editProfileForm-sms", selectID, i);
 			UISelectLabel lb = UISelectLabel.make(radiobranch, "smslabel", selectID, i);
 			UILabelTargetDecorator.targetLabel(lb, choice);
-		}*/
+		}
 		//UIInput sms = UIInput.make(form, "editProfileForm-sms", "profileBeanLocator." + sPerson.getUid() + ".smsNotifications", "true");
 
 		//UIMessage.make(form, "smslabel","editProfile.sms");
-		
-		//Privacy Seetings
-		
-		UIBoundBoolean hideCell = UIBoundBoolean.make(form, "editProfile-hide", hideB);
-		hideCell.fossilize = true;
-		//UISelectLabel hideCellLabel = UISelectLabel.make(form, "editProfile-hide-cell-label", hideID, 0);
-		//UILabelTargetDecorator.targetLabel(hideCellLabel, hideCell);
-		UIOutput.make(form, "editProfile-hide-cellLabel", messageLocator.getMessage("editProfile.privacy.cell"));
+
+
 
 		UICommand.make(form, "profile-save","Save","profileBeanLocator.saveAll");
 
 
 		//UIInternalLink.make(tofill, "change-pic", messageLocator.getMessage("editProfile.changePic"), new SimpleViewParameters(ChangePicture.VIEW_ID));
-		UIInternalLink.make(tofill, "upload-pic", "editProfile.uploadPic");
+		UIInternalLink.make(tofill, "upload-pic", "editProfile.uploadPic");		
 
 	}
 
