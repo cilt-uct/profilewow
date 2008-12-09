@@ -18,6 +18,7 @@ import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.messageutil.MessageLocator;
 import uk.org.ponder.messageutil.TargettedMessageList;
+import uk.org.ponder.rsf.components.UIBoundBoolean;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
@@ -189,18 +190,27 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		UIOutput.make(form, "validateDate", messageLocator.getMessage("validate.date"));
 		UIOutput.make(form, "validateMinlength", messageLocator.getMessage("validate.minlength"));
 
-		//hide
+		//Privacy settings
 		String hideS = "false";
+		Boolean hideB = false;
 		if (sPerson.getHidePrivateInfo()!=null && sPerson.getHidePrivateInfo().booleanValue()) {
 			hideS = "true";
+			hideB = true;
 		}
 		log.debug("hide personal is " + hideS);
 
-		UISelect hide = UISelect.make(form, "hide-select",new String[]{"true", "false"},
-				new String[]{messageLocator.getMessage("editProfile.sms.yes"), messageLocator.getMessage("editProfile.sms.no")}, 
-				otpBean + ".hidePrivateInfo", hideS);
+		/*UISelect hide = UISelect.make(
+				form,
+				"hide-select",
+				null,
+				null, 
+				otpBean + ".hidePrivateInfo",
+				hideS);*/
+		UIELBinding el = new UIELBinding("#{"+ otpBean + ".hidePrivateInfo}", hideS);
+		el.name = "editProfile-hide-fossil";
+		form.parameters.add(el);
 
-		String hideID = hide.getFullID();
+		/*String hideID = hide.getFullID();
 
 		for(int i = 0; i < 2; i ++ ) {
 			UIBranchContainer radiobranch = UIBranchContainer.make(form,
@@ -211,7 +221,7 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		}
 
 
-		//sms preference
+		/sms preference
 
 		UISelect sms = UISelect.make(form, "sms-select",new String[]{"true", "false"},
 				new String[]{messageLocator.getMessage("editProfile.sms.yes"), messageLocator.getMessage("editProfile.sms.no")}, 
@@ -224,12 +234,18 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 			UISelectChoice choice = UISelectChoice.make(radiobranch, "editProfileForm-sms", selectID, i);
 			UISelectLabel lb = UISelectLabel.make(radiobranch, "smslabel", selectID, i);
 			UILabelTargetDecorator.targetLabel(lb, choice);
-		}
+		}*/
 		//UIInput sms = UIInput.make(form, "editProfileForm-sms", "profileBeanLocator." + sPerson.getUid() + ".smsNotifications", "true");
 
 		//UIMessage.make(form, "smslabel","editProfile.sms");
-
-
+		
+		//Privacy Seetings
+		
+		UIBoundBoolean hideCell = UIBoundBoolean.make(form, "editProfile-hide", hideB);
+		hideCell.fossilize = true;
+		//UISelectLabel hideCellLabel = UISelectLabel.make(form, "editProfile-hide-cell-label", hideID, 0);
+		//UILabelTargetDecorator.targetLabel(hideCellLabel, hideCell);
+		UIOutput.make(form, "editProfile-hide-cellLabel", messageLocator.getMessage("editProfile.privacy.cell"));
 
 		UICommand.make(form, "profile-save","Save","profileBeanLocator.saveAll");
 

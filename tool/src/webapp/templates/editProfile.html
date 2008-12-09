@@ -179,7 +179,7 @@ Required information marked <span rsf:id="msg=reqStar"
 				rsf:id="editProfileForm-mobile" name="editProfileForm:mobile"
 				value="" size="30" type="text" /></span></td>
 		</tr>
-		<!-- **sms notifications**
+		<!--
         <tr>
 			<td colspan="2">Receive notifications via sms<br />
 			<span
@@ -187,15 +187,34 @@ Required information marked <span rsf:id="msg=reqStar"
 			<span rsf:id="smsSelect:"> <input name="editProfileForm:sms"
 				type="radio" rsf:id="editProfileForm-sms" /><label
 				rsf:id="smslabel">yes</label> </span></td>
-		</tr>
+		</tr> 
         <tr>
-			<td colspan="2">Keep my cellphone number private<br />
-            <span
-				rsf:id="hide-select" /> 
-			<span rsf:id="hideSelect:"> <input rsf:id="editProfile-hide"
-				type="radio" /><label rsf:id="hide-label">Yes</label> </span></td>
+			<td colspan="2">Hide my cellphone number<br />
+            <span rsf:id="hide-select" /> 
+			<span rsf:id="hideSelect"> 
+			<input rsf:id="editProfile-hide"
+				type="checkbox" />
+				
+				<label rsf:id="hide-label">Yes</label> 
+				
+				</span></td> 
 		</tr>
-        -->
+   --> 
+		
+		
+				<tr>
+			<td colspan="2" class="checkbox labelindnt">
+				<span rsf:id="editProfile-hide-cellLabel">Hide my cellphone number</span>			
+					<input rsf:id="editProfile-hide" type="checkbox" title="Hide my cellphone number" name="editProfileForm:checkhide" />
+				</td>
+		</tr><!--
+		<tr>
+			<td colspan="2" class="checkbox labelindnt">
+				<span><input rsf:id="editProfile-hide-info" type="checkbox" title="Hide my profile information (show only name and email address)" name="editProfileForm:checkhide-info" />
+				<label rsf:id="editProfile-hide-info-info">Hide my profile information (show only name and email address)</label>	</span>		
+				</td>
+		</tr>
+		-->
         <tr>
 			<td colspan="2"><a href="#" class="addItem">Add more details</a><br />
 			<textarea rsf:id="editProfileForm-more" style="display: none;" name="moreinfo" cols="32"

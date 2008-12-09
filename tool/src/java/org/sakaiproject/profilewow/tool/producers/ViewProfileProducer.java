@@ -107,8 +107,8 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		Boolean hidePInfo = false;
 		if (sPerson.getHidePrivateInfo() == null || sPerson.getHidePrivateInfo())
 			hidePInfo = true;
-		
-		UILink.make(tofill,"email", sPerson.getMail(),"mailto:" + sPerson.getMail());
+		if(sPerson.getMail()!=null)
+			UILink.make(tofill,"email", sPerson.getMail(),"mailto:" + sPerson.getMail());
 		
 		if (sPerson.getOrganizationalUnit() != null)
 			UIOutput.make(tofill,"org", sPerson.getOrganizationalUnit());

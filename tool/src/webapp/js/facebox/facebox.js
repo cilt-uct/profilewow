@@ -148,7 +148,7 @@
       $('#facebox .body').children().fadeIn('normal')
       //$('#facebox').css('left', $(window).width() / 2 - ($('#facebox table').width() / 2))
       $(document).trigger('reveal.facebox').trigger('afterReveal.facebox')
-	  frameGrow()
+	  //frameGrow()
     },
 
     close: function() {
@@ -173,6 +173,9 @@
       if (klass) klass = klass[1]
 
       fillFaceboxFromHref(this.href, klass)
+	  if(this.name == "changePicLinkActive") {
+	  	frameGrow()
+	  }
       return false
     }
 
