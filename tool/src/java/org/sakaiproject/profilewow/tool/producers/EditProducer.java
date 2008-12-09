@@ -217,7 +217,7 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 
 		UISelect hide2 = UISelect.make(form, "hide-select-info",new String[]{"true", "false"},
 				new String[]{messageLocator.getMessage("editProfile.sms.yes"), messageLocator.getMessage("editProfile.sms.no")}, 
-				otpBean + ".getHidePublicInfo", hideS2);
+				otpBean + ".hidePublicInfo", hideS2);
 
 		String hideID2 = hide2.getFullID();
 
