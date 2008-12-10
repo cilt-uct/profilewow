@@ -140,7 +140,7 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		passwordFormRenderer.renderPasswordForm(tofill, "passForm:", sPerson);
 		
 		
-		String otpBean = "profileBeanLocator." + sPerson.getAgentUuid() + ".sakaiPerson";
+		String otpBean = "profileBeanLocator." + sPerson.getUid() + ".sakaiPerson";
 
 		
 		boolean enableEdit = this.canEditeName(userDirectoryService.getCurrentUser());
