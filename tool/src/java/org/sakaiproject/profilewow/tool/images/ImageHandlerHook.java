@@ -119,8 +119,10 @@ public class ImageHandlerHook implements HandlerHook {
 				uPerson = spm.getSakaiPerson(ivp.userId, spm.getUserMutableType());
 			}
 
-			if (person == null)
+			if (person == null) {
+				log.warn("no profile found for user " + ivp.userId);
 				return true;
+			}
 
 				if (person.getJpegPhoto() != null && person.getJpegPhoto().length > 0) {
 					//has the person set their photo?
