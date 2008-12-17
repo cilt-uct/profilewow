@@ -83,7 +83,7 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 			
 			UIBranchContainer picRow = UIBranchContainer.make(tofill, "isImage:");
 			if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
-				UIInternalLink.make(picRow, "photo", new ImageViewParamaters("imageServlet", sPerson.getUuid()));
+				UIInternalLink.make(picRow, "photo", new ImageViewParamaters("imageServlet", sPerson.getAgentUuid()));
 			} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
 				UILink.make(picRow, "photo", picUrl);
 			} 
