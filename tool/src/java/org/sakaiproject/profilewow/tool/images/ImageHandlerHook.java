@@ -98,27 +98,30 @@ public class ImageHandlerHook implements HandlerHook {
 			if (ivp.userId == null) {
 				person = spm.getSakaiPerson(spm.getSystemMutableType());
 				uPerson = spm.getSakaiPerson(spm.getUserMutableType());
+				if (person == null) {
+					log.warn("no system profile for user!");
+					//we need to become admin
+					Session session = sessionManager.getCurrentSession();
+					String id = session.getUserId();
+					String eid = session.getUserEid();
+					person = spm.create(userDirectoryService.getCurrentUser().getId(), spm.getSystemMutableType());
+					session.setUserId("admin");
+					session.setUserEid("admin");
+					
+					spm.save(person);
+					session.setUserId(id);
+					session.setUserEid(eid);
+					
+					
+				}
 			} else {
 				person = spm.getSakaiPerson(ivp.userId, spm.getSystemMutableType());
 				uPerson = spm.getSakaiPerson(ivp.userId, spm.getUserMutableType());
 			}
 
-			if (person == null) {
-				log.warn("no system profile for user!");
-				//we need to become admin
-				Session session = sessionManager.getCurrentSession();
-				String id = session.getUserId();
-				String eid = session.getUserEid();
-				person = spm.create(userDirectoryService.getCurrentUser().getId(), spm.getSystemMutableType());
-				session.setUserId("admin");
-				session.setUserEid("admin");
-				
-				spm.save(person);
-				session.setUserId(id);
-				session.setUserEid(eid);
-				
-				
-			}
+			if (person == null)
+				return true;
+
 				if (person.getJpegPhoto() != null && person.getJpegPhoto().length > 0) {
 					//has the person set their photo?
 					if (!uPerson.isSystemPicturePreferred() && !ivp.userId.equals(developerHelperService.getCurrentUserId()) )
