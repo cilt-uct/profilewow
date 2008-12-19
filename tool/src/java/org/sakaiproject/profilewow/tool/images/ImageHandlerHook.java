@@ -134,6 +134,7 @@ public class ImageHandlerHook implements HandlerHook {
 					if(institutionalPhoto == null) {
 						uPerson.setSystemPicturePreferred(false);
 						spm.save(uPerson);
+						log.debug("institutionalPhoto was null");
 						return true;
 					}
 					response.setContentLength(institutionalPhoto.length);
