@@ -131,6 +131,11 @@ public class ImageHandlerHook implements HandlerHook {
 					
 					log.debug("we have some photo data");
 					byte[] institutionalPhoto = person.getJpegPhoto();
+					if(institutionalPhoto == null) {
+						uPerson.setSystemPicturePreferred(false);
+						spm.save(uPerson);
+						return true;
+					}
 					response.setContentLength(institutionalPhoto.length);
 					stream.write(institutionalPhoto);
 					stream.flush();
