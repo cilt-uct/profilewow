@@ -84,10 +84,9 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 		
 		//picture stuff
 		String picUrl = sPerson.getPictureUrl();
+		Boolean isSystemPictureActive = false;
 		if (picUrl == null || picUrl.trim().length() == 0)
 			picUrl = NO_PIC_URL;
-		else 
-			picUrl = sPerson.getPictureUrl();
 		
 		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
 			//System pic present and set to active
@@ -95,6 +94,7 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 			UIInternalLink.make(uib, "selected-image", new ImageViewParamaters("imageServlet", sPerson.getAgentUuid()));
 			UIBranchContainer uib2 = UIBranchContainer.make(tofill, "no-image:");
 			UIInternalLink.make(uib2, "no-image", NO_PIC_URL);
+			isSystemPictureActive = true;
 		}else
 		if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
 		UIBranchContainer uib = UIBranchContainer.make(tofill, "selected-image:");
@@ -129,12 +129,13 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 			for (int i = 0; i < resources.size(); i++) {
 					ContentResource resource = (ContentResource)resources.get(i);
 					String rUrl = resource.getUrl();
-					log.info(picUrl);
-					if(!rUrl.equals(picUrl)){
-					UIBranchContainer cell = UIBranchContainer.make(tofill, "pic-cell:");
-					selections.add(rUrl);
-					UISelectChoice choice =  UISelectChoice.make(cell, "select", selectPic.getFullID(), (selections.size() -1 ));
-					UILink.make(cell, "pic", rUrl);	
+					if(!isSystemPictureActive){
+						if(!rUrl.equals(picUrl)){
+							UIBranchContainer cell = UIBranchContainer.make(tofill, "pic-cell:");
+							selections.add(rUrl);
+							UISelectChoice choice =  UISelectChoice.make(cell, "select", selectPic.getFullID(), (selections.size() -1 ));
+							UILink.make(cell, "pic", rUrl);	
+						}
 					}
 			}
 			selectPic.optionlist.setValue(selections.toStringArray());
