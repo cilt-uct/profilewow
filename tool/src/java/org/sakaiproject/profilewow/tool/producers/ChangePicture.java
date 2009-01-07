@@ -91,36 +91,29 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 		
 		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
 			//System pic present and set to active
-			//UIOutput.make(tofill, "remove-image-link");
 			UIBranchContainer uib = UIBranchContainer.make(tofill, "selected-image:");
 			UIInternalLink.make(uib, "selected-image", new ImageViewParamaters("imageServlet", sPerson.getAgentUuid()));
 			UIBranchContainer uib2 = UIBranchContainer.make(tofill, "no-image:");
 			UIInternalLink.make(uib2, "no-image", NO_PIC_URL);
-			//UIMessage.make(tofill, "current-pic-title", "current.picture.title.official");	
-		} else if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
-			UIBranchContainer uib = UIBranchContainer.make(tofill, "selected-image:");
-			UILink.make(uib, "selected-image", picUrl);
-			if (!picUrl.equals(NO_PIC_URL)) {
-				//UIOutput.make(tofill, "remove-image-link");
-				//UIMessage.make(tofill, "current-pic-title", "current.picture.title");
-				UIBranchContainer uib2 = UIBranchContainer.make(tofill, "no-image:");
-				UIInternalLink.make(uib2, "no-image", NO_PIC_URL);
-			}else{
-			//no profile image at all
-				//UIMessage.make(tofill, "warning-no-image", "warning.picture.set");
-				//UIMessage.make(tofill, "current-pic-title", "current.picture.title.noimage");		
-				//UIBranchContainer uib2 = UIBranchContainer.make(tofill, "no-image:");
-				//UIInternalLink.make(uib2, "no-image", NO_PIC_URL);
-			}
+		}else
+		if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
+		UIBranchContainer uib = UIBranchContainer.make(tofill, "selected-image:");
+		UILink.make(uib, "selected-image", picUrl);
+		if (!picUrl.equals(NO_PIC_URL)) {
+			UIBranchContainer uib2 = UIBranchContainer.make(tofill, "no-image:");
+			UIInternalLink.make(uib2, "no-image", NO_PIC_URL);
+		}else{
+		//no profile image at all
+		}
 			//should only display if there is an official pic
-			if (hasProfilePic()) {
-				UIBranchContainer op = UIBranchContainer.make(tofill, "official-pic:");
-				UIMessage.make(op, "official-pic-title", "official.picture.title");
-				UIInternalLink.make(op, "official-pic-image", new ImageViewParamaters("imageServlet", sPerson.getAgentUuid() ));
-				UIBranchContainer op2 = UIBranchContainer.make(tofill, "official-pic-form:");
-				UIForm form = UIForm.make(op2, "official-pic-form");
-				UICommand.make(form, "official-pic-field", UIMessage.make("useOfficialSub"),"uploadBean.useOfficial");
-			}	
+		if (hasProfilePic()) {
+			UIBranchContainer op = UIBranchContainer.make(tofill, "official-pic:");
+			UIMessage.make(op, "official-pic-title", "official.picture.title");
+			UIInternalLink.make(op, "official-pic-image", new ImageViewParamaters("imageServlet", sPerson.getAgentUuid() ));
+			UIBranchContainer op2 = UIBranchContainer.make(tofill, "official-pic-form:");
+			UIForm form = UIForm.make(op2, "official-pic-form");
+			UICommand.make(form, "official-pic-field", UIMessage.make("useOfficialSub"),"uploadBean.useOfficial");
+		}	
 		}
 		
 		UIForm formUpload = UIForm.make(tofill, "upload-pic-form");
@@ -134,19 +127,15 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 					null, "uploadBean.picUrl", new String[] {});
 			StringList selections = new StringList();
 			for (int i = 0; i < resources.size(); i++) {
-				//UIBranchContainer row = UIBranchContainer.make(form, "pic-row:");
-				
-				//for (int q =0; q < 5 && i< resources.size(); q++) {
 					ContentResource resource = (ContentResource)resources.get(i);
 					String rUrl = resource.getUrl();
+					log.info(picUrl);
 					if(!rUrl.equals(picUrl)){
 					UIBranchContainer cell = UIBranchContainer.make(tofill, "pic-cell:");
 					selections.add(rUrl);
 					UISelectChoice choice =  UISelectChoice.make(cell, "select", selectPic.getFullID(), (selections.size() -1 ));
-					UILink.make(cell, "pic", rUrl);
-					//i++;				
+					UILink.make(cell, "pic", rUrl);	
 					}
-				//}
 			}
 			selectPic.optionlist.setValue(selections.toStringArray());
 			UICommand.make(form, "submit","Change picture","uploadBean.changePicture");
