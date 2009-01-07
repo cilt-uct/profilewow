@@ -90,11 +90,11 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 		
 		if (sPerson.isSystemPicturePreferred() != null &&  sPerson.isSystemPicturePreferred().booleanValue()) {
 			//System pic present and set to active
+			isSystemPictureActive = true;
 			UIBranchContainer uib = UIBranchContainer.make(tofill, "selected-image:");
 			UIInternalLink.make(uib, "selected-image", new ImageViewParamaters("imageServlet", sPerson.getAgentUuid()));
 			UIBranchContainer uib2 = UIBranchContainer.make(tofill, "no-image:");
 			UIInternalLink.make(uib2, "no-image", NO_PIC_URL);
-			isSystemPictureActive = true;
 		}else
 		if (sPerson.isSystemPicturePreferred() == null || !sPerson.isSystemPicturePreferred().booleanValue() ) {
 		UIBranchContainer uib = UIBranchContainer.make(tofill, "selected-image:");
@@ -129,7 +129,7 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 			for (int i = 0; i < resources.size(); i++) {
 					ContentResource resource = (ContentResource)resources.get(i);
 					String rUrl = resource.getUrl();
-					if(!isSystemPictureActive){
+					if(isSystemPictureActive){
 						if(!rUrl.equals(picUrl)){
 							UIBranchContainer cell = UIBranchContainer.make(tofill, "pic-cell:");
 							selections.add(rUrl);
