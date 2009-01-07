@@ -130,7 +130,15 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 					ContentResource resource = (ContentResource)resources.get(i);
 					String rUrl = resource.getUrl();
 					if(isSystemPictureActive){
+						log.info("Not Filtering: " + isSystemPictureActive);
+						UIBranchContainer cell = UIBranchContainer.make(tofill, "pic-cell:");
+						selections.add(rUrl);
+						UISelectChoice choice =  UISelectChoice.make(cell, "select", selectPic.getFullID(), (selections.size() -1 ));
+						UILink.make(cell, "pic", rUrl);	
+					}
+					else{
 						if(!rUrl.equals(picUrl)){
+							log.info( "Filtering: " + isSystemPictureActive);
 							UIBranchContainer cell = UIBranchContainer.make(tofill, "pic-cell:");
 							selections.add(rUrl);
 							UISelectChoice choice =  UISelectChoice.make(cell, "select", selectPic.getFullID(), (selections.size() -1 ));
