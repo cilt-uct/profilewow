@@ -123,8 +123,10 @@ public class ImageHandlerHook implements HandlerHook {
 				log.warn("no profile found for user " + ivp.userId);
 				return true;
 			}
-			if (uPerson.isSystemPicturePreferred() == null)
+			if (uPerson.isSystemPicturePreferred() == null){
+				log.info("Null exeption would occur now: ");
 				uPerson.setSystemPicturePreferred(false);
+			}
 				
 			if (person.getJpegPhoto() != null && person.getJpegPhoto().length > 0) {
 					//has the person set their photo?
