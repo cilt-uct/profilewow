@@ -67,4 +67,5 @@
 	</bean>
 	<!--view inferer-->
 	<bean class="org.sakaiproject.profilewow.tool.locators.ProfileViewParamatersInferer"/>
+	<bean class="org.sakaiproject.profilewow.tool.locators.OfficialPictureInferer"/>
 </beans>
