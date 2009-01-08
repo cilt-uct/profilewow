@@ -50,7 +50,10 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
-		// TODO Auto-generated method stub
+		
+		if (userDirectoryService.getCurrentUser().getId() == null || "".equals(userDirectoryService.getCurrentUser().getId()))
+			throw new SecurityException("Must be authenticated to view profiles");
+		
 		
 		SakaiPersonViewParams svp = (SakaiPersonViewParams) viewparams;
 		SakaiPerson sPerson = null;
