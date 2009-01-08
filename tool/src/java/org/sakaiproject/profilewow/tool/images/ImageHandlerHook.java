@@ -138,7 +138,7 @@ public class ImageHandlerHook implements HandlerHook {
 			if (person.getJpegPhoto() != null && person.getJpegPhoto().length > 0) {
 					//has the person set their photo?
 					if (!uPerson.isSystemPicturePreferred() && !ivp.userId.equals(developerHelperService.getCurrentUserId()) &&
-							developerHelperService.isUserAllowedInEntityReference(developerHelperService.getCurrentUserReference(), "roster.viewofficialphoto", "")) 
+							!developerHelperService.isUserAllowedInEntityReference(developerHelperService.getCurrentUserReference(), "roster.viewofficialphoto", "")) 
 						throw new SecurityException("no permission!");
 					
 					log.debug("we have some photo data");
