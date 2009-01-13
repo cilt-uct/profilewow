@@ -165,7 +165,7 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 			ViewParameters incoming, Object actionReturn) {
 		// TODO Auto-generated method stub
 		result.resultingView = new SimpleViewParameters(MainProducer.VIEW_ID);
-		log.warn("intecept object.");
+		log.debug("intecept object.");
 	}
 
 	

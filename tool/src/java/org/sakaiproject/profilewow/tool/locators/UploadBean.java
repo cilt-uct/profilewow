@@ -111,7 +111,7 @@ public class UploadBean {
 	}
 	
 	public void useOfficial() {
-		log.info("useOfficial()");
+		log.debug("useOfficial()");
 		SakaiPerson sp = spm.getSakaiPerson(spm.getUserMutableType());
 		sp.setSystemPicturePreferred(new Boolean(true));
 		spm.save(sp);
