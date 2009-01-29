@@ -1,239 +1,193 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Edit my profile</title>
-<script type="text/javascript" language="JavaScript"
-	src="../js/jquery.validate.js"></script>
-<script>
-	$(document).ready(function(){
-		//$('#edit-form').ajaxForm(options);
-		var hide = function(){
-			$('td[rel*=infoCell]').html($('#infoCell-backup').html());
-			$('#infoCell-backup').remove();
-			return false;
-		}
-		$('input[@class*=cancel]').bind('click', hide);
-		$('.closeImg').bind('click', hide);
-		//$('textarea[@name*=editProfileForm-more]').toggle();
-		//$.facebox.setHeader($('.titleHeader'));
-		$('.addItem').bind('click', function(){
-			$('textarea[@name*=editProfileForm-more]').slideToggle('fast');
-			return false;
-		});	
-		
-		
-		$('#edit-form').validate({
-			/*submitHandler: function(form) {
-				var d = $(form).formToArray();
-				$.ajax({
-					type: 'POST',
-					url: $(form).attr('action'),
-					data: d,
-					dataType: "html",
-					beforeSend: function(){
-						$('.success').each(function(){
-							$(this).fadeOut('fast');
-						});
-					},
-					success: function(msg){
-						var obj = $(msg).find('.success').html();
-						//if(obj == null){
-						//	$('td[rel*=infoCell]').html(msg);
-						//}else{
-							$('td[@rel*=infoCell]').html($(msg).find('td[@rel*=infoCell]').html());
-				        	 $('.portletBody').prepend('<span class="success">' + obj + '<a href="#"><div name="closeMsg">close</div></a></span>');
-							 $(document).trigger('close.facebox');
-							window.location.href = '#top';
-							$('.success div').bind('click', function(){
-								$(this).parent().parent().fadeOut('normal');
-							});
-						//}
-		
-					},
-					error: function(e){}
-					});
-					//$('input[@type*=submit]').attr('disabled','disabled');
-					//return false;
-					//$(form).unbind('submit').find(':submit,input:image').unbind('click'); //this is the magic fix, unbinding it.
-					//$(form).ajaxForm(options);
-					//$('#edit-form input[@type*=submit]').click();
-			}*/
-		});
-	
-	});
-</script>
+    <title>Edit my profile</title>
+    <script type="text/javascript" language="JavaScript"
+            src="../js/jquery.validate.js"></script>
+    <script type="text/javascript" language="JavaScript"
+            src="../js/profile.edit.js"></script>
+
 </head>
 <body rsf:id="scr=sakai-body">
 
 <h2 rsf:id="msg=editProfile.header">Edit my profile</h2>
 
 <div rsf:id="message-for:*" class="alertMessage">
-	<span>Message for user here</span>
+    <span>Message for user here</span>
 </div>
 
 <p class="instruction"><span
-	rsf:id="msg=editProfileForm.instruction">Complete the form and then
-choose 'Save' at the bottom.</span><br />
-Required information marked <span rsf:id="msg=reqStar"
-	class="reqStarInline">*</span></p>
-    
+        rsf:id="msg=editProfileForm.instruction">Complete the form and then
+choose 'Save' at the bottom.</span><br/>
+    Required information marked <span rsf:id="msg=reqStar"
+                                      class="reqStarInline">*</span></p>
+
 <form id="editProfileForm" method="post" rsf:id="edit-form"><!--edit.jsp -->
 
 
-<table class="" summary="layout">
-	<tbody>
-		<tr>
-			<td><span rsf:id="msg=reqStar" class="reqStarProfile">*</span>First
-			Name</td>
-			<td><span class="shorttext"><input
-				rsf:id="editProfileForm-first_name"
-				name="editProfileForm:first_name" class="required" minlength="3" value="Duck" size="30" type="text" />
+    <table class="" summary="layout">
+        <tbody>
+        <tr>
+            <td><span rsf:id="msg=reqStar" class="reqStarProfile">*</span>First
+                Name
+            </td>
+            <td><span class="shorttext"><input
+                    rsf:id="editProfileForm-first_name"
+                    name="editProfileForm:first_name" class="required" minlength="3" value="Duck" size="30"
+                    type="text"/>
 				<span rsf:id="firstname-text"></span>
 				</span></td>
-		</tr>
-		<tr>
-			<td><span rsf:id="msg=reqStar" class="reqStarProfile">*</span>Last Name</td>
-			<td><span class="shorttext"><input
-				rsf:id="editProfileForm-lname" name="editProfileForm:lname"
-				class="required" minlength="3" value="daffy" size="30" type="text" />
+        </tr>
+        <tr>
+            <td><span rsf:id="msg=reqStar" class="reqStarProfile">*</span>Last Name</td>
+            <td><span class="shorttext"><input
+                    rsf:id="editProfileForm-lname" name="editProfileForm:lname"
+                    class="required" minlength="3" value="daffy" size="30" type="text"/>
 				<span rsf:id="lastname-text"></span>
 				</span></td>
-		</tr>
-		<tr>
-			<td>Title</td>
-			<td><span class="shorttext"><input type="text" size="30"
-				rsf:id="editProfileForm-title" /> </span></td>
-		</tr>
-		<!-- **unnecessary field**
+        </tr>
         <tr>
-			<td><span class="shorttext"> <label
-				id="editProfileForm:outputLabel2" for="editProfileForm:nickname">
-			Nickname</label> <input rsf:id="editProfileForm-nickname"
-				name="editProfileForm:nickname" size="30" type="text" /> </span></td>
-		</tr>
+            <td>Title</td>
+            <td><span class="shorttext"><input type="text" size="30"
+                                               rsf:id="editProfileForm-title"/> </span></td>
+        </tr>
+        <!-- **unnecessary field**
+        <tr>
+            <td><span class="shorttext"> <label
+                id="editProfileForm:outputLabel2" for="editProfileForm:nickname">
+            Nickname</label> <input rsf:id="editProfileForm-nickname"
+                name="editProfileForm:nickname" size="30" type="text" /> </span></td>
+        </tr>
         -->
-		<tr>
-			<td><span rsf:id="msg=reqStar" class="reqStarProfile">*</span>Email</td>
-			<td><span class="shorttext"><input
-				rsf:id="editProfileForm-email" name="editProfileForm:email"
-				class="required email" size="30" type="text" />
+        <tr>
+            <td><span rsf:id="msg=reqStar" class="reqStarProfile">*</span>Email</td>
+            <td><span class="shorttext"><input
+                    rsf:id="editProfileForm-email" name="editProfileForm:email"
+                    class="required email" size="30" type="text"/>
 				<span rsf:id="emailNoEdit">email a user can't edit</span>
 				</span></td>
-		</tr>
-		<!-- **irrelevant fields**
+        </tr>
+        <!-- **irrelevant fields**
         <tr>
 
-			<td>Organisation</td>
-			<td><span class="shorttext"><input
-				rsf:id="editProfileForm-department" size="30" type="text" /></span></td>
-		</tr>
-		<tr>
-			<td>Country</td>
-			<td><span class="shorttext"><input
-				rsf:id="editProfileForm-country" size="30" type="text" /></span></td>
-		</tr>
+            <td>Organisation</td>
+            <td><span class="shorttext"><input
+                rsf:id="editProfileForm-department" size="30" type="text" /></span></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td><span class="shorttext"><input
+                rsf:id="editProfileForm-country" size="30" type="text" /></span></td>
+        </tr>
         -->
-		<tr> 
-          <td>Position</td>
-          <td><span class="shorttext"><input rsf:id="editProfileForm-position"
-				name="editProfileForm:position" size="30"
-				type="text" /></span></td>
+        <tr>
+            <td>Position</td>
+            <td><span class="shorttext"><input rsf:id="editProfileForm-position"
+                                               name="editProfileForm:position" size="30"
+                                               type="text"/></span></td>
         </tr>
-        <tr> 
-          <td>Department</td>
-          <td><span class="shorttext"><input rsf:id="editProfileForm-department"
-				name="editProfileForm:department" value="Comedy" size="30" type="text" />
+        <tr>
+            <td>Department</td>
+            <td><span class="shorttext"><input rsf:id="editProfileForm-department"
+                                               name="editProfileForm:department" value="Comedy" size="30" type="text"/>
             </span></td>
         </tr>
-        <tr> 
-        <td>Institution</td>
-          <td><span class="shorttext"><input rsf:id="editProfileForm-school"
-				name="editProfileForm:school"
-				size="30" type="text" />
+        <tr>
+            <td>Institution</td>
+            <td><span class="shorttext"><input rsf:id="editProfileForm-school"
+                                               name="editProfileForm:school"
+                                               size="30" type="text"/>
             </span></td>
         </tr>
-        <tr> 
-          <td>Room</td>
-          <td><span class="shorttext">
+        <tr>
+            <td>Room</td>
+            <td><span class="shorttext">
             <input rsf:id="editProfileForm-room" name="editProfileForm:room"
-				 size="30" type="text" /></span></td>
+                   size="30" type="text"/></span></td>
         </tr>
 
-		<tr>
-			<td>Home Page</td>
-			<td><span class="shorttext"><input
-				rsf:id="editProfileForm-homepage" name="editProfileForm:homepage"
-				size="30" type="text" /> </span></td>
-		</tr>
-		<tr>
-			<td>Work Phone</td>
-			<td><span class="shorttext"><input
-				rsf:id="editProfileForm-workphone" name="editProfileForm:workphone"
-				value="021 555 3884" size="30" type="text" /></span></td>
-		</tr>
+        <tr>
+            <td>Home Page</td>
+            <td><span class="shorttext"><input
+                    rsf:id="editProfileForm-homepage" name="editProfileForm:homepage"
+                    size="30" type="text"/> </span></td>
+        </tr>
+        <tr>
+            <td>Work Phone</td>
+            <td><span class="shorttext"><input
+                    rsf:id="editProfileForm-workphone" name="editProfileForm:workphone"
+                    value="021 555 3884" size="30" type="text"/></span></td>
+        </tr>
 
-		<tr>
-			<td>Cellphone</td>
-			<td><span class="shorttext"><input
-				rsf:id="editProfileForm-mobile" name="editProfileForm:mobile"
-				value="" size="30" type="text" /></span></td>
-		</tr>
-		
-		<tr><td colspan="2">
-<h4>
-Privacy Settings</h4>
-<div>Control what other users can view about you.</div><br/>
-</td></tr>
-		<!-- **sms notifications**
         <tr>
-			<td colspan="2">Receive notifications via sms<br />
-			<span
-				rsf:id="sms-select" /> 
-			<span rsf:id="smsSelect:"> <input name="editProfileForm:sms"
-				type="radio" rsf:id="editProfileForm-sms" /><label
-				rsf:id="smslabel">yes</label> </span></td>
-		</tr> -->
+            <td>Cellphone</td>
+            <td><span class="shorttext"><input
+                    rsf:id="editProfileForm-mobile" name="editProfileForm:mobile"
+                    value="" size="30" type="text"/></span></td>
+        </tr>
+
         <tr>
-			<td colspan="2">Hide my cell phone number<br/>
+            <td colspan="2">
+                <h4>
+                    Privacy Settings</h4>
+
+                <div>Control what other users can view about you.</div>
+                <br/>
+            </td>
+        </tr>
+        <!-- **sms notifications**
+          <tr>
+              <td colspan="2">Receive notifications via sms<br />
+              <span
+                  rsf:id="sms-select" />
+              <span rsf:id="smsSelect:"> <input name="editProfileForm:sms"
+                  type="radio" rsf:id="editProfileForm-sms" /><label
+                  rsf:id="smslabel">yes</label> </span></td>
+          </tr> -->
+        <tr>
+            <td colspan="2">Hide my cell phone number<br/>
             <span
-				rsf:id="hide-select" /> 
+                    rsf:id="hide-select"/>
 			<span rsf:id="hideSelect:"> <input rsf:id="editProfile-hide"
-				type="radio" /><label rsf:id="hide-label">Yes</label> </span></td>
-		</tr>        
-		<tr>
-			<td colspan="2">Hide my profile information (only show my name and email address) <br/>
-            <span
-				rsf:id="hide-select-info" /> 
-			<span rsf:id="hideSelect-info:"> <input rsf:id="editProfile-hideInfo"
-				type="radio" /><label rsf:id="hide-label-info">Yes</label> </span></td>
-		</tr>
-       
+                                               type="radio"/><label rsf:id="hide-label">Yes</label> </span></td>
+        </tr>
         <tr>
-			<td colspan="2"><br/><a href="#" class="addItem">Add more details about me</a><br />
-			<textarea rsf:id="editProfileForm-more" style="display: none;" name="moreinfo" cols="32"
-				rows="8"></textarea></td>
-		</tr>
-		
-	</tbody>
-</table>
+            <td colspan="2">Hide my profile information (only show my name and email address) <br/>
+            <span
+                    rsf:id="hide-select-info"/>
+			<span rsf:id="hideSelect-info:"> <input rsf:id="editProfile-hideInfo"
+                                                    type="radio"/><label rsf:id="hide-label-info">Yes</label> </span>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><br/><a href="#" class="addItem">Add more details about me</a><br/>
+                <textarea rsf:id="editProfileForm-more" style="display: none;" name="moreinfo" cols="32"
+                          rows="8"></textarea></td>
+        </tr>
+
+        </tbody>
+    </table>
 
 
+    <p class="act"><input rsf:id="profile-save" value="Save"
+                          accesskey="s" type="submit" class="active submit"/>
+        <input
+                id="editProfileForm:editCancelButton"
+                name="editProfileForm:editCancelButton" class="cancel" value="Cancel" accesskey="x" type="button"/></p>
+    <input name="editProfileForm" value="editProfileForm" type="hidden"/>
+    <input name="editProfileForm:_idcl" type="hidden"/>
 
-<p class="act"><input rsf:id="profile-save" value="Save"
-	accesskey="s" type="submit" class="active submit" />
-	<input
-	id="editProfileForm:editCancelButton"
-	name="editProfileForm:editCancelButton" class="cancel"  value="Cancel" accesskey="x" type="button" /></p>
-<input name="editProfileForm" value="editProfileForm" type="hidden" />
-<input name="editProfileForm:_idcl" type="hidden" />
-
-<!-- Start error msgs to be used by jquery.validate.js -->
-<div rsf:id="validateRequired" style="display: none;" id="validateRequired">This field is required.</div>
-<div rsf:id="validateEmail" style="display: none;" id="validateEmail">Please enter a valid email address.</div>
-<div rsf:id="validateUrl" style="display: none;" id="validateUrl">Please enter a valid URL.</div>
-<div rsf:id="validateDate" style="display: none;" id="validateDate">Please enter a valid date.</div>
-<div rsf:id="validateMinlength" style="display: none;" id="validateMinlength">Please enter at least {0} characters.</div>
+    <!-- Start error msgs to be used by jquery.validate.js -->
+    <div rsf:id="validateRequired" style="display: none;" id="validateRequired">This field is required.</div>
+    <div rsf:id="validateEmail" style="display: none;" id="validateEmail">Please enter a valid email address.</div>
+    <div rsf:id="validateUrl" style="display: none;" id="validateUrl">Please enter a valid URL.</div>
+    <div rsf:id="validateDate" style="display: none;" id="validateDate">Please enter a valid date.</div>
+    <div rsf:id="validateMinlength" style="display: none;" id="validateMinlength">Please enter at least {0}
+        characters.
+    </div>
 </form>
 
 
