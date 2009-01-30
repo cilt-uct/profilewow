@@ -1,14 +1,11 @@
 $(document).ready(function() {
-            //$('#edit-form').ajaxForm(options);
-            var hide = function() {
+           var hide = function() {
                 $('td[rel*=infoCell]').html($('#infoCell-backup').html());
                 $('#infoCell-backup').remove();
                 return false;
             }
             $('input[@class*=cancel]').bind('click', hide);
             $('.closeImg').bind('click', hide);
-            //$('textarea[@name*=editProfileForm-more]').toggle();
-            //$.facebox.setHeader($('.titleHeader'));
             $('.addItem').bind('click', function() {
                 $('textarea[@name*=editProfileForm-more]').slideToggle('fast');
                 return false;
@@ -21,7 +18,7 @@ $(document).ready(function() {
 
             jQuery.validator.addMethod("phone", function(phone_number, element) {
                 return this.optional(element) || phone_number.length > 9 && phone_number.match(/^[+]?\d+$/);
-            }, "Please specify a valid phone number");
+            }, "Enter a valid phone number with no spaces");
 
 
             $('#edit-form').validate({
