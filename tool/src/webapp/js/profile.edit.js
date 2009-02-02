@@ -17,18 +17,14 @@ $(document).ready(function() {
              */
 
             jQuery.validator.addMethod("phone", function(phone_number, element) {
-                return this.optional(element) || phone_number.length > 9 && phone_number.match(/^[+]?\d+$/);
-            }, "Enter a valid phone number with no spaces");
+                return this.optional(element) || phone_number.length > 9 && phone_number.match(/^[+]?\d+/);
+            }, "Please enter a valid phone number");
 
 
             $('#edit-form').validate({
                 rules: {
                     'editProfileForm-mobile': {
                       required: true,
-                      phone: true
-                    },
-                    'editProfileForm-workphone': {
-                      required: false,
                       phone: true
                     }
                   }
