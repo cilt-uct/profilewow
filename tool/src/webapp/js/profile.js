@@ -316,14 +316,7 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 		$('.searchForm').ajaxSubmit(options);
 		return false;
 	});
-	
-	/*$('.passwordForm').bind('submit', function(){
-		$('.passwordBtn').trigger('click');
-		return false;
-	});	
-	
-	$('.passwordBtn').bind('click', function(){*/
-		
+
 		var passOpts = {
 			beforeSend: function(){
 				//frameGrow();
@@ -366,56 +359,6 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 		
 		$('.passwordForm').ajaxForm(passOpts);
 
-	
-	/*
-	This method is for the "Edit profile" link on hover
-	$('td[rel*=infoCell]').parent().hover(
-	function(){$('.editProfileHover').toggle();},
-	function(){$('.editProfileHover').toggle();}
-	);
-	
-	
-	//$('#hovermenu').hide();
-		$('.profileImage > img').click(function(){
-			$('#hovermenu').attr('class','hovermenuactive toplink');
-			$('#hovermenu').fadeIn('fast');
-			$('#hovermenu').hover(
-					function(){},
-					 function(){
-						$('#hovermenu').fadeOut('fast');
-					}
-				);
-		});
-		
-		
-		$('.profileImage').hover(
-		function(){
-			//$('#hoverlink').removeAttr('class');
-			$('#hoverlink').attr('class','hoverlinkactive toplink');
-			$('#hoverlink').click(function(){
-				
-			});
-		},
-		function(){
-				//$('#hoverlink').removeAttr('class');
-				$('#hoverlink').attr('class','hoverlink');
-			}
-		);		
-		
-		
-		$('#changepicOLD').bind('click', function(){
-			$('#hovermenu').attr('class','hovermenuactive bottomlink');
-			$('#hovermenu').fadeIn('fast');
-			$('#hovermenu').hover(
-					function(){},
-					 function(){
-						$('#hovermenu').fadeOut('fast');
-					}
-				);
-		});	*/
-		
-		
-		
 		$('.profileImage > a').click(function(){
 			$('#changepic > a').click();
 			return false;
@@ -438,10 +381,6 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 					elem.html('Loading....');
 					$('body').append('<div id="infoCell-backup">'+elemHTML+'</div');
 					$('#infoCell-backup').hide();
-				},
-				error: function(e){
-					elem.html(elemHTML);
-					return false;
 				},
 				success: function(msg){
 					frameGrow();

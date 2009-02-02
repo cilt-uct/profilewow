@@ -227,3 +227,9 @@ font-weight:bold;
 	opacity: 0.85;
 }
 #tooltip h3, #tooltip div { margin: 0; }
+
+#errorContainer ol li {
+	list-style-type: disc;
+	margin-left: 15px;
+}
+#errorContainer { display: none }
