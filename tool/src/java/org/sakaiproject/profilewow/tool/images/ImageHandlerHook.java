@@ -128,7 +128,7 @@ public class ImageHandlerHook implements HandlerHook {
 
 			if (person == null) {
 				log.warn("no profile found for user " + ivp.userId);
-				return true;
+				return false;
 			}
 			if (uPerson.isSystemPicturePreferred() == null){
 				log.info("Null exeption would occur now: ");
