@@ -95,6 +95,7 @@
 	<bean name="imageHandlerHook"
 		class="org.sakaiproject.profilewow.tool.images.ImageHandlerHook">
 		<property name="viewparams" ref="viewParameters" />
+		<property name="targettedMessageList" ref="targettedMessageList" />
 		<property name="response" ref="httpServletResponse" />
 		<property name="sakaiPersonManager"
 			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
