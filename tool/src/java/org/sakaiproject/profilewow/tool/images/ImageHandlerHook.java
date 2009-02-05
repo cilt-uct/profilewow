@@ -132,11 +132,11 @@ public class ImageHandlerHook implements HandlerHook {
 
 			if (person == null) {
 				log.warn("no profile found for user " + ivp.userId);
-				byte[] noPhoto;
+				byte[] noPhoto = ("No picture").getBytes();
 				response.setContentLength(noPhoto.length);
 				stream.write(noPhoto);
 				stream.flush();
-				return true;
+				//return true;
 			}
 			if (uPerson.isSystemPicturePreferred() == null){
 				log.info("Null exeption would occur now: ");
