@@ -27,13 +27,12 @@ import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.messageutil.TargettedMessageList;
 import uk.org.ponder.rsf.flow.ARIResult;
-import uk.org.ponder.rsf.flow.ActionResultInterceptor;
 import uk.org.ponder.rsf.processor.HandlerHook;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.util.UniversalRuntimeException;
 
-public class ImageHandlerHook implements HandlerHook, ActionResultInterceptor {
+public class ImageHandlerHook implements HandlerHook {
 
 	private static Log log = LogFactory.getLog(ImageHandlerHook.class);
 
@@ -67,10 +66,6 @@ public class ImageHandlerHook implements HandlerHook, ActionResultInterceptor {
 	public void setDeveloperHelperService(
 			DeveloperHelperService developerHelperService) {
 		this.developerHelperService = developerHelperService;
-	}
-	private TargettedMessageList tml;
-	public void setTargettedMessageList(TargettedMessageList tml) {
-		this.tml = tml;
 	}
 
 
@@ -137,6 +132,10 @@ public class ImageHandlerHook implements HandlerHook, ActionResultInterceptor {
 
 			if (person == null) {
 				log.warn("no profile found for user " + ivp.userId);
+				byte[] noPhoto;
+				response.setContentLength(noPhoto.length);
+				stream.write(noPhoto);
+				stream.flush();
 				return false;
 			}
 			if (uPerson.isSystemPicturePreferred() == null){
@@ -172,15 +171,6 @@ public class ImageHandlerHook implements HandlerHook, ActionResultInterceptor {
 
 		return true;
 	}
-
-
-	public void interceptActionResult(ARIResult result,
-			ViewParameters incoming, Object actionReturn) {
-		// TODO Auto-generated method stub
-		result.resultingView = new SimpleViewParameters(MainProducer.VIEW_ID);
-		log.debug("intecept object.");
-	}
-
 
 
 
