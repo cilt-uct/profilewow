@@ -171,7 +171,7 @@ public class ImageHandlerHook implements HandlerHook, NavigationCaseReporter {
 
 	public List reportNavigationCases() {
 		// TODO Auto-generated method stub
-		List<NavigationCase> togo = new ArrayList<NavigationCase> (); // Always navigate back to this view.
+		List togo = new ArrayList(); 
 		 togo.add(new NavigationCase(new SimpleViewParameters(MainProducer.VIEW_ID)));
 		return togo;
 	}
