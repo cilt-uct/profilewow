@@ -136,7 +136,7 @@ public class ImageHandlerHook implements HandlerHook {
 				response.setContentLength(noPhoto.length);
 				stream.write(noPhoto);
 				stream.flush();
-				return false;
+				return true;
 			}
 			if (uPerson.isSystemPicturePreferred() == null){
 				log.info("Null exeption would occur now: ");
