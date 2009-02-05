@@ -16,6 +16,7 @@ import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.entitybroker.DeveloperHelperService;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
+import org.sakaiproject.profilewow.tool.producers.MainProducer;
 import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.user.api.UserDirectoryService;
@@ -24,11 +25,14 @@ import org.sakaiproject.user.api.UserDirectoryService;
 
 
 
+import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
+import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.rsf.processor.HandlerHook;
+import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.util.UniversalRuntimeException;
 
-public class ImageHandlerHook implements HandlerHook {
+public class ImageHandlerHook implements HandlerHook, NavigationCaseReporter {
 
 	private static Log log = LogFactory.getLog(ImageHandlerHook.class);
 
@@ -162,6 +166,14 @@ public class ImageHandlerHook implements HandlerHook {
 		}
 
 		return true;
+	}
+
+
+	public List reportNavigationCases() {
+		// TODO Auto-generated method stub
+		List<NavigationCase> togo = new ArrayList<NavigationCase> (); // Always navigate back to this view.
+		 togo.add(new NavigationCase(null, new SimpleViewParameters(MainProducer.VIEW_ID)));
+		return togo;
 	}
 
 
