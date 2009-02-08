@@ -147,27 +147,23 @@ text-align:center;
 }
 
 .sidebarTitle {
-background-color:#D2EAF0;
+background-color:#F3F3F3;
 color:#666666;
-font-size:11px;
+font-size:12px;
 font-weight:bold;
 padding:2px;
 text-transform:capitalize;
-
 }
 
 .search{
 border:1px solid #CCCCCC;
-margin: 0 0 10px 10px;
-background-color:#F3F4F5;
-
+margin: 10px 0 10px 10px;
 }
 
 .password{
 border:1px solid #CCCCCC;
 margin: 0 0 10px 10px;
 padding-bottom: 10px;
-
 }
 
 .album{
