@@ -3,7 +3,7 @@
 <registration>
 	<tool id="sakai.profilewow"
 		title="profileWOW"
-		description="profileWOW created by Sakai App Builder Plugin">
+		description="Maintain your personal details and account picture">
 		<category name="course" />
 		<category name="project" />
 		<!-- <category name="myworkspace" /> -->
