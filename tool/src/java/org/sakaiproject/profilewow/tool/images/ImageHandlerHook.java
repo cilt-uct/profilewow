@@ -1,12 +1,10 @@
 package org.sakaiproject.profilewow.tool.images;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,23 +14,18 @@ import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.entitybroker.DeveloperHelperService;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
-import org.sakaiproject.profilewow.tool.producers.MainProducer;
-import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.user.api.UserDirectoryService;
 
-
-
-
-
-import uk.org.ponder.messageutil.TargettedMessageList;
-import uk.org.ponder.rsf.flow.ARIResult;
 import uk.org.ponder.rsf.processor.HandlerHook;
-import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.util.UniversalRuntimeException;
 
 public class ImageHandlerHook implements HandlerHook {
+
+	private static final String IMAGE_PATH = "images/";
+
+	private static final String UNAVAILABLE_IMAGE = "officialPhotoUnavailable.jpg";
 
 	private static Log log = LogFactory.getLog(ImageHandlerHook.class);
 
@@ -111,18 +104,9 @@ public class ImageHandlerHook implements HandlerHook {
 				uPerson = spm.getSakaiPerson(spm.getUserMutableType());
 				if (person == null) {
 					log.warn("no system profile for user!");
-					//we need to become admin
-					Session session = sessionManager.getCurrentSession();
-					String id = session.getUserId();
-					String eid = session.getUserEid();
-					person = spm.create(userDirectoryService.getCurrentUser().getId(), spm.getSystemMutableType());
-					session.setUserId("admin");
-					session.setUserEid("admin");
-					
-					spm.save(person);
-					session.setUserId(id);
-					session.setUserEid(eid);
-					
+					getNoImage(stream);
+					stream.flush();
+					return true;
 					
 				}
 			} else {
@@ -132,9 +116,7 @@ public class ImageHandlerHook implements HandlerHook {
 
 			if (person == null) {
 				log.warn("no profile found for user " + ivp.userId);
-				byte[] noPhoto = ("No picture").getBytes();
-				response.setContentLength(noPhoto.length);
-				stream.write(noPhoto);
+				getNoImage(stream);
 				stream.flush();
 				return true;
 			}
@@ -155,6 +137,8 @@ public class ImageHandlerHook implements HandlerHook {
 						uPerson.setSystemPicturePreferred(false);
 						spm.save(uPerson);
 						log.debug("institutionalPhoto was null");
+						getNoImage(stream);
+						stream.flush();
 						return true;
 					}
 					response.setContentLength(institutionalPhoto.length);
@@ -172,6 +156,37 @@ public class ImageHandlerHook implements HandlerHook {
 		return true;
 	}
 
+	private void getNoImage(OutputStream stream) {
+		try
+		{
+			BufferedInputStream in = null;
+			try
+			{
+
+				in = new BufferedInputStream(new FileInputStream((IMAGE_PATH) + UNAVAILABLE_IMAGE));
+				int ch;
+
+				while ((ch = in.read()) != -1)
+				{
+					stream.write((char) ch);
+				}
+				
+			}
+
+			finally
+			{
+				if (in != null) in.close();
+			}
+		}
+		catch (FileNotFoundException e)
+		{
+			log.error(e.getMessage(), e);
+		}
+		catch (IOException e)
+		{
+			log.error(e.getMessage(), e);
+		}
+	}
 
 
 }

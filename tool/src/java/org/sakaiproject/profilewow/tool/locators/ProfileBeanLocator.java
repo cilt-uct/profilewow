@@ -130,7 +130,7 @@ public class ProfileBeanLocator implements BeanLocator {
 			
 			spm.save(person.getSakaiPerson());
 			
-			log.debug("sms preference is: " + person.smsNotifications);
+			//log.debug("sms preference is: " + person.smsNotifications);
 			
 			Boolean setValue = new Boolean("false");
 			if (person.smsNotifications != null) {
