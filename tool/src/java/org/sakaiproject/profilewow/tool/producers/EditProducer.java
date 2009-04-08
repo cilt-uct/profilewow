@@ -8,7 +8,6 @@ import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.authz.api.SecurityService;
-import org.sakaiproject.component.api.ServerConfigurationService;
 import org.sakaiproject.entity.api.ResourceProperties;
 import org.sakaiproject.profilewow.tool.producers.templates.PasswordFormRenderer;
 import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
@@ -18,7 +17,6 @@ import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.messageutil.MessageLocator;
 import uk.org.ponder.messageutil.TargettedMessageList;
-import uk.org.ponder.rsf.components.UIBoundBoolean;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
@@ -68,11 +66,6 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		this.userDirectoryService = uds;
 	}
 
-	private ServerConfigurationService serverConfigurationService;
-	public void setServerConfigurationService(
-			ServerConfigurationService serverConfigurationService) {
-		this.serverConfigurationService = serverConfigurationService;
-	}
 
 	
 	private SecurityService securityService;
@@ -110,7 +103,7 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		
 		if (tml.size() > 0) {
 			for (int i = 0; i < tml.size(); i ++ ) {
-				UIBranchContainer errorRow = UIBranchContainer.make(tofill,"error-row:", new Integer(i).toString());
+				UIBranchContainer errorRow = UIBranchContainer.make(tofill,"error-row:",  Integer.valueOf(i).toString());
 				//if (tml.messageAt(i).args != null ) {	    		
 					//UIMessage.make(errorRow,"error",tml.messageAt(i).acquireMessageCode(),(String[])tml.messageAt(i).args[0]);
 				//} else {
@@ -152,14 +145,14 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 			form.parameters.add(new UIELBinding(otpBean + ".givenName" ,sPerson.getGivenName()));
 			form.parameters.add(new UIELBinding(otpBean + ".surname", sPerson.getSurname()));
 		} else {
-			UIInput fName = UIInput.make(form,"editProfileForm-first_name", otpBean + ".givenName" ,sPerson.getGivenName());
-			UIInput lName = UIInput.make(form,"editProfileForm-lname", otpBean + ".surname", sPerson.getSurname());
+			UIInput.make(form,"editProfileForm-first_name", otpBean + ".givenName" ,sPerson.getGivenName());
+			UIInput.make(form,"editProfileForm-lname", otpBean + ".surname", sPerson.getSurname());
 		}
 
 	
 		
 		UIInput.make(form,"editProfileForm-nickname", otpBean + ".nickname", sPerson.getNickname());
-		UIInput.make(form,"editProfileForm-position", otpBean + ".title", sPerson.getTitle());
+		UIInput.make(form,"editProfileForm-position", otpBean + ".affiliation", sPerson.getAffiliation());
 		UIInput.make(form,"editProfileForm-department", otpBean + ".organizationalUnit", sPerson.getOrganizationalUnit());
 		UIInput.make(form,"editProfileForm-school", otpBean + ".campus", sPerson.getCampus());
 		UIInput.make(form,"editProfileForm-room", otpBean + ".roomNumber", sPerson.getRoomNumber());
@@ -209,7 +202,7 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 
 		for(int i = 0; i < 2; i ++ ) {
 			UIBranchContainer radiobranch = UIBranchContainer.make(form,
-					"hideSelect:", new Integer(i).toString());
+					"hideSelect:", Integer.valueOf(i).toString());
 			UISelectChoice choice = UISelectChoice.make(radiobranch, "editProfile-hide", hideID, i);
 			UISelectLabel lb = UISelectLabel.make(radiobranch, "hide-label", hideID, i);
 			UILabelTargetDecorator.targetLabel(lb, choice);
@@ -223,7 +216,7 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 
 		for(int i = 0; i < 2; i ++ ) {
 			UIBranchContainer radiobranch = UIBranchContainer.make(form,
-					"hideSelect-info:", new Integer(i).toString());
+					"hideSelect-info:", Integer.valueOf(i).toString());
 			UISelectChoice choice = UISelectChoice.make(radiobranch, "editProfile-hideInfo", hideID2, i);
 			UISelectLabel lb = UISelectLabel.make(radiobranch, "hide-label-info", hideID2, i);
 			UILabelTargetDecorator.targetLabel(lb, choice);
@@ -239,7 +232,7 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 
 		for(int i = 0; i < 2; i ++ ) {
 			UIBranchContainer radiobranch = UIBranchContainer.make(form,
-					"smsSelect:", new Integer(i).toString());
+					"smsSelect:", Integer.valueOf(i).toString());
 			UISelectChoice choice = UISelectChoice.make(radiobranch, "editProfileForm-sms", selectID, i);
 			UISelectLabel lb = UISelectLabel.make(radiobranch, "smslabel", selectID, i);
 			UILabelTargetDecorator.targetLabel(lb, choice);
@@ -280,18 +273,6 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		
 	}
 
-	/**
-	 * Returns String for image. Uses the config bundle
-	 * to return paths to not available images.  
-	 */
-	private String getUrlOfficialPicture(String userId) {
-
-		String imageUrl = "";
-
-		imageUrl = "ProfileImageServlet.prf?photo=" + userId;
-
-		return imageUrl; 
-	}
 
 
 	private Boolean recieveSMSNotifications() {
@@ -301,11 +282,11 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		Boolean ret = null;
 
 		String val = rp.getProperty("smsnotifications");
-		ret = new Boolean(val);
-		log.debug("got sms notification of: " + val + ", "+ ret.toString());
+		ret =  Boolean.valueOf(val);
+		log.debug("got sms notification of: " + val );
 
 		if (ret == null)
-			ret = new Boolean(false);
+			ret = Boolean.valueOf(false);
 
 		return ret;
 
