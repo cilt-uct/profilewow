@@ -21,7 +21,7 @@ public class UserBeanLocator implements BeanLocator{
 
 private static Log log = LogFactory.getLog(UserBeanLocator.class);
 	
-	private Map delivered = new HashMap();
+	private Map<String, Object> delivered = new HashMap<String, Object>();
 	public static final String NEW_PREFIX = "new ";
 	public static String NEW_1 = NEW_PREFIX + "1";
 	
