@@ -23,7 +23,7 @@ public class ProfileValidator implements Validator {
 			return;
 		}
 
-		SakaiPerson person = facade.getSakaiPerson();
+		//SakaiPerson person = facade.getSakaiPerson();
 
 		
 		

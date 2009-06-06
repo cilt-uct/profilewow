@@ -93,7 +93,7 @@ public class UploadBean {
 				String url = resourceUtil.addPicture(fileName, out, type);
 				log.debug("got url of " + url);
 				SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType());
-				sPerson.setSystemPicturePreferred(new Boolean(false));
+				sPerson.setSystemPicturePreferred(Boolean.valueOf(false));
 				sPerson.setPictureUrl(url);
 				spm.save(sPerson);
 				
@@ -113,7 +113,7 @@ public class UploadBean {
 	public void useOfficial() {
 		log.debug("useOfficial()");
 		SakaiPerson sp = spm.getSakaiPerson(spm.getUserMutableType());
-		sp.setSystemPicturePreferred(new Boolean(true));
+		sp.setSystemPicturePreferred(Boolean.valueOf(true));
 		spm.save(sp);
 	}
 	
@@ -121,7 +121,7 @@ public class UploadBean {
 		log.info("changing the picture!" + this.picUrl);
 		
 		SakaiPerson sPerson = spm.getSakaiPerson(spm.getUserMutableType());
-		sPerson.setSystemPicturePreferred(new Boolean(false));
+		sPerson.setSystemPicturePreferred(Boolean.valueOf(false));
 		sPerson.setPictureUrl(picUrl);
 		spm.save(sPerson);
 		
