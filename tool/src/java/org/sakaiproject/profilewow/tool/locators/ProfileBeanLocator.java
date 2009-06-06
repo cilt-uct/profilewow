@@ -182,9 +182,8 @@ public class ProfileBeanLocator implements BeanLocator {
 
 	
 	private boolean isValidMail(String email) {
-		
-		// TODO: Use a generic Sakai utility class (when a suitable one exists)
-		
+
+
 		if (email == null || email.equals(""))
 			return false;
 		
