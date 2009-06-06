@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.validator.EmailValidator;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.entity.api.ResourcePropertiesEdit;
@@ -132,10 +133,10 @@ public class ProfileBeanLocator implements BeanLocator {
 			
 			//log.debug("sms preference is: " + person.smsNotifications);
 			
-			Boolean setValue = new Boolean("false");
+			Boolean setValue = Boolean.valueOf("false");
 			if (person.smsNotifications != null) {
 				if (person.smsNotifications[0] != null)
-					setValue = (new Boolean(person.smsNotifications[0]));
+					setValue = (Boolean.valueOf(person.smsNotifications[0]));
 				try {
 					UserEdit ue = userDirectoryService.editUser(person.getUserId());
 					ResourcePropertiesEdit rpe = ue.getPropertiesEdit();
@@ -172,7 +173,7 @@ public class ProfileBeanLocator implements BeanLocator {
 	public String useOfficialPic(){
 		SakaiPerson sp = spm.getSakaiPerson(spm.getUserMutableType());
 		log.debug("setting picture preffered for " + sp.getGivenName());
-		sp.setSystemPicturePreferred(new Boolean(true));
+		sp.setSystemPicturePreferred(Boolean.valueOf(true));
 		spm.save(sp);
 		
 		
@@ -187,20 +188,11 @@ public class ProfileBeanLocator implements BeanLocator {
 		if (email == null || email.equals(""))
 			return false;
 		
+		
 		email = email.trim();
-		//must contain @
-		if (email.indexOf("@") == -1)
-			return false;
 		
-		//an email can't contain spaces
-		if (email.indexOf(" ") > 0)
-			return false;
+		EmailValidator ev = EmailValidator.getInstance();
+		return ev.isValid(email);
 		
-		//"^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$" 
-		if (email.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$")) 
-			return true;
-	
-		log.warn(email + " is not a valid eamil address");
-		return false;
 	}
 }

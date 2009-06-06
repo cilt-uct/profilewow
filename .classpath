@@ -19,5 +19,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/sakai-search-api"/>
 	<classpathentry kind="var" path="M2_REPO"/>
 	<classpathentry kind="var" path="M2_REPO/org/sakaiproject/kernel/sakai-kernel-util/1.1-SNAPSHOT/sakai-kernel-util-1.1-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-validator/commons-validator/1.3.1/commons-validator-1.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
