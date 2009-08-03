@@ -272,15 +272,11 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		ResourceProperties rp = u.getProperties();
 
 		String val = rp.getProperty("smsnotifications");
-		Boolean ret =  Boolean.valueOf(val);
-		
+
 		log.debug("got sms notification of: " + val );
 
 		// Default to true if unset (i.e. opt-in)
-		if (ret == null)
-			ret = Boolean.valueOf(true);
-
-		return ret;
+		return (val == null) ? Boolean.valueOf(true) : Boolean.valueOf(val);
 	}
 
 	public List reportNavigationCases() {
