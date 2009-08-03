@@ -133,7 +133,7 @@ public class ProfileBeanLocator implements BeanLocator {
 			
 			//log.debug("sms preference is: " + person.smsNotifications);
 			
-			Boolean setValue = Boolean.valueOf("false");
+			Boolean setValue = Boolean.valueOf("true");
 			if (person.smsNotifications != null) {
 				if (person.smsNotifications[0] != null)
 					setValue = (Boolean.valueOf(person.smsNotifications[0]));
@@ -144,9 +144,6 @@ public class ProfileBeanLocator implements BeanLocator {
 					rpe.removeProperty(PROPERTY_NAME);
 					rpe.addProperty(PROPERTY_NAME, setValue.toString());
 					userDirectoryService.commitEdit(ue);
-
-
-
 				} catch (UserNotDefinedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -160,9 +157,6 @@ public class ProfileBeanLocator implements BeanLocator {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
-	
-
 			}
 		}
 		messages.addMessage( new TargettedMessage("editProfile.profileSaved",
@@ -175,7 +169,6 @@ public class ProfileBeanLocator implements BeanLocator {
 		log.debug("setting picture preffered for " + sp.getGivenName());
 		sp.setSystemPicturePreferred(Boolean.valueOf(true));
 		spm.save(sp);
-		
 		
 		return "success!";
 	}

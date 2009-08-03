@@ -41,11 +41,8 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 
 	public static final String VIEW_ID = "editProfile";
 	
-	
-
 	private static Log log = LogFactory.getLog(EditProducer.class);
 	public String getViewID() {
-		// TODO Auto-generated method stub
 		return VIEW_ID;
 	}
 
@@ -60,14 +57,11 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		this.messageLocator = messageLocator;
 	}
 
-
 	private UserDirectoryService userDirectoryService;
 	public void setUserDirectoryService(UserDirectoryService uds) {
 		this.userDirectoryService = uds;
 	}
 
-
-	
 	private SecurityService securityService;
 
 	public void setSecurityService(SecurityService securityService) {
@@ -227,7 +221,7 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 
 		UISelect sms = UISelect.make(form, "sms-select",new String[]{"true", "false"},
 				new String[]{messageLocator.getMessage("editProfile.sms.yes"), messageLocator.getMessage("editProfile.sms.no")}, 
-				"profileBeanLocator." + sPerson.getUid() + ".smsNotifications", recieveSMSNotifications().toString());
+				"profileBeanLocator." + sPerson.getUid() + ".smsNotifications", receiveSMSNotifications().toString());
 		String selectID = sms.getFullID();
 
 		for(int i = 0; i < 2; i ++ ) {
@@ -273,39 +267,26 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		
 	}
 
-
-
-	private Boolean recieveSMSNotifications() {
+	private Boolean receiveSMSNotifications() {
 		User u = userDirectoryService.getCurrentUser();
 		ResourceProperties rp = u.getProperties();
 
-		Boolean ret = null;
-
 		String val = rp.getProperty("smsnotifications");
-		ret =  Boolean.valueOf(val);
+		Boolean ret =  Boolean.valueOf(val);
+		
 		log.debug("got sms notification of: " + val );
 
+		// Default to true if unset (i.e. opt-in)
 		if (ret == null)
-			ret = Boolean.valueOf(false);
+			ret = Boolean.valueOf(true);
 
 		return ret;
-
 	}
 
-
 	public List reportNavigationCases() {
-		// TODO Auto-generated method stub
 		 List<NavigationCase> togo = new ArrayList<NavigationCase> (); // Always navigate back to this view.
 		 togo.add(new NavigationCase(null, new SimpleViewParameters(MainProducer.VIEW_ID)));
 		return togo;
 	}
-
-
-
-
-
-
-
-
 
 }
