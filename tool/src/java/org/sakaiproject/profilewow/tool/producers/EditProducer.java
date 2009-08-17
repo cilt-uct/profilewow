@@ -178,22 +178,22 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		UIOutput.make(form, "validateMinlength", messageLocator.getMessage("validate.minlength"));
 
 		//Privacy settings
-		String hideS = "false";
-		String hideS2 = "true";
-		if (sPerson.getHidePrivateInfo()!=null && sPerson.getHidePrivateInfo().booleanValue()) {
-			hideS = "true";
+		String hideMobile = "true";
+		String hideProfile = "false";
+		if (sPerson.getHidePrivateInfo()!=null && !sPerson.getHidePrivateInfo().booleanValue()) {
+			hideMobile = "false";
 		}
-		if (sPerson.getHidePublicInfo()!=null && !sPerson.getHidePublicInfo().booleanValue()) {
-			hideS2 = "false";
+		if (sPerson.getHidePublicInfo()!=null && sPerson.getHidePublicInfo().booleanValue()) {
+			hideProfile = "true";
 		}
 
 		
 
-		log.debug("hide personal is " + hideS);
+		log.debug("hide personal is " + hideMobile);
 
 		UISelect hide = UISelect.make(form, "hide-select",new String[]{"true", "false"},
 				new String[]{messageLocator.getMessage("editProfile.sms.yes"), messageLocator.getMessage("editProfile.sms.no")}, 
-				otpBean + ".hidePrivateInfo", hideS);
+				otpBean + ".hidePrivateInfo", hideMobile);
 
 		String hideID = hide.getFullID();
 
@@ -207,7 +207,7 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 
 		UISelect hide2 = UISelect.make(form, "hide-select-info",new String[]{"true", "false"},
 				new String[]{messageLocator.getMessage("editProfile.sms.yes"), messageLocator.getMessage("editProfile.sms.no")}, 
-				otpBean + ".hidePublicInfo", hideS2);
+				otpBean + ".hidePublicInfo", hideProfile);
 
 		String hideID2 = hide2.getFullID();
 
