@@ -179,13 +179,11 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 
 		//Privacy settings
 		String hideS = "false";
-		String hideS2 = "false";
+		String hideS2 = "true";
 		if (sPerson.getHidePrivateInfo()!=null && sPerson.getHidePrivateInfo().booleanValue()) {
 			hideS = "true";
 		}
-		if (sPerson.getHidePublicInfo()!=null && sPerson.getHidePublicInfo().booleanValue()) {
-			hideS2 = "true";
-		}
+
 		log.debug("hide personal is " + hideS);
 
 		UISelect hide = UISelect.make(form, "hide-select",new String[]{"true", "false"},
