@@ -180,8 +180,8 @@ public class EditProducer implements ViewComponentProducer, NavigationCaseReport
 		//Privacy settings
 		String hideS = "false";
 		String hideS2 = "true";
-		if (sPerson.getHidePrivateInfo()!=null && sPerson.getHidePrivateInfo().booleanValue()) {
-			hideS = "true";
+		if (sPerson.getHidePrivateInfo()!=null && !sPerson.getHidePrivateInfo().booleanValue()) {
+			hideS = "false";
 		}
 
 		log.debug("hide personal is " + hideS);
