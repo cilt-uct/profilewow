@@ -11,6 +11,7 @@ import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.entity.api.ResourcePropertiesEdit;
 import org.sakaiproject.profilewow.tool.facade.SakaiPersonFacade;
+import org.sakaiproject.sms.logic.external.NumberRoutingHelper;
 import org.sakaiproject.user.api.UserAlreadyDefinedException;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserEdit;
@@ -53,6 +54,11 @@ public class ProfileBeanLocator implements BeanLocator {
 		this.userDirectoryService = uds;
 	}
 	
+	private NumberRoutingHelper numberRoutingHelper;
+	public void setNumberRoutingHelper(NumberRoutingHelper numberRoutingHelper) {
+		this.numberRoutingHelper = numberRoutingHelper;
+	}
+
 	public Object locateBean(String name) {
 //		 TODO Auto-generated method stub
 		Object togo=delivered.get(name);
@@ -128,6 +134,13 @@ public class ProfileBeanLocator implements BeanLocator {
 			String notes = sperson.getNotes();
 			notes = FormattedText.processFormattedText(notes, new StringBuilder());
 			sperson.setNotes(notes);
+			
+			//set the normalized mobile No
+			String mobile = person.getSakaiPerson().getMobile();
+			if (mobile != null) {
+				String normalized = numberRoutingHelper.normalizeNumber(mobile);
+				person.getSakaiPerson().setNormalizedMobile(normalized);
+			}
 			
 			spm.save(person.getSakaiPerson());
 			

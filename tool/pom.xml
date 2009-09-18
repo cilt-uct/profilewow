@@ -92,12 +92,19 @@
 		<dependency>
 			<groupId>org.sakaiproject.kernel</groupId>
 			<artifactId>sakai-component-manager</artifactId>
-			
 		</dependency>
+		<dependency>
+			<groupId>org.sakaiproject.sms</groupId>
+			<artifactId>sms-api</artifactId>
+			<version>0.12-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.sakaiproject</groupId>
 			<artifactId>sakai-search-api</artifactId>
 		</dependency>
+
 		<!-- For file uploads -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>

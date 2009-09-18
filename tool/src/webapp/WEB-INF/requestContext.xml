@@ -109,6 +109,7 @@
 		<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 		<property name="messages" ref="targettedMessageList" />
+		<property name="numberRoutingHelper" ref="org.sakaiproject.sms.logic.external.NumberRoutingHelper"/>
 	</bean>
 	<bean name="userBeanLocator"
 		class="org.sakaiproject.profilewow.tool.locators.UserBeanLocator">
