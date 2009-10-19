@@ -160,6 +160,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		for (int i =0; i < res.size(); i++) {
 			SearchResult resI = (SearchResult) res.get(i);
 			String ref = resI.getReference();
+			
 			log.debug("ref: " + ref);
 			String id = EntityReference.getIdFromRefByKey(ref, "id");
 			String prefix = EntityReference.getPrefix(ref);
@@ -192,6 +193,8 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 
 				}
 			}
+			if(searchResults.size() == 15)
+				break;
 		}
 		return searchResults;
 	}
