@@ -29,7 +29,6 @@ import uk.org.ponder.rsf.components.UIMessage;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
-import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 
@@ -146,25 +145,27 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 	
 	private List<SakaiPerson> findProfilesSearch(String searchString) {
 		List<SakaiPerson>  searchResults = new ArrayList<SakaiPerson> ();
-		List contexts = new ArrayList();
-		contexts.add(".auth");
+		List<String> contexts = new ArrayList<String>();
+		contexts.add("~global");
 		contexts.add(developerHelperService.getCurrentLocationId());
 		log.info("searchString: " + searchString);
 		String searchFor ="+" + searchString; //  + " +tool:" + PROFILE_PREFIX;
 		log.info("were going to search for: " + searchFor);
 		SearchList res = searchService.search(searchFor, contexts, 0, 100);
 		log.info("got a list of: " + res.size());
+		
 		for (int i =0; i < res.size(); i++) {
 			SearchResult resI = (SearchResult) res.get(i);
-			String ref = resI.getId();
+			String ref = resI.getReference();
 			log.info("ref: " + ref);
-			String id = EntityReference.getIdFromRef(ref);
+			String id = EntityReference.getIdFromRefByKey(ref, "id");
 			String prefix = EntityReference.getPrefix(ref);
 			if (!PROFILE_PREFIX.equals(prefix)) {
 				log.warn(ref + " is not a profile object");
 				continue;
 			}
 			
+			log.info("getting id: " + id);
 			SakaiPerson profile = sakaiPersonManager.getSakaiPerson(id, sakaiPersonManager.getUserMutableType());
 			// Select the user mutable profile for display on if the public information is viewable.
 			if ((profile != null)
@@ -201,13 +202,13 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		if (searchString == null || searchString.length() < 4)
 			throw new IllegalArgumentException("Illegal searchString argument passed!");
 
-		List profiles = sakaiPersonManager.findSakaiPerson(searchString);
-		List searchResults = new ArrayList();
+		List<SakaiPerson> profiles = sakaiPersonManager.findSakaiPerson(searchString);
+		List<SakaiPerson> searchResults = new ArrayList<SakaiPerson>();
 		SakaiPerson profile;
 
 		if ((profiles != null) && (profiles.size() > 0))
 		{
-			Iterator profileIterator = profiles.iterator();
+			Iterator<SakaiPerson> profileIterator = profiles.iterator();
 
 			while (profileIterator.hasNext())
 			{
