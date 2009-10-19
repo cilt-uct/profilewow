@@ -148,19 +148,19 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		List<String> contexts = new ArrayList<String>();
 		contexts.add("~global");
 		contexts.add(developerHelperService.getCurrentLocationId());
-		log.info("searchString: " + searchString);
+		log.debug("searchString: " + searchString);
 		String searchFor ="+" + searchString; //  + " +tool:" + PROFILE_PREFIX;
-		log.info("were going to search for: " + searchFor);
+		log.debug("were going to search for: " + searchFor);
 		long start = System.currentTimeMillis();
 		SearchList res = searchService.search(searchFor, contexts, 0, 100000);
 		long end = System.currentTimeMillis();
 		log.info("got " + res.size() + " search results in: " + (end - start) + " ms");
-		log.info("got a list of: " + res.size());
+		
 		
 		for (int i =0; i < res.size(); i++) {
 			SearchResult resI = (SearchResult) res.get(i);
 			String ref = resI.getReference();
-			log.info("ref: " + ref);
+			log.debug("ref: " + ref);
 			String id = EntityReference.getIdFromRefByKey(ref, "id");
 			String prefix = EntityReference.getPrefix(ref);
 			if (!PROFILE_PREFIX.equals(prefix)) {
@@ -168,7 +168,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 				continue;
 			}
 			
-			log.info("getting id: " + id);
+			log.debug("getting id: " + id);
 			SakaiPerson profile = sakaiPersonManager.getSakaiPerson(id, sakaiPersonManager.getUserMutableType());
 			// Select the user mutable profile for display on if the public information is viewable.
 			if ((profile != null)
