@@ -151,7 +151,10 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		log.info("searchString: " + searchString);
 		String searchFor ="+" + searchString; //  + " +tool:" + PROFILE_PREFIX;
 		log.info("were going to search for: " + searchFor);
-		SearchList res = searchService.search(searchFor, contexts, 0, 100);
+		long start = System.currentTimeMillis();
+		SearchList res = searchService.search(searchFor, contexts, 0, 100000);
+		long end = = System.currentTimeMillis();
+		log.info("got " + res.size() + " search results in: " + (end - start) + " ms");
 		log.info("got a list of: " + res.size());
 		
 		for (int i =0; i < res.size(); i++) {
