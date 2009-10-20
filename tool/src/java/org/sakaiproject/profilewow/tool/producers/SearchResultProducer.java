@@ -187,9 +187,10 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		long endTime = System.currentTimeMillis();
 		log.info("got " + res.size() + " search results in: " + (endTime - startTime) + " ms");
 		
-		
-		for (int i =0; i < res.size(); i++) {
-			SearchResult resI = (SearchResult) res.get(i);
+		//this list actualy contains all the items
+		Iterator<SearchResult> i = res.iterator();
+		while (i.hasNext()) {
+			SearchResult resI =  i.next();  //(SearchResult) res.get(i);
 			String ref = resI.getReference();
 			
 			log.debug("ref: " + ref);
