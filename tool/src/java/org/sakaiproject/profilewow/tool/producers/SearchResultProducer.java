@@ -84,6 +84,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		this.developerHelperService = developerhelperSerive;
 	}
 
+	private static final int SEARCH_PAGING_SIZE = 20;
 	/**
 	 * prefix for profile objects
 	 */
@@ -95,8 +96,25 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		SearchViewParamaters svp = (SearchViewParamaters)viewparams;
 		String searchString = svp.searchText;
 		log.debug("search string is: "  + searchString);
-		List<SakaiPerson> profiles = this.findProfiles(searchString);
+		int start = 0;
+		if (svp.start != null) {
+			start = Integer.valueOf(svp.start).intValue();
+		}
+		
+		List<SakaiPerson> profiles = this.findProfiles(searchString, start, start + SEARCH_PAGING_SIZE);
 		UIMessage.make(tofill, "searchTitle", "searchTitle", new Object[]{ searchString});
+		
+		
+		
+		if (useSearchService() && SEARCH_PAGING_SIZE == profiles.size()) {
+			UIInternalLink.make(tofill, "searchNext", new SearchViewParamaters(svp.viewID, Integer.valueOf(SEARCH_PAGING_SIZE +1).toString()));
+		}
+		if (useSearchService() && start != 0) {
+			UIInternalLink.make(tofill, "searchBack", new SearchViewParamaters(svp.viewID, Integer.valueOf(start - SEARCH_PAGING_SIZE).toString()));
+			
+		}
+		
+		
 		
 		searchBoxRenderer.renderSearchBox(tofill, "search:");
 		
@@ -124,7 +142,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 			}
 			
 		}
-		if(profiles.size() == 15)
+		if(profiles.size() == 15 && useSearchService())
 				UIOutput.make(tofill, "limitmessage");
 			log.info(profiles.size());
 	}
@@ -135,15 +153,19 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 	}
 
 
-	private List<SakaiPerson> findProfiles(String searchString) {
-		if (serverConfigurationService.getBoolean("profilewow.useSearch", false) && searchService.isEnabled())
-			return findProfilesSearch(searchString);
+	private List<SakaiPerson> findProfiles(String searchString, int start, int end) {
+		if (useSearchService())
+			return findProfilesSearch(searchString, start, end);
 		else
 			return findProfilesDB(searchString);
 	}
+
+	private boolean useSearchService() {
+		return serverConfigurationService.getBoolean("profilewow.useSearch", false) && searchService.isEnabled();
+	}
 	
 	
-	private List<SakaiPerson> findProfilesSearch(String searchString) {
+	private List<SakaiPerson> findProfilesSearch(String searchString, int start, int end) {
 		List<SakaiPerson>  searchResults = new ArrayList<SakaiPerson> ();
 		List<String> contexts = new ArrayList<String>();
 		contexts.add("~global");
@@ -151,10 +173,10 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		log.debug("searchString: " + searchString);
 		String searchFor ="+" + searchString; //  + " +tool:" + PROFILE_PREFIX;
 		log.debug("were going to search for: " + searchFor);
-		long start = System.currentTimeMillis();
-		SearchList res = searchService.search(searchFor, contexts, 0, 100000);
-		long end = System.currentTimeMillis();
-		log.info("got " + res.size() + " search results in: " + (end - start) + " ms");
+		long startTime = System.currentTimeMillis();
+		SearchList res = searchService.search(searchFor, contexts, start, end);
+		long endTime = System.currentTimeMillis();
+		log.info("got " + res.size() + " search results in: " + (endTime - startTime) + " ms");
 		
 		
 		for (int i =0; i < res.size(); i++) {
