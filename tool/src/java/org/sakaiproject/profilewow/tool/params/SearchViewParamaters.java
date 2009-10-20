@@ -13,8 +13,9 @@ public class SearchViewParamaters extends SimpleViewParameters {
 	public SearchViewParamaters(String viewId) {
 		this.viewID = viewId;
 	}
-	public SearchViewParamaters(String viewId, String start) {
+	public SearchViewParamaters(String viewId, String text, String start) {
 		this.viewID = viewId;
 		this.start = start;
+		this.searchText = text;
 	}
 }
