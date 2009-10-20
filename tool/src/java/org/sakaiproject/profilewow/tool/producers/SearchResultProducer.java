@@ -93,6 +93,8 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 	
 	private boolean moreResults = false;
 	
+	private int numberOfpages =0;
+	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
 		
@@ -187,7 +189,15 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		long endTime = System.currentTimeMillis();
 		log.info("got " + res.size() + " search results in: " + (endTime - startTime) + " ms");
 		
-		//this list actualy contains all the items
+		//get the nuber of pages in the result
+		long pagesRaw = res.getFullSize() / SEARCH_PAGING_SIZE;
+		numberOfpages = (int)pagesRaw;
+		log.info("found " + numberOfpages + " in a resultset of " + res.getFullSize());
+		
+		
+		
+		
+		//this list actually contains all the items
 		Iterator<SearchResult> i = res.iterator();
 		while (i.hasNext()) {
 			SearchResult resI =  i.next();  //(SearchResult) res.get(i);
