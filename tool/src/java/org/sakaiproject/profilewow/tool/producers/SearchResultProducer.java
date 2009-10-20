@@ -112,7 +112,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		
 		if (useSearchService() && moreResults) {
 			log.info("rendering the next!");
-			UIInternalLink.make(tofill, "searchNext", "next", new SearchViewParamaters(svp.viewID, searchString, Integer.valueOf(SEARCH_PAGING_SIZE +1).toString()));
+			UIInternalLink.make(tofill, "searchNext", "next", new SearchViewParamaters(svp.viewID, searchString, start + Integer.valueOf(SEARCH_PAGING_SIZE +1).toString()));
 		}
 		if (useSearchService() && start != 0) {
 			log.info("rendering the back!");
