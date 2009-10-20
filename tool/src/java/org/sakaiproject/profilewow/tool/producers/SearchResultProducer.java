@@ -103,6 +103,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		if (svp.start != null) {
 			start = Integer.valueOf(svp.start).intValue();
 		}
+		log.info("Start: " + start);
 		moreResults = false;
 		List<SakaiPerson> profiles = this.findProfiles(searchString, start, start + SEARCH_PAGING_SIZE);
 		UIMessage.make(tofill, "searchTitle", "searchTitle", new Object[]{ searchString});
@@ -179,6 +180,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		String searchFor ="+" + searchString; //  + " +tool:" + PROFILE_PREFIX;
 		log.debug("were going to search for: " + searchFor);
 		long startTime = System.currentTimeMillis();
+		log.info("searching from: " + start + " to: " + end);
 		SearchList res = searchService.search(searchFor, contexts, start, end);
 		moreResults = (SEARCH_PAGING_SIZE == res.size());
 		
