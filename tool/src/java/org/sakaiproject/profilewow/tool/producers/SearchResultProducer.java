@@ -190,9 +190,9 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		log.info("got " + res.size() + " search results in: " + (endTime - startTime) + " ms");
 		
 		//get the nuber of pages in the result
-		long pagesRaw = res.getFullSize() / SEARCH_PAGING_SIZE;
-		numberOfpages = (int)pagesRaw;
-		log.info("found " + numberOfpages + " in a resultset of " + res.getFullSize());
+		double pagesRaw = (double)res.getFullSize() / (double)SEARCH_PAGING_SIZE;
+		numberOfpages = (int)Math.ceil(pagesRaw);
+		log.info("found " + numberOfpages + " pages in a resultset of " + res.getFullSize());
 		
 		
 		
