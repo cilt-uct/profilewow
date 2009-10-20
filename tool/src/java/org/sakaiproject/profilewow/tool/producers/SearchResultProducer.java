@@ -90,6 +90,9 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 	 */
 	private static String PROFILE_PREFIX = "profile";
 	
+	
+	private boolean moreResults = false;
+	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
 		
@@ -100,13 +103,13 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		if (svp.start != null) {
 			start = Integer.valueOf(svp.start).intValue();
 		}
-		
+		moreResults = false;
 		List<SakaiPerson> profiles = this.findProfiles(searchString, start, start + SEARCH_PAGING_SIZE);
 		UIMessage.make(tofill, "searchTitle", "searchTitle", new Object[]{ searchString});
 		
 		
 		
-		if (useSearchService() && SEARCH_PAGING_SIZE == profiles.size()) {
+		if (useSearchService() && moreResults) {
 			log.info("rendering the next!");
 			UIInternalLink.make(tofill, "searchNext", "next", new SearchViewParamaters(svp.viewID, searchString, Integer.valueOf(SEARCH_PAGING_SIZE +1).toString()));
 		}
@@ -177,6 +180,8 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		log.debug("were going to search for: " + searchFor);
 		long startTime = System.currentTimeMillis();
 		SearchList res = searchService.search(searchFor, contexts, start, end);
+		moreResults = (SEARCH_PAGING_SIZE == res.size());
+		
 		long endTime = System.currentTimeMillis();
 		log.info("got " + res.size() + " search results in: " + (endTime - startTime) + " ms");
 		
