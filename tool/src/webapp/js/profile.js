@@ -400,6 +400,66 @@ function showUpload(){
 	}
 	
 function frameGrow(){
+	try{
 	    	var frame = parent.document.getElementById(window.name);
 	  		$(frame).height(parent.document.body.scrollHeight + 270);
+	}catch(e){}
 }
+
+var profile = (function(){
+    return {
+        search : {
+            init : function(){
+                //bind search navigation controls
+                $('input[rel=nav]').bind('click', function(){
+                    if($('#infoCell-backup')){
+                        $('#infoCell-backup').remove();
+                    }
+                    if($('.success')){
+                        $('.success').fadeOut('fast');
+                    }
+                    var target = $(this).attr('src'),
+                    elem = $('td[rel*=infoCell]'),
+                    elemHTML = elem.html();
+                    $.ajax({
+                        url: target,
+                        cache: false,
+                        beforeSend: function(){
+                            elem.html('Loading....');
+                            $('body').append('<div id="infoCell-backup">'+elemHTML+'</div');
+                            $('#infoCell-backup').hide();
+                        },
+                        success: function(msg){
+                            elem.html(msg);
+                            return false;
+                        }
+                    });
+                    return false;
+                });
+
+                var hide = function(){
+                    //$('td[rel*=infoCell]').html($('#infoCell-backup').html());
+                    window.location.href = '#top';
+                    $('#infoCell-backup').remove();
+                    var elem = $('td[rel*=infoCell]');
+                        $.ajax({
+                            url: window.location.href,
+                            cache: false,
+                            beforeSend: function(){
+                                elem.html('Loading....');
+                            },
+                            success: function(msg){
+                                elem.html($(msg).find('td[rel*=infoCell]').html());
+                                return false;
+                            }
+                        });
+                    return false;
+                };
+                $('input[@class*=cancel]').bind('click', hide);
+                $('.closeImg').bind('click', hide);
+
+                $('a[rel*=facebox]').facebox();
+            }
+        }
+    };
+})($);

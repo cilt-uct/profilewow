@@ -3,41 +3,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Profile</title>
-<!--<link href="../css/jquery.tablesorter.pager.css" type="text/css" rel="stylesheet" media="all" />
-	<script type="text/javascript" language="JavaScript"
-	src="../js/jquery.tablesorter.pager.js"></script> -->
-<script>
-	$(document).ready(function() { 
-				var hide = function(){
-					//$('td[rel*=infoCell]').html($('#infoCell-backup').html());
-					window.location.href = '#top';
-					$('#infoCell-backup').remove();
-					var elem = $('td[rel*=infoCell]');
-						$.ajax({
-							url: window.location.href,
-							cache: false,
-							beforeSend: function(){
-								elem.html('Loading....');
-							},
-							success: function(msg){
-								elem.html($(msg).find('td[rel*=infoCell]').html());
-								return false;
-							}
-						});
-					return false;
-				}
-				$('input[@class*=cancel]').bind('click', hide);
-				$('.closeImg').bind('click', hide);	
-				});
-				
-		$('a[rel*=facebox]').facebox();
-		 //$(".tablesorter").tablesorterPager({container: $("#pager")}); 
-	
+<script type="text/javascript" language="javascript">
+	$(document).ready(function() {
+		profile.search.init();
+	});
 </script>
 </head>
 
 <body>
-<div> <h3 rsf:id="searchTitle">Search for <i>{search term}</i></h3><a alt="next" rsf:id="searchBack">Previous</a> <a alt="next" rsf:id="searchNext">Next</a>
+<div> <h3 rsf:id="searchTitle">Search for <span style="font-weight:bold" >{search term}</span></h3>
+    <p class="act" style="padding-left: 125px; margin-bottom: 0; background-color: #F3F3F3; width: 100%; padding-bottom: 2px;  padding-top: 2px;  padding-right: 2px; text-align: right" >
+	    <input rsf:id="searchBack"  rel="nav" type="button" value="Previous" />
+	    <input rsf:id="searchNext" rel="nav" type="button" value="Next" />	    
+    </p>
 	<div rsf:id="resultRow:">
 			<a href="viewProfile.html" rsf:id="resultLink" rel="facebox">Search results go here</a></div>
 <div rsf:id="limitmessage" class="information">Your search returned a lot of results. Please enter a more specific term to get better results.</div>
