@@ -104,6 +104,11 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		int start = 0;
 		if (svp.start != null) {
 			start = Integer.valueOf(svp.start).intValue();
+		} 
+		
+		
+		if (start < 0) {
+			start = 0;
 		}
 		log.info("Start: " + start);
 		moreResults = false;
