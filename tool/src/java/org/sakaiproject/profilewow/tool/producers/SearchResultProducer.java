@@ -110,7 +110,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		if (start < 0) {
 			start = 0;
 		}
-		log.info("Start: " + start);
+		log.debug("Start: " + start);
 		moreResults = false;
 		List<SakaiPerson> profiles = this.findProfiles(searchString, start, start + SEARCH_PAGING_SIZE);
 		UIMessage.make(tofill, "searchTitle", "searchTitle", new Object[]{ searchString});
@@ -118,11 +118,11 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		
 		
 		if (useSearchService() && moreResults) {
-			log.info("rendering the next!");
+			log.debug("rendering the next!");
 			UIInternalLink.make(tofill, "searchNext", new SearchViewParamaters(svp.viewID, searchString, Integer.valueOf(start +  SEARCH_PAGING_SIZE).toString()));
 		}
 		if (useSearchService() && start != 0) {
-			log.info("rendering the back!");
+			log.debug("rendering the back!");
 			UIInternalLink.make(tofill, "searchBack", new SearchViewParamaters(svp.viewID, searchString, Integer.valueOf(start - SEARCH_PAGING_SIZE - 1).toString()));
 			
 		}
@@ -150,14 +150,14 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 				String label = sPerson.getSurname() == null ? "" : sPerson.getSurname();
 				label += (sPerson.getSurname() != null && sPerson.getGivenName()!=null) ? ", " : "";
 				label += sPerson.getGivenName()==null ? "" : sPerson.getGivenName();
-			UIInternalLink.make(row, "resultLink", label,
+				UIInternalLink.make(row, "resultLink", label,
 					new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, eid));
 			}
 			
 		}
 		if(profiles.size() == 15 && useSearchService())
 				UIOutput.make(tofill, "limitmessage");
-			log.info(profiles.size());
+			log.debug(profiles.size());
 	}
 
 	public ViewParameters getViewParameters() {
@@ -184,20 +184,20 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		contexts.add("~global");
 		contexts.add(developerHelperService.getCurrentLocationId());
 		log.debug("searchString: " + searchString);
-		String searchFor ="+" + searchString; //  + " +tool:" + PROFILE_PREFIX;
+		String searchFor ="+" + searchString + " +tool:profile"; //  + " +tool:" + PROFILE_PREFIX;
 		log.debug("were going to search for: " + searchFor);
 		long startTime = System.currentTimeMillis();
-		log.info("searching from: " + start + " to: " + end);
+		log.debug("searching from: " + start + " to: " + end);
 		SearchList res = searchService.search(searchFor, contexts, start, end);
 		moreResults = (SEARCH_PAGING_SIZE == res.size());
 		
 		long endTime = System.currentTimeMillis();
-		log.info("got " + res.size() + " search results in: " + (endTime - startTime) + " ms");
+		log.debug("got " + res.size() + " search results in: " + (endTime - startTime) + " ms");
 		
 		//get the nuber of pages in the result
 		double pagesRaw = (double)res.getFullSize() / (double)SEARCH_PAGING_SIZE;
 		numberOfpages = (int)Math.ceil(pagesRaw);
-		log.info("found " + numberOfpages + " pages in a resultset of " + res.getFullSize());
+		log.debug("found " + numberOfpages + " pages in a resultset of " + res.getFullSize());
 		
 		
 		
