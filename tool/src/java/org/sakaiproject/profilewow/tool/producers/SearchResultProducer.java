@@ -190,7 +190,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		log.info("searching from: " + start + " to: " + end);
 		SearchList res = searchService.search(searchFor, contexts, start, end);
 		log.info("search got: " + res.size() + " results full size: " + res.getFullSize());
-		moreResults = (end  > res.getFullSize());
+		moreResults = (end  < res.getFullSize());
 		
 		long endTime = System.currentTimeMillis();
 		log.debug("got " + res.size() + " search results in: " + (endTime - startTime) + " ms");
