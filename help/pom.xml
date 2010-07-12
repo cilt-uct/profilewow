@@ -3,12 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
    <parent>
       <artifactId>profilewow</artifactId>
-      <groupId>org.sakaiproject.profilewow</groupId>
+      <groupId>org.sakaiproject</groupId>
       <version>0.4-SNAPSHOT</version><!--profilewow.version-->
       <relativePath>../pom.xml</relativePath>
    </parent>
+
   <name>Sakai Profilewow Help</name>
   <artifactId>sakai-profilewow-help</artifactId>
+<groupId>org.sakaiproject.profilewow</groupId>
   <packaging>jar</packaging>
   <properties>
     <deploy.target>shared</deploy.target>
