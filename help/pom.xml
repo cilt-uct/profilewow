@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
    <parent>
       <artifactId>profilewow</artifactId>
-      <groupId>org.sakaiproject</groupId>
+      <groupId>org.sakaiproject.profilewow</groupId>
       <version>0.4-SNAPSHOT</version><!--profilewow.version-->
       <relativePath>../pom.xml</relativePath>
    </parent>
