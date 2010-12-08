@@ -15,6 +15,7 @@ import org.sakaiproject.entitybroker.EntityReference;
 import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
 import org.sakaiproject.profilewow.tool.params.SearchViewParamaters;
 import org.sakaiproject.profilewow.tool.producers.templates.SearchBoxRenderer;
+import org.sakaiproject.search.api.InvalidSearchQueryException;
 import org.sakaiproject.search.api.SearchList;
 import org.sakaiproject.search.api.SearchResult;
 import org.sakaiproject.search.api.SearchService;
@@ -188,7 +189,14 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		log.debug("were going to search for: " + searchFor);
 		long startTime = System.currentTimeMillis();
 		log.debug("searching from: " + start + " to: " + end);
-		SearchList res = searchService.search(searchFor, contexts, start, end);
+		SearchList res = null;
+		try {
+			res = searchService.search(searchFor, contexts, start, end);
+		} catch (InvalidSearchQueryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 		log.debug("search got: " + res.size() + " results full size: " + res.getFullSize());
 		moreResults = (end  < res.getFullSize());
 		

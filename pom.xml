@@ -14,9 +14,9 @@
 
 	<!-- Use this master pom to make it easy to get all the correct RSF Sakai dependencies -->
 	<parent>
-		<groupId>org.sakaiproject</groupId>
-		<artifactId>master</artifactId>
-		<version>2.6.2</version>
+		<groupId>org.sakaiproject.purepoms</groupId>
+		<artifactId>sakai-commons-tool</artifactId>
+		<version>2.7.10</version>
 	</parent>
 
 	<!-- RSF (CARET) maven 2 repository -->
