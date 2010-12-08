@@ -9,7 +9,7 @@
 	</organization>
 	<inceptionYear>2007</inceptionYear>
 	<packaging>pom</packaging>
-	<version>0.5-SNAPSHOT</version>
+	<version>0.5</version>
 
 
 	<!-- Use this master pom to make it easy to get all the correct RSF Sakai dependencies -->
@@ -53,9 +53,9 @@
 
 
 	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</url>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/tags/profilewow-0.5</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/tags/profilewow-0.5</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/tags/profilewow-0.5</url>
 	</scm>
 	<dependencies>
 		<dependency>
