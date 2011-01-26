@@ -58,10 +58,10 @@ private static Log log = LogFactory.getLog(UserBeanLocator.class);
 
 	
 	public void saveAll() {
-		log.info("About to set new password");
+		log.debug("About to set new password");
 		for (Iterator<String> it = delivered.keySet().iterator(); it.hasNext();) {
 			String key = it.next();
-			log.info("got key: " + key);
+			log.debug("got key: " + key);
 			UserPassword up = (UserPassword) delivered.get(key);
 			
 			if (up.getPassOne() == null || up.getPassOne().length() == 0 || up.getPassTwo() == null || up.getPassTwo().length() == 0 ) {
@@ -83,12 +83,12 @@ private static Log log = LogFactory.getLog(UserBeanLocator.class);
 			}
 			
 			
-			log.info("about to reset password");
+			log.debug("about to reset password");
 			try {
 				UserEdit ue = userDirectoryService.editUser(userDirectoryService.getCurrentUser().getId());
 				ue.setPassword(up.getPassOne());
 				userDirectoryService.commitEdit(ue);
-				log.info("password updated");
+				log.debug("password updated for "  + key);
 				messages.addMessage( new TargettedMessage("passwords.updated",
 			               new Object[] { "password has been updated" }, 
 			               TargettedMessage.SEVERITY_INFO));
