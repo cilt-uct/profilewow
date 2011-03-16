@@ -22,11 +22,6 @@
 	<!-- RSF (CARET) maven 2 repository -->
 	<repositories>
 		<repository>
-			<id>CARET-Maven2</id>
-			<name>CARET Maven 2 Repository</name>
-			<url>http://www2.caret.cam.ac.uk/maven2</url>
-		</repository>
-		<repository>
 			<id>sakai-maven</id>
 			<name>Sakai Maven Repo</name>
 			<layout>default</layout>
@@ -73,7 +68,7 @@
 <distributionManagement>
     <repository>
       <uniqueVersion>false</uniqueVersion>
-      <id>release</id>
+      <id>cet-release</id>
       <name>CET Release Repo</name>
       <url>http://srvslscet001.uct.ac.za:8081/nexus/content/repositories/releases</url>
       <layout>default</layout>
