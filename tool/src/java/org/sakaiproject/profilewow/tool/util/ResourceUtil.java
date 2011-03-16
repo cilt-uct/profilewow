@@ -19,8 +19,6 @@ import org.sakaiproject.exception.IdInvalidException;
 import org.sakaiproject.exception.IdLengthException;
 import org.sakaiproject.exception.IdUniquenessException;
 import org.sakaiproject.exception.IdUnusedException;
-import org.sakaiproject.exception.IdUsedException;
-import org.sakaiproject.exception.InconsistentException;
 import org.sakaiproject.exception.OverQuotaException;
 import org.sakaiproject.exception.PermissionException;
 import org.sakaiproject.exception.ServerOverloadException;
@@ -86,6 +84,10 @@ public class ResourceUtil {
 	
 	
 	public boolean isPicture(String fileContentType) {
+		if (fileContentType == null) {
+			return false;
+		}
+		
 		if(fileContentType.compareToIgnoreCase("image/jpeg") != 0 && 
 				fileContentType.compareToIgnoreCase("image/pjpeg") != 0 &&
 				fileContentType.compareToIgnoreCase("image/gif") != 0 &&
@@ -236,6 +238,8 @@ public class ResourceUtil {
 		}
 	}
 
+	
+	
 
 	
 	

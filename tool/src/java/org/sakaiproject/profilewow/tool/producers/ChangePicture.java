@@ -9,6 +9,7 @@ import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.content.api.ContentCollection;
 import org.sakaiproject.content.api.ContentCollectionEdit;
+import org.sakaiproject.content.api.ContentEntity;
 import org.sakaiproject.content.api.ContentHostingService;
 import org.sakaiproject.content.api.ContentResource;
 import org.sakaiproject.entity.api.Entity;
@@ -127,6 +128,11 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 					null, "uploadBean.picUrl", new String[] {});
 			StringList selections = new StringList();
 			for (int i = 0; i < resources.size(); i++) {
+					ContentEntity entity = (ContentEntity)resources.get(i);
+					
+					if (entity.isCollection()) {
+						continue;
+					}
 					ContentResource resource = (ContentResource)resources.get(i);
 					String rUrl = resource.getUrl();
 					if(isSystemPictureActive){
