@@ -36,6 +36,7 @@ public class PasswordFormRenderer {
 		if (canChangePassword(userDirectoryService.getCurrentUser())) {
 			UIJointContainer join = new UIJointContainer(tofill, divId, "passTemplate:");
 			UIForm passForm = UIForm.make(join, "passForm:");
+			UIInput.make(passForm,"passExisting","userBeanLocator." + sPerson.getUid() + ".passExisting");
 			UIInput.make(passForm,"pass1","userBeanLocator." + sPerson.getUid() + ".passOne");
 			UIInput.make(passForm,"pass2","userBeanLocator." + sPerson.getUid() + ".passTwo");
 			//form.parameters.add(new UIELBinding("userBeanLocator." + )
