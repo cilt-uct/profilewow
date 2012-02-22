@@ -49,10 +49,6 @@
 			<version>${rsfutil.version}</version>
 			<type>war</type>
 		</dependency>
-		<dependency>
-		  <groupId>org.springframework</groupId>
-		  <artifactId>spring-webmvc</artifactId>
-		</dependency>
 		<!-- apache commons logging -->
 		<dependency>
 			<groupId>commons-logging</groupId>
