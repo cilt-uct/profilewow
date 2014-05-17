@@ -48,9 +48,9 @@
 
 
 	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</url>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/branches/profliWOW-0.8.x</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/branches/profliWOW-0.8.x</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/branches/profliWOW-0.8.x</url>
 	</scm>
 	<dependencies>
 		<dependency>
