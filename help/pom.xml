@@ -4,7 +4,7 @@
    <parent>
       <artifactId>profilewow</artifactId>
       <groupId>org.sakaiproject</groupId>
-      <version>0.9-SNAPSHOT</version><!--profilewow.version-->
+      <version>0.10-SNAPSHOT</version><!--profilewow.version-->
       <relativePath>../pom.xml</relativePath>
    </parent>
 

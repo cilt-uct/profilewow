@@ -9,7 +9,7 @@
 	</organization>
 	<inceptionYear>2007</inceptionYear>
 	<packaging>pom</packaging>
-	<version>0.9-SNAPSHOT</version>
+	<version>0.10-SNAPSHOT</version>
 
 
 	<!-- Use this master pom to make it easy to get all the correct RSF Sakai dependencies -->
@@ -48,9 +48,9 @@
 
 
 	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/branches/profliWOW-0.8.x</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/branches/profliWOW-0.8.x</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/branches/profliWOW-0.8.x</url>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk/</url>
 	</scm>
 	<dependencies>
 		<dependency>
