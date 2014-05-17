@@ -122,7 +122,7 @@ public class ChangePicture implements ViewComponentProducer, ActionResultInterce
 		UICommand.make(formUpload,"submit","uploadBean.processUpload");
 
 		UIForm form = UIForm.make(tofill,"form");
-			List<ContentResource> resources = pCollection.getMemberResources();
+			List resources = pCollection.getMemberResources();
 			
 			UISelect selectPic = UISelect.makeMultiple(form, "select-pic",
 					null, "uploadBean.picUrl", new String[] {});
