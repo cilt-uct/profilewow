@@ -2,6 +2,7 @@ package org.sakaiproject.profilewow.tool.validators;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.profilewow.tool.facade.SakaiPersonFacade;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

@@ -64,24 +64,6 @@ private static Log log = LogFactory.getLog(UserBeanLocator.class);
 			log.debug("got key: " + key);
 			UserPassword up = (UserPassword) delivered.get(key);
 			
-			log.info(up.getPassExisting() + ", " + up.getPassOne() + ", " + up.getPassTwo());
-			//does the password match the exisiting one
-			if (up.getPassExisting() == null) {
-				messages.addMessage( new TargettedMessage("passwords.notExisting",
-			               new Object[] {}, 
-			               TargettedMessage.SEVERITY_ERROR));
-				return;
-			}
-			
-			//password.existingError
-			if (userDirectoryService.authenticate(userDirectoryService.getCurrentUser().getEid(), up.getPassExisting()) == null) {
-				log.debug("wrong current password entered");
-				messages.addMessage( new TargettedMessage("password.existingError",
-			               new Object[] {}, 
-			               TargettedMessage.SEVERITY_ERROR));
-				return;
-			}
-			
 			if (up.getPassOne() == null || up.getPassOne().length() == 0 || up.getPassTwo() == null || up.getPassTwo().length() == 0 ) {
 				//both must be filled in
 				messages.addMessage( new TargettedMessage("password.empty",
@@ -137,14 +119,7 @@ private static Log log = LogFactory.getLog(UserBeanLocator.class);
 		private String id;
 		private String pass1;
 		private String pass2;
-		private String passExisting;
 		
-		public String getPassExisting() {
-			return passExisting;
-		}
-		public void setPassExisting(String passExisting) {
-			this.passExisting = passExisting;
-		}
 		public String getId() {
 			return id;
 		}

@@ -326,22 +326,13 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 				msgElem.removeClass();
 				if(!/\S/.test($('.passwordForm').find('input[@type=password]').eq(0).val())){
 					$('.passwordForm').find('input[@type=password]').eq(0).focus();
-					msgElem.text('Enter your existing password.');
-					msgElem.addClass('alertMessage');
-					msgElem.show();
-					return false;
-				}
-				
-				
-				if(!/\S/.test($('.passwordForm').find('input[@type=password]').eq(1).val())){
-					$('.passwordForm').find('input[@type=password]').eq(1).focus();
 					msgElem.text('Enter a new password.');
 					msgElem.addClass('alertMessage');
 					msgElem.show();
 					return false;
 				}
 				
-				if($('.passwordForm').find('input[@type=password]').eq(1).val() != $('.passwordForm').find('input[@type=password]').eq(2).val()){
+				if($('.passwordForm').find('input[@type=password]').eq(0).val() != $('.passwordForm').find('input[@type=password]').eq(1).val()){
 					$('.passwordForm').find('input[@type=password]').focus();
 					$('.success').hide();
 					msgElem.text('Your passwords do not match.');
@@ -360,20 +351,9 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 				msgElem.html($(msg).find('.success').html());
 				msgElem.addClass('success');
 				$(this).removeAttr('disabled');
-				$('.passwordForm').find('input[@type=password]').eq(1).val('');
-				$('.passwordForm').find('input[@type=password]').eq(2).val('');
 				$('.passwordForm').find('input[@type=password]').eq(0).val('');
+				$('.passwordForm').find('input[@type=password]').eq(1).val('');
 				return false;	
-				}
-			error: function(msg){
-					var msgElem = $('#passwordMsg');
-					msgElem.removeClass('alertMessage');
-					msgElem.html($(msg).find('.error').html());
-					msgElem.text('Your current password is incorect.');
-					msgElem.addClass('alertMessage');
-					msgElem.show();
-					$(this).removeAttr('disabled');
-					return false;	
 				}
 		}
 		
