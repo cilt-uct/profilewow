@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-<name>Sakai Profilewow</name>
+        <name>Sakai Profilewow</name>
 	<groupId>org.sakaiproject</groupId>
 	<artifactId>profilewow</artifactId>
 	<organization>
@@ -9,8 +9,7 @@
 	</organization>
 	<inceptionYear>2007</inceptionYear>
 	<packaging>pom</packaging>
-	<version>1.0.0-SNAPSHOT</version>
-
+	<version>10-SNAPSHOT</version>
 
 	<!-- Use this master pom to make it easy to get all the correct RSF Sakai dependencies -->
 	<parent>
@@ -56,12 +55,12 @@
 		<module>help</module>
 	</modules>
 
-
 	<scm>
-		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/branches/profilewow-0.7.x</connection>
-		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/branches/profilewow-0.7.x</developerConnection>
-		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/branches/profilewow-0.7.x</url>
+		<connection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk</connection>
+		<developerConnection>scm:svn:http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk</developerConnection>
+		<url>http://source.cet.uct.ac.za/svn/sakai/profileWOW/trunk</url>
 	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>commons-validator</groupId>
@@ -75,36 +74,4 @@
 		</dependency>
 	</dependencies>
 	
-<distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>cet-release</id>
-      <name>CET Release Repo</name>
-      <url>http://source.cet.uct.ac.za/nexus/content/repositories/releases</url>
-      <layout>default</layout>
-    </repository>
-    <snapshotRepository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>snapshots</id>
-      <name>CET snapshot Repo</name>
-      <url>http://source.cet.uct.ac.za/nexus/content/repositories/snapshots</url>
-      <layout>default</layout>
-    </snapshotRepository>
- </distributionManagement>
-    <ciManagement>
-        <system>Continuum</system>
-        <url>http://arabica.cet.uct.ac.za:8080/continuum</url>
-        <notifiers>
-            <notifier>
-                <type>mail</type>
-                <sendOnError>true</sendOnError>
-                <sendOnFailure>true</sendOnFailure>
-                <sendOnSuccess>false</sendOnSuccess>
-                <sendOnWarning>false</sendOnWarning>
-                <configuration>
-                    <address>david.horwitz@uct.ac.za</address>
-                </configuration>
-            </notifier>
-        </notifiers>
-    </ciManagement>
 </project>
