@@ -4,8 +4,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.entitybroker.EntityReference;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
+import org.sakaiproject.rsf.entitybroker.EntityViewParamsInferrer;
 
-import uk.ac.cam.caret.sakai.rsf.entitybroker.EntityViewParamsInferrer;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 
 public class OfficialPictureInferer implements EntityViewParamsInferrer {
