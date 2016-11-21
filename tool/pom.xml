@@ -15,39 +15,36 @@
 	<parent>
 		<groupId>org.sakaiproject</groupId>
 		<artifactId>profilewow</artifactId>
-		<version>0.9-SNAPSHOT</version>
+		<version>10-SNAPSHOT</version>
+                <relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<properties>
-		<rsfutil.version>0.7.5</rsfutil.version>
-		<sakai.entitybroker.version>1.3.6</sakai.entitybroker.version>
-		<sakairsf.sakai.version>2.2.x</sakairsf.sakai.version>
-		<deploy.webappname>Profilewow</deploy.webappname>
-		<appserver.id>${sakai.appserver.id}</appserver.id>
-		<profile.version>SNAPSHOT</profile.version>
-	</properties>
-
 	<dependencies>
-
-
-		<!-- Sakai RSF dependency -->
+		<!-- RSF dependencies -->
 		<dependency>
 			<groupId>uk.org.ponder.sakairsf</groupId>
 			<artifactId>sakairsf</artifactId>
-			<version>${rsfutil.version}</version>
-			<type>jar</type>
+			<version>${sakairsf.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>uk.org.ponder.sakairsf</groupId>
 			<artifactId>SakaiRSFComponents-evolvers</artifactId>
-			<version>${rsfutil.version}</version>
+			<version>${sakairsf.components.version}</version>
 			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>uk.org.ponder.sakairsf</groupId>
 			<artifactId>SakaiRSFComponents-templates</artifactId>
-			<version>${rsfutil.version}</version>
+			<version>${sakairsf.components.version}</version>
 			<type>war</type>
+		</dependency>
+	        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 		<!-- apache commons logging -->
 		<dependency>
@@ -62,7 +59,6 @@
 		<dependency>
 			<groupId>org.sakaiproject.entitybroker</groupId>
 			<artifactId>entitybroker-utils</artifactId>
-			<version>1.3.17</version>
 		</dependency>
 		<dependency>
 			<groupId>org.sakaiproject.common</groupId>
@@ -91,15 +87,13 @@
 		<dependency>
 			<groupId>org.sakaiproject.sms</groupId>
 			<artifactId>sms-api</artifactId>
-			<version>0.14</version>
+			<version>2.0-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.sakaiproject.search</groupId>
 			<artifactId>search-api</artifactId>
-			<version>1.2.8</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<!-- For file uploads -->
@@ -111,15 +105,6 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
