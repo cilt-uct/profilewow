@@ -30,6 +30,13 @@
 		</param-value>
 	</context-param>
 
+	<!-- param-value must match the id from tool/project.xml -->
+	<context-param>
+		<param-name>resourceurlbase</param-name> 
+		<param-value>/profilewow-tool/</param-value>
+	</context-param>
+	
+	
 	<!-- Sakai request filter -->
 	<filter>
 	    <filter-name>sakai.request</filter-name>
