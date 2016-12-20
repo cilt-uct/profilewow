@@ -4,6 +4,7 @@
   left: 0;
   z-index: 100;
   text-align: left;
+  white-space: nowrap;
 }
 
 
@@ -39,11 +40,16 @@
   position:absolute;
   top:5px;
   right:5px;
-  padding:2px;
+  height: 16px;
+  line-height: 16px;
   background:#fff;
+  text-align: center;
 }
 #facebox .close img{
-  opacity:0.3;
+  opacity:0.8;
+  width: 10px;
+  height: 10px;
+  vertical-align: middle;
 }
 #facebox .close:hover img{
   opacity:1.0;
@@ -77,4 +83,14 @@
 .facebox_overlayBG {
   background-color: #000;
   z-index: 99;
+}
+
+#facebox h3 {
+  margin: 0 0 2rem;
+  padding: 0;
+  line-height: 2.5rem;
+}
+
+#facebox input[type=file] {
+  display: inline;
 }

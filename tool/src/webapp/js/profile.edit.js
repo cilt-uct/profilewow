@@ -4,10 +4,10 @@ $(document).ready(function() {
         $('#infoCell-backup').remove();
         return false;
     }
-    $('input[@class*=cancel]').bind('click', hide);
+    $('input[class*=cancel]').bind('click', hide);
     $('.closeImg').bind('click', hide);
     $('.addItem').bind('click', function() {
-        $('textarea[@name*=editProfileForm-more]').slideToggle('fast');
+        $('textarea[name*=editProfileForm-more]').slideToggle('fast');
         return false;
     });
 

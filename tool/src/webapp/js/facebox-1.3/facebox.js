@@ -85,8 +85,8 @@
     settings: {
       opacity      : 0.2,
       overlay      : true,
-      loadingImage : '../js/facebox/loading.gif',
-      closeImage   : '../js/facebox/closelabel.png',
+      loadingImage : '/profilewow-tool/js/facebox-1.3/loading.gif',
+      closeImage   : '/profilewow-tool/js/facebox-1.3/closelabel.png',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
     <div id="facebox" style="display:none;"> \
@@ -122,7 +122,10 @@
     reveal: function(data, klass) {
       $(document).trigger('beforeReveal.facebox')
       if (klass) $('#facebox .content').addClass(klass)
-      $('#facebox .content').append(data)
+      var temp = document.createElement('html');
+      temp.innerHTML = data;
+      var htmlContent = (temp.querySelector('Mrphs-sakai-profilewow') ? temp.querySelector('Mrphs-sakai-profilewow').innerHTML : temp.querySelector('.portletBody').innerHTML);
+      $('#facebox .content').html(htmlContent);
       $('#facebox .loading').remove()
       $('#facebox .body').children().fadeIn('normal')
       $('#facebox').css('left', $(window).width() / 2 - ($('#facebox .popup').width() / 2))

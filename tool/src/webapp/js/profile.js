@@ -364,7 +364,7 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 			return false;
 		});
 		
-		$('#editProfileLink').bind('click', function(){
+		$('#editProfileLink').on('click', function(){
 			if($('#infoCell-backup')){
 				$('#infoCell-backup').remove();
 			}
@@ -384,7 +384,20 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 				},
 				success: function(msg){
 					frameGrow();
-					elem.html(msg);
+					var temp = document.createElement('html');
+					temp.innerHTML = msg;
+					var profileEl = temp.querySelector('.Mrphs-sakai-profilewow');
+					if (profileEl) {
+						$(profileEl)
+							.find('.Mrphs-toolTitleNav__link')
+							.each(function(i, el) {
+								el.remove();
+							});
+						elem.html(profileEl.innerHTML);
+					}
+					else {
+						elem.html('Could not load profile editor. Please contact Vula Help team');
+					}
 					return false;
 				}
 			});
@@ -455,7 +468,7 @@ var profile = (function(){
                         });
                     return false;
                 };
-                $('input[@class*=cancel]').bind('click', hide);
+                $('input[lass*=cancel]').bind('click', hide);
                 $('.closeImg').bind('click', hide);
 
                 $('a[rel*=facebox]').facebox();
