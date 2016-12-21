@@ -432,8 +432,16 @@ function doAjax(messageId, topicId, self){
 				});
 			},
    		 success: function(msg) {
-			 $(document).trigger('close.facebox');			 
-			 $('.portletBody').eq(0).prepend('<span class="success">' + $(msg).find('.success').html());
+			$(document).trigger('close.facebox');
+			console.log($('span.success'));
+			if ($('span.success').length === 0) {
+				$('.portletBody').eq(0).prepend('<span class="success">' + $(msg).find('.success').html());
+			}
+			else {
+				$('span.success')
+					.css({opacity: 1})
+					.slideDown(0);
+			}
 			 //$('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
 			setTimeout(function() {
 				$('.success').animate({opacity: 0}, 500).slideUp('fast');
