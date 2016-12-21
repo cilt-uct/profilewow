@@ -232,25 +232,20 @@ function doAjax(messageId, topicId, self){
 	return false;
 }
 
-//fix for double click stack traces in IE - SAK-10625
-//add Jquery if necessary
-/*if(typeof($) == "undefined"){
-   js = document.createElement('script');
-   js.setAttribute('language', 'javascript');
-   js.setAttribute('type', 'text/javascript');
-   js.setAttribute('src','/library/js/jquery.js');
-   document.getElementsByTagName('head').item(0).appendChild(js);
-//document.write('<script type="text/javascript" src="/library/js/jquery.js"></script>');}
-}
-js = document.createElement('script');
-js.setAttribute('language', 'javascript');
-js.setAttribute('type', 'text/javascript');
-js.setAttribute('src','/sakai-messageforums-tool/js/sak-10625.js');
-document.getElementsByTagName('head').item(0).appendChild(js);*/
-
 //Ajax mods to profleWow lovemore.nalube@uct.ac.za
 
-	$(document).ready(function() { 
+	$(document).ready(function() {
+	
+	$('input[name=searchText]').on('keyup focusout', function(e) {
+		var curValue = $(this).val();
+		if (curValue.length < 4) {
+			$(this).next().attr('disabled', 'disabled');
+		}
+		else {
+			$(this).next().removeAttr('disabled');
+		}
+	});
+	$('input[name=searchText]').trigger('keyup');
 	$('a[rel*=facebox]').facebox();
 	
 	$('.searchForm').bind('submit', function(){
@@ -278,11 +273,11 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 			$('.searchForm div').each(function(){
 				$(this).remove();
 			});
-		if(!/\S/.test($('.searchForm').find('input[@type=text]').val())){
-			$('.searchForm').find('input[@type=text]').focus();
+		if(!/\S/.test($('.searchForm').find('input[type=text]').val())){
+			$('.searchForm').find('input[type=text]').focus();
 			return false;
 		}
-		if($('.searchForm').find('input[@type=text]').val().length < 4){
+		if($('.searchForm').find('input[type=text]').val().length < 4){
 			$('.searchForm').append($('<div/>').text('Enter a longer name to start searching.').addClass('alertMessage'));
 			$('.searchForm').find('input[@type=text]').focus();
 			return false;
@@ -294,7 +289,8 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 			$('.alertMessage').fadeOut('fast');
 		}
 		var elem = $('td[rel*=infoCell]');
-		var elemHTML = elem.html();		
+		var elemHTML = elem.html();
+		var n = 0;	
 		var options = {
 			beforeSend: function(){
 				if($('#infoCell-backup')){}	
@@ -307,10 +303,21 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 			},
 			success: function(msg){
 				frameGrow();
-				elem.html(msg);
+				var temp = document.createElement('html');
+				temp.innerHTML = msg;
+				var profileEl = temp.querySelector('.Mrphs-sakai-profilewow');
+				if (profileEl) {
+					$(profileEl)
+						.find('.Mrphs-toolTitleNav__link')
+						.each(function(i, el) {
+							el.remove();
+						});
+					elem.html(profileEl.innerHTML);
+					profile.search.init();
+				}
 				$(this).removeAttr('disabled');
 				return false;	
-				}
+			}
 		}
 		
 		$('.searchForm').ajaxSubmit(options);
@@ -394,6 +401,16 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 								el.remove();
 							});
 						elem.html(profileEl.innerHTML);
+						$.ajax({
+							url: '/profilewow-tool/js/profile.edit.js',
+							dataType: 'script',
+							success: function(scriptText) {
+//								$('head').append(script);
+							},
+							error: function(err) {
+								console.log('could not load script');
+							}
+						});
 					}
 					else {
 						elem.html('Could not load profile editor. Please contact Vula Help team');
@@ -405,7 +422,127 @@ document.getElementsByTagName('head').item(0).appendChild(js);*/
 		});
 		
 
+			var picOpt = {
+			beforeSend: function(){
+				$('.success').each(function(){
+					$(this).fadeOut('fast');
+				});				
+				$('.alertMessage').each(function(){
+					$(this).fadeOut('fast');
+				});
+			},
+   		 success: function(msg) {
+			 $(document).trigger('close.facebox');			 
+			 $('.portletBody').eq(0).prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
+			 //$('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
+			$('.success div').on('click', function(){
+				$(this).parent().parent().fadeOut('normal');
+			});
+    	  }
+ 	 };
 		
+		$('#facebox .image img').tooltip({ 
+		    delay: 0, 
+		    showURL: false, 
+		    bodyHandler: function() { 
+			var fileName = this.src.substring(this.src.lastIndexOf('/') + 1);
+			var reg = new RegExp('imageServlet[?]');
+			if(reg.test(fileName))
+		        return $("<div/>").text("UCT picture"); 
+			else if(fileName == 'noimage.gif')
+				return $("<div/>").text("Default picture");
+			else
+			return $("<div/>").text(fileName);
+		    } 
+		});
+
+		$('#facebox').on('click', '.selectImage', function(){
+			that = $(this);
+			$('.profileImage img').attr('src', $(this).find('img').attr('src'));
+			//that.attr('class', that.attr('class') + ' imageSelected');
+			$('.album').find('input[type*=radio]').each(function(){
+				$(this).removeAttr('checked');
+			});
+			that.parent().find('input[type*=radio]').attr('checked', 'checked');
+			$('#form').ajaxSubmit(picOpt);
+			return false;
+		});		
+		
+		$('#facebox').on('click', '.officialPic', function(){
+			$.get('officialpic','',
+				function(f){
+					var form = $(f).find('form');
+					if (form) {
+						form.ajaxSubmit({
+							success: function(msg){
+								$(document).trigger('close.facebox');
+								$('.portletBody').prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
+								$('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
+								//$('.success div').bind('click', function(){
+								//	$(this).parent().parent().slideUp('normal');
+								}
+						});
+					}
+					else 
+					{alert('No form');}
+					/*$.post(
+						'officialpic',
+						params,
+						function(msg){
+							 $(document).trigger('close.facebox');			 
+							 $('.portletBody').prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
+							 $('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
+							 $('.success div').bind('click', function(){
+								$(this).parent().parent().slideUp('normal');
+							});	*/			
+						return false;
+						}
+					//}
+				);
+			return false;
+		});
+
+		$('#facebox').on('click', '.removePicture', function(){
+			$('input[type*=radio]').each(function(){
+				$(this).removeAttr('checked');
+			});
+			$('.profileImage img').attr('src', $(this).find('img').attr('src'));
+			$('#form').ajaxSubmit(picOpt);
+			return false;
+		});
+
+
+		$('#facebox').on('click', '.selectOfficialImage', function(){
+			$('.profileImage img').attr('src', $(this).find('img').attr('src'));
+			var opts = {
+				success: function(msg){
+					$(document).trigger('close.facebox');
+					//$('.profileImage img').attr('src', $(msg).find('.activeSelectedImage').attr('src'));
+				}
+			};
+			$('.officialPicForm').ajaxSubmit(opts);
+			return false;
+		});
+
+		
+		function formSubmit(that){
+			if ($('input[name*=fileupload1]').val()) {
+				var reg = new RegExp("^.+\.(jpg|jpeg|png|gif|bmp)$","i");
+	                        if ( reg.test($('input[name*=fileupload1]').val()) ) {
+					$('#progress').html('&nbsp;');
+					$('#progress').attr('class', 'loading');			
+					return true;
+        	                } else {
+					$('#progress').addClass('alertMessage');
+                        	        $('#progress').html('Only images allowed');
+					return false;
+                        	}
+			}
+			else {					
+				return false;
+			}
+		}	
+	
 	}); 	
 	
 function showUpload(){
@@ -443,7 +580,7 @@ var profile = (function(){
                             $('#infoCell-backup').hide();
                         },
                         success: function(msg){
-                            elem.html(msg);
+         //                   elem.html(msg);
                             return false;
                         }
                     });
@@ -468,9 +605,8 @@ var profile = (function(){
                         });
                     return false;
                 };
-                $('input[lass*=cancel]').bind('click', hide);
+                $('input[class*=cancel]').bind('click', hide);
                 $('.closeImg').bind('click', hide);
-
                 $('a[rel*=facebox]').facebox();
             }
         }

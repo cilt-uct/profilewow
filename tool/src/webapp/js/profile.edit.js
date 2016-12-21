@@ -6,7 +6,7 @@ $(document).ready(function() {
     }
     $('input[class*=cancel]').bind('click', hide);
     $('.closeImg').bind('click', hide);
-    $('.addItem').bind('click', function() {
+    $('.addItem').on('click', function() {
         $('textarea[name*=editProfileForm-more]').slideToggle('fast');
         return false;
     });
