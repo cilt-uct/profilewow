@@ -279,7 +279,7 @@ function doAjax(messageId, topicId, self){
 		}
 		if($('.searchForm').find('input[type=text]').val().length < 4){
 			$('.searchForm').append($('<div/>').text('Enter a longer name to start searching.').addClass('alertMessage'));
-			$('.searchForm').find('input[@type=text]').focus();
+			$('.searchForm').find('input[type=text]').focus();
 			return false;
 		}
 		if($('.success')){
@@ -331,16 +331,16 @@ function doAjax(messageId, topicId, self){
 				var msgElem = $('#passwordMsg');		
 				msgElem.hide();
 				msgElem.removeClass();
-				if(!/\S/.test($('.passwordForm').find('input[@type=password]').eq(0).val())){
-					$('.passwordForm').find('input[@type=password]').eq(0).focus();
+				if(!/\S/.test($('.passwordForm').find('input[type=password]').eq(0).val())){
+					$('.passwordForm').find('input[type=password]').eq(0).focus();
 					msgElem.text('Enter a new password.');
 					msgElem.addClass('alertMessage');
 					msgElem.show();
 					return false;
 				}
 				
-				if($('.passwordForm').find('input[@type=password]').eq(0).val() != $('.passwordForm').find('input[@type=password]').eq(1).val()){
-					$('.passwordForm').find('input[@type=password]').focus();
+				if($('.passwordForm').find('input[type=password]').eq(0).val() != $('.passwordForm').find('input[type=password]').eq(1).val()){
+					$('.passwordForm').find('input[type=password]').focus();
 					$('.success').hide();
 					msgElem.text('Your passwords do not match.');
 					msgElem.addClass('alertMessage');
@@ -358,8 +358,8 @@ function doAjax(messageId, topicId, self){
 				msgElem.html($(msg).find('.success').html());
 				msgElem.addClass('success');
 				$(this).removeAttr('disabled');
-				$('.passwordForm').find('input[@type=password]').eq(0).val('');
-				$('.passwordForm').find('input[@type=password]').eq(1).val('');
+				$('.passwordForm').find('input[type=password]').eq(0).val('');
+				$('.passwordForm').find('input[type=password]').eq(1).val('');
 				return false;	
 				}
 		}
@@ -433,11 +433,11 @@ function doAjax(messageId, topicId, self){
 			},
    		 success: function(msg) {
 			 $(document).trigger('close.facebox');			 
-			 $('.portletBody').eq(0).prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
+			 $('.portletBody').eq(0).prepend('<span class="success">' + $(msg).find('.success').html());
 			 //$('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
-			$('.success div').on('click', function(){
-				$(this).parent().parent().fadeOut('normal');
-			});
+			setTimeout(function() {
+				$('.success').animate({opacity: 0}, 500).slideUp('fast');
+			}, 5000);
     	  }
  	 };
 		
@@ -476,8 +476,11 @@ function doAjax(messageId, topicId, self){
 						form.ajaxSubmit({
 							success: function(msg){
 								$(document).trigger('close.facebox');
-								$('.portletBody').prepend('<span class="success">' + $(msg).find('.success').html() + '<a href="#"><div name="closeMsg">close</div></a></span>');
+								$('.portletBody').prepend('<span class="success">' + $(msg).find('.success').html());
 								$('.profileImage img').attr('src', $(msg).find('.profileImage img').attr('src'));
+								setTimeout(function() {
+									$('.success').slideUp('fast');
+								}, 5000);
 								//$('.success div').bind('click', function(){
 								//	$(this).parent().parent().slideUp('normal');
 								}
