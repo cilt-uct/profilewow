@@ -371,7 +371,11 @@ function doAjax(messageId, topicId, self){
 			return false;
 		});
 		
-		$('#editProfileLink').on('click', function(){
+		$('#editProfileLink').on('click', function(e){
+			e.preventDefault();
+			if ($('#errorContainer').length > 0) {
+				return;
+			}
 			if($('#infoCell-backup')){
 				$('#infoCell-backup').remove();
 			}
@@ -408,7 +412,6 @@ function doAjax(messageId, topicId, self){
 					return false;
 				}
 			});
-			return false;
 		});
 		
 
