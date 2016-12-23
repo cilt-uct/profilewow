@@ -401,16 +401,6 @@ function doAjax(messageId, topicId, self){
 								el.remove();
 							});
 						elem.html(profileEl.innerHTML);
-						$.ajax({
-							url: '/profilewow-tool/js/profile.edit.js',
-							dataType: 'script',
-							success: function(scriptText) {
-//								$('head').append(script);
-							},
-							error: function(err) {
-								console.log('could not load script');
-							}
-						});
 					}
 					else {
 						elem.html('Could not load profile editor. Please contact Vula Help team');
@@ -433,7 +423,6 @@ function doAjax(messageId, topicId, self){
 			},
    		 success: function(msg) {
 			$(document).trigger('close.facebox');
-			console.log($('span.success'));
 			if ($('span.success').length === 0) {
 				$('.portletBody').eq(0).prepend('<span class="success">' + $(msg).find('.success').html());
 			}
@@ -464,14 +453,14 @@ function doAjax(messageId, topicId, self){
 		    } 
 		});
 
-		$('#facebox').on('click', '.selectImage', function(){
-			that = $(this);
-			$('.profileImage img').attr('src', $(this).find('img').attr('src'));
+		$('#facebox').on('click', '.selectImage', function(e){
+			var imgLink = $(this).find('img').attr('src');
+			$('.profileImage img').attr('src', imgLink);
 			//that.attr('class', that.attr('class') + ' imageSelected');
 			$('.album').find('input[type*=radio]').each(function(){
 				$(this).removeAttr('checked');
 			});
-			that.parent().find('input[type*=radio]').attr('checked', 'checked');
+			$(this).parent().find('input[type*=radio]').attr('checked', 'checked');
 			$('#form').ajaxSubmit(picOpt);
 			return false;
 		});		

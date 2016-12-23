@@ -129,6 +129,25 @@
       $('#facebox .loading').remove()
       $('#facebox .body').children().fadeIn('normal')
       $('#facebox').css('left', $(window).width() / 2 - ($('#facebox .popup').width() / 2))
+      $('#facebox .image img').each(function() {
+        $(this).tooltip({
+            delay: 0, 
+            showURL: false,  
+            bodyHandler: function() { 
+              var fileName = this.src.substring(this.src.lastIndexOf('/') + 1)
+              var reg = new RegExp('imageServlet[?]')
+              if(reg.test(fileName)) {
+                return $("<div/>").text("UCT picture")
+              }
+              else if(fileName == 'noimage.gif') {
+                return $("<div/>").text("Default picture")
+              }
+              else {
+                return $("<div/>").text(fileName)
+              }
+            }       
+        })
+      })
       $(document).trigger('reveal.facebox').trigger('afterReveal.facebox')
     },
 
