@@ -402,7 +402,7 @@ function doAjax(messageId, topicId, self){
 						$(profileEl)
 							.find('.Mrphs-toolTitleNav__link')
 							.each(function(i, el) {
-								el.remove();
+								$(el).remove();
 							});
 						elem.html(profileEl.innerHTML);
 					}
