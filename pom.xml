@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-        <name>Sakai Profilewow</name>
+	<name>Sakai Profilewow</name>
 	<groupId>org.sakaiproject</groupId>
 	<artifactId>profilewow</artifactId>
 	<organization>
@@ -9,13 +9,12 @@
 	</organization>
 	<inceptionYear>2007</inceptionYear>
 	<packaging>pom</packaging>
-	<version>11-SNAPSHOT</version>
 
 	<!-- Use this master pom to make it easy to get all the correct RSF Sakai dependencies -->
 	<parent>
 		<groupId>org.sakaiproject</groupId>
 		<artifactId>master</artifactId>
-		<version>11-SNAPSHOT</version>
+		<version>12-SNAPSHOT</version>
 		<relativePath>../master/pom.xml</relativePath>
 	</parent>
 
@@ -62,7 +61,7 @@
 	</scm>
 
 	<dependencies>
-	<dependency>
+		<dependency>
 			<groupId>commons-validator</groupId>
 			<artifactId>commons-validator</artifactId>
 			<version>1.4.1</version>
