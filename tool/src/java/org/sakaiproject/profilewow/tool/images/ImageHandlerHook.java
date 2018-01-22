@@ -8,8 +8,6 @@ import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.entitybroker.DeveloperHelperService;
@@ -17,17 +15,17 @@ import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.user.api.UserDirectoryService;
 
+import lombok.extern.slf4j.Slf4j;
 import uk.org.ponder.rsf.processor.HandlerHook;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.util.UniversalRuntimeException;
 
+@Slf4j
 public class ImageHandlerHook implements HandlerHook {
 
 	private static final String IMAGE_PATH = "images/";
 
 	private static final String UNAVAILABLE_IMAGE = "officialPhotoUnavailable.jpg";
-
-	private static Log log = LogFactory.getLog(ImageHandlerHook.class);
 
 	private HttpServletResponse response;
 	public void setResponse(HttpServletResponse response) {
@@ -149,8 +147,7 @@ public class ImageHandlerHook implements HandlerHook {
 				}
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		}
 
 		return true;

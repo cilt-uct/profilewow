@@ -5,6 +5,9 @@ import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SakaiPersonFacade {
 
 	
@@ -31,8 +34,7 @@ public class SakaiPersonFacade {
 			//and get the SakaiPerson here
 			this.sakaiPerson = spm.getSakaiPerson(userId, spm.getUserMutableType());
 		} catch (UserNotDefinedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		}
 		
 	}

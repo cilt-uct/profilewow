@@ -47,11 +47,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
-		<!-- apache commons logging -->
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-		</dependency>
 		<!-- sakai dependecies -->
 		<dependency>
 			<groupId>org.sakaiproject.entitybroker</groupId>

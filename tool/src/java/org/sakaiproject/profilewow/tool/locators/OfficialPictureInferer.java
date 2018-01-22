@@ -1,15 +1,15 @@
 package org.sakaiproject.profilewow.tool.locators;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.entitybroker.EntityReference;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
 import org.sakaiproject.rsf.entitybroker.EntityViewParamsInferrer;
 
+import lombok.extern.slf4j.Slf4j;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 
+@Slf4j
 public class OfficialPictureInferer implements EntityViewParamsInferrer {
-	private static Log log = LogFactory.getLog(OfficialPictureInferer.class);
+
 	public String[] getHandledPrefixes() {
 		
 		return new String[]{"official_picture"};

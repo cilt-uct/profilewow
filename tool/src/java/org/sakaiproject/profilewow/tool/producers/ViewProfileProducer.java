@@ -1,7 +1,5 @@
 package org.sakaiproject.profilewow.tool.producers;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.profilewow.tool.params.ImageViewParamaters;
@@ -11,6 +9,7 @@ import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
 import org.sakaiproject.util.FormattedText;
 
+import lombok.extern.slf4j.Slf4j;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
@@ -22,14 +21,15 @@ import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 
+@Slf4j
 public class ViewProfileProducer implements ViewComponentProducer,ViewParamsReporter {
 
 	private static final String NO_PIC_URL = ProfilePicRenderer.NO_PIC_URL;
-	private static Log log = LogFactory.getLog(ViewProfileProducer.class);
+
+
 	
 	public final static String VIEW_ID="viewProfile";
 	public String getViewID() {
-		// TODO Auto-generated method stub
 		return VIEW_ID;
 	}
 
@@ -64,7 +64,7 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 				sPerson = sakaiPersonManager.getSakaiPerson(userId, sakaiPersonManager.getUserMutableType());
 
 			} catch (UserNotDefinedException e) {
-				e.printStackTrace();
+				log.warn(e.getMessage(), e);
 			}
 
 			if (sPerson == null) {

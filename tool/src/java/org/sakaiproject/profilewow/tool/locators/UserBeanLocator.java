@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.user.api.UserAlreadyDefinedException;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserEdit;
@@ -13,13 +11,14 @@ import org.sakaiproject.user.api.UserLockedException;
 import org.sakaiproject.user.api.UserNotDefinedException;
 import org.sakaiproject.user.api.UserPermissionException;
 
+import lombok.extern.slf4j.Slf4j;
 import uk.org.ponder.beanutil.BeanLocator;
 import uk.org.ponder.messageutil.TargettedMessage;
 import uk.org.ponder.messageutil.TargettedMessageList;
 
+@Slf4j
 public class UserBeanLocator implements BeanLocator{
 
-private static Log log = LogFactory.getLog(UserBeanLocator.class);
 	
 	private Map<String, Object> delivered = new HashMap<String, Object>();
 	public static final String NEW_PREFIX = "new ";
@@ -94,17 +93,13 @@ private static Log log = LogFactory.getLog(UserBeanLocator.class);
 			               TargettedMessage.SEVERITY_INFO));
 				
 			} catch (UserNotDefinedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.warn(e.getMessage(), e);
 			} catch (UserPermissionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.warn(e.getMessage(), e);
 			} catch (UserLockedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.warn(e.getMessage(), e);
 			} catch (UserAlreadyDefinedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.warn(e.getMessage(), e);
 			}
 			
 			

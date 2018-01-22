@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.EmailValidator;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
@@ -20,14 +18,14 @@ import org.sakaiproject.user.api.UserNotDefinedException;
 import org.sakaiproject.user.api.UserPermissionException;
 import org.sakaiproject.util.FormattedText;
 
+import lombok.extern.slf4j.Slf4j;
 import uk.org.ponder.beanutil.BeanLocator;
 import uk.org.ponder.messageutil.TargettedMessage;
 import uk.org.ponder.messageutil.TargettedMessageList;
 
+@Slf4j
 public class ProfileBeanLocator implements BeanLocator {
 
-	
-	private static Log log = LogFactory.getLog(ProfileBeanLocator.class);
 	
 	private Map delivered = new HashMap();
 	public static final String NEW_PREFIX = "new ";
@@ -158,17 +156,13 @@ public class ProfileBeanLocator implements BeanLocator {
 					rpe.addProperty(PROPERTY_NAME, setValue.toString());
 					userDirectoryService.commitEdit(ue);
 				} catch (UserNotDefinedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.warn(e.getMessage(), e);
 				} catch (UserPermissionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.warn(e.getMessage(), e);
 				} catch (UserLockedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.warn(e.getMessage(), e);
 				} catch (UserAlreadyDefinedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.warn(e.getMessage(), e);
 				}
 			}
 		}
