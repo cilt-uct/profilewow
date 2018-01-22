@@ -6,8 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.content.api.ContentCollection;
 import org.sakaiproject.content.api.ContentCollectionEdit;
 import org.sakaiproject.content.api.ContentHostingService;
@@ -26,13 +24,16 @@ import org.sakaiproject.exception.TypeException;
 import org.sakaiproject.site.api.SiteService;
 import org.sakaiproject.user.api.UserDirectoryService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ResourceUtil {
 
 	
 	
 	public static final String COLLECTION_PROFILE = "Profile";
-	
-	private static Log log = LogFactory.getLog(ResourceUtil.class);
+
+
 	
 	/** This string used for Title of the profile collection **/
 	public static final String COLLECTION_PROFILE_TITLE = "Profile Data";
@@ -69,14 +70,11 @@ public class ResourceUtil {
 		try {
 			return contentHostingService.getCollection(retrieveProfileFolderId(getCurrentUserSiteId()));
 		} catch (IdUnusedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		} catch (TypeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		} catch (PermissionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		}
 		return null;
 	}

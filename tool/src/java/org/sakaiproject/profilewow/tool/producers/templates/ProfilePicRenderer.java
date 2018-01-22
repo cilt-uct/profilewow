@@ -7,12 +7,10 @@ import org.sakaiproject.profilewow.tool.producers.ChangePicture;
 import org.sakaiproject.profilewow.tool.producers.SelectOfficialPictureProducer;
 import org.sakaiproject.profilewow.tool.producers.UploadPicture;
 
-import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIJointContainer;
 import uk.org.ponder.rsf.components.UILink;
-import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 
 public class ProfilePicRenderer {

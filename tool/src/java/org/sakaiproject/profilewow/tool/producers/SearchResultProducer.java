@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.authz.api.SecurityService;
@@ -22,6 +20,7 @@ import org.sakaiproject.search.api.SearchService;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
 
+import lombok.extern.slf4j.Slf4j;
 import uk.org.ponder.messageutil.TargettedMessageList;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
@@ -33,9 +32,9 @@ import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 
+@Slf4j
 public class SearchResultProducer implements ViewComponentProducer,ViewParamsReporter {
 
-	private static Log log = LogFactory.getLog(SearchResultProducer.class);
 	
 	public static final String VIEW_ID= "searchProfile";
 	public String getViewID() {
@@ -158,7 +157,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		}
 		if(profiles.size() == 15 && useSearchService())
 				UIOutput.make(tofill, "limitmessage");
-			log.debug(profiles.size());
+			//log.debug(profiles.size());
 	}
 
 	public ViewParameters getViewParameters() {
@@ -193,8 +192,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		try {
 			res = searchService.search(searchFor, contexts, start, end);
 		} catch (InvalidSearchQueryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 			return null;
 		}
 		log.debug("search got: " + res.size() + " results full size: " + res.getFullSize());
