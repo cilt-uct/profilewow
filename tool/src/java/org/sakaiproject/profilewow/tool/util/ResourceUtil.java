@@ -126,30 +126,21 @@ public class ResourceUtil {
 			
 			
 		} catch (PermissionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		} catch (IdInvalidException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
+			log.warn(e.getMessage(), e);
 		} catch (ServerOverloadException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		} catch (IdUniquenessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		} catch (IdLengthException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		} catch (IdUnusedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		} catch (OverQuotaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.warn(e.getMessage(), e);
 		}
 		
 		return null;
