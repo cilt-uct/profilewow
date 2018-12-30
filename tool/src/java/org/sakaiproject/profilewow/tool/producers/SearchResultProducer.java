@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.authz.api.SecurityService;
@@ -260,6 +261,8 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		}
 		if (searchString == null || searchString.length() < 4)
 			throw new IllegalArgumentException("Illegal searchString argument passed!");
+		
+		searchString = StringUtils.stripToNull(searchString);
 
 		List<SakaiPerson> profiles = sakaiPersonManager.findSakaiPerson(searchString);
 		List<SakaiPerson> searchResults = new ArrayList<SakaiPerson>();
