@@ -316,12 +316,12 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		  String TYPE_THIRDPARTY = "thirdparty";
 		  //String TYPE_OFFER = "offer";
 		  
-		log.info("User: " + profile + "Type: " + profile.getTypeUuid());
+		log.debug("User: " + profile + "Type: " + profile.getTypeUuid());
 		User user = null;
 		try {
 			user = userDirectoryService.getUser(profile.getAgentUuid());
 			String type = user.getType();
-			log.info("User: " + user.getType());
+			log.debug("User: " + user.getDisplayId() + ", type: "+ user.getType());
 			if ("guest".equals(type)) {
 				return true;
 			} else if (TYPE_STUDENT.equals(type)) {
@@ -332,7 +332,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 				return true;
 			}
 		} catch (UserNotDefinedException e) {
-			log.info(e.getLocalizedMessage(), e);
+			log.debug(e.getLocalizedMessage(), e);
 		}
 		
 		return false;
