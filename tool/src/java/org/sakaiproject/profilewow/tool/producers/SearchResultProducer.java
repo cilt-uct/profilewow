@@ -280,7 +280,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 				// Select the user mutable profile for display on if the public information is viewable.
 				if ((profile != null)
 						&& profile.getTypeUuid().equals(sakaiPersonManager.getUserMutableType().getUuid())
-						&& getSakai(profile))
+						&& isActiveAccountType(profile))
 				{
 					if ((getCurrentUserId().equals(profile.getAgentUuid()) || securityService.isSuperUser()))
 					{
@@ -309,7 +309,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		return searchResults;
 	}
 
-	private boolean getSakai(SakaiPerson profile) {
+	private boolean isActiveAccountType(SakaiPerson profile) {
 		  // User account types
 		  String TYPE_STUDENT = "student";
 		  String TYPE_STAFF = "staff";
