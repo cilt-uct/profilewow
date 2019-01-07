@@ -321,7 +321,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		try {
 			user = userDirectoryService.getUser(profile.getAgentUuid());
 			String type = user.getType();
-			log.debug("User: " + user.getDisplayId() + ", type: "+ user.getType());
+			log.debug("User: {}, type: {}", user.getDisplayId(), user.getType());
 			if ("guest".equals(type)) {
 				return true;
 			} else if (TYPE_STUDENT.equals(type)) {
