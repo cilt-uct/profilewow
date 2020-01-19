@@ -30,6 +30,7 @@
 		<property name="profilePicRenderer" ref="profilePicRenderer" />
 		<property name="passwordFormRenderer" ref="passwordFormRenderer" />
 		<property name="searchBoxRenderer" ref="searchBoxRenderer"/>
+		<property name="formattedText" ref="org.sakaiproject.util.api.FormattedText" />
 	</bean>
 	
 	<bean class="org.sakaiproject.profilewow.tool.producers.EditProducer">
@@ -111,6 +112,7 @@
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
 		<property name="messages" ref="targettedMessageList" />
 		<property name="numberRoutingHelper" ref="org.sakaiproject.sms.logic.external.NumberRoutingHelper"/>
+		<property name="formattedText" ref="org.sakaiproject.util.api.FormattedText" />
 	</bean>
 	<bean name="userBeanLocator"
 		class="org.sakaiproject.profilewow.tool.locators.UserBeanLocator">
