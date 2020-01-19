@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.commons.validator.EmailValidator;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.entity.api.ResourcePropertiesEdit;
@@ -16,8 +16,9 @@ import org.sakaiproject.user.api.UserEdit;
 import org.sakaiproject.user.api.UserLockedException;
 import org.sakaiproject.user.api.UserNotDefinedException;
 import org.sakaiproject.user.api.UserPermissionException;
-import org.sakaiproject.util.FormattedText;
+import org.sakaiproject.util.api.FormattedText;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import uk.org.ponder.beanutil.BeanLocator;
 import uk.org.ponder.messageutil.TargettedMessage;
@@ -27,10 +28,11 @@ import uk.org.ponder.messageutil.TargettedMessageList;
 public class ProfileBeanLocator implements BeanLocator {
 
 	
-	private Map delivered = new HashMap();
+	private Map<String, Object> delivered = new HashMap<>();
 	public static final String NEW_PREFIX = "new ";
 	public static String NEW_1 = NEW_PREFIX + "1";
 	
+	@Setter private FormattedText formattedText;
 	private TargettedMessageList messages;
 	public void setMessages(TargettedMessageList messages) {
 		this.messages = messages;
@@ -130,7 +132,7 @@ public class ProfileBeanLocator implements BeanLocator {
 			}
 			
 			String notes = sperson.getNotes();
-			notes = FormattedText.processFormattedText(notes, new StringBuilder());
+			notes = formattedText.processFormattedText(notes, new StringBuilder());
 			sperson.setNotes(notes);
 			
 			//set the normalized mobile No

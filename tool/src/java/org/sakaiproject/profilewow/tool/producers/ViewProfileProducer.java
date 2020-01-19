@@ -7,8 +7,9 @@ import org.sakaiproject.profilewow.tool.params.SakaiPersonViewParams;
 import org.sakaiproject.profilewow.tool.producers.templates.ProfilePicRenderer;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
-import org.sakaiproject.util.FormattedText;
+import org.sakaiproject.util.api.FormattedText;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
@@ -32,7 +33,8 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 	public String getViewID() {
 		return VIEW_ID;
 	}
-
+	@Setter private FormattedText formattedText;
+	
 	private SakaiPersonManager sakaiPersonManager;
 	public void setSakaiPersonManager(SakaiPersonManager spm) {
 		sakaiPersonManager = spm;
@@ -123,7 +125,7 @@ public class ViewProfileProducer implements ViewComponentProducer,ViewParamsRepo
 		
 		if (sPerson.getNotes() != null) {
 			String notes = sPerson.getNotes();
-			notes = FormattedText.processFormattedText(notes, new StringBuilder());
+			notes = formattedText.processFormattedText(notes, new StringBuilder());
 			UIVerbatim.make(tofill,"more-info", notes);
 		}
 		
