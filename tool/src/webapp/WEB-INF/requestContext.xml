@@ -56,6 +56,7 @@
 			ref="org.sakaiproject.api.common.edu.person.SakaiPersonManager" />
 		<property name="userDirectoryService"
 			ref="org.sakaiproject.user.api.UserDirectoryService" />
+		<property name="formattedText" ref="org.sakaiproject.util.api.FormattedText" />
 	</bean>
 	<bean class="org.sakaiproject.profilewow.tool.producers.UploadPicture">
 		<property name="targettedMessageList" ref="targettedMessageList" />
