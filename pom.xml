@@ -24,25 +24,16 @@
 			<id>sakai-maven</id>
 			<name>Sakai Maven Repo</name>
 			<layout>default</layout>
-			<url>http://source.sakaiproject.org/maven2</url>
+			<url>https://source.sakaiproject.org/maven2</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-		<repository>
-			<id>sakai-maven2-snapshots</id>
-			<name>Sakai Maven Repo</name>
-			<layout>default</layout>
-			<url>http://source.sakaiproject.org/maven2-snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
+	<repository>
             <id>default</id>
             <name>Maven Repository Switchboard</name>
             <layout>default</layout>
-            <url>http://repo1.maven.org/maven2</url>
+            <url>https://repo1.maven.org/maven2</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
