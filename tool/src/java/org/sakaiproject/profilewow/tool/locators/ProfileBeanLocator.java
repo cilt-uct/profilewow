@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.apache.commons.validator.routines.UrlValidator;
 import org.sakaiproject.api.common.edu.person.SakaiPerson;
 import org.sakaiproject.api.common.edu.person.SakaiPersonManager;
 import org.sakaiproject.entity.api.ResourcePropertiesEdit;
@@ -98,15 +100,17 @@ public class ProfileBeanLocator implements BeanLocator {
 	}
 	
 	public void saveAll() {
-		log.debug("Savind all!");
+
+		log.info("saveAll()");
+
 		for (Iterator<String> it = delivered.keySet().iterator(); it.hasNext();) {
 			String key = it.next();
 			log.debug("got key: " + key);
 			SakaiPersonFacade person = (SakaiPersonFacade) delivered.get(key);
 			
 			SakaiPerson sperson = person.getSakaiPerson();
+
 			if (sperson.getGivenName() == null || sperson.getGivenName().length() == 0) {
-				
 				messages.addMessage( new TargettedMessage("givenName.empty",
 			               new Object[] { "given name empty" }, 
 			               TargettedMessage.SEVERITY_ERROR));
@@ -117,17 +121,20 @@ public class ProfileBeanLocator implements BeanLocator {
 				messages.addMessage( new TargettedMessage("surName.empty",
 			               new Object[] { "surname empty" }, 
 			               TargettedMessage.SEVERITY_ERROR));
-				
 				return;
 			}
 			
-			
 			if (sperson.getMail() == null || !isValidMail(sperson.getMail())) {
-				
 				messages.addMessage( new TargettedMessage("email.invalid",
 			               new Object[] { "invalid email"}, 
 			               TargettedMessage.SEVERITY_ERROR));
-				
+				return;
+			}
+
+			if (StringUtils.isNotEmpty(sperson.getLabeledURI()) && !isValidUrl(sperson.getLabeledURI())) {
+				messages.addMessage( new TargettedMessage("url.invalid",
+			               new Object[] { "invalid url"},
+			               TargettedMessage.SEVERITY_ERROR));
 				return;
 			}
 			
@@ -182,18 +189,29 @@ public class ProfileBeanLocator implements BeanLocator {
 		return "success!";
 	}
 
-	
 	private boolean isValidMail(String email) {
-
-
 		if (email == null || email.equals(""))
 			return false;
 		
-		
 		email = email.trim();
-		
 		EmailValidator ev = EmailValidator.getInstance();
-		return ev.isValid(email);
-		
+		boolean email_valid = ev.isValid(email);
+		log.info("Email {} valid? {}", email, email_valid);
+
+		return email_valid;
+	}
+
+	private boolean isValidUrl(String url) {
+		if (url == null || url.equals(""))
+			return false;
+
+		String[] schemes = {"http","https"};
+		UrlValidator urlValidator = new UrlValidator(schemes);
+
+		url = url.trim();
+		boolean url_valid = urlValidator.isValid(url);
+		log.info("Url {} valid? {}", url, url_valid);
+
+		return url_valid;
 	}
 }
