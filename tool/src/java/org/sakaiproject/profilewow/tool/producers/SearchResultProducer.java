@@ -37,39 +37,39 @@ import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 @Slf4j
 public class SearchResultProducer implements ViewComponentProducer,ViewParamsReporter {
 
-	
+
 	public static final String VIEW_ID= "searchProfile";
 	public String getViewID() {
 		// TODO Auto-generated method stub
 		return VIEW_ID;
 	}
 
-	
+
 	private SakaiPersonManager sakaiPersonManager;
 	public void setSakaiPersonManager(SakaiPersonManager in) {
 		sakaiPersonManager = in;
 	}
-	
+
 	private TargettedMessageList messages;
 	public void setMessages(TargettedMessageList messages) {
 		this.messages = messages;
 	}
-	
+
 	private SecurityService securityService;
 	public void setSecurityService(SecurityService securityService) {
 		this.securityService = securityService;
 	}
-	
+
 	private UserDirectoryService userDirectoryService;
 	public void setUserDirectoryService(UserDirectoryService uds) {
 		this.userDirectoryService = uds;
 	}
-	
+
 	private SearchBoxRenderer searchBoxRenderer;
 	public void setSearchBoxRenderer(SearchBoxRenderer searchBoxRenderer) {
 		this.searchBoxRenderer = searchBoxRenderer;
 	}
-	
+
 	private ServerConfigurationService serverConfigurationService;
 	public void setServerConfigurationService(
 			ServerConfigurationService serverConfigurationService) {
@@ -91,24 +91,24 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 	 * prefix for profile objects
 	 */
 	private static String PROFILE_PREFIX = "profile";
-	
-	
+
+
 	private boolean moreResults = false;
-	
+
 	private int numberOfpages =0;
-	
+
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
-		
+
 		SearchViewParamaters svp = (SearchViewParamaters)viewparams;
 		String searchString = svp.searchText;
 		log.debug("search string is: "  + searchString);
 		int start = 0;
 		if (svp.start != null) {
 			start = Integer.valueOf(svp.start).intValue();
-		} 
-		
-		
+		}
+
+
 		if (start < 0) {
 			start = 0;
 		}
@@ -116,9 +116,9 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		moreResults = false;
 		List<SakaiPerson> profiles = this.findProfiles(searchString, start, start + SEARCH_PAGING_SIZE);
 		UIMessage.make(tofill, "searchTitle", "searchTitle", new Object[]{ searchString});
-		
-		
-		
+
+
+
 		if (useSearchService() && moreResults) {
 			log.debug("rendering the next!");
 			UIInternalLink.make(tofill, "searchNext", new SearchViewParamaters(svp.viewID, searchString, Integer.valueOf(start +  SEARCH_PAGING_SIZE).toString()));
@@ -126,13 +126,13 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		if (useSearchService() && start != 0) {
 			log.debug("rendering the back!");
 			UIInternalLink.make(tofill, "searchBack", new SearchViewParamaters(svp.viewID, searchString, Integer.valueOf(start - SEARCH_PAGING_SIZE - 1).toString()));
-			
+
 		}
-		
-		
-		
+
+
+
 		searchBoxRenderer.renderSearchBox(tofill, "search:");
-		
+
 		for (int i =0 ; i < profiles.size(); i++) {
 			SakaiPerson sPerson = (SakaiPerson) profiles.get(i);
 			log.debug("creating row for " + sPerson.getGivenName());
@@ -155,7 +155,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 				UIInternalLink.make(row, "resultLink", label,
 					new SakaiPersonViewParams(ViewProfileProducer.VIEW_ID, eid));
 			}
-			
+
 		}
 		if(profiles.size() == 15 && useSearchService())
 				UIOutput.make(tofill, "limitmessage");
@@ -178,8 +178,8 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 	private boolean useSearchService() {
 		return serverConfigurationService.getBoolean("profilewow.useSearch", false) && searchService.isEnabled();
 	}
-	
-	
+
+
 	private List<SakaiPerson> findProfilesSearch(String searchString, int start, int end) {
 		List<SakaiPerson>  searchResults = new ArrayList<SakaiPerson> ();
 		List<String> contexts = new ArrayList<String>();
@@ -192,31 +192,32 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		log.debug("searching from: " + start + " to: " + end);
 		SearchList res = null;
 		try {
-			res = searchService.search(searchFor, contexts, start, end);
+			//						   term , sites, tools, start, limit
+			res = searchService.search(searchFor, contexts, null, start, end);
 		} catch (InvalidSearchQueryException e) {
 			log.warn(e.getMessage(), e);
 			return null;
 		}
 		log.debug("search got: " + res.size() + " results full size: " + res.getFullSize());
 		moreResults = (end  < res.getFullSize());
-		
+
 		long endTime = System.currentTimeMillis();
 		log.debug("got " + res.size() + " search results in: " + (endTime - startTime) + " ms");
-		
+
 		//get the nuber of pages in the result
 		double pagesRaw = (double)res.getFullSize() / (double)SEARCH_PAGING_SIZE;
 		numberOfpages = (int)Math.ceil(pagesRaw);
 		log.debug("found " + numberOfpages + " pages in a resultset of " + res.getFullSize());
-		
-		
-		
-		
+
+
+
+
 		//this list actually contains all the items
 		Iterator<SearchResult> i = res.iterator();
 		while (i.hasNext()) {
 			SearchResult resI =  i.next();  //(SearchResult) res.get(i);
 			String ref = resI.getReference();
-			
+
 			log.debug("ref: " + ref);
 			String id = EntityReference.getIdFromRefByKey(ref, "id");
 			String prefix = EntityReference.getPrefix(ref);
@@ -224,7 +225,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 				log.warn(ref + " is not a profile object");
 				continue;
 			}
-			
+
 			log.debug("getting id: " + id);
 			SakaiPerson profile = sakaiPersonManager.getSakaiPerson(id, sakaiPersonManager.getUserMutableType());
 			// Select the user mutable profile for display on if the public information is viewable.
@@ -249,11 +250,11 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 
 				}
 			}
-			
+
 		}
 		return searchResults;
 	}
-	
+
 	private List<SakaiPerson> findProfilesDB(String searchString)
 	{
 		if (log.isDebugEnabled())
@@ -262,7 +263,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		}
 		if (searchString == null || searchString.length() < 4)
 			throw new IllegalArgumentException("Illegal searchString argument passed!");
-		
+
 		searchString = StringUtils.stripToNull(searchString);
 
 		List<SakaiPerson> profiles = sakaiPersonManager.findSakaiPerson(searchString);
@@ -276,7 +277,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 			while (profileIterator.hasNext())
 			{
 				profile = (SakaiPerson) profileIterator.next();
-				
+
 				// Select the user mutable profile for display on if the public information is viewable.
 				if ((profile != null)
 						&& profile.getTypeUuid().equals(sakaiPersonManager.getUserMutableType().getUuid())
@@ -299,7 +300,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 						}
 					}
 				}
-				
+
 				if(searchResults.size() == 15)
 					break;
 
@@ -315,7 +316,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		  String TYPE_STAFF = "staff";
 		  String TYPE_THIRDPARTY = "thirdparty";
 		  //String TYPE_OFFER = "offer";
-		  
+
 		log.debug("User: " + profile + "Type: " + profile.getTypeUuid());
 		User user = null;
 		try {
@@ -334,7 +335,7 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		} catch (UserNotDefinedException e) {
 			log.debug(e.getLocalizedMessage(), e);
 		}
-		
+
 		return false;
 	}
 	private SakaiPerson getOnlyPublicProfile(SakaiPerson profile)
@@ -351,10 +352,10 @@ public class SearchResultProducer implements ViewComponentProducer,ViewParamsRep
 		profile.setNotes(null);
 		return profile;
 	}
-	
+
 	private String getCurrentUserId() {
 		return userDirectoryService.getCurrentUser().getId();
 	}
-	
-	
+
+
 }
